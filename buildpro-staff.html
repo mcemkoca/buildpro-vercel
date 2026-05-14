@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BuildPro — Personel Yönetimi</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <style>
+    .cert-tags { display:flex; flex-wrap:wrap; gap:4px; }
+    .cert-tag { font-size:10px; padding:2px 8px; border-radius:9999px; background:var(--bg-tertiary); color:var(--text-secondary); border:1px solid var(--border-color); }
+    .staff-avatar { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:var(--text-xs); font-weight:600; color:white; flex-shrink:0; }
+    .filter-bar { display:flex; gap:var(--space-3); flex-wrap:wrap; margin-bottom:var(--space-4); }
+    .filter-bar .form-select { width:auto; min-width:160px; }
+    .salary-cell { font-variant-numeric:tabular-nums; font-weight:600; }
+    .modal-body .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:var(--space-4); }
+    @media (max-width:640px){ .modal-body .grid-2 { grid-template-columns:1fr; } }
+    .checkbox-group { display:flex; flex-wrap:wrap; gap:var(--space-3); margin-top:var(--space-2); }
+    .checkbox-item { display:flex; align-items:center; gap:var(--space-2); font-size:var(--text-sm); color:var(--text-secondary); cursor:pointer; }
+    .checkbox-item input { accent-color:var(--teal-500); }
+    .summary-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--space-4); margin-bottom:var(--space-6); }
+    @media (max-width:1024px){ .summary-cards { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:480px){ .summary-cards { grid-template-columns:1fr; } }
+    .site-badge { display:inline-flex; align-items:center; gap:4px; font-size:var(--text-xs); padding:2px 8px; border-radius:9999px; background:var(--bg-tertiary); color:var(--text-secondary); }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand-icon">BP</div>
+        <span class="sidebar-brand-text">BuildPro</span>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">Genel</div>
+          <a class="sidebar-link" href="buildpro-dashboard.html"><span class="icon">📊</span><span class="sidebar-text">Dashboard</span></a>
+          <a class="sidebar-link" href="buildpro-projects.html"><span class="icon">🏗️</span><span class="sidebar-text">Projeler</span></a>
+          <a class="sidebar-link active" href="buildpro-staff.html"><span class="icon">👷</span><span class="sidebar-text">Personel</span></a>
+          <a class="sidebar-link" href="buildpro-site.html"><span class="icon">📍</span><span class="sidebar-text">Şantiyeler</span></a>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">Operasyon</div>
+          <a class="sidebar-link" href="buildpro-calendar.html"><span class="icon">📅</span><span class="sidebar-text">Takvim</span></a>
+          <a class="sidebar-link" href="buildpro-costs.html"><span class="icon">💶</span><span class="sidebar-text">Maliyetler</span></a>
+          <a class="sidebar-link" href="buildpro-equipment.html"><span class="icon">🚜</span><span class="sidebar-text">Ekipman</span></a>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">Müşteri</div>
+          <a class="sidebar-link" href="buildpro-clients.html"><span class="icon">🤝</span><span class="sidebar-text">Müşteriler</span></a>
+          <a class="sidebar-link" href="buildpro-quotes.html"><span class="icon">📄</span><span class="sidebar-text">Teklifler</span></a>
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <a class="sidebar-link" href="#"><span class="icon">⚙️</span><span class="sidebar-text">Ayarlar</span></a>
+      </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Main -->
+    <main class="main">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-left">
+          <button class="header-btn mobile-visible" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+          <div>
+            <div class="header-title">Personel Yönetimi</div>
+            <div class="header-breadcrumb">BuildPro / Personel</div>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="header-search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" placeholder="Personel ara..." id="globalSearch">
+          </div>
+          <button class="header-btn" onclick="toggleTheme()" aria-label="Tema">🌓</button>
+          <button class="header-btn" aria-label="Bildirimler">🔔<span class="badge-dot"></span></button>
+          <div class="header-avatar">DY</div>
+        </div>
+      </header>
+
+      <!-- Page -->
+      <div class="page">
+        <!-- Summary Cards -->
+        <div class="summary-cards">
+          <div class="card stat-card">
+            <div class="stat-icon" style="background:var(--teal-100);color:var(--teal-600);">👷</div>
+            <div class="stat-value">24</div>
+            <div class="stat-label">Toplam Personel</div>
+            <div class="stat-change up">↑ 3 yeni bu ay</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-icon" style="background:var(--success-100);color:var(--success-500);">✅</div>
+            <div class="stat-value">19</div>
+            <div class="stat-label">Aktif Çalışan</div>
+            <div class="stat-change up">↑ %79 oran</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-icon" style="background:var(--warning-100);color:var(--warning-500);">🎫</div>
+            <div class="stat-value">3</div>
+            <div class="stat-label">İzin / Raporlu</div>
+            <div class="stat-change down">↓ 1 azalma</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-icon" style="background:var(--info-100);color:var(--info-500);">💶</div>
+            <div class="stat-value">€847K</div>
+            <div class="stat-label">Aylık Maaş Bütçesi</div>
+            <div class="stat-change up">↑ %4.2 artış</div>
+          </div>
+        </div>
+
+        <!-- Page Header -->
+        <div class="page-header">
+          <div>
+            <div class="page-title">Personel Listesi</div>
+            <div class="page-subtitle">Tüm çalışanlar, roller ve sertifikalar</div>
+          </div>
+          <div class="page-actions">
+            <button class="btn btn-secondary" onclick="exportStaff()">📥 Dışa Aktar</button>
+            <button class="btn btn-primary" onclick="openModal('addModal')">+ Personel Ekle</button>
+          </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filter-bar">
+          <div class="search-input" style="flex:1;max-width:320px;">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" class="form-input" placeholder="İsim, görev veya sertifika ara..." id="staffSearch">
+          </div>
+          <select class="form-select" id="roleFilter">
+            <option value="">Tüm Görevler</option>
+            <option value="Şantiye Şefi">Şantiye Şefi</option>
+            <option value="Mühendis">Mühendis</option>
+            <option value="Mimar">Mimar</option>
+            <option value="Usta">Usta</option>
+            <option value="İşçi">İşçi</option>
+            <option value="Operatör">Operatör</option>
+          </select>
+          <select class="form-select" id="siteFilter">
+            <option value="">Tüm Şantiyeler</option>
+            <option value="Brüksel Merkez">Brüksel Merkez</option>
+            <option value="Anvers Lojistik">Anvers Lojistik</option>
+            <option value="Gent Konut">Gent Konut</option>
+            <option value="Ofis">Ofis</option>
+          </select>
+          <select class="form-select" id="statusFilter">
+            <option value="">Tüm Durumlar</option>
+            <option value="Aktif">Aktif</option>
+            <option value="İzin">İzin</option>
+            <option value="Raporlu">Raporlu</option>
+            <option value="Ayrıldı">Ayrıldı</option>
+          </select>
+        </div>
+
+        <!-- Table -->
+        <div class="table-wrap">
+          <table class="table" id="staffTable">
+            <thead>
+              <tr>
+                <th>Ad Soyad</th>
+                <th>Görev</th>
+                <th>Sertifikalar</th>
+                <th>Atandığı Şantiye</th>
+                <th>Durum</th>
+                <th>Maaş</th>
+                <th>Başlangıç</th>
+                <th style="width:100px;text-align:right;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="staffTableBody">
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#0d9488,#115e59);">MK</div><span>Mehmet Kaya</span></div></td>
+                <td><span class="badge badge-info">Şantiye Şefi</span></td>
+                <td><div class="cert-tags"><span class="cert-tag">İSG</span><span class="cert-tag">Yüksekte</span><span class="cert-tag">Vinç</span></div></td>
+                <td><span class="site-badge">📍 Brüksel Merkez</span></td>
+                <td><span class="badge badge-success">Aktif</span></td>
+                <td class="salary-cell">€4.200</td>
+                <td>15.03.2021</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(1)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(1)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#2563eb,#1e40af);">JD</div><span>Jan De Vries</span></div></td>
+                <td><span class="badge badge-info">Mühendis</span></td>
+                <td><div class="cert-tags"><span class="cert-tag">Beton</span><span class="cert-tag">Yapı Denetim</span></div></td>
+                <td><span class="site-badge">📍 Brüksel Merkez</span></td>
+                <td><span class="badge badge-success">Aktif</span></td>
+                <td class="salary-cell">€3.800</td>
+                <td>02.09.2022</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(2)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(2)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#7c3aed,#5b21b6);">AY</div><span>Ayşe Yılmaz</span></div></td>
+                <td><span class="badge badge-info">Mimar</span></td>
+                <td><div class="cert-tags"><span class="cert-tag">AutoCAD</span><span class="cert-tag">Revit</span><span class="cert-tag">Enerji Pasaport</span></div></td>
+                <td><span class="site-badge">📍 Ofis</span></td>
+                <td><span class="badge badge-success">Aktif</span></td>
+                <td class="salary-cell">€3.500</td>
+                <td>10.01.2023</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(3)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(3)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b);">PO</div><span>Pieter Ooms</span></div></td>
+                <td><span class="badge badge-warning">Usta</span></td>
+                <td><div class="cert-tags"><span class="cert-tag">Elektrik</span><span class="cert-tag">İSG</span><span class="cert-tag">Yangın</span></div></td>
+                <td><span class="site-badge">📍 Anvers Lojistik</span></td>
+                <td><span class="badge badge-success">Aktif</span></td>
+                <td class="salary-cell">€3.100</td>
+                <td>22.06.2020</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(4)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(4)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#ea580c,#9a3412);">HD</div><span>Hassan Demir</span></div></td>
+                <td><span class="badge badge-neutral">İşçi</span></td>
+                <td><div class="cert-tags"><span class="cert-tag">İSG</span></div></td>
+                <td><span class="site-badge">📍 Brüksel Merkez</span></td>
+                <td><span class="badge badge-success">Aktif</span></td>
+                <td class="salary-cell">€2.450</td>
+                <td>05.04.2023</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(5)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(5)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#0891b2,#155e75);">LV</div><span>Liesbeth Van den Berg</span></div></td>
+                <td><span class="badge badge-info">Şantiye Şefi</span></td>
+                <td><div class="cert-tags"><span class="cert-tag">İSG</span><span class="cert-tag">Vinç</span><span class="cert-tag">Kalite</span></div></td>
+                <td><span class="site-badge">📍 Gent Konut</span></td>
+                <td><span class="badge badge-success">Aktif</span></td>
+                <td class="salary-cell">€4.350</td>
+                <td>18.11.2019</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(6)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(6)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#4f46e5,#3730a3);">TC</div><span>Thomas Claes</span></div></td>
+                <td><span class="badge badge-warning">Operatör</span></td>
+                <td><div class="cert-tags"><span class="cert-tag">Ekskavatör</span><span class="cert-tag">Vinç</span><span class="cert-tag">Forklift</span></div></td>
+                <td><span class="site-badge">📍 Anvers Lojistik</span></td>
+                <td><span class="badge badge-success">Aktif</span></td>
+                <td class="salary-cell">€2.800</td>
+                <td>30.07.2022</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(7)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(7)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#be123c,#881337);">SB</div><span>Sibel Bakırcı</span></div></td>
+                <td><span class="badge badge-neutral">İşçi</span></td>
+                <td><div class="cert-tags"><span class="cert-tag">İSG</span><span class="cert-tag">Yüksekte</span></div></td>
+                <td><span class="site-badge">📍 Gent Konut</span></td>
+                <td><span class="badge badge-warning">İzin</span></td>
+                <td class="salary-cell">€2.380</td>
+                <td>14.02.2024</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(8)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(8)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#047857,#065f46);">MB</div><span>Marc Baudewijn</span></div></td>
+                <td><span class="badge badge-info">Mühendis</span></td>
+                <td><div class="cert-tags"><span class="cert-tag">Beton</span><span class="cert-tag">Yapı Denetim</span><span class="cert-tag">Kalite</span></div></td>
+                <td><span class="site-badge">📍 Ofis</span></td>
+                <td><span class="badge badge-success">Aktif</span></td>
+                <td class="salary-cell">€3.650</td>
+                <td>08.05.2021</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(9)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(9)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#9333ea,#6b21a8);">EO</div><span>Emre Özdemir</span></div></td>
+                <td><span class="badge badge-warning">Usta</span></td>
+                <td><div class="cert-tags"><span class="cert-tag">Sıhhi Tesisat</span><span class="cert-tag">İSG</span></div></td>
+                <td><span class="site-badge">📍 Brüksel Merkez</span></td>
+                <td><span class="badge badge-success">Aktif</span></td>
+                <td class="salary-cell">€3.050</td>
+                <td>19.10.2022</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(10)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(10)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#c2410c,#9a3412);">NP</div><span>Nadia Peeters</span></div></td>
+                <td><span class="badge badge-info">Mimar</span></td>
+                <td><div class="cert-tags"><span class="cert-tag">Revit</span><span class="cert-tag">SketchUp</span><span class="cert-tag">Enerji Pasaport</span></div></td>
+                <td><span class="site-badge">📍 Ofis</span></td>
+                <td><span class="badge badge-success">Aktif</span></td>
+                <td class="salary-cell">€3.400</td>
+                <td>03.01.2024</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(11)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(11)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#1d4ed8,#1e3a8a);">IK</div><span>Ibrahim Korkmaz</span></div></td>
+                <td><span class="badge badge-neutral">İşçi</span></td>
+                <td><div class="cert-tags"><span class="cert-tag">İSG</span></div></td>
+                <td><span class="site-badge">📍 Anvers Lojistik</span></td>
+                <td><span class="badge badge-error">Raporlu</span></td>
+                <td class="salary-cell">€2.320</td>
+                <td>27.08.2023</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(12)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(12)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#b45309,#78350f);">WS</div><span>Wouter Smets</span></div></td>
+                <td><span class="badge badge-warning">Operatör</span></td>
+                <td><div class="cert-tags"><span class="cert-tag">Forklift</span><span class="cert-tag">Vinç</span><span class="cert-tag">Teleskopik</span></div></td>
+                <td><span class="site-badge">📍 Gent Konut</span></td>
+                <td><span class="badge badge-success">Aktif</span></td>
+                <td class="salary-cell">€2.750</td>
+                <td>11.12.2021</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(13)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(13)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#0f766e,#134e4a);">FC</div><span>Fatma Çelik</span></div></td>
+                <td><span class="badge badge-info">Mühendis</span></td>
+                <td><div class="cert-tags"><span class="cert-tag">Beton</span><span class="cert-tag">Yapı Denetim</span></div></td>
+                <td><span class="site-badge">📍 Ofis</span></td>
+                <td><span class="badge badge-warning">İzin</span></td>
+                <td class="salary-cell">€3.700</td>
+                <td>06.03.2023</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(14)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(14)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#4338ca,#312e81);">JB</div><span>Jeroen Beekman</span></div></td>
+                <td><span class="badge badge-warning">Usta</span></td>
+                <td><div class="cert-tags"><span class="cert-tag">Mermer</span><span class="cert-tag">Seramik</span><span class="cert-tag">İSG</span></div></td>
+                <td><span class="site-badge">📍 Brüksel Merkez</span></td>
+                <td><span class="badge badge-success">Aktif</span></td>
+                <td class="salary-cell">€2.950</td>
+                <td>25.09.2020</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(15)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(15)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#a16207,#713f12);">YA</div><span>Yusuf Aydın</span></div></td>
+                <td><span class="badge badge-neutral">İşçi</span></td>
+                <td><div class="cert-tags"><span class="cert-tag">İSG</span><span class="cert-tag">Yüksekte</span></div></td>
+                <td><span class="site-badge">📍 Anvers Lojistik</span></td>
+                <td><span class="badge badge-success">Aktif</span></td>
+                <td class="salary-cell">€2.400</td>
+                <td>17.01.2024</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(16)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(16)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);">KM</div><span>Karen Maes</span></div></td>
+                <td><span class="badge badge-info">Mimar</span></td>
+                <td><div class="cert-tags"><span class="cert-tag">AutoCAD</span><span class="cert-tag">Revit</span><span class="cert-tag">3ds Max</span></div></td>
+                <td><span class="site-badge">📍 Ofis</span></td>
+                <td><span class="badge badge-success">Aktif</span></td>
+                <td class="salary-cell">€3.550</td>
+                <td>09.06.2022</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(17)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(17)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#ca8a04,#854d0e);">DV</div><span>Dirk Vermeulen</span></div></td>
+                <td><span class="badge badge-warning">Operatör</span></td>
+                <td><div class="cert-tags"><span class="cert-tag">Ekskavatör</span><span class="cert-tag">Forklift</span></div></td>
+                <td><span class="site-badge">📍 Brüksel Merkez</span></td>
+                <td><span class="badge badge-success">Aktif</span></td>
+                <td class="salary-cell">€2.680</td>
+                <td>04.05.2023</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(18)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(18)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#db2777,#9d174d);">ST</div><span>Stefanie Timmermans</span></div></td>
+                <td><span class="badge badge-neutral">İşçi</span></td>
+                <td><div class="cert-tags"><span class="cert-tag">İSG</span></div></td>
+                <td><span class="site-badge">📍 Gent Konut</span></td>
+                <td><span class="badge badge-success">Aktif</span></td>
+                <td class="salary-cell">€2.300</td>
+                <td>13.07.2023</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(19)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(19)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#65a30d,#3f6212);">GD</div><span>Gert Deschacht</span></div></td>
+                <td><span class="badge badge-info">Şantiye Şefi</span></td>
+                <td><div class="cert-tags"><span class="cert-tag">İSG</span><span class="cert-tag">Kalite</span><span class="cert-tag">Yapı Denetim</span></div></td>
+                <td><span class="site-badge">📍 Anvers Lojistik</span></td>
+                <td><span class="badge badge-success">Aktif</span></td>
+                <td class="salary-cell">€4.500</td>
+                <td>01.02.2018</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(20)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(20)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#7c2d12,#451a03);">MK2</div><span>Murat Karaca</span></div></td>
+                <td><span class="badge badge-warning">Usta</span></td>
+                <td><div class="cert-tags"><span class="cert-tag">Kaynak</span><span class="cert-tag">İSG</span><span class="cert-tag">Yangın</span></div></td>
+                <td><span class="site-badge">📍 Gent Konut</span></td>
+                <td><span class="badge badge-neutral">Ayrıldı</span></td>
+                <td class="salary-cell">€2.900</td>
+                <td>12.04.2019</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(21)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(21)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#0369a1,#0c4a6e);">ED</div><span>Elke Dubois</span></div></td>
+                <td><span class="badge badge-info">Mühendis</span></td>
+                <td><div class="cert-tags"><span class="cert-tag">Beton</span><span class="cert-tag">Statik</span></div></td>
+                <td><span class="site-badge">📍 Ofis</span></td>
+                <td><span class="badge badge-success">Aktif</span></td>
+                <td class="salary-cell">€3.900</td>
+                <td>20.03.2022</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(22)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(22)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#a855f7,#6b21a8);">BS</div><span>Burak Şahin</span></div></td>
+                <td><span class="badge badge-neutral">İşçi</span></td>
+                <td><div class="cert-tags"><span class="cert-tag">İSG</span><span class="cert-tag">Yüksekte</span></div></td>
+                <td><span class="site-badge">📍 Brüksel Merkez</span></td>
+                <td><span class="badge badge-success">Aktif</span></td>
+                <td class="salary-cell">€2.350</td>
+                <td>28.11.2023</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(23)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(23)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#14b8a6,#0f766e);">LN</div><span>Lucas Neyt</span></div></td>
+                <td><span class="badge badge-warning">Operatör</span></td>
+                <td><div class="cert-tags"><span class="cert-tag">Forklift</span><span class="cert-tag">Vinç</span><span class="cert-tag">Teleskopik</span></div></td>
+                <td><span class="site-badge">📍 Anvers Lojistik</span></td>
+                <td><span class="badge badge-success">Aktif</span></td>
+                <td class="salary-cell">€2.620</td>
+                <td>15.09.2022</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(24)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(24)">🗑️</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Add Modal -->
+  <div class="modal-overlay" id="addModal">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <div class="modal-title">Yeni Personel Ekle</div>
+        <button class="modal-close" onclick="closeModal('addModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-body grid-2">
+          <div class="form-group">
+            <label class="form-label">Ad</label>
+            <input type="text" class="form-input" placeholder="örn: Mehmet">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Soyad</label>
+            <input type="text" class="form-input" placeholder="örn: Kaya">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Görev</label>
+            <select class="form-select">
+              <option>Şantiye Şefi</option>
+              <option>Mühendis</option>
+              <option>Mimar</option>
+              <option>Usta</option>
+              <option>İşçi</option>
+              <option>Operatör</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Atandığı Şantiye</label>
+            <select class="form-select">
+              <option>Brüksel Merkez</option>
+              <option>Anvers Lojistik</option>
+              <option>Gent Konut</option>
+              <option>Ofis</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Maaş (€)</label>
+            <input type="number" class="form-input" placeholder="örn: 3500">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Başlangıç Tarihi</label>
+            <input type="date" class="form-input">
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:var(--space-4);">
+          <label class="form-label">Sertifikalar</label>
+          <div class="checkbox-group">
+            <label class="checkbox-item"><input type="checkbox"> İSG</label>
+            <label class="checkbox-item"><input type="checkbox"> Yüksekte Çalışma</label>
+            <label class="checkbox-item"><input type="checkbox"> Vinç Operatörlüğü</label>
+            <label class="checkbox-item"><input type="checkbox"> Forklift</label>
+            <label class="checkbox-item"><input type="checkbox"> Ekskavatör</label>
+            <label class="checkbox-item"><input type="checkbox"> Beton Teknolojisi</label>
+            <label class="checkbox-item"><input type="checkbox"> Yapı Denetim</label>
+            <label class="checkbox-item"><input type="checkbox"> Elektrik Ustalığı</label>
+            <label class="checkbox-item"><input type="checkbox"> Sıhhi Tesisat</label>
+            <label class="checkbox-item"><input type="checkbox"> Kaynakçılık</label>
+            <label class="checkbox-item"><input type="checkbox"> Yangın Güvenliği</label>
+            <label class="checkbox-item"><input type="checkbox"> Enerji Pasaportu</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Durum</label>
+          <select class="form-select">
+            <option>Aktif</option>
+            <option>İzin</option>
+            <option>Raporlu</option>
+            <option>Ayrıldı</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('addModal')">İptal</button>
+        <button class="btn btn-primary" onclick="saveStaff();closeModal('addModal');showToast('Personel başarıyla eklendi','success')">Kaydet</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Modal -->
+  <div class="modal-overlay" id="editModal">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <div class="modal-title">Personel Düzenle</div>
+        <button class="modal-close" onclick="closeModal('editModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-body grid-2">
+          <div class="form-group">
+            <label class="form-label">Ad</label>
+            <input type="text" class="form-input" value="Mehmet">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Soyad</label>
+            <input type="text" class="form-input" value="Kaya">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Görev</label>
+            <select class="form-select"><option selected>Şantiye Şefi</option><option>Mühendis</option><option>Mimar</option><option>Usta</option><option>İşçi</option><option>Operatör</option></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Atandığı Şantiye</label>
+            <select class="form-select"><option selected>Brüksel Merkez</option><option>Anvers Lojistik</option><option>Gent Konut</option><option>Ofis</option></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Maaş (€)</label>
+            <input type="number" class="form-input" value="4200">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Başlangıç Tarihi</label>
+            <input type="date" class="form-input" value="2021-03-15">
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:var(--space-4);">
+          <label class="form-label">Sertifikalar</label>
+          <div class="checkbox-group">
+            <label class="checkbox-item"><input type="checkbox" checked> İSG</label>
+            <label class="checkbox-item"><input type="checkbox" checked> Yüksekte Çalışma</label>
+            <label class="checkbox-item"><input type="checkbox" checked> Vinç Operatörlüğü</label>
+            <label class="checkbox-item"><input type="checkbox"> Forklift</label>
+            <label class="checkbox-item"><input type="checkbox"> Ekskavatör</label>
+            <label class="checkbox-item"><input type="checkbox"> Beton Teknolojisi</label>
+            <label class="checkbox-item"><input type="checkbox"> Yapı Denetim</label>
+            <label class="checkbox-item"><input type="checkbox"> Elektrik Ustalığı</label>
+            <label class="checkbox-item"><input type="checkbox"> Sıhhi Tesisat</label>
+            <label class="checkbox-item"><input type="checkbox"> Kaynakçılık</label>
+            <label class="checkbox-item"><input type="checkbox"> Yangın Güvenliği</label>
+            <label class="checkbox-item"><input type="checkbox"> Enerji Pasaportu</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Durum</label>
+          <select class="form-select"><option selected>Aktif</option><option>İzin</option><option>Raporlu</option><option>Ayrıldı</option></select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('editModal')">İptal</button>
+        <button class="btn btn-primary" onclick="closeModal('editModal');showToast('Personel güncellendi','success')">Güncelle</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Modal -->
+  <div class="modal-overlay" id="deleteModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">Personel Sil</div>
+        <button class="modal-close" onclick="closeModal('deleteModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="color:var(--text-secondary);"><strong style="color:var(--text-primary);">Mehmet Kaya</strong> isimli personeli silmek istediğinize emin misiniz? Bu işlem geri alınamaz.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('deleteModal')">İptal</button>
+        <button class="btn btn-amber" onclick="closeModal('deleteModal');showToast('Personel silindi','warning')">Sil</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('mobile-open');
+      document.getElementById('sidebarOverlay').classList.toggle('active');
+    }
+    function toggleTheme() {
+      const h = document.documentElement;
+      h.setAttribute('data-theme', h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    }
+    function openModal(id) { document.getElementById(id).classList.add('active'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+    function editStaff(id) { openModal('editModal'); }
+    function deleteStaff(id) { openModal('deleteModal'); }
+    function saveStaff() {}
+    function exportStaff() { showToast('Personel listesi dışa aktarıldı','info'); }
+
+    function showToast(message, type='info') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `toast toast-${type}`;
+      const icons = { success:'✅', error:'❌', warning:'⚠️', info:'ℹ️' };
+      toast.innerHTML = `<div class="toast-icon">${icons[type]}</div><div class="toast-content"><div class="toast-title">${type==='success'?'Başarılı':type==='error'?'Hata':type==='warning'?'Uyarı':'Bilgi'}</div><div class="toast-message">${message}</div></div><button class="toast-close" onclick="this.parentElement.remove()">✕</button><div class="toast-progress"></div>`;
+      container.appendChild(toast);
+      setTimeout(() => { toast.classList.add('exit'); setTimeout(()=>toast.remove(),300); }, 4000);
+    }
+
+    // Filters
+    document.getElementById('staffSearch').addEventListener('input', filterTable);
+    document.getElementById('roleFilter').addEventListener('change', filterTable);
+    document.getElementById('siteFilter').addEventListener('change', filterTable);
+    document.getElementById('statusFilter').addEventListener('change', filterTable);
+
+    function filterTable() {
+      const search = document.getElementById('staffSearch').value.toLowerCase();
+      const role = document.getElementById('roleFilter').value;
+      const site = document.getElementById('siteFilter').value;
+      const status = document.getElementById('statusFilter').value;
+      const rows = document.querySelectorAll('#staffTableBody tr');
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        const hasSearch = !search || text.includes(search);
+        const hasRole = !role || row.querySelector('td:nth-child(2)').textContent.includes(role);
+        const hasSite = !site || row.querySelector('td:nth-child(4)').textContent.includes(site);
+        const hasStatus = !status || row.querySelector('td:nth-child(5)').textContent.includes(status);
+        row.style.display = hasSearch && hasRole && hasSite && hasStatus ? '' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>

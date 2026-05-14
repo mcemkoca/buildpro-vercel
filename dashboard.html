@@ -1,0 +1,1764 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BuildPro — Admin Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/components.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+/* ── Variables Override ── */
+:root, [data-theme="dark"] {
+  --glass-bg: rgba(15, 23, 42, 0.60);
+  --glass-border: rgba(148, 163, 184, 0.08);
+  --glass-highlight: rgba(255, 255, 255, 0.03);
+  --teal-glow: rgba(20, 184, 166, 0.15);
+  --card-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.2);
+  --card-shadow-hover: 0 2px 6px rgba(0,0,0,0.4), 0 16px 48px rgba(0,0,0,0.3);
+}
+
+/* ── Scroll Reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+.reveal-delay-5 { transition-delay: 0.40s; }
+
+/* ── Layout ── */
+.dashboard { display:flex; min-height:100vh; }
+
+/* ── Sidebar ── */
+.sidebar {
+  width:280px; background:var(--bg-card); border-right:1px solid var(--border-color);
+  display:flex; flex-direction:column; position:fixed; inset:0 auto 0 0; z-index:100;
+  transition:transform var(--duration-slow) var(--ease-out);
+}
+.sidebar.collapsed { transform:translateX(-100%); }
+.sidebar-header { padding:var(--space-5); border-bottom:1px solid var(--border-color); }
+.sidebar-logo { display:flex; align-items:center; gap:var(--space-3); }
+.sidebar-logo .logo-icon {
+  width:40px; height:40px; background:linear-gradient(135deg,var(--teal-500),var(--teal-700));
+  border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center;
+  font-size:16px; font-weight:700; color:white;
+}
+.sidebar-logo h2 { font-size:var(--text-base); font-weight:700; letter-spacing:-0.02em; }
+.sidebar-logo p { font-size:var(--text-xs); color:var(--text-muted); }
+
+/* ── Sector Dropdown ── */
+.sector-dropdown { margin-top: var(--space-3); position: relative; }
+.sector-dropdown-toggle {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-2);
+  width: 100%; padding: 8px var(--space-3); border-radius: var(--radius-md);
+  background: var(--bg-secondary); border: 1px solid var(--border-color);
+  color: var(--text-primary); font-size: var(--text-sm); font-weight: 500;
+  cursor: pointer; transition: all var(--duration-fast);
+}
+.sector-dropdown-toggle:hover { border-color: var(--teal-500); background: var(--bg-tertiary); }
+.sector-dropdown-toggle .sector-icon { font-size: 16px; }
+.sector-dropdown-toggle .sector-name { flex: 1; text-align: left; }
+.sector-dropdown-toggle svg { color: var(--text-muted); flex-shrink: 0; }
+.sector-dropdown-menu {
+  position: absolute; top: 100%; left: 0; right: 0; margin-top: 4px;
+  background: var(--bg-card); border: 1px solid var(--border-color);
+  border-radius: var(--radius-md); box-shadow: var(--card-shadow-hover);
+  z-index: 200; opacity: 0; visibility: hidden;
+  transform: translateY(-4px); transition: all var(--duration-fast);
+  max-height: 320px; overflow-y: auto;
+}
+.sector-dropdown.open .sector-dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.sector-dropdown-item {
+  display: flex; align-items: center; gap: var(--space-3);
+  padding: 10px var(--space-3); color: var(--text-secondary);
+  font-size: var(--text-sm); text-decoration: none; transition: all var(--duration-fast);
+  border-bottom: 1px solid var(--border-color);
+}
+.sector-dropdown-item:last-child { border-bottom: none; }
+.sector-dropdown-item:hover { background: var(--bg-secondary); color: var(--text-primary); }
+.sector-dropdown-item .sector-item-icon { font-size: 18px; width: 24px; text-align: center; }
+.sector-dropdown-item .sector-item-name { flex: 1; }
+.sector-dropdown-item .sector-item-status {
+  font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+  padding: 2px 6px; border-radius: 4px;
+}
+.sector-dropdown-item .sector-item-status.active { background: rgba(16,185,129,0.15); color: #10b981; }
+.sector-dropdown-item .sector-item-status.planned { background: var(--bg-tertiary); color: var(--text-muted); }
+.sector-dropdown-item.current { background: rgba(20,184,166,0.08); color: var(--teal-500); }
+
+.sidebar-nav { flex:1; overflow-y:auto; padding:var(--space-3); }
+.nav-group { margin-bottom:var(--space-4); }
+.nav-label {
+  font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em;
+  color:var(--text-muted); padding:0 var(--space-3) var(--space-2);
+}
+.nav-item {
+  display:flex; align-items:center; gap:var(--space-3); padding:10px var(--space-3);
+  border-radius:var(--radius-md); cursor:pointer; transition:all var(--duration-fast);
+  color:var(--text-secondary); font-size:var(--text-sm); font-weight:500; margin-bottom:2px;
+}
+.nav-item:hover { background:var(--bg-secondary); color:var(--text-primary); }
+.nav-item.active {
+  background:rgba(20,184,166,0.1); color:var(--teal-500);
+  box-shadow: inset 0 0 0 1px rgba(20,184,166,0.15);
+}
+.nav-item svg { flex-shrink:0; }
+.nav-badge {
+  margin-left:auto; background:var(--bg-tertiary); color:var(--text-secondary);
+  font-size:var(--text-xs); font-weight:600; padding:2px 8px; border-radius:9999px;
+}
+.nav-item.active .nav-badge { background:var(--teal-500); color:white; }
+
+.sidebar-footer { padding:var(--space-4); border-top:1px solid var(--border-color); }
+.sidebar-user { display:flex; align-items:center; gap:var(--space-3); }
+.sidebar-user-info { flex:1; }
+.sidebar-user-info p { font-size:var(--text-sm); font-weight:600; }
+.sidebar-user-info span { font-size:var(--text-xs); color:var(--text-muted); }
+
+/* ── Main ── */
+.main { flex:1; margin-left:280px; display:flex; flex-direction:column; min-height:100vh; transition:margin-left var(--duration-slow); }
+.sidebar.collapsed ~ .main { margin-left:0; }
+
+/* ── Header ── */
+.header {
+  height:64px; background:var(--bg-card); border-bottom:1px solid var(--border-color);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 var(--space-6); position:sticky; top:0; z-index:50;
+  backdrop-filter: blur(12px);
+  background: rgba(15, 23, 42, 0.85);
+}
+.header-left { display:flex; align-items:center; gap:var(--space-4); }
+.menu-btn {
+  width:36px; height:36px; border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center;
+  background:var(--bg-secondary); border:1px solid var(--border-color); color:var(--text-secondary);
+  cursor:pointer; transition:all var(--duration-fast);
+}
+.menu-btn:hover { color:var(--teal-500); border-color:var(--teal-500); }
+.page-title { font-size:20px; font-weight:800; letter-spacing:-0.03em; }
+.header-right { display:flex; align-items:center; gap:var(--space-3); }
+.header-btn {
+  width:38px; height:38px; border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center;
+  background:var(--bg-secondary); border:1px solid var(--border-color); color:var(--text-secondary);
+  cursor:pointer; transition:all var(--duration-fast); position:relative;
+}
+.header-btn:hover { color:var(--teal-500); border-color:var(--teal-500); transform: translateY(-1px); }
+.header-btn .dot {
+  position:absolute; top:6px; right:6px; width:8px; height:8px; background:var(--error-500);
+  border-radius:50%; border:2px solid var(--bg-card);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+.header-btn .badge-count {
+  position:absolute; top:-4px; right:-4px; min-width:18px; height:18px;
+  background:var(--error-500); color:white; font-size:10px; font-weight:700;
+  border-radius:9999px; display:flex; align-items:center; justify-content:center;
+  border:2px solid var(--bg-card); padding:0 4px;
+}
+
+/* Notification Dropdown */
+.notif-dropdown {
+  position:absolute; top:calc(100% + 8px); right:-8px; width:360px; max-height:420px;
+  background:var(--bg-card); border:1px solid var(--border-color); border-radius:16px;
+  box-shadow:var(--card-shadow-hover); overflow:hidden; opacity:0; visibility:hidden;
+  transform:translateY(-8px); transition:all 0.2s ease; z-index:200;
+}
+.notif-dropdown.open { opacity:1; visibility:visible; transform:translateY(0); }
+.notif-dropdown-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:var(--space-4); border-bottom:1px solid var(--border-color);
+}
+.notif-dropdown-header h4 { font-size:var(--text-sm); font-weight:700; }
+.notif-dropdown-header a { font-size:12px; color:var(--teal-500); font-weight:600; }
+.notif-dropdown-body { max-height:340px; overflow-y:auto; }
+.notif-dropdown-item {
+  display:flex; gap:var(--space-3); padding:var(--space-3) var(--space-4);
+  border-bottom:1px solid var(--border-color); cursor:pointer; transition:background 0.15s;
+}
+.notif-dropdown-item:hover { background:var(--bg-secondary); }
+.notif-dropdown-item.unread { border-left:3px solid var(--teal-500); }
+.notif-dropdown-item .notif-dot {
+  width:8px; height:8px; border-radius:50%; background:var(--teal-500); flex-shrink:0; margin-top:6px;
+}
+.notif-dropdown-item .notif-dot.read { background:var(--text-muted); }
+
+/* ── Content ── */
+.content { flex:1; padding:var(--space-6); }
+
+/* ── KPI Row ── */
+.kpi-row { display:grid; grid-template-columns:repeat(6,1fr); gap:var(--space-4); margin-bottom:var(--space-6); }
+.kpi-card {
+  background:var(--glass-bg); backdrop-filter:blur(16px) saturate(1.4);
+  -webkit-backdrop-filter:blur(16px) saturate(1.4);
+  border:1px solid var(--glass-border); border-radius:var(--radius-lg);
+  box-shadow:var(--card-shadow), inset 0 1px 0 var(--glass-highlight);
+  padding:var(--space-5); position:relative; overflow:hidden;
+  transition:transform 0.3s ease, box-shadow 0.3s ease;
+}
+.kpi-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg, var(--teal-500), var(--teal-700));
+  opacity:0.7;
+}
+.kpi-card:hover {
+  transform:translateY(-3px);
+  box-shadow:var(--card-shadow-hover), inset 0 1px 0 var(--glass-highlight);
+}
+.kpi-card .kpi-top {
+  display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:var(--space-3);
+}
+.kpi-card .kpi-icon {
+  width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+  font-size:20px; background:rgba(20,184,166,0.1);
+}
+.kpi-card .kpi-trend {
+  display:flex; align-items:center; gap:4px; font-size:12px; font-weight:700;
+  padding:3px 8px; border-radius:9999px;
+}
+.kpi-trend.up { color:#10b981; background:rgba(16,185,129,0.1); }
+.kpi-trend.down { color:#f43f5e; background:rgba(244,63,94,0.1); }
+.kpi-card .kpi-value {
+  font-size:24px; font-weight:800; letter-spacing:-0.03em; margin-bottom:4px;
+}
+.kpi-card .kpi-label {
+  font-size:12px; color:var(--text-muted); font-weight:500;
+}
+.kpi-sparkline {
+  position:absolute; bottom:0; left:0; right:0; height:40px; opacity:0.12; pointer-events:none;
+}
+.kpi-sparkline svg { width:100%; height:100%; }
+
+/* ── Dashboard Grid ── */
+.dash-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--space-5); margin-bottom:var(--space-6); }
+.dash-grid .card { height:fit-content; }
+.dash-grid .card.span-2 { grid-column:span 2; }
+.dash-grid .card.span-3 { grid-column:span 3; }
+
+/* ── Glassmorphism Card Base ── */
+.glass-card {
+  background:var(--glass-bg); backdrop-filter:blur(16px) saturate(1.4);
+  -webkit-backdrop-filter:blur(16px) saturate(1.4);
+  border:1px solid var(--glass-border); border-radius:var(--radius-lg);
+  box-shadow:var(--card-shadow), inset 0 1px 0 var(--glass-highlight);
+  overflow:hidden;
+  transition:transform 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-card:hover {
+  transform:translateY(-2px);
+  box-shadow:var(--card-shadow-hover), inset 0 1px 0 var(--glass-highlight);
+}
+.card-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:var(--space-4) var(--space-5); border-bottom:1px solid var(--border-color);
+}
+.card-title {
+  display:flex; align-items:center; gap:var(--space-2);
+  font-size:var(--text-sm); font-weight:700; letter-spacing:-0.01em;
+}
+.card-body { padding:var(--space-4) var(--space-5); }
+
+/* ── Chart Widgets ── */
+.chart-container { position:relative; height:240px; padding:0 var(--space-4) var(--space-4); }
+.chart-container-sm { position:relative; height:200px; padding:0 var(--space-4) var(--space-4); }
+
+/* ── Quick Actions ── */
+.quick-actions-bar { display:flex; gap:var(--space-3); flex-wrap:wrap; margin-bottom:var(--space-6); }
+.quick-action {
+  display:flex; align-items:center; gap:var(--space-3);
+  padding:var(--space-3) var(--space-4);
+  background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-md);
+  font-size:var(--text-sm); font-weight:500; color:var(--text-primary);
+  transition:all var(--duration-fast); cursor:pointer;
+}
+.quick-action:hover {
+  background:var(--teal-500); color:white;
+  transform:translateY(-2px); box-shadow:0 4px 12px var(--teal-glow);
+}
+.quick-action .icon { font-size:var(--text-lg); }
+
+/* ── Activity Feed ── */
+.activity-list { display:flex; flex-direction:column; gap:var(--space-1); max-height:320px; overflow-y:auto; }
+.activity-item {
+  display:flex; align-items:flex-start; gap:var(--space-3);
+  padding:var(--space-3) var(--space-4); border-radius:var(--radius-md);
+  transition:background 0.15s;
+}
+.activity-item:hover { background:var(--bg-secondary); }
+.activity-avatar {
+  width:32px; height:32px; border-radius:50%; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:12px; font-weight:700; color:white;
+}
+.activity-content { flex:1; }
+.activity-text {
+  font-size:13px; line-height:1.5; color:var(--text-primary);
+}
+.activity-text strong { font-weight:600; }
+.activity-time {
+  font-size:11px; color:var(--text-muted); margin-top:2px;
+}
+
+/* ── Table compact ── */
+.table-compact td { padding:10px var(--space-4); font-size:var(--text-sm); }
+.table-compact thead th { padding:10px var(--space-4); }
+
+/* ── Progress bar ── */
+.progress-bar { height:6px; background:var(--bg-tertiary); border-radius:9999px; overflow:hidden; }
+.progress-bar-fill { height:100%; background:linear-gradient(90deg, var(--teal-500), var(--teal-400)); border-radius:9999px; transition:width 1s cubic-bezier(0.22,1,0.36,1); }
+
+/* ── Sector Toggle Panel ── */
+.sector-toggle-panel {
+  background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg);
+  padding:var(--space-4); margin-bottom:var(--space-6);
+}
+.sector-toggle-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:var(--space-3); margin-top:var(--space-3);
+}
+.sector-toggle-item {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:var(--space-3) var(--space-4);
+  background:var(--bg-secondary); border-radius:var(--radius-md);
+  border:1px solid transparent; transition:all var(--duration-fast);
+}
+.sector-toggle-item:hover { border-color:var(--teal-500); }
+.sector-toggle-item .st-info { display:flex; align-items:center; gap:var(--space-3); }
+.sector-toggle-item .st-icon { font-size:20px; }
+.sector-toggle-item .st-name { font-size:var(--text-sm); font-weight:600; }
+.sector-toggle-item .st-desc { font-size:var(--text-xs); color:var(--text-muted); }
+
+/* ── Notif Items ── */
+.notif-item {
+  display:flex; gap:var(--space-3); padding:var(--space-3) 0;
+  border-bottom:1px solid var(--border-color);
+}
+.notif-item:last-child { border-bottom:none; }
+.notif-icon {
+  width:36px; height:36px; border-radius:var(--radius-md);
+  display:flex; align-items:center; justify-content:center; font-size:16px;
+  flex-shrink:0;
+}
+.notif-content { flex:1; }
+.notif-content p { font-size:var(--text-sm); line-height:1.4; }
+.notif-content p strong { font-weight:600; }
+.notif-content span { font-size:var(--text-xs); color:var(--text-muted); }
+
+/* ── Animations ── */
+@keyframes pulse-dot {
+  0%,100% { opacity:1; transform:scale(1); }
+  50% { opacity:0.5; transform:scale(1.3); }
+}
+@keyframes toastIn { from{opacity:0;transform:translateY(-20px) scale(0.95);}to{opacity:1;transform:translateY(0) scale(1);} }
+@keyframes toastOut { from{opacity:1;transform:translateY(0) scale(1);}to{opacity:0;transform:translateY(-20px) scale(0.95);} }
+@keyframes progressBar { from{width:100%;}to{width:0;} }
+
+/* ── Mobile ── */
+@media (max-width:1280px) {
+  .kpi-row { grid-template-columns:repeat(3,1fr); }
+}
+@media (max-width:1200px) {
+  .dash-grid { grid-template-columns:repeat(2,1fr); }
+  .dash-grid .card.span-2 { grid-column:span 2; }
+}
+@media (max-width:1024px) {
+  .sidebar { transform:translateX(-100%); }
+  .sidebar.open { transform:translateX(0); }
+  .main { margin-left:0; }
+  .dash-grid { grid-template-columns:1fr; }
+  .dash-grid .card.span-2, .dash-grid .card.span-3 { grid-column:span 1; }
+  .kpi-row { grid-template-columns:repeat(2,1fr); }
+}
+@media (max-width:640px) {
+  .kpi-row { grid-template-columns:1fr; }
+  .content { padding:var(--space-4); }
+  .sector-toggle-grid { grid-template-columns:1fr; }
+}
+
+/* ── Overlay ── */
+.sidebar-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:99; opacity:0; visibility:hidden; transition:all var(--duration-normal); }
+.sidebar-overlay.active { opacity:1; visibility:visible; }
+
+/* ── Modal overrides ── */
+.modal-overlay { z-index:1000; }
+.toast-container { z-index:2000; }
+
+/* ── Calendar Widget ── */
+.calendar-widget .cal-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:var(--space-4) var(--space-5) var(--space-3);
+}
+.calendar-widget .cal-month { font-size:var(--text-sm); font-weight:700; }
+.cal-nav { display:flex; gap:4px; }
+.cal-nav-btn {
+  width:28px; height:28px; border-radius:var(--radius-md);
+  background:var(--bg-secondary); border:1px solid var(--border-color);
+  color:var(--text-secondary); display:flex; align-items:center; justify-content:center;
+  cursor:pointer; font-size:14px; transition:all 0.15s;
+}
+.cal-nav-btn:hover { border-color:var(--teal-500); color:var(--teal-500); }
+.cal-grid {
+  display:grid; grid-template-columns:repeat(7,1fr); gap:4px;
+  padding:0 var(--space-4) var(--space-4);
+}
+.cal-weekday {
+  text-align:center; font-size:11px; font-weight:700; color:var(--text-muted);
+  padding:8px 0; text-transform:uppercase; letter-spacing:0.05em;
+}
+.cal-day {
+  aspect-ratio:1; display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:500; border-radius:var(--radius-md);
+  cursor:pointer; transition:all 0.15s; position:relative;
+}
+.cal-day:hover { background:var(--bg-secondary); }
+.cal-day.today {
+  background:var(--teal-500); color:white; font-weight:700;
+  box-shadow:0 2px 8px rgba(20,184,166,0.3);
+}
+.cal-day.has-event::after {
+  content:''; position:absolute; bottom:4px; width:4px; height:4px;
+  background:var(--teal-500); border-radius:50%;
+}
+.cal-day.empty { pointer-events:none; }
+
+/* ── Schedule List ── */
+.schedule-list { display:flex; flex-direction:column; gap:2px; }
+.schedule-item {
+  display:flex; align-items:center; gap:var(--space-3);
+  padding:var(--space-3) var(--space-4); border-radius:var(--radius-md);
+  transition:background 0.15s; cursor:pointer;
+}
+.schedule-item:hover { background:var(--bg-secondary); }
+.schedule-time {
+  font-size:12px; font-weight:700; color:var(--text-muted);
+  min-width:44px; text-align:right; flex-shrink:0;
+}
+.schedule-dot {
+  width:10px; height:10px; border-radius:50%; flex-shrink:0;
+  border:2px solid var(--bg-card);
+}
+.schedule-dot.pending { background:var(--warning-500); }
+.schedule-dot.in-progress { background:var(--teal-500); animation: pulse-dot 2s ease-in-out infinite; }
+.schedule-dot.completed { background:var(--success-500); }
+.schedule-info { flex:1; min-width:0; }
+.schedule-info .schedule-customer {
+  font-size:var(--text-sm); font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.schedule-info .schedule-service {
+  font-size:12px; color:var(--text-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.schedule-status {
+  font-size:11px; font-weight:700; padding:3px 10px; border-radius:9999px; flex-shrink:0;
+  text-transform:uppercase; letter-spacing:0.03em;
+}
+.schedule-status.pending { background:rgba(245,158,11,0.1); color:var(--warning-500); }
+.schedule-status.in-progress { background:rgba(20,184,166,0.1); color:var(--teal-500); }
+.schedule-status.completed { background:rgba(16,185,129,0.1); color:var(--success-500); }
+
+/* ── Notifications Panel (inline) ── */
+.notif-panel-body { max-height:360px; overflow-y:auto; }
+</style>
+</head>
+<body>
+
+<!-- Sidebar Overlay (mobile) -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<div class="dashboard">
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <div class="logo-icon">BP</div>
+      <div>
+        <h2>BuildPro</h2>
+        <p>BuildPro Demo BV</p>
+      </div>
+    </div>
+    <div class="sector-dropdown" id="sectorDropdown">
+      <button class="sector-dropdown-toggle" onclick="toggleSectorDropdown()">
+        <span class="sector-icon">🏗️</span>
+        <span class="sector-name">İnşaat</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="sector-dropdown-menu">
+        <a class="sector-dropdown-item current" href="#">
+          <span class="sector-item-icon">🏗️</span>
+          <span class="sector-item-name">İnşaat</span>
+          <span class="sector-item-status active">Aktif</span>
+        </a>
+        <a class="sector-dropdown-item" href="../cleanfix-vercel/dashboard.html">
+          <span class="sector-item-icon">🧹</span>
+          <span class="sector-item-name">Temizlik</span>
+          <span class="sector-item-status active">Aktif</span>
+        </a>
+        <a class="sector-dropdown-item" href="#">
+          <span class="sector-item-icon">🚗</span>
+          <span class="sector-item-name">CarWash</span>
+          <span class="sector-item-status active">Aktif</span>
+        </a>
+        <a class="sector-dropdown-item" href="#">
+          <span class="sector-item-icon">✂️</span>
+          <span class="sector-item-name">Berber & Kuaför</span>
+          <span class="sector-item-status planned">Planlanan</span>
+        </a>
+        <a class="sector-dropdown-item" href="#">
+          <span class="sector-item-icon">🍽️</span>
+          <span class="sector-item-name">Restoran</span>
+          <span class="sector-item-status planned">Planlanan</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-label">Ana Menü</div>
+      <a class="nav-item active" href="dashboard.html">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+        Dashboard
+      </a>
+      <a class="nav-item" href="#" onclick="showToast('Projeler sayfası yakında','info')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        Projeler
+        <span class="nav-badge">24</span>
+      </a>
+      <a class="nav-item" href="#" onclick="showToast('Teklifler sayfası yakında','info')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Teklifler
+        <span class="nav-badge">18</span>
+      </a>
+      <a class="nav-item" href="#" onclick="showToast('Şantiye sayfası yakında','info')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 22h20"/><path d="M6 22V8l12-4v18"/><path d="M6 12h12"/></svg>
+        Şantiye
+        <span class="nav-badge">8</span>
+      </a>
+      <a class="nav-item" href="#" onclick="showToast('Ekipman sayfası yakında','info')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Ekipman
+        <span class="nav-badge">42</span>
+      </a>
+      <a class="nav-item" href="#" onclick="showToast('Personel sayfası yakında','info')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Personel
+        <span class="nav-badge">56</span>
+      </a>
+      <a class="nav-item" href="#" onclick="showToast('Stok sayfası yakında','info')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        Stok
+        <span class="nav-badge">128</span>
+      </a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Finans ve Rapor</div>
+      <a class="nav-item" href="#" onclick="showToast('Maliyet sayfası yakında','info')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Maliyet
+      </a>
+      <a class="nav-item" href="#" onclick="showToast('Raporlar sayfası yakında','info')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+        Raporlar
+      </a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Diğer</div>
+      <a class="nav-item" href="#" onclick="showToast('Takvim sayfası yakında','info')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Takvim
+      </a>
+      <a class="nav-item" href="#" onclick="showToast('Müşteriler sayfası yakında','info')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Müşteriler
+        <span class="nav-badge">84</span>
+      </a>
+      <a class="nav-item" href="#" onclick="showToast('Sektörler yönetimi yakında','info')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M17 21v-4"/><path d="M7 21v-4"/><path d="M12 21v-4"/></svg>
+        Sektörler
+      </a>
+      <a class="nav-item" href="#" onclick="showToast('Ayarlar yakında','info')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Ayarlar
+      </a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="sidebar-user">
+      <div class="avatar avatar-sm">PV</div>
+      <div class="sidebar-user-info">
+        <p>Pieter Van den Berg</p>
+        <span>Proje Müdürü</span>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- Main -->
+<div class="main">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <button class="menu-btn" id="menuBtn" title="Menü">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <h1 class="page-title">Dashboard</h1>
+    </div>
+    <div class="header-right">
+      <div class="search-input" style="max-width:240px;" id="headerSearch">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" class="form-input" placeholder="Projeler, teklifler, personel ara..." style="padding-left:36px;font-size:var(--text-sm);">
+      </div>
+      <div style="position:relative;">
+        <button class="header-btn" id="notifBtn" title="Bildirimler">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="badge-count" id="notifBadge">5</span>
+        </button>
+        <div class="notif-dropdown" id="notifDropdown">
+          <div class="notif-dropdown-header">
+            <h4>Bildirimler</h4>
+            <a href="#" onclick="markAllRead();return false;">Tümünü Okundu İşaretle</a>
+          </div>
+          <div class="notif-dropdown-body" id="notifDropdownBody">
+            <div class="notif-dropdown-item unread">
+              <div class="notif-dot"></div>
+              <div class="notif-content"><p>Gecikme uyarısı: <strong>Merkez Ofis</strong> projesi 3 gün geride</p><span>5 dakika önce</span></div>
+            </div>
+            <div class="notif-dropdown-item unread">
+              <div class="notif-dot"></div>
+              <div class="notif-content"><p>Yeni teklif: <strong>#QT-2026-112</strong> €450,000</p><span>12 dakika önce</span></div>
+            </div>
+            <div class="notif-dropdown-item unread">
+              <div class="notif-dot"></div>
+              <div class="notif-content"><p>Stok alarmı: <strong>Beton C30</strong> 12 m³ kaldı</p><span>32 dakika önce</span></div>
+            </div>
+            <div class="notif-dropdown-item unread">
+              <div class="notif-dot"></div>
+              <div class="notif-content"><p>Şantiye raporu: <strong>Rivierpark</strong> günlük tamamlandı</p><span>1 saat önce</span></div>
+            </div>
+            <div class="notif-dropdown-item unread">
+              <div class="notif-dot"></div>
+              <div class="notif-content"><p>Ekipman bakımı: <strong>Vinç #VC-04</strong> yarın planlandı</p><span>2 saat önce</span></div>
+            </div>
+            <div class="notif-dropdown-item">
+              <div class="notif-dot read"></div>
+              <div class="notif-content"><p>Teklif <strong>#QT-2026-110</strong> onaylandı — €280,000</p><span>3 saat önce</span></div>
+            </div>
+            <div class="notif-dropdown-item">
+              <div class="notif-dot read"></div>
+              <div class="notif-content"><p>Yeni personel kaydı: <strong>Jan De Smet</strong></p><span>4 saat önce</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="header-btn" id="themeToggle" title="Tema">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+      </button>
+      <div class="avatar avatar-sm" style="cursor:pointer;">PV</div>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="content">
+
+    <!-- Quick Actions -->
+    <div class="quick-actions-bar">
+      <div class="quick-action" onclick="openModal('addProjectModal');showToast('Yeni proje modalı açıldı','success')">
+        <span class="icon">📋</span> Yeni Proje
+      </div>
+      <div class="quick-action" onclick="openModal('addQuoteModal');showToast('Yeni teklif modalı açıldı','success')">
+        <span class="icon">📄</span> Yeni Teklif
+      </div>
+      <div class="quick-action" onclick="showToast('Personel ekleme sayfası yakında','info')">
+        <span class="icon">👷</span> Personel Ekle
+      </div>
+      <div class="quick-action" onclick="showToast('Şantiye raporu sayfası yakında','info')">
+        <span class="icon">🏗️</span> Şantiye Raporu
+      </div>
+      <div class="quick-action" onclick="showToast('Maliyet girişi sayfası yakında','info')">
+        <span class="icon">💰</span> Maliyet Girişi
+      </div>
+      <div class="quick-action" onclick="showToast('Ekipman rezervasyonu sayfası yakında','info')">
+        <span class="icon">⚙️</span> Ekipman Rezervasyonu
+      </div>
+    </div>
+
+    <!-- KPI Cards Row -->
+    <div class="kpi-row">
+      <div class="kpi-card reveal">
+        <div class="kpi-top">
+          <div class="kpi-icon" style="background:rgba(20,184,166,0.1);color:var(--teal-500);">📋</div>
+          <div class="kpi-trend up">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+            +4
+          </div>
+        </div>
+        <div class="kpi-value" data-target="24" data-suffix="">0</div>
+        <div class="kpi-label">Aktif Projeler</div>
+        <div class="kpi-sparkline">
+          <svg viewBox="0 0 200 50" preserveAspectRatio="none">
+            <polyline fill="none" stroke="var(--teal-500)" stroke-width="2" points="0,45 28,38 56,42 84,28 112,22 140,18 168,12 196,8"/>
+            <polygon fill="var(--teal-500)" opacity="0.15" points="0,45 28,38 56,42 84,28 112,22 140,18 168,12 196,8 196,50 0,50"/>
+          </svg>
+        </div>
+      </div>
+      <div class="kpi-card reveal reveal-delay-1">
+        <div class="kpi-top">
+          <div class="kpi-icon" style="background:rgba(59,130,246,0.1);color:var(--info-500);">📄</div>
+          <div class="kpi-trend up">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+            +2
+          </div>
+        </div>
+        <div class="kpi-value" data-target="18" data-suffix="">0</div>
+        <div class="kpi-label">Açık Teklifler</div>
+        <div class="kpi-sparkline">
+          <svg viewBox="0 0 200 50" preserveAspectRatio="none">
+            <polyline fill="none" stroke="var(--info-500)" stroke-width="2" points="0,40 28,35 56,38 84,30 112,28 140,24 168,20 196,15"/>
+            <polygon fill="var(--info-500)" opacity="0.15" points="0,40 28,35 56,38 84,30 112,28 140,24 168,20 196,15 196,50 0,50"/>
+          </svg>
+        </div>
+      </div>
+      <div class="kpi-card reveal reveal-delay-2">
+        <div class="kpi-top">
+          <div class="kpi-icon" style="background:rgba(245,158,11,0.1);color:var(--amber-500);">🏗️</div>
+          <div class="kpi-trend up">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+            +1
+          </div>
+        </div>
+        <div class="kpi-value" data-target="8" data-suffix="">0</div>
+        <div class="kpi-label">Şantiye Sayısı</div>
+        <div class="kpi-sparkline">
+          <svg viewBox="0 0 200 50" preserveAspectRatio="none">
+            <polyline fill="none" stroke="var(--amber-500)" stroke-width="2" points="0,42 28,36 56,40 84,30 112,26 140,28 168,18 196,14"/>
+            <polygon fill="var(--amber-500)" opacity="0.15" points="0,42 28,36 56,40 84,30 112,26 140,28 168,18 196,14 196,50 0,50"/>
+          </svg>
+        </div>
+      </div>
+      <div class="kpi-card reveal reveal-delay-3">
+        <div class="kpi-top">
+          <div class="kpi-icon" style="background:rgba(16,185,129,0.1);color:var(--success-500);">€</div>
+          <div class="kpi-trend up">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+            +8%
+          </div>
+        </div>
+        <div class="kpi-value" data-target="1420000" data-prefix="€">€0</div>
+        <div class="kpi-label">Aylık Maliyet</div>
+        <div class="kpi-sparkline">
+          <svg viewBox="0 0 200 50" preserveAspectRatio="none">
+            <polyline fill="none" stroke="var(--success-500)" stroke-width="2" points="0,42 28,36 56,40 84,30 112,26 140,28 168,18 196,14"/>
+            <polygon fill="var(--success-500)" opacity="0.15" points="0,42 28,36 56,40 84,30 112,26 140,28 168,18 196,14 196,50 0,50"/>
+          </svg>
+        </div>
+      </div>
+      <div class="kpi-card reveal reveal-delay-4">
+        <div class="kpi-top">
+          <div class="kpi-icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6;">✓</div>
+          <div class="kpi-trend up">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+            +6
+          </div>
+        </div>
+        <div class="kpi-value" data-target="156" data-suffix="">0</div>
+        <div class="kpi-label">Tamamlanan İşler</div>
+        <div class="kpi-sparkline">
+          <svg viewBox="0 0 200 50" preserveAspectRatio="none">
+            <polyline fill="none" stroke="#8b5cf6" stroke-width="2" points="0,45 28,42 56,40 84,35 112,30 140,25 168,20 196,15"/>
+            <polygon fill="#8b5cf6" opacity="0.15" points="0,45 28,42 56,40 84,35 112,30 140,25 168,20 196,15 196,50 0,50"/>
+          </svg>
+        </div>
+      </div>
+      <div class="kpi-card reveal reveal-delay-5">
+        <div class="kpi-top">
+          <div class="kpi-icon" style="background:rgba(244,63,94,0.1);color:var(--error-500);">⏳</div>
+          <div class="kpi-trend down">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/></svg>
+            -2
+          </div>
+        </div>
+        <div class="kpi-value" data-target="12" data-suffix="">0</div>
+        <div class="kpi-label">Bekleyen Onay</div>
+        <div class="kpi-sparkline">
+          <svg viewBox="0 0 200 50" preserveAspectRatio="none">
+            <polyline fill="none" stroke="var(--error-500)" stroke-width="2" points="0,35 28,38 56,36 84,40 112,38 140,42 168,40 196,44"/>
+            <polygon fill="var(--error-500)" opacity="0.15" points="0,35 28,38 56,36 84,40 112,38 140,42 168,40 196,44 196,50 0,50"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sector Toggle Panel -->
+    <div class="sector-toggle-panel reveal">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:var(--space-3);">
+        <div class="card-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal-500)" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M17 21v-4"/><path d="M7 21v-4"/><path d="M12 21v-4"/></svg>
+          Aktif Sektörler
+        </div>
+        <span style="font-size:var(--text-xs); color:var(--text-muted);">6 / 6 aktif</span>
+      </div>
+      <div class="sector-toggle-grid">
+        <div class="sector-toggle-item">
+          <div class="st-info">
+            <span class="st-icon">🏠</span>
+            <div>
+              <div class="st-name">Konut İnşaatı</div>
+              <div class="st-desc">7 proje aktif</div>
+            </div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" checked onchange="toggleSector(this, 'Konut İnşaatı')">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="sector-toggle-item">
+          <div class="st-info">
+            <span class="st-icon">🏢</span>
+            <div>
+              <div class="st-name">Ticari İnşaat</div>
+              <div class="st-desc">5 proje aktif</div>
+            </div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" checked onchange="toggleSector(this, 'Ticari İnşaat')">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="sector-toggle-item">
+          <div class="st-info">
+            <span class="st-icon">🏛️</span>
+            <div>
+              <div class="st-name">Renovasyon</div>
+              <div class="st-desc">4 proje aktif</div>
+            </div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" checked onchange="toggleSector(this, 'Renovasyon')">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="sector-toggle-item">
+          <div class="st-info">
+            <span class="st-icon">🌉</span>
+            <div>
+              <div class="st-name">Altyapı & İmar</div>
+              <div class="st-desc">3 proje aktif</div>
+            </div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" checked onchange="toggleSector(this, 'Altyapı')">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="sector-toggle-item">
+          <div class="st-info">
+            <span class="st-icon">🏭</span>
+            <div>
+              <div class="st-name">Endüstriyel Tesis</div>
+              <div class="st-desc">3 proje aktif</div>
+            </div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" checked onchange="toggleSector(this, 'Endüstriyel')">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="sector-toggle-item">
+          <div class="st-info">
+            <span class="st-icon">🌳</span>
+            <div>
+              <div class="st-name">Peyzaj & Dış Mekan</div>
+              <div class="st-desc">2 proje aktif</div>
+            </div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" checked onchange="toggleSector(this, 'Peyzaj')">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dashboard Grid -->
+    <div class="dash-grid">
+
+      <!-- Budget Chart (Chart.js) -->
+      <div class="glass-card span-2 reveal">
+        <div class="card-header">
+          <div class="card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal-500)" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+            Bütçe Analizi
+          </div>
+          <div style="display:flex;gap:4px;background:var(--bg-secondary);padding:3px;border-radius:var(--radius-md);">
+            <button class="chart-toggle-btn active" data-period="monthly" style="padding:5px 14px;border-radius:var(--radius-sm);border:none;background:var(--bg-card);font-size:11px;font-weight:700;color:var(--teal-500);cursor:pointer;box-shadow:var(--shadow-sm);">Aylık</button>
+            <button class="chart-toggle-btn" data-period="quarterly" style="padding:5px 14px;border-radius:var(--radius-sm);border:none;background:none;font-size:11px;font-weight:700;color:var(--text-muted);cursor:pointer;">Çeyreklik</button>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="budgetChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Calendar Widget -->
+      <div class="glass-card calendar-widget reveal reveal-delay-1">
+        <div class="cal-header">
+          <span class="cal-month">Mayıs 2026</span>
+          <div class="cal-nav">
+            <button class="cal-nav-btn">‹</button>
+            <button class="cal-nav-btn">›</button>
+          </div>
+        </div>
+        <div class="cal-grid">
+          <div class="cal-weekday">Pt</div><div class="cal-weekday">Sa</div><div class="cal-weekday">Ça</div>
+          <div class="cal-weekday">Pe</div><div class="cal-weekday">Cu</div><div class="cal-weekday">Ct</div><div class="cal-weekday">Pa</div>
+          <div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div>
+          <div class="cal-day">1</div><div class="cal-day has-event">2</div><div class="cal-day has-event">3</div><div class="cal-day">4</div>
+          <div class="cal-day has-event">5</div><div class="cal-day">6</div><div class="cal-day has-event">7</div><div class="cal-day">8</div>
+          <div class="cal-day has-event">9</div><div class="cal-day">10</div><div class="cal-day has-event">11</div><div class="cal-day today">12</div>
+          <div class="cal-day has-event">13</div><div class="cal-day">14</div><div class="cal-day has-event">15</div><div class="cal-day">16</div>
+          <div class="cal-day has-event">17</div><div class="cal-day">18</div><div class="cal-day has-event">19</div><div class="cal-day">20</div>
+          <div class="cal-day">21</div><div class="cal-day has-event">22</div><div class="cal-day">23</div><div class="cal-day has-event">24</div>
+          <div class="cal-day">25</div><div class="cal-day has-event">26</div><div class="cal-day">27</div><div class="cal-day has-event">28</div>
+          <div class="cal-day">29</div><div class="cal-day has-event">30</div><div class="cal-day">31</div><div class="cal-day empty"></div>
+        </div>
+      </div>
+
+      <!-- Project Progress Bar Chart -->
+      <div class="glass-card reveal">
+        <div class="card-header">
+          <div class="card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber-500)" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            Sektör Dağılımı (Bütçe)
+          </div>
+        </div>
+        <div class="chart-container-sm">
+          <canvas id="sectorChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Sector Progress Doughnut -->
+      <div class="glass-card reveal reveal-delay-1">
+        <div class="card-header">
+          <div class="card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--info-500)" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Proje Durumu
+          </div>
+        </div>
+        <div class="chart-container-sm">
+          <canvas id="statusChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Today's Schedule -->
+      <div class="glass-card reveal reveal-delay-2">
+        <div class="card-header">
+          <div class="card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal-500)" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Bugünkü Şantiye Programı
+          </div>
+          <span class="badge badge-success" style="font-size:11px;">15 May 2026</span>
+        </div>
+        <div class="card-body" style="padding-top:var(--space-3);">
+          <div class="schedule-list">
+            <div class="schedule-item">
+              <div class="schedule-time">07:00</div>
+              <div class="schedule-dot completed"></div>
+              <div class="schedule-info">
+                <div class="schedule-customer">Rivierpark Konutları</div>
+                <div class="schedule-service">Blok A temel betonu</div>
+              </div>
+              <span class="schedule-status completed">Tamamlandı</span>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-time">08:30</div>
+              <div class="schedule-dot completed"></div>
+              <div class="schedule-info">
+                <div class="schedule-customer">Merkez Ofis Kulesi</div>
+                <div class="schedule-service">12. kat döşeme kalıbı</div>
+              </div>
+              <span class="schedule-status completed">Tamamlandı</span>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-time">10:00</div>
+              <div class="schedule-dot in-progress"></div>
+              <div class="schedule-info">
+                <div class="schedule-customer">Grand Hotel Restore</div>
+                <div class="schedule-service">Cephe temizliği ve izolasyon</div>
+              </div>
+              <span class="schedule-status in-progress">Devam Ediyor</span>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-time">13:00</div>
+              <div class="schedule-dot pending"></div>
+              <div class="schedule-info">
+                <div class="schedule-customer">Nordik Fabrika Genişleme</div>
+                <div class="schedule-service">Çelik konstrüksiyon montajı</div>
+              </div>
+              <span class="schedule-status pending">Bekliyor</span>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-time">14:30</div>
+              <div class="schedule-dot pending"></div>
+              <div class="schedule-info">
+                <div class="schedule-customer">Liman Yolu Altyapı</div>
+                <div class="schedule-service">Kanalizasyon hattı kazısı</div>
+              </div>
+              <span class="schedule-status pending">Bekliyor</span>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-time">16:00</div>
+              <div class="schedule-dot pending"></div>
+              <div class="schedule-info">
+                <div class="schedule-customer">Botanik Park</div>
+                <div class="schedule-service">Fidan dikimi ve sulama</div>
+              </div>
+              <span class="schedule-status pending">Bekliyor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Projects Table -->
+      <div class="glass-card span-2 reveal">
+        <div class="card-header">
+          <div class="card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal-500)" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            Aktif Projeler
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-sm btn-secondary" onclick="openModal('addProjectModal')">+ Yeni</button>
+            <a href="#" style="font-size:var(--text-sm);color:var(--teal-500);font-weight:500;" onclick="showToast('Tüm projeler sayfası yakında','info');return false;">Tümünü Gör →</a>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="table table-compact" id="projectsTable">
+            <thead>
+              <tr>
+                <th>Proje Adı</th>
+                <th>Şantiye</th>
+                <th>Sektör</th>
+                <th>Durum (%)</th>
+                <th>Başlangıç</th>
+                <th>Bitiş</th>
+                <th>Bütçe</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Rivierpark Konutları</strong></td>
+                <td>Antwerpen-Noord</td>
+                <td><span class="badge badge-info">Konut</span></td>
+                <td>
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <div class="progress-bar" style="flex:1;min-width:60px;"><div class="progress-bar-fill" style="width:78%;"></div></div>
+                    <span style="font-size:11px;font-weight:700;min-width:28px;">78%</span>
+                  </div>
+                </td>
+                <td>15 Oca 2025</td>
+                <td>30 Haz 2026</td>
+                <td>€2.4M</td>
+                <td>
+                  <div style="display:flex;gap:4px;">
+                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('viewProjectModal','Rivierpark Konutları')" title="Görüntüle">👁</button>
+                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('editProjectModal','Rivierpark Konutları')" title="Düzenle">✎</button>
+                    <button class="btn btn-icon-sm btn-ghost" onclick="showToast('Rivierpark Konutları silindi','error')" title="Sil">🗑</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Merkez Ofis Kulesi</strong></td>
+                <td>Brüksel-Midi</td>
+                <td><span class="badge badge-info">Ticari</span></td>
+                <td>
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <div class="progress-bar" style="flex:1;min-width:60px;"><div class="progress-bar-fill" style="width:45%;"></div></div>
+                    <span style="font-size:11px;font-weight:700;min-width:28px;">45%</span>
+                  </div>
+                </td>
+                <td>03 Mar 2025</td>
+                <td>15 Ara 2026</td>
+                <td>€5.8M</td>
+                <td>
+                  <div style="display:flex;gap:4px;">
+                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('viewProjectModal','Merkez Ofis Kulesi')" title="Görüntüle">👁</button>
+                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('editProjectModal','Merkez Ofis Kulesi')" title="Düzenle">✎</button>
+                    <button class="btn btn-icon-sm btn-ghost" onclick="showToast('Merkez Ofis Kulesi silindi','error')" title="Sil">🗑</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Grand Hotel Restore</strong></td>
+                <td>Brugge-Merkez</td>
+                <td><span class="badge badge-warning">Renovasyon</span></td>
+                <td>
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <div class="progress-bar" style="flex:1;min-width:60px;"><div class="progress-bar-fill" style="width:62%;"></div></div>
+                    <span style="font-size:11px;font-weight:700;min-width:28px;">62%</span>
+                  </div>
+                </td>
+                <td>20 Eyl 2024</td>
+                <td>30 Eyl 2026</td>
+                <td>€1.2M</td>
+                <td>
+                  <div style="display:flex;gap:4px;">
+                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('viewProjectModal','Grand Hotel Restore')" title="Görüntüle">👁</button>
+                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('editProjectModal','Grand Hotel Restore')" title="Düzenle">✎</button>
+                    <button class="btn btn-icon-sm btn-ghost" onclick="showToast('Grand Hotel Restore silindi','error')" title="Sil">🗑</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Liman Yolu Altyapı</strong></td>
+                <td>Gent-Liman</td>
+                <td><span class="badge badge-success">Altyapı</span></td>
+                <td>
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <div class="progress-bar" style="flex:1;min-width:60px;"><div class="progress-bar-fill" style="width:35%;"></div></div>
+                    <span style="font-size:11px;font-weight:700;min-width:28px;">35%</span>
+                  </div>
+                </td>
+                <td>10 Nis 2025</td>
+                <td>30 May 2027</td>
+                <td>€3.1M</td>
+                <td>
+                  <div style="display:flex;gap:4px;">
+                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('viewProjectModal','Liman Yolu Altyapı')" title="Görüntüle">👁</button>
+                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('editProjectModal','Liman Yolu Altyapı')" title="Düzenle">✎</button>
+                    <button class="btn btn-icon-sm btn-ghost" onclick="showToast('Liman Yolu Altyapı silindi','error')" title="Sil">🗑</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Nordik Fabrika Genişleme</strong></td>
+                <td>Leuven-Teknopark</td>
+                <td><span class="badge badge-error">Endüstriyel</span></td>
+                <td>
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <div class="progress-bar" style="flex:1;min-width:60px;"><div class="progress-bar-fill" style="width:55%;"></div></div>
+                    <span style="font-size:11px;font-weight:700;min-width:28px;">55%</span>
+                  </div>
+                </td>
+                <td>05 Oca 2025</td>
+                <td>20 Ağu 2026</td>
+                <td>€4.5M</td>
+                <td>
+                  <div style="display:flex;gap:4px;">
+                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('viewProjectModal','Nordik Fabrika Genişleme')" title="Görüntüle">👁</button>
+                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('editProjectModal','Nordik Fabrika Genişleme')" title="Düzenle">✎</button>
+                    <button class="btn btn-icon-sm btn-ghost" onclick="showToast('Nordik Fabrika Genişleme silindi','error')" title="Sil">🗑</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Botanik Park</strong></td>
+                <td>Liège-Outremeuse</td>
+                <td><span class="badge badge-neutral">Peyzaj</span></td>
+                <td>
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <div class="progress-bar" style="flex:1;min-width:60px;"><div class="progress-bar-fill" style="width:90%;"></div></div>
+                    <span style="font-size:11px;font-weight:700;min-width:28px;">90%</span>
+                  </div>
+                </td>
+                <td>01 Mar 2025</td>
+                <td>15 Haz 2026</td>
+                <td>€890K</td>
+                <td>
+                  <div style="display:flex;gap:4px;">
+                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('viewProjectModal','Botanik Park')" title="Görüntüle">👁</button>
+                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('editProjectModal','Botanik Park')" title="Düzenle">✎</button>
+                    <button class="btn btn-icon-sm btn-ghost" onclick="showToast('Botanik Park silindi','error')" title="Sil">🗑</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Zilverpark Villa Sitesi</strong></td>
+                <td>Knokke-Heist</td>
+                <td><span class="badge badge-info">Konut</span></td>
+                <td>
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <div class="progress-bar" style="flex:1;min-width:60px;"><div class="progress-bar-fill" style="width:22%;"></div></div>
+                    <span style="font-size:11px;font-weight:700;min-width:28px;">22%</span>
+                  </div>
+                </td>
+                <td>01 Nis 2025</td>
+                <td>31 Mar 2027</td>
+                <td>€1.8M</td>
+                <td>
+                  <div style="display:flex;gap:4px;">
+                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('viewProjectModal','Zilverpark Villa Sitesi')" title="Görüntüle">👁</button>
+                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('editProjectModal','Zilverpark Villa Sitesi')" title="Düzenle">✎</button>
+                    <button class="btn btn-icon-sm btn-ghost" onclick="showToast('Zilverpark Villa Sitesi silindi','error')" title="Sil">🗑</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Avrupa Komisyonu Ek Bina</strong></td>
+                <td>Brüksel-Etropl</td>
+                <td><span class="badge badge-info">Ticari</span></td>
+                <td>
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <div class="progress-bar" style="flex:1;min-width:60px;"><div class="progress-bar-fill" style="width:12%;"></div></div>
+                    <span style="font-size:11px;font-weight:700;min-width:28px;">12%</span>
+                  </div>
+                </td>
+                <td>01 May 2025</td>
+                <td>30 Eyl 2027</td>
+                <td>€8.2M</td>
+                <td>
+                  <div style="display:flex;gap:4px;">
+                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('viewProjectModal','Avrupa Komisyonu Ek Bina')" title="Görüntüle">👁</button>
+                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('editProjectModal','Avrupa Komisyonu Ek Bina')" title="Düzenle">✎</button>
+                    <button class="btn btn-icon-sm btn-ghost" onclick="showToast('Avrupa Komisyonu Ek Bina silindi','error')" title="Sil">🗑</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Top Materials -->
+      <div class="glass-card reveal">
+        <div class="card-header">
+          <div class="card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber-500)" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            En Çok Kullanılan Malzemeler
+          </div>
+        </div>
+        <div class="card-body" style="display:flex;flex-direction:column;gap:var(--space-3);">
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:13px;font-weight:600;">Beton C30</span><span style="font-size:13px;color:var(--teal-500);font-weight:700;">€420K</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:92%;"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:13px;font-weight:600;">Demir Çelik (B500B)</span><span style="font-size:13px;color:var(--teal-500);font-weight:700;">€380K</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:84%;"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:13px;font-weight:600;">Tuğla (Poroton)</span><span style="font-size:13px;color:var(--teal-500);font-weight:700;">€210K</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:46%;"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:13px;font-weight:600;">Alüminyum Cephe</span><span style="font-size:13px;color:var(--teal-500);font-weight:700;">€195K</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:43%;"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:13px;font-weight:600;">Yalıtım (EPS)</span><span style="font-size:13px;color:var(--teal-500);font-weight:700;">€145K</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:32%;"></div></div></div>
+        </div>
+      </div>
+
+      <!-- Recent Activities -->
+      <div class="glass-card reveal reveal-delay-1">
+        <div class="card-header">
+          <div class="card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--info-500)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Son Aktiviteler
+          </div>
+          <span style="width:8px;height:8px;border-radius:50%;background:var(--success-500);animation:pulse-dot 2s ease-in-out infinite;"></span>
+        </div>
+        <div class="card-body" style="padding-top:0;">
+          <div class="activity-list">
+            <div class="activity-item">
+              <div class="activity-avatar" style="background:linear-gradient(135deg,#14b8a6,#0d9488);">PV</div>
+              <div class="activity-content">
+                <div class="activity-text"><strong>Pieter V.</strong> proje durumunu güncelledi — <strong>Rivierpark Konutları</strong> %78</div>
+                <div class="activity-time">8 dakika önce</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-avatar" style="background:linear-gradient(135deg,#f59e0b,#d97706);">JD</div>
+              <div class="activity-content">
+                <div class="activity-text"><strong>Jan D.</strong> yeni teklif oluşturdu — <strong>#QT-2026-112</strong> €450,000</div>
+                <div class="activity-time">25 dakika önce</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-avatar" style="background:linear-gradient(135deg,#3b82f6,#2563eb);">LS</div>
+              <div class="activity-content">
+                <div class="activity-text"><strong>Lisa S.</strong> stok girişi yaptı — Beton C30 (+24 m³)</div>
+                <div class="activity-time">42 dakika önce</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-avatar" style="background:linear-gradient(135deg,#8b5cf6,#6d28d9);">MK</div>
+              <div class="activity-content">
+                <div class="activity-text"><strong>Marc K.</strong> şantiye raporu gönderdi — <strong>Merkez Ofis Kulesi</strong></div>
+                <div class="activity-time">1 saat önce</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-avatar" style="background:linear-gradient(135deg,#f43f5e,#e11d48);">AD</div>
+              <div class="activity-content">
+                <div class="activity-text"><strong>Anna D.</strong> personel ataması yaptı — Vinç operatörü</div>
+                <div class="activity-time">2 saat önce</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-avatar" style="background:linear-gradient(135deg,#10b981,#059669);">TB</div>
+              <div class="activity-content">
+                <div class="activity-text"><strong>Tom B.</strong> ekipman bakımı tamamlandı — <strong>Vinç #VC-03</strong></div>
+                <div class="activity-time">3 saat önce</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notifications Inline -->
+      <div class="glass-card reveal reveal-delay-2">
+        <div class="card-header">
+          <div class="card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--info-500)" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            Bildirimler
+          </div>
+          <span class="badge badge-error">5 yeni</span>
+        </div>
+        <div class="card-body notif-panel-body" style="padding-top:var(--space-3);">
+          <div class="notif-item">
+            <div class="notif-icon" style="background:rgba(244,63,94,0.1);color:var(--error-500);">⚠️</div>
+            <div class="notif-content"><p>Gecikme uyarısı: <strong>Merkez Ofis</strong> 3 gün geride</p><span>5 dk önce</span></div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-icon" style="background:rgba(20,184,166,0.1);color:var(--teal-500);">📄</div>
+            <div class="notif-content"><p>Yeni teklif: <strong>#QT-2026-112</strong> €450,000</p><span>12 dk önce</span></div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-icon" style="background:rgba(249,115,22,0.1);color:var(--warning-500);">📦</div>
+            <div class="notif-content"><p>Stok alarmı: <strong>Beton C30</strong> 12 m³ kaldı</p><span>32 dk önce</span></div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-icon" style="background:rgba(16,185,129,0.1);color:var(--success-500);">✓</div>
+            <div class="notif-content"><p>Şantiye raporu: <strong>Rivierpark</strong> günlük tamamlandı</p><span>1 saat önce</span></div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-icon" style="background:rgba(59,130,246,0.1);color:var(--info-500);">⚙️</div>
+            <div class="notif-content"><p>Ekipman bakımı: <strong>Vinç #VC-04</strong> yarın planlandı</p><span>2 saat önce</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Weather Widget (Antwerp) -->
+      <div class="glass-card reveal reveal-delay-1">
+        <div class="card-header">
+          <div class="card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber-500)" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+            Hava Durumu
+          </div>
+          <span style="font-size:var(--text-xs);color:var(--teal-500);font-weight:600;">📍 Antwerp, BE</span>
+        </div>
+        <div class="card-body">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <div style="display:flex;align-items:center;gap:var(--space-4);">
+              <div style="font-size:48px;line-height:1;filter:drop-shadow(0 4px 8px rgba(20,184,166,0.2));">🌤️</div>
+              <div>
+                <div style="font-size:40px;font-weight:800;letter-spacing:-0.04em;line-height:1;">18°</div>
+                <div style="font-size:13px;color:var(--text-muted);margin-top:4px;">Parçalı Bulutlu · İnşaat için uygun</div>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-3);">
+              <div style="text-align:center;padding:var(--space-2) var(--space-3);background:var(--bg-secondary);border-radius:var(--radius-md);">
+                <div style="font-size:14px;font-weight:700;">62%</div><div style="font-size:11px;color:var(--text-muted);">Nem</div>
+              </div>
+              <div style="text-align:center;padding:var(--space-2) var(--space-3);background:var(--bg-secondary);border-radius:var(--radius-md);">
+                <div style="font-size:14px;font-weight:700;">14 km/s</div><div style="font-size:11px;color:var(--text-muted);">Rüzgar</div>
+              </div>
+              <div style="text-align:center;padding:var(--space-2) var(--space-3);background:var(--bg-secondary);border-radius:var(--radius-md);">
+                <div style="font-size:14px;font-weight:700;">21°</div><div style="font-size:11px;color:var(--text-muted);">Yüksek</div>
+              </div>
+              <div style="text-align:center;padding:var(--space-2) var(--space-3);background:var(--bg-secondary);border-radius:var(--radius-md);">
+                <div style="font-size:14px;font-weight:700;">12°</div><div style="font-size:11px;color:var(--text-muted);">Düşük</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+</div>
+</div>
+
+<!-- ── MODALS ── -->
+
+<!-- Add Project Modal -->
+<div class="modal-overlay" id="addProjectModal">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <div class="modal-title">Yeni Proje Ekle</div>
+      <button class="modal-close" onclick="closeModal('addProjectModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
+        <div class="form-group"><label class="form-label">Proje Adı</label><input type="text" class="form-input" placeholder="Örn: Yeni Konut Projesi"></div>
+        <div class="form-group"><label class="form-label">Şantiye Lokasyonu</label><input type="text" class="form-input" placeholder="Örn: Brüksel-Midi"></div>
+        <div class="form-group"><label class="form-label">Sektör</label><select class="form-select"><option>Konut İnşaatı</option><option>Ticari İnşaat</option><option>Renovasyon & Restore</option><option>Altyapı & İmar</option><option>Endüstriyel Tesis</option><option>Peyzaj & Dış Mekan</option></select></div>
+        <div class="form-group"><label class="form-label">Bütçe (€)</label><input type="text" class="form-input" placeholder="Örn: 2500000"></div>
+        <div class="form-group"><label class="form-label">Başlangıç Tarihi</label><input type="date" class="form-input"></div>
+        <div class="form-group"><label class="form-label">Bitiş Tarihi</label><input type="date" class="form-input"></div>
+      </div>
+      <div class="form-group" style="margin-top:var(--space-4);"><label class="form-label">Proje Açıklaması</label><textarea class="form-textarea" rows="3" placeholder="Proje detayları, özel notlar..."></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('addProjectModal')">İptal</button>
+      <button class="btn btn-primary" onclick="closeModal('addProjectModal');showToast('Yeni proje başarıyla eklendi','success')">Kaydet</button>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Project Modal -->
+<div class="modal-overlay" id="editProjectModal">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <div class="modal-title" id="editProjectTitle">Projeyi Düzenle</div>
+      <button class="modal-close" onclick="closeModal('editProjectModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
+        <div class="form-group"><label class="form-label">Proje Adı</label><input type="text" class="form-input" value="Rivierpark Konutları"></div>
+        <div class="form-group"><label class="form-label">Şantiye Lokasyonu</label><input type="text" class="form-input" value="Antwerpen-Noord"></div>
+        <div class="form-group"><label class="form-label">Sektör</label><select class="form-select"><option selected>Konut İnşaatı</option><option>Ticari İnşaat</option><option>Renovasyon & Restore</option><option>Altyapı & İmar</option><option>Endüstriyel Tesis</option><option>Peyzaj & Dış Mekan</option></select></div>
+        <div class="form-group"><label class="form-label">Bütçe (€)</label><input type="text" class="form-input" value="2400000"></div>
+        <div class="form-group"><label class="form-label">İlerleme (%)</label><input type="number" class="form-input" value="78" min="0" max="100"></div>
+        <div class="form-group"><label class="form-label">Durum</label><select class="form-select"><option selected>Devam Ediyor</option><option>Bekliyor</option><option>Tamamlandı</option><option>İptal</option></select></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('editProjectModal')">İptal</button>
+      <button class="btn btn-primary" onclick="closeModal('editProjectModal');showToast('Proje başarıyla güncellendi','success')">Güncelle</button>
+    </div>
+  </div>
+</div>
+
+<!-- View Project Modal -->
+<div class="modal-overlay" id="viewProjectModal">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <div class="modal-title" id="viewProjectTitle">Proje Detayları</div>
+      <button class="modal-close" onclick="closeModal('viewProjectModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);margin-bottom:var(--space-4);">
+        <div style="background:var(--bg-secondary);padding:var(--space-4);border-radius:var(--radius-md);">
+          <div style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;">Bütçe</div>
+          <div style="font-size:var(--text-lg);font-weight:700;">€2,400,000</div>
+        </div>
+        <div style="background:var(--bg-secondary);padding:var(--space-4);border-radius:var(--radius-md);">
+          <div style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;">Harcanan</div>
+          <div style="font-size:var(--text-lg);font-weight:700;color:var(--teal-500);">€1,872,000</div>
+        </div>
+        <div style="background:var(--bg-secondary);padding:var(--space-4);border-radius:var(--radius-md);">
+          <div style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;">Kalan</div>
+          <div style="font-size:var(--text-lg);font-weight:700;color:var(--amber-500);">€528,000</div>
+        </div>
+      </div>
+      <div style="margin-bottom:var(--space-4);">
+        <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:var(--text-sm);font-weight:600;">İlerleme</span><span style="font-size:var(--text-sm);font-weight:700;">78%</span></div>
+        <div class="progress-bar" style="height:8px;"><div class="progress-bar-fill" style="width:78%;"></div></div>
+      </div>
+      <div class="table-wrap">
+        <table class="table table-compact">
+          <thead><tr><th>Personel</th><th>Görev</th><th>Saat</th><th>Durum</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Jan De Smet</strong></td><td>Kalıp Ustası</td><td>240h</td><td><span class="badge badge-success">Aktif</span></td></tr>
+            <tr><td><strong>Lisa Vermeulen</strong></td><td>Proje Mühendisi</td><td>180h</td><td><span class="badge badge-success">Aktif</span></td></tr>
+            <tr><td><strong>Marc Dubois</strong></td><td>Vinç Operatörü</td><td>120h</td><td><span class="badge badge-warning">İzin</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('viewProjectModal')">Kapat</button>
+      <button class="btn btn-primary" onclick="closeModal('viewProjectModal');openModal('editProjectModal')">Düzenle</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add Quote Modal -->
+<div class="modal-overlay" id="addQuoteModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Yeni Teklif Oluştur</div>
+      <button class="modal-close" onclick="closeModal('addQuoteModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group"><label class="form-label">Müşteri</label><input type="text" class="form-input" placeholder="Müşteri adı"></div>
+      <div class="form-group"><label class="form-label">Proje Adı</label><input type="text" class="form-input" placeholder="Teklif konusu"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
+        <div class="form-group"><label class="form-label">Tutar (€)</label><input type="text" class="form-input" placeholder="0.00"></div>
+        <div class="form-group"><label class="form-label">Geçerlilik (gün)</label><input type="number" class="form-input" value="30"></div>
+      </div>
+      <div class="form-group"><label class="form-label">Açıklama</label><textarea class="form-textarea" rows="3" placeholder="Teklif detayları, kapsam, hariç tutulanlar..."></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('addQuoteModal')">İptal</button>
+      <button class="btn btn-primary" onclick="closeModal('addQuoteModal');showToast('Teklif başarıyla oluşturuldu','success')">Oluştur</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── Sidebar Toggle ── */
+const sidebar=document.getElementById('sidebar');
+const menuBtn=document.getElementById('menuBtn');
+const overlay=document.getElementById('sidebarOverlay');
+menuBtn.addEventListener('click',()=>{sidebar.classList.toggle('open');overlay.classList.toggle('active');});
+overlay.addEventListener('click',()=>{sidebar.classList.remove('open');overlay.classList.remove('active');});
+
+/* ── Theme ── */
+const html=document.documentElement;
+let theme=localStorage.getItem('bp-theme')||'dark';
+html.setAttribute('data-theme',theme);
+document.getElementById('themeToggle').addEventListener('click',()=>{theme=theme==='dark'?'light':'dark';html.setAttribute('data-theme',theme);localStorage.setItem('bp-theme',theme);});
+
+/* ── Notification Dropdown ── */
+const notifBtn=document.getElementById('notifBtn');
+const notifDropdown=document.getElementById('notifDropdown');
+notifBtn.addEventListener('click',(e)=>{e.stopPropagation();notifDropdown.classList.toggle('open');});
+document.addEventListener('click',(e)=>{if(!notifDropdown.contains(e.target)&&e.target!==notifBtn){notifDropdown.classList.remove('open');}});
+
+function markAllRead(){
+  document.querySelectorAll('.notif-dropdown-item').forEach(item=>{item.classList.remove('unread');item.querySelector('.notif-dot').classList.remove('unread');item.querySelector('.notif-dot').classList.add('read');});
+  const badge=document.getElementById('notifBadge');
+  if(badge){badge.style.display='none';}
+  showToast('Tüm bildirimler okundu olarak işaretlendi','success');
+}
+
+/* ── Sector Dropdown ── */
+function toggleSectorDropdown(){
+  const dd=document.getElementById('sectorDropdown');
+  dd.classList.toggle('open');
+}
+document.addEventListener('click',(e)=>{
+  const dd=document.getElementById('sectorDropdown');
+  if(dd&&dd.classList.contains('open')&&!dd.contains(e.target)){
+    dd.classList.remove('open');
+  }
+});
+
+/* ── Toast ── */
+function showToast(msg,type='success',dur=3000){
+  let c=document.querySelector('.toast-container');
+  if(!c){c=document.createElement('div');c.className='toast-container';c.style.cssText='position:fixed;top:80px;right:24px;z-index:2000;display:flex;flex-direction:column;gap:12px;pointer-events:none;max-width:360px;';document.body.appendChild(c);}
+  const t=document.createElement('div');
+  const colors={success:'var(--success-500)',error:'var(--error-500)',warning:'var(--warning-500)',info:'var(--info-500)'};
+  const icons={success:'✓',error:'✕',warning:'!',info:'ℹ'};
+  const titles={success:'Başarılı',error:'Hata',warning:'Uyarı',info:'Bilgi'};
+  t.style.cssText=`pointer-events:all;background:var(--bg-card);border:1px solid ${colors[type]};border-radius:12px;padding:14px 18px;display:flex;align-items:flex-start;gap:12px;box-shadow:var(--shadow-lg);animation:toastIn 0.3s ease-out;position:relative;overflow:hidden;`;
+  t.innerHTML=`<span style="flex-shrink:0;margin-top:2px;width:20px;height:20px;border-radius:50%;background:${colors[type]};color:white;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">${icons[type]}</span><div style="flex:1;"><div style="font-weight:600;font-size:var(--text-sm);">${titles[type]}</div><div style="font-size:var(--text-sm);color:var(--text-muted);margin-top:2px;">${msg}</div></div><span style="flex-shrink:0;color:var(--text-muted);cursor:pointer;font-size:14px;" onclick="this.parentElement.remove()">✕</span><div style="position:absolute;bottom:0;left:0;height:2px;background:${colors[type]};animation:progressBar 4s linear forwards;width:100%;"></div>`;
+  c.appendChild(t);
+  setTimeout(()=>{t.style.animation='toastOut 0.3s ease-in forwards';setTimeout(()=>t.remove(),300);},dur);
+}
+
+/* ── Scroll Reveal ── */
+const revealObserver=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');}});
+},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+/* ── Animated Counters ── */
+function animateCounters(){
+  document.querySelectorAll('.kpi-value[data-target]').forEach(el=>{
+    const target=parseInt(el.dataset.target);
+    const prefix=el.dataset.prefix||'';
+    const suffix=el.dataset.suffix||'';
+    const duration=1500;
+    const start=performance.now();
+    function tick(now){
+      const progress=Math.min((now-start)/duration,1);
+      const eased=1-Math.pow(1-progress,3);
+      const current=Math.round(eased*target);
+      el.textContent=prefix+current.toLocaleString('tr-TR')+suffix;
+      if(progress<1)requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+}
+
+/* ── Modal Functions ── */
+function openModal(id, title){
+  const modal=document.getElementById(id);
+  if(modal){
+    modal.classList.add('active');
+    if(title){
+      const titleEl=modal.querySelector('.modal-title');
+      if(titleEl&&titleEl.id){
+        if(titleEl.id==='editProjectTitle') titleEl.textContent='Projeyi Düzenle — '+title;
+        if(titleEl.id==='viewProjectTitle') titleEl.textContent='Proje Detayları — '+title;
+      }
+    }
+  }
+}
+function closeModal(id){
+  const modal=document.getElementById(id);
+  if(modal) modal.classList.remove('active');
+}
+// Close modal on overlay click
+document.querySelectorAll('.modal-overlay').forEach(overlay=>{
+  overlay.addEventListener('click',(e)=>{if(e.target===overlay)overlay.classList.remove('active');});
+});
+
+/* ── Sector Toggle ── */
+function toggleSector(checkbox, name){
+  if(checkbox.checked){
+    showToast(name+' sektörü aktifleştirildi','success');
+  } else {
+    showToast(name+' sektörü pasifleştirildi','warning');
+  }
+}
+
+/* ── Chart.js Config ── */
+const chartColors={
+  teal:'#14b8a6',tealLight:'rgba(20,184,166,0.15)',
+  amber:'#f59e0b',amberLight:'rgba(245,158,11,0.15)',
+  blue:'#3b82f6',blueLight:'rgba(59,130,246,0.15)',
+  rose:'#f43f5e',roseLight:'rgba(244,63,94,0.15)',
+  purple:'#8b5cf6',purpleLight:'rgba(139,92,246,0.15)',
+  emerald:'#10b981',emeraldLight:'rgba(16,185,129,0.15)',
+  slate:'#64748b'
+};
+
+const chartFont={family:'Inter',size:11,weight:'500'};
+const chartGrid={color:'rgba(148,163,184,0.06)',drawBorder:false};
+const chartTicks={color:'rgba(148,163,184,0.5)',font:chartFont};
+
+Chart.defaults.color=chartTicks.color;
+Chart.defaults.font=chartFont;
+
+/* Budget Line Chart */
+const budCtx=document.getElementById('budgetChart').getContext('2d');
+const budGradient=budCtx.createLinearGradient(0,0,0,240);
+budGradient.addColorStop(0,'rgba(20,184,166,0.25)');
+budGradient.addColorStop(1,'rgba(20,184,166,0)');
+
+const budgetChart=new Chart(budCtx,{
+  type:'line',
+  data:{
+    labels:['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara'],
+    datasets:[{
+      label:'Planlanan (€)',
+      data:[1200000,1350000,1500000,1600000,1700000,1800000,1900000,2000000,2100000,2200000,2300000,2400000],
+      borderColor:chartColors.teal,
+      backgroundColor:budGradient,
+      borderWidth:2.5,
+      pointBackgroundColor:chartColors.teal,
+      pointBorderColor:'var(--bg-card)',
+      pointBorderWidth:2,
+      pointRadius:4,
+      pointHoverRadius:6,
+      fill:true,
+      tension:0.4
+    },{
+      label:'Gerçekleşen (€)',
+      data:[1100000,1280000,1420000,1520000,1600000,null,null,null,null,null,null,null],
+      borderColor:chartColors.amber,
+      backgroundColor:'transparent',
+      borderWidth:2.5,
+      borderDash:[6,4],
+      pointBackgroundColor:chartColors.amber,
+      pointBorderColor:'var(--bg-card)',
+      pointBorderWidth:2,
+      pointRadius:4,
+      pointHoverRadius:6,
+      fill:false,
+      tension:0.4
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    interaction:{mode:'index',intersect:false},
+    plugins:{
+      legend:{display:true,labels:{boxWidth:10,boxHeight:10,padding:12,font:{family:'Inter',size:11},color:chartTicks.color}},
+      tooltip:{
+        backgroundColor:'var(--bg-card)',
+        borderColor:'var(--border-color)',borderWidth:1,
+        titleColor:'var(--text-primary)',titleFont:{family:'Inter',size:12,weight:'600'},
+        bodyColor:'var(--teal-500)',bodyFont:{family:'Inter',size:13,weight:'700'},
+        padding:10,cornerRadius:10,displayColors:false,
+        callbacks:{label:(ctx)=>`${ctx.dataset.label}: €${ctx.parsed.y.toLocaleString('tr-TR')}`}
+      }
+    },
+    scales:{
+      x:{grid:chartGrid,ticks:chartTicks},
+      y:{grid:chartGrid,ticks:{...chartTicks,callback:(v)=>`€${v/1000}k`},beginAtZero:false}
+    }
+  }
+});
+
+/* Sector Bar Chart */
+const secCtx=document.getElementById('sectorChart').getContext('2d');
+new Chart(secCtx,{
+  type:'bar',
+  data:{
+    labels:['Konut','Ticari','Renovasyon','Altyapı','Endüstriyel','Peyzaj'],
+    datasets:[{
+      label:'Bütçe (€)',
+      data:[2400000,5800000,1200000,3100000,4500000,890000],
+      backgroundColor:[chartColors.tealLight,chartColors.blueLight,chartColors.amberLight,chartColors.emeraldLight,chartColors.roseLight,chartColors.purpleLight],
+      borderColor:[chartColors.teal,chartColors.blue,chartColors.amber,chartColors.emerald,chartColors.rose,chartColors.purple],
+      borderWidth:1,
+      borderRadius:6,
+      borderSkipped:false
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{
+      backgroundColor:'var(--bg-card)',borderColor:'var(--border-color)',borderWidth:1,
+      titleColor:'var(--text-primary)',bodyColor:'var(--teal-500)',padding:10,cornerRadius:10,displayColors:false,
+      callbacks:{label:(ctx)=>`€${ctx.parsed.y.toLocaleString('tr-TR')}`}
+    }},
+    scales:{
+      x:{grid:chartGrid,ticks:chartTicks},
+      y:{grid:chartGrid,ticks:{...chartTicks,callback:(v)=>`€${v/1000}k`},beginAtZero:true}
+    }
+  }
+});
+
+/* Status Doughnut Chart */
+const statCtx=document.getElementById('statusChart').getContext('2d');
+new Chart(statCtx,{
+  type:'doughnut',
+  data:{
+    labels:['Devam Ediyor','Tamamlandı','Bekliyor','Gecikme','İptal'],
+    datasets:[{
+      data:[12,156,8,3,1],
+      backgroundColor:[chartColors.teal,chartColors.emerald,chartColors.blue,chartColors.amber,chartColors.rose],
+      borderColor:'var(--bg-card)',borderWidth:3,
+      hoverOffset:8
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    cutout:'65%',
+    plugins:{
+      legend:{position:'right',labels:{boxWidth:10,boxHeight:10,padding:12,font:{family:'Inter',size:11},color:chartTicks.color}},
+      tooltip:{
+        backgroundColor:'var(--bg-card)',borderColor:'var(--border-color)',borderWidth:1,
+        titleColor:'var(--text-primary)',bodyColor:'var(--teal-500)',padding:10,cornerRadius:10,
+        callbacks:{label:(ctx)=>` ${ctx.parsed} proje`}
+      }
+    }
+  }
+});
+
+/* Chart toggle buttons */
+document.querySelectorAll('.chart-toggle-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.chart-toggle-btn').forEach(b=>{
+      b.classList.remove('active');
+      b.style.background='none';b.style.color='var(--text-muted)';
+    });
+    btn.classList.add('active');
+    btn.style.background='var(--bg-card)';btn.style.color='var(--teal-500)';
+  });
+});
+
+/* ── Init ── */
+document.addEventListener('DOMContentLoaded',()=>{
+  setTimeout(animateCounters,400);
+});
+</script>
+
+<style>
+@keyframes toastIn{from{opacity:0;transform:translateY(-20px) scale(0.95);}to{opacity:1;transform:translateY(0) scale(1);}}
+@keyframes toastOut{from{opacity:1;transform:translateY(0) scale(1);}to{opacity:0;transform:translateY(-20px) scale(0.95);}}
+@keyframes progressBar{from{width:100%;}to{width:0;}}
+</style>
+
+</body>
+</html>

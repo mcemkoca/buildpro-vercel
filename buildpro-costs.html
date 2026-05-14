@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BuildPro — Maliyet Yönetimi</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <style>
+    .cost-summary { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--space-4); margin-bottom:var(--space-6); }
+    @media (max-width:1024px){ .cost-summary { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:480px){ .cost-summary { grid-template-columns:1fr; } }
+    .amount-cell { font-variant-numeric:tabular-nums; font-weight:600; }
+    .filter-bar { display:flex; gap:var(--space-3); flex-wrap:wrap; margin-bottom:var(--space-4); }
+    .filter-bar .form-select { width:auto; min-width:160px; }
+    .chart-placeholder {
+      height:200px;
+      background:linear-gradient(90deg, var(--bg-tertiary) 25%, var(--bg-secondary) 50%, var(--bg-tertiary) 75%);
+      background-size:200% 100%;
+      animation:shimmer 1.5s infinite;
+      border-radius:var(--radius-md);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--text-muted);font-size:var(--text-sm);
+    }
+    .category-bar { display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-3); }
+    .category-label { width:100px;font-size:var(--text-sm);color:var(--text-secondary); }
+    .category-track { flex:1;height:24px;background:var(--bg-tertiary);border-radius:9999px;overflow:hidden; }
+    .category-fill { height:100%;border-radius:9999px;transition:width var(--duration-slow) var(--ease-out); }
+    .category-value { width:80px;text-align:right;font-size:var(--text-sm);font-weight:600; }
+    .progress-ring-wrap { display:flex;align-items:center;justify-content:center;gap:var(--space-6);flex-wrap:wrap; }
+    .progress-ring { position:relative;width:120px;height:120px; }
+    .progress-ring svg { transform:rotate(-90deg); }
+    .progress-ring-bg { fill:none;stroke:var(--bg-tertiary);stroke-width:8; }
+    .progress-ring-fill { fill:none;stroke:var(--teal-500);stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset var(--duration-slow) var(--ease-out); }
+    .progress-ring-text { position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center; }
+    .progress-ring-pct { font-size:var(--text-xl);font-weight:700;color:var(--text-primary); }
+    .progress-ring-label { font-size:var(--text-xs);color:var(--text-muted); }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand-icon">BP</div>
+        <span class="sidebar-brand-text">BuildPro</span>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">Genel</div>
+          <a class="sidebar-link" href="buildpro-dashboard.html"><span class="icon">📊</span><span class="sidebar-text">Dashboard</span></a>
+          <a class="sidebar-link" href="buildpro-projects.html"><span class="icon">🏗️</span><span class="sidebar-text">Projeler</span></a>
+          <a class="sidebar-link" href="buildpro-staff.html"><span class="icon">👷</span><span class="sidebar-text">Personel</span></a>
+          <a class="sidebar-link" href="buildpro-site.html"><span class="icon">📍</span><span class="sidebar-text">Şantiyeler</span></a>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">Operasyon</div>
+          <a class="sidebar-link" href="buildpro-calendar.html"><span class="icon">📅</span><span class="sidebar-text">Takvim</span></a>
+          <a class="sidebar-link active" href="buildpro-costs.html"><span class="icon">💶</span><span class="sidebar-text">Maliyetler</span></a>
+          <a class="sidebar-link" href="buildpro-equipment.html"><span class="icon">🚜</span><span class="sidebar-text">Ekipman</span></a>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">Müşteri</div>
+          <a class="sidebar-link" href="buildpro-clients.html"><span class="icon">🤝</span><span class="sidebar-text">Müşteriler</span></a>
+          <a class="sidebar-link" href="buildpro-quotes.html"><span class="icon">📄</span><span class="sidebar-text">Teklifler</span></a>
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <a class="sidebar-link" href="#"><span class="icon">⚙️</span><span class="sidebar-text">Ayarlar</span></a>
+      </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <main class="main">
+      <header class="header">
+        <div class="header-left">
+          <button class="header-btn mobile-visible" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+          <div>
+            <div class="header-title">Maliyet Yönetimi</div>
+            <div class="header-breadcrumb">BuildPro / Maliyetler</div>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="header-search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" placeholder="Maliyet ara...">
+          </div>
+          <button class="header-btn" onclick="toggleTheme()" aria-label="Tema">🌓</button>
+          <button class="header-btn" aria-label="Bildirimler">🔔<span class="badge-dot"></span></button>
+          <div class="header-avatar">DY</div>
+        </div>
+      </header>
+
+      <div class="page">
+        <!-- Summary Cards -->
+        <div class="cost-summary">
+          <div class="card stat-card">
+            <div class="stat-icon" style="background:var(--teal-100);color:var(--teal-600);">📋</div>
+            <div class="stat-value">€1.24M</div>
+            <div class="stat-label">Toplam Bütçe</div>
+            <div class="stat-change up">↑ 8% yıllık artış</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-icon" style="background:var(--warning-100);color:var(--warning-500);">💸</div>
+            <div class="stat-value">€892K</div>
+            <div class="stat-label">Gerçekleşen Maliyet</div>
+            <div class="stat-change down">↓ %71.9 oran</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-icon" style="background:var(--success-100);color:var(--success-500);">📈</div>
+            <div class="stat-value">€348K</div>
+            <div class="stat-label">Kalan Bütçe</div>
+            <div class="stat-change up">↑ %28.1 kalan</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-icon" style="background:var(--error-100);color:var(--error-500);">⚠️</div>
+            <div class="stat-value">€47K</div>
+            <div class="stat-label">Bütçe Aşımı Riski</div>
+            <div class="stat-change down">↓ 2 proje</div>
+          </div>
+        </div>
+
+        <!-- Budget vs Actual Rings -->
+        <div class="card" style="margin-bottom:var(--space-6);">
+          <div class="card-header">
+            <div>
+              <div class="card-title">📊 Bütçe vs Gerçekleşen</div>
+              <div class="card-subtitle">Proje bazında karşılaştırma</div>
+            </div>
+          </div>
+          <div class="progress-ring-wrap">
+            <div class="progress-ring">
+              <svg width="120" height="120" viewBox="0 0 120 120">
+                <circle class="progress-ring-bg" cx="60" cy="60" r="52"/>
+                <circle class="progress-ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="81.68"/>
+              </svg>
+              <div class="progress-ring-text">
+                <div class="progress-ring-pct">%75</div>
+                <div class="progress-ring-label">Ofis Yenileme</div>
+              </div>
+            </div>
+            <div class="progress-ring">
+              <svg width="120" height="120" viewBox="0 0 120 120">
+                <circle class="progress-ring-bg" cx="60" cy="60" r="52"/>
+                <circle class="progress-ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="196.04" style="stroke:var(--warning-500);"/>
+              </svg>
+              <div class="progress-ring-text">
+                <div class="progress-ring-pct">%40</div>
+                <div class="progress-ring-label">Anvers Lojistik</div>
+              </div>
+            </div>
+            <div class="progress-ring">
+              <svg width="120" height="120" viewBox="0 0 120 120">
+                <circle class="progress-ring-bg" cx="60" cy="60" r="52"/>
+                <circle class="progress-ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="49.01" style="stroke:var(--error-500);"/>
+              </svg>
+              <div class="progress-ring-text">
+                <div class="progress-ring-pct">%85</div>
+                <div class="progress-ring-label">Gent Konut</div>
+              </div>
+            </div>
+            <div class="progress-ring">
+              <svg width="120" height="120" viewBox="0 0 120 120">
+                <circle class="progress-ring-bg" cx="60" cy="60" r="52"/>
+                <circle class="progress-ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="261.38" style="stroke:var(--info-500);"/>
+              </svg>
+              <div class="progress-ring-text">
+                <div class="progress-ring-pct">%20</div>
+                <div class="progress-ring-label">Liège Otomotiv</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category Breakdown -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-5);margin-bottom:var(--space-6);">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">📑 Kategori Dağılımı</div>
+                <div class="card-subtitle">Gerçekleşen maliyetler</div>
+              </div>
+            </div>
+            <div style="padding-top:var(--space-2);">
+              <div class="category-bar">
+                <div class="category-label">Malzeme</div>
+                <div class="category-track"><div class="category-fill" style="width:42%;background:var(--teal-500);"></div></div>
+                <div class="category-value">€375K</div>
+              </div>
+              <div class="category-bar">
+                <div class="category-label">İşçilik</div>
+                <div class="category-track"><div class="category-fill" style="width:31%;background:var(--info-500);"></div></div>
+                <div class="category-value">€276K</div>
+              </div>
+              <div class="category-bar">
+                <div class="category-label">Ekipman</div>
+                <div class="category-track"><div class="category-fill" style="width:15%;background:var(--amber-500);"></div></div>
+                <div class="category-value">€134K</div>
+              </div>
+              <div class="category-bar">
+                <div class="category-label">Taşıma</div>
+                <div class="category-track"><div class="category-fill" style="width:7%;background:var(--warning-500);"></div></div>
+                <div class="category-value">€62K</div>
+              </div>
+              <div class="category-bar">
+                <div class="category-label">İzin/Diğer</div>
+                <div class="category-track"><div class="category-fill" style="width:5%;background:var(--slate-400);"></div></div>
+                <div class="category-value">€45K</div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">📈 Trend</div>
+                <div class="card-subtitle">Aylık maliyet akışı</div>
+              </div>
+            </div>
+            <div class="chart-placeholder">Aylık maliyet trend grafiği alanı</div>
+          </div>
+        </div>
+
+        <!-- Page Header -->
+        <div class="page-header">
+          <div>
+            <div class="page-title">Maliyet Kayıtları</div>
+            <div class="page-subtitle">25 kayıt — Son güncelleme: 15.05.2025</div>
+          </div>
+          <div class="page-actions">
+            <button class="btn btn-secondary" onclick="exportCosts()">📥 Dışa Aktar</button>
+            <button class="btn btn-primary" onclick="openModal('addCostModal')">+ Maliyet Ekle</button>
+          </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filter-bar">
+          <div class="search-input" style="flex:1;max-width:320px;">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" class="form-input" placeholder="Açıklama veya proje ara..." id="costSearch">
+          </div>
+          <select class="form-select" id="categoryFilter">
+            <option value="">Tüm Kategoriler</option>
+            <option value="Malzeme">Malzeme</option>
+            <option value="İşçilik">İşçilik</option>
+            <option value="Ekipman">Ekipman</option>
+            <option value="Taşıma">Taşıma</option>
+            <option value="İzin">İzin</option>
+            <option value="Diğer">Diğer</option>
+          </select>
+          <select class="form-select" id="projectFilter">
+            <option value="">Tüm Projeler</option>
+            <option value="Ofis Kat 3">Ofis Kat 3 Yenileme</option>
+            <option value="Anvers Lojistik">Anvers Lojistik Merkezi</option>
+            <option value="Gent Konut">Gent Konut Kompleksi</option>
+            <option value="Liège Otomotiv">Liège Otomotiv Tesisleri</option>
+            <option value="Brugge Restorasyon">Brugge Tarihi Restorasyon</option>
+            <option value="Charleroi Fabrika">Charleroi Fabrika Yenileme</option>
+          </select>
+          <input type="date" class="form-input" id="dateFrom" style="width:auto;" placeholder="Başlangıç">
+          <input type="date" class="form-input" id="dateTo" style="width:auto;" placeholder="Bitiş">
+        </div>
+
+        <!-- Table -->
+        <div class="table-wrap">
+          <table class="table" id="costTable">
+            <thead>
+              <tr>
+                <th>Kategori</th>
+                <th>Proje</th>
+                <th>Miktar</th>
+                <th>Tarih</th>
+                <th>Açıklama</th>
+                <th style="width:100px;text-align:right;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="costTableBody">
+              <tr>
+                <td><span class="badge badge-info">Malzeme</span></td>
+                <td>Ofis Kat 3 Yenileme</td>
+                <td class="amount-cell">€12.450</td>
+                <td>15.05.2025</td>
+                <td>İzocam cam yünü levha 50mm — 120m²</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(1)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(1)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-neutral">İşçilik</span></td>
+                <td>Ofis Kat 3 Yenileme</td>
+                <td class="amount-cell">€8.200</td>
+                <td>14.05.2025</td>
+                <td>Haftalık personel maaş ödemesi — 7 kişi</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(2)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(2)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-warning">Ekipman</span></td>
+                <td>Anvers Lojistik Merkezi</td>
+                <td class="amount-cell">€4.800</td>
+                <td>13.05.2025</td>
+                <td>Liebherr vinç kiralama — 2 hafta</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(3)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(3)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-info">Malzeme</span></td>
+                <td>Gent Konut Kompleksi</td>
+                <td class="amount-cell">€23.600</td>
+                <td>12.05.2025</td>
+                <td>Beton C30/37 — 85m³ + pompa hizmeti</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(4)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(4)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-neutral">Taşıma</span></td>
+                <td>Anvers Lojistik Merkezi</td>
+                <td class="amount-cell">€1.850</td>
+                <td>11.05.2025</td>
+                <td>Ağır malzeme nakliyesi — Anvers → Gent</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(5)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(5)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-error">İzin</span></td>
+                <td>Genel</td>
+                <td class="amount-cell">€3.200</td>
+                <td>10.05.2025</td>
+                <td>Mehmet Kaya yıllık izin ücreti — 14 gün</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(6)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(6)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-info">Malzeme</span></td>
+                <td>Ofis Kat 3 Yenileme</td>
+                <td class="amount-cell">€6.780</td>
+                <td>09.05.2025</td>
+                <td>Kompozit cephe paneli — Alucobond 4mm, 45m²</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(7)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(7)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-neutral">İşçilik</span></td>
+                <td>Liège Otomotiv Tesisleri</td>
+                <td class="amount-cell">€11.500</td>
+                <td>08.05.2025</td>
+                <td>Özel kaynakçı ekibi — 5 gün x 8 kişi</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(8)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(8)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-warning">Ekipman</span></td>
+                <td>Gent Konut Kompleksi</td>
+                <td class="amount-cell">€2.400</td>
+                <td>07.05.2025</td>
+                <td>Bobcat S650 yedek parça + yağ değişimi</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(9)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(9)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-info">Malzeme</span></td>
+                <td>Brugge Tarihi Restorasyon</td>
+                <td class="amount-cell">€9.200</td>
+                <td>06.05.2025</td>
+                <td>Orijinal tuğla — kireç harcı ile, 500 adet</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(10)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(10)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-neutral">Taşıma</span></td>
+                <td>Ofis Kat 3 Yenileme</td>
+                <td class="amount-cell">€890</td>
+                <td>05.05.2025</td>
+                <td>Vinç nakliyesi — depodan şantiyeye</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(11)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(11)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-neutral">İşçilik</span></td>
+                <td>Charleroi Fabrika Yenileme</td>
+                <td class="amount-cell">€7.300</td>
+                <td>04.05.2025</td>
+                <td>Hazırlık ekibi — 4 kişi x 1 hafta</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(12)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(12)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-info">Malzeme</span></td>
+                <td>Anvers Lojistik Merkezi</td>
+                <td class="amount-cell">€31.200</td>
+                <td>03.05.2025</td>
+                <td>Çelik konstrüksiyon H profil — 12 ton</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(13)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(13)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-warning">Ekipman</span></td>
+                <td>Liège Otomotiv Tesisleri</td>
+                <td class="amount-cell">€18.500</td>
+                <td>02.05.2025</td>
+                <td>Aggreko jeneratör kiralama — 500kVA, 1 ay</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(14)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(14)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-info">Malzeme</span></td>
+                <td>Gent Konut Kompleksi</td>
+                <td class="amount-cell">€5.600</td>
+                <td>01.05.2025</td>
+                <td>Seramik fayans — 60x60, 150m² + yapıştırıcı</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(15)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(15)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-neutral">İşçilik</span></td>
+                <td>Ofis Kat 3 Yenileme</td>
+                <td class="amount-cell">€8.200</td>
+                <td>30.04.2025</td>
+                <td>Haftalık personel maaş ödemesi — 7 kişi</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(16)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(16)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-error">İzin</span></td>
+                <td>Genel</td>
+                <td class="amount-cell">€2.100</td>
+                <td>29.04.2025</td>
+                <td>Jan De Vries yıllık izin ücreti — 10 gün</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(17)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(17)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-neutral">Taşıma</span></td>
+                <td>Brugge Tarihi Restorasyon</td>
+                <td class="amount-cell">€1.200</td>
+                <td>28.04.2025</td>
+                <td>Özel tuğla nakliyesi — Brüksel → Brugge</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(18)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(18)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-info">Malzeme</span></td>
+                <td>Liège Otomotiv Tesisleri</td>
+                <td class="amount-cell">€14.800</td>
+                <td>27.04.2025</td>
+                <td>Endüstriyel zemin epoksi — 800m² + uygulama</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(19)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(19)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-warning">Ekipman</span></td>
+                <td>Ofis Kat 3 Yenileme</td>
+                <td class="amount-cell">€1.450</td>
+                <td>26.04.2025</td>
+                <td>Hilti TE 2000 yedek uç seti + servis</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(20)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(20)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-info">Malzeme</span></td>
+                <td>Anvers Lojistik Merkezi</td>
+                <td class="amount-cell">€8.900</td>
+                <td>25.04.2025</td>
+                <td>Yangın yalıtım malzemesi — 300m² Rockwool</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(21)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(21)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-neutral">İşçilik</span></td>
+                <td>Gent Konut Kompleksi</td>
+                <td class="amount-cell">€9.400</td>
+                <td>24.04.2025</td>
+                <td>Haftalık personel maaş ödemesi — 6 kişi</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(22)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(22)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-info">Malzeme</span></td>
+                <td>Ofis Kat 3 Yenileme</td>
+                <td class="amount-cell">€3.200</td>
+                <td>23.04.2025</td>
+                <td>Elektrik tesisat malzemesi — kablo, boru, priz</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(23)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(23)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-warning">Ekipman</span></td>
+                <td>Gent Konut Kompleksi</td>
+                <td class="amount-cell">€3.600</td>
+                <td>22.04.2025</td>
+                <td>Layher iskele sistemi kiralama — 2 hafta uzatma</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(24)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(24)">🗑️</button></td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-error">Diğer</span></td>
+                <td>Genel</td>
+                <td class="amount-cell">€2.800</td>
+                <td>21.04.2025</td>
+                <td>İSG danışmanlık hizmeti — aylık retainer</td>
+                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(25)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(25)">🗑️</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Add Cost Modal -->
+  <div class="modal-overlay" id="addCostModal">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <div class="modal-title">Yeni Maliyet Ekle</div>
+        <button class="modal-close" onclick="closeModal('addCostModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
+          <div class="form-group">
+            <label class="form-label">Kategori</label>
+            <select class="form-select">
+              <option>Malzeme</option>
+              <option>İşçilik</option>
+              <option>Ekipman</option>
+              <option>Taşıma</option>
+              <option>İzin</option>
+              <option>Diğer</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Proje</label>
+            <select class="form-select">
+              <option>Ofis Kat 3 Yenileme</option>
+              <option>Anvers Lojistik Merkezi</option>
+              <option>Gent Konut Kompleksi</option>
+              <option>Liège Otomotiv Tesisleri</option>
+              <option>Brugge Tarihi Restorasyon</option>
+              <option>Charleroi Fabrika Yenileme</option>
+              <option>Genel</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Miktar (€)</label>
+            <input type="number" class="form-input" placeholder="örn: 5000">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tarih</label>
+            <input type="date" class="form-input">
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:var(--space-4);">
+          <label class="form-label">Açıklama</label>
+          <textarea class="form-textarea" rows="2" placeholder="Maliyet detayları..."></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Fatura/Ek No (opsiyonel)</label>
+          <input type="text" class="form-input" placeholder="örn: FTR-2025-0042">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('addCostModal')">İptal</button>
+        <button class="btn btn-primary" onclick="closeModal('addCostModal');showToast('Maliyet kaydı eklendi','success')">Kaydet</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Cost Modal -->
+  <div class="modal-overlay" id="editCostModal">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <div class="modal-title">Maliyet Düzenle</div>
+        <button class="modal-close" onclick="closeModal('editCostModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
+          <div class="form-group">
+            <label class="form-label">Kategori</label>
+            <select class="form-select"><option selected>Malzeme</option><option>İşçilik</option><option>Ekipman</option><option>Taşıma</option><option>İzin</option><option>Diğer</option></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Proje</label>
+            <select class="form-select"><option selected>Ofis Kat 3 Yenileme</option><option>Anvers Lojistik Merkezi</option><option>Gent Konut Kompleksi</option><option>Liège Otomotiv Tesisleri</option><option>Brugge Tarihi Restorasyon</option><option>Charleroi Fabrika Yenileme</option><option>Genel</option></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Miktar (€)</label>
+            <input type="number" class="form-input" value="12450">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tarih</label>
+            <input type="date" class="form-input" value="2025-05-15">
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:var(--space-4);">
+          <label class="form-label">Açıklama</label>
+          <textarea class="form-textarea" rows="2">İzocam cam yünü levha 50mm — 120m²</textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('editCostModal')">İptal</button>
+        <button class="btn btn-primary" onclick="closeModal('editCostModal');showToast('Maliyet kaydı güncellendi','success')">Güncelle</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Modal -->
+  <div class="modal-overlay" id="deleteCostModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">Maliyet Sil</div>
+        <button class="modal-close" onclick="closeModal('deleteCostModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="color:var(--text-secondary);"><strong style="color:var(--text-primary);">€12.450 — Malzeme</strong> kaydını silmek istediğinize emin misiniz?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('deleteCostModal')">İptal</button>
+        <button class="btn btn-amber" onclick="closeModal('deleteCostModal');showToast('Maliyet silindi','warning')">Sil</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('mobile-open');
+      document.getElementById('sidebarOverlay').classList.toggle('active');
+    }
+    function toggleTheme() {
+      const h = document.documentElement;
+      h.setAttribute('data-theme', h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    }
+    function openModal(id) { document.getElementById(id).classList.add('active'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+    function editCost(id) { openModal('editCostModal'); }
+    function deleteCost(id) { openModal('deleteCostModal'); }
+    function exportCosts() { showToast('Maliyet raporu dışa aktarıldı','info'); }
+
+    function showToast(message, type='info') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `toast toast-${type}`;
+      const icons = { success:'✅', error:'❌', warning:'⚠️', info:'ℹ️' };
+      toast.innerHTML = `<div class="toast-icon">${icons[type]}</div><div class="toast-content"><div class="toast-title">${type==='success'?'Başarılı':type==='error'?'Hata':type==='warning'?'Uyarı':'Bilgi'}</div><div class="toast-message">${message}</div></div><button class="toast-close" onclick="this.parentElement.remove()">✕</button><div class="toast-progress"></div>`;
+      container.appendChild(toast);
+      setTimeout(() => { toast.classList.add('exit'); setTimeout(()=>toast.remove(),300); }, 4000);
+    }
+
+    // Filters
+    document.getElementById('costSearch').addEventListener('input', filterCosts);
+    document.getElementById('categoryFilter').addEventListener('change', filterCosts);
+    document.getElementById('projectFilter').addEventListener('change', filterCosts);
+    document.getElementById('dateFrom').addEventListener('change', filterCosts);
+    document.getElementById('dateTo').addEventListener('change', filterCosts);
+
+    function filterCosts() {
+      const search = document.getElementById('costSearch').value.toLowerCase();
+      const cat = document.getElementById('categoryFilter').value;
+      const proj = document.getElementById('projectFilter').value;
+      const from = document.getElementById('dateFrom').value;
+      const to = document.getElementById('dateTo').value;
+      const rows = document.querySelectorAll('#costTableBody tr');
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        const hasSearch = !search || text.includes(search);
+        const hasCat = !cat || row.querySelector('td:nth-child(1)').textContent.includes(cat);
+        const hasProj = !proj || row.querySelector('td:nth-child(2)').textContent.includes(proj);
+        let hasDate = true;
+        if (from || to) {
+          const cellDate = row.querySelector('td:nth-child(4)').textContent;
+          const parts = cellDate.split('.');
+          const iso = `${parts[2]}-${parts[1]}-${parts[0]}`;
+          if (from && iso < from) hasDate = false;
+          if (to && iso > to) hasDate = false;
+        }
+        row.style.display = hasSearch && hasCat && hasProj && hasDate ? '' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BuildPro — Takvim & Zaman Çizelgesi</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <style>
+    .cal-view-toggle { display:flex; gap:var(--space-1); margin-bottom:var(--space-4); }
+    .cal-view-btn { padding:var(--space-2) var(--space-4); font-size:var(--text-sm); font-weight:500; border-radius:var(--radius-md); background:var(--bg-secondary); color:var(--text-secondary); border:1px solid var(--border-color); cursor:pointer; transition:all var(--duration-fast); }
+    .cal-view-btn.active { background:var(--teal-500); color:white; border-color:var(--teal-500); }
+    .cal-view-btn:hover:not(.active) { background:var(--bg-tertiary); color:var(--text-primary); }
+
+    .calendar-table { width:100%; border-collapse:collapse; }
+    .calendar-table th { background:var(--bg-secondary); padding:var(--space-3); text-align:center; font-size:var(--text-xs); font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid var(--border-color); }
+    .calendar-table td { width:14.28%; height:110px; border:1px solid var(--border-color); padding:var(--space-2); vertical-align:top; background:var(--bg-card); transition:background var(--duration-fast); }
+    .calendar-table td:hover { background:var(--bg-secondary); }
+    .calendar-table td.other-month { background:var(--bg-primary); color:var(--text-placeholder); }
+    .calendar-table td.today { background:var(--teal-50); }
+    [data-theme="dark"] .calendar-table td.today { background:rgba(20,184,166,0.08); }
+    .cal-day-num { font-size:var(--text-sm); font-weight:600; color:var(--text-primary); margin-bottom:4px; }
+    .cal-day-num.today-num { color:var(--teal-500); }
+    .cal-event { font-size:10px; padding:2px 6px; border-radius:4px; margin-bottom:2px; cursor:pointer; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-weight:500; }
+    .cal-event.start { background:var(--success-100); color:var(--success-500); border-left:2px solid var(--success-500); }
+    [data-theme="dark"] .cal-event.start { background:rgba(16,185,129,0.15); }
+    .cal-event.concrete { background:var(--info-100); color:var(--info-500); border-left:2px solid var(--info-500); }
+    [data-theme="dark"] .cal-event.concrete { background:rgba(59,130,246,0.15); }
+    .cal-event.delivery { background:var(--warning-100); color:var(--warning-500); border-left:2px solid var(--warning-500); }
+    [data-theme="dark"] .cal-event.delivery { background:rgba(249,115,22,0.15); }
+    .cal-event.inspection { background:var(--error-100); color:var(--error-500); border-left:2px solid var(--error-500); }
+    [data-theme="dark"] .cal-event.inspection { background:rgba(244,63,94,0.15); }
+    .cal-event.maintenance { background:var(--bg-tertiary); color:var(--text-secondary); border-left:2px solid var(--slate-400); }
+    .cal-event.leave { background:#f0fdf4; color:#15803d; border-left:2px solid #15803d; }
+    [data-theme="dark"] .cal-event.leave { background:rgba(21,128,61,0.15); }
+    .cal-event.handover { background:#fef9c3; color:#a16207; border-left:2px solid #a16207; }
+    [data-theme="dark"] .cal-event.handover { background:rgba(161,98,7,0.15); }
+
+    .legend { display:flex; gap:var(--space-4); flex-wrap:wrap; margin-bottom:var(--space-4); }
+    .legend-item { display:flex; align-items:center; gap:var(--space-2); font-size:var(--text-xs); color:var(--text-secondary); }
+    .legend-dot { width:10px; height:10px; border-radius:3px; }
+
+    .week-view, .day-view { display:none; }
+    .week-view.active, .day-view.active { display:block; }
+
+    .week-row { display:grid; grid-template-columns:60px 1fr; border-bottom:1px solid var(--border-color); }
+    .week-time { padding:var(--space-3); font-size:var(--text-xs); color:var(--text-muted); text-align:right; border-right:1px solid var(--border-color); }
+    .week-events { padding:var(--space-2); min-height:48px; position:relative; }
+    .week-event-bar { position:absolute; left:4px; right:4px; border-radius:6px; padding:4px 8px; font-size:var(--text-xs); font-weight:500; cursor:pointer; }
+
+    .day-timeline { display:grid; grid-template-columns:60px 1fr; }
+    .day-time { padding:var(--space-3); font-size:var(--text-xs); color:var(--text-muted); text-align:right; border-right:1px solid var(--border-color); border-bottom:1px solid var(--border-color); }
+    .day-slot { padding:var(--space-2); min-height:48px; border-bottom:1px solid var(--border-color); position:relative; }
+    .day-event { border-radius:6px; padding:4px 8px; font-size:var(--text-xs); font-weight:500; cursor:pointer; position:absolute; left:4px; right:4px; }
+
+    .event-form-grid { display:grid; grid-template-columns:1fr 1fr; gap:var(--space-4); }
+    @media (max-width:640px){ .event-form-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand-icon">BP</div>
+        <span class="sidebar-brand-text">BuildPro</span>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">Genel</div>
+          <a class="sidebar-link" href="buildpro-dashboard.html"><span class="icon">📊</span><span class="sidebar-text">Dashboard</span></a>
+          <a class="sidebar-link" href="buildpro-projects.html"><span class="icon">🏗️</span><span class="sidebar-text">Projeler</span></a>
+          <a class="sidebar-link" href="buildpro-staff.html"><span class="icon">👷</span><span class="sidebar-text">Personel</span></a>
+          <a class="sidebar-link" href="buildpro-site.html"><span class="icon">📍</span><span class="sidebar-text">Şantiyeler</span></a>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">Operasyon</div>
+          <a class="sidebar-link active" href="buildpro-calendar.html"><span class="icon">📅</span><span class="sidebar-text">Takvim</span></a>
+          <a class="sidebar-link" href="buildpro-costs.html"><span class="icon">💶</span><span class="sidebar-text">Maliyetler</span></a>
+          <a class="sidebar-link" href="buildpro-equipment.html"><span class="icon">🚜</span><span class="sidebar-text">Ekipman</span></a>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">Müşteri</div>
+          <a class="sidebar-link" href="buildpro-clients.html"><span class="icon">🤝</span><span class="sidebar-text">Müşteriler</span></a>
+          <a class="sidebar-link" href="buildpro-quotes.html"><span class="icon">📄</span><span class="sidebar-text">Teklifler</span></a>
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <a class="sidebar-link" href="#"><span class="icon">⚙️</span><span class="sidebar-text">Ayarlar</span></a>
+      </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <main class="main">
+      <header class="header">
+        <div class="header-left">
+          <button class="header-btn mobile-visible" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+          <div>
+            <div class="header-title">Takvim & Zaman Çizelgesi</div>
+            <div class="header-breadcrumb">BuildPro / Takvim</div>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="header-search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" placeholder="Etkinlik ara...">
+          </div>
+          <button class="header-btn" onclick="toggleTheme()" aria-label="Tema">🌓</button>
+          <button class="header-btn" aria-label="Bildirimler">🔔<span class="badge-dot"></span></button>
+          <div class="header-avatar">DY</div>
+        </div>
+      </header>
+
+      <div class="page">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Mayıs 2025</div>
+            <div class="page-subtitle">34 etkinlik — 4 şantiye, 3 proje</div>
+          </div>
+          <div class="page-actions">
+            <button class="btn btn-secondary">← Önceki</button>
+            <button class="btn btn-secondary">Sonraki →</button>
+            <button class="btn btn-primary" onclick="openModal('addEventModal')">+ Etkinlik Ekle</button>
+          </div>
+        </div>
+
+        <div class="cal-view-toggle">
+          <button class="cal-view-btn active" onclick="setView('month')">Aylık</button>
+          <button class="cal-view-btn" onclick="setView('week')">Haftalık</button>
+          <button class="cal-view-btn" onclick="setView('day')">Günlük</button>
+        </div>
+
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot" style="background:var(--success-500);"></div>Proje Başlangıç</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--info-500);"></div>Beton Döküm</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--warning-500);"></div>Teslimat</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--error-500);"></div>Denetim</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--slate-400);"></div>Bakım</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#15803d;"></div>İzin</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#a16207;"></div>Teslim</div>
+        </div>
+
+        <!-- Monthly View -->
+        <div class="month-view" id="monthView">
+          <table class="calendar-table">
+            <thead>
+              <tr><th>Pzt</th><th>Sal</th><th>Çar</th><th>Per</th><th>Cum</th><th>Cmt</th><th>Paz</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="other-month"><div class="cal-day-num">28</div></td>
+                <td class="other-month"><div class="cal-day-num">29</div></td>
+                <td class="other-month"><div class="cal-day-num">30</div></td>
+                <td><div class="cal-day-num">1</div><div class="cal-event start">🏗️ Ofis Kat 3 Başlangıç</div><div class="cal-event delivery">📦 İskele Teslimatı</div></td>
+                <td><div class="cal-day-num">2</div><div class="cal-event concrete">🧱 Beton Döküm — Bina A</div></td>
+                <td><div class="cal-day-num">3</div><div class="cal-event maintenance">🔧 Bobcat Bakım</div></td>
+                <td><div class="cal-day-num">4</div></td>
+              </tr>
+              <tr>
+                <td><div class="cal-day-num">5</div><div class="cal-event leave">🏖️ Kaya — Yıllık İzin</div></td>
+                <td><div class="cal-day-num">6</div><div class="cal-event inspection">📋 Elektrik Denetimi</div><div class="cal-event concrete">🧱 Beton Döküm — Bina B</div></td>
+                <td><div class="cal-day-num">7</div><div class="cal-event delivery">📦 Vinç Yedek Parça</div></td>
+                <td><div class="cal-day-num">8</div><div class="cal-event start">🏗️ Cephe Cam Projesi Başlangıç</div></td>
+                <td><div class="cal-day-num">9</div><div class="cal-event maintenance">🔧 Jeneratör Bakım</div></td>
+                <td><div class="cal-day-num">10</div><div class="cal-event concrete">🧱 Beton Döküm — Zemin</div></td>
+                <td><div class="cal-day-num">11</div></td>
+              </tr>
+              <tr>
+                <td><div class="cal-day-num">12</div><div class="cal-event inspection">📋 Yangın Güvenliği Denetimi</div></td>
+                <td><div class="cal-day-num">13</div><div class="cal-event delivery">📦 Seramik Teslimatı</div></td>
+                <td><div class="cal-day-num">14</div><div class="cal-event leave">🏖️ De Vries — Yıllık İzin</div></td>
+                <td class="today"><div class="cal-day-num today-num">15</div><div class="cal-event concrete">🧱 Beton Döküm — Teras</div><div class="cal-event inspection">📋 Kalite Denetimi</div></td>
+                <td><div class="cal-day-num">16</div><div class="cal-event maintenance">🔧 Hilti Kırıcı Bakım</div></td>
+                <td><div class="cal-day-num">17</div><div class="cal-event start">🏗️ Brugge Restorasyon Başlangıç</div></td>
+                <td><div class="cal-day-num">18</div></td>
+              </tr>
+              <tr>
+                <td><div class="cal-day-num">19</div><div class="cal-event delivery">📦 Cam Panel Teslimatı</div></td>
+                <td><div class="cal-day-num">20</div><div class="cal-event inspection">📋 Yapı Denetimi — Liège</div><div class="cal-event concrete">🧱 Beton Döküm — Liège Tesis</div></td>
+                <td><div class="cal-day-num">21</div><div class="cal-event leave">🏖️ Bakırcı — Doğum İzni</div></td>
+                <td><div class="cal-day-num">22</div><div class="cal-event maintenance">🔧 Ekskavatör Yağ Değişimi</div></td>
+                <td><div class="cal-day-num">23</div><div class="cal-event delivery">📦 Elektrik Malzeme Teslimatı</div><div class="cal-event concrete">🧱 Beton Döküm — Zemin 2</div></td>
+                <td><div class="cal-day-num">24</div><div class="cal-event start">🏗️ Charleroi Fabrika Başlangıç</div></td>
+                <td><div class="cal-day-num">25</div></td>
+              </tr>
+              <tr>
+                <td><div class="cal-day-num">26</div><div class="cal-event inspection">📋 İSG Haftalık Denetim</div></td>
+                <td><div class="cal-day-num">27</div><div class="cal-event maintenance">🔧 Vinç Periyodik Kontrol</div></td>
+                <td><div class="cal-day-num">28</div><div class="cal-event delivery">📦 Kompozit Panel Teslimatı</div></td>
+                <td><div class="cal-day-num">29</div><div class="cal-event concrete">🧱 Beton Döküm — Brüksel</div></td>
+                <td><div class="cal-day-num">30</div><div class="cal-event handover">🏁 Namur Hükümet Teslim</div><div class="cal-event leave">🏖️ Aydın — Hastane İzni</div></td>
+                <td><div class="cal-day-num">31</div><div class="cal-event maintenance">🔧 Forklift Periyodik Kontrol</div></td>
+                <td class="other-month"><div class="cal-day-num">1</div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Weekly View -->
+        <div class="week-view" id="weekView">
+          <div style="display:grid;grid-template-columns:60px repeat(5,1fr);border:1px solid var(--border-color);border-radius:var(--radius-lg);overflow:hidden;">
+            <div style="background:var(--bg-secondary);border-bottom:1px solid var(--border-color);"></div>
+            <div style="background:var(--bg-secondary);padding:var(--space-3);text-align:center;font-weight:600;font-size:var(--text-sm);border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);">Pzt 12</div>
+            <div style="background:var(--bg-secondary);padding:var(--space-3);text-align:center;font-weight:600;font-size:var(--text-sm);border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);">Sal 13</div>
+            <div style="background:var(--bg-secondary);padding:var(--space-3);text-align:center;font-weight:600;font-size:var(--text-sm);border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);">Çar 14</div>
+            <div style="background:var(--bg-secondary);padding:var(--space-3);text-align:center;font-weight:600;font-size:var(--text-sm);border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);color:var(--teal-500);">Per 15</div>
+            <div style="background:var(--bg-secondary);padding:var(--space-3);text-align:center;font-weight:600;font-size:var(--text-sm);border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);">Cum 16</div>
+            <div class="week-time" style="border-bottom:1px solid var(--border-color);">08:00</div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"></div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"></div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"></div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"><div class="week-event-bar" style="top:4px;height:40px;background:var(--info-100);color:var(--info-500);border-left:2px solid var(--info-500);">Beton Döküm — Teras</div></div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"></div>
+            <div class="week-time" style="border-bottom:1px solid var(--border-color);">10:00</div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"><div class="week-event-bar" style="top:8px;height:32px;background:var(--error-100);color:var(--error-500);border-left:2px solid var(--error-500);">Yangın Güvenliği Denetimi</div></div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"></div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"></div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"><div class="week-event-bar" style="top:8px;height:32px;background:var(--error-100);color:var(--error-500);border-left:2px solid var(--error-500);">Kalite Denetimi</div></div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"></div>
+            <div class="week-time" style="border-bottom:1px solid var(--border-color);">12:00</div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"></div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"><div class="week-event-bar" style="top:4px;height:28px;background:var(--warning-100);color:var(--warning-500);border-left:2px solid var(--warning-500);">Seramik Teslimatı</div></div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"></div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"></div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"><div class="week-event-bar" style="top:8px;height:24px;background:var(--bg-tertiary);color:var(--text-secondary);border-left:2px solid var(--slate-400);">Hilti Kırıcı Bakım</div></div>
+            <div class="week-time" style="border-bottom:1px solid var(--border-color);">14:00</div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"></div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"></div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"></div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"></div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"></div>
+            <div class="week-time" style="border-bottom:1px solid var(--border-color);">16:00</div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"></div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"></div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"></div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"></div>
+            <div class="week-events" style="border-bottom:1px solid var(--border-color);border-left:1px solid var(--border-color);"></div>
+            <div class="week-time">18:00</div>
+            <div class="week-events" style="border-left:1px solid var(--border-color);"></div>
+            <div class="week-events" style="border-left:1px solid var(--border-color);"></div>
+            <div class="week-events" style="border-left:1px solid var(--border-color);"></div>
+            <div class="week-events" style="border-left:1px solid var(--border-color);"></div>
+            <div class="week-events" style="border-left:1px solid var(--border-color);"></div>
+          </div>
+        </div>
+
+        <!-- Day View -->
+        <div class="day-view" id="dayView">
+          <div style="border:1px solid var(--border-color);border-radius:var(--radius-lg);overflow:hidden;">
+            <div style="background:var(--bg-secondary);padding:var(--space-3);text-align:center;font-weight:700;font-size:var(--text-lg);">Perşembe, 15 Mayıs 2025</div>
+            <div class="day-timeline">
+              <div class="day-time">08:00</div>
+              <div class="day-slot"><div class="day-event" style="top:8px;height:80px;background:var(--info-100);color:var(--info-500);border-left:3px solid var(--info-500);">🧱 Beton Döküm — Teras Katı<br><span style="font-size:10px;opacity:.7;">Brüksel Merkez / 8 personel / 12 m³ C30 beton</span></div></div>
+              <div class="day-time">10:00</div>
+              <div class="day-slot"><div class="day-event" style="top:4px;height:56px;background:var(--error-100);color:var(--error-500);border-left:3px solid var(--error-500);">📋 Kalite Denetimi<br><span style="font-size:10px;opacity:.7;">Marc Baudewijn + Yapı Denetim Kurulu</span></div></div>
+              <div class="day-time">12:00</div>
+              <div class="day-slot"></div>
+              <div class="day-time">14:00</div>
+              <div class="day-slot"></div>
+              <div class="day-time">16:00</div>
+              <div class="day-slot"><div class="day-event" style="top:16px;height:32px;background:var(--bg-tertiary);color:var(--text-secondary);border-left:3px solid var(--slate-400);">🔧 Vinç Günlük Kontrol<br><span style="font-size:10px;opacity:.7;">Operatör: Thomas Claes</span></div></div>
+              <div class="day-time">18:00</div>
+              <div class="day-slot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Add Event Modal -->
+  <div class="modal-overlay" id="addEventModal">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <div class="modal-title">Yeni Etkinlik Ekle</div>
+        <button class="modal-close" onclick="closeModal('addEventModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="event-form-grid">
+          <div class="form-group">
+            <label class="form-label">Etkinlik Başlığı</label>
+            <input type="text" class="form-input" placeholder="örn: Beton Döküm">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Etkinlik Tipi</label>
+            <select class="form-select">
+              <option>Proje Başlangıç</option>
+              <option>Beton Döküm</option>
+              <option>Teslimat</option>
+              <option>Denetim</option>
+              <option>Bakım</option>
+              <option>İzin</option>
+              <option>Teslim</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Başlangıç Tarihi</label>
+            <input type="date" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Başlangıç Saati</label>
+            <input type="time" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Bitiş Tarihi</label>
+            <input type="date" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Bitiş Saati</label>
+            <input type="time" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Şantiye</label>
+            <select class="form-select">
+              <option>Brüksel Merkez</option>
+              <option>Anvers Lojistik</option>
+              <option>Gent Konut</option>
+              <option>Charleroi Fabrika</option>
+              <option>Leuven Kütüphane</option>
+              <option>Brugge Restorasyon</option>
+              <option>Liège Otomotiv</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Proje (opsiyonel)</label>
+            <select class="form-select">
+              <option>— Seçilmedi —</option>
+              <option>Ofis Kat 3 Yenileme</option>
+              <option>Cephe Cam Değişimi</option>
+              <option>Elektrik Altyapı</option>
+              <option>Banyo Tesisatı</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:var(--space-4);">
+          <label class="form-label">Kaynaklar / Personel</label>
+          <div class="checkbox-group" style="display:flex;flex-wrap:wrap;gap:var(--space-3);">
+            <label class="checkbox-item"><input type="checkbox"> Mehmet Kaya</label>
+            <label class="checkbox-item"><input type="checkbox"> Jan De Vries</label>
+            <label class="checkbox-item"><input type="checkbox"> Pieter Ooms</label>
+            <label class="checkbox-item"><input type="checkbox"> Hassan Demir</label>
+            <label class="checkbox-item"><input type="checkbox"> Thomas Claes</label>
+            <label class="checkbox-item"><input type="checkbox"> Dirk Vermeulen</label>
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:var(--space-4);">
+          <label class="form-label">Açıklama</label>
+          <textarea class="form-textarea" rows="2" placeholder="Etkinlik detayları..."></textarea>
+        </div>
+        <div class="form-group" style="margin-top:var(--space-4);">
+          <label class="form-label">Öncelik</label>
+          <select class="form-select">
+            <option>Düşük</option>
+            <option selected>Orta</option>
+            <option>Yüksek</option>
+            <option>Kritik</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('addEventModal')">İptal</button>
+        <button class="btn btn-primary" onclick="closeModal('addEventModal');showToast('Etkinlik eklendi','success')">Kaydet</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('mobile-open');
+      document.getElementById('sidebarOverlay').classList.toggle('active');
+    }
+    function toggleTheme() {
+      const h = document.documentElement;
+      h.setAttribute('data-theme', h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    }
+    function openModal(id) { document.getElementById(id).classList.add('active'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+    function setView(view) {
+      document.querySelectorAll('.cal-view-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById('monthView').style.display = view === 'month' ? 'block' : 'none';
+      document.getElementById('weekView').style.display = view === 'week' ? 'block' : 'none';
+      document.getElementById('dayView').style.display = view === 'day' ? 'block' : 'none';
+    }
+
+    function showToast(message, type='info') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `toast toast-${type}`;
+      const icons = { success:'✅', error:'❌', warning:'⚠️', info:'ℹ️' };
+      toast.innerHTML = `<div class="toast-icon">${icons[type]}</div><div class="toast-content"><div class="toast-title">${type==='success'?'Başarılı':type==='error'?'Hata':type==='warning'?'Uyarı':'Bilgi'}</div><div class="toast-message">${message}</div></div><button class="toast-close" onclick="this.parentElement.remove()">✕</button><div class="toast-progress"></div>`;
+      container.appendChild(toast);
+      setTimeout(() => { toast.classList.add('exit'); setTimeout(()=>toast.remove(),300); }, 4000);
+    }
+  </script>
+</body>
+</html>

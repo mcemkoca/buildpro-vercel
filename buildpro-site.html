@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BuildPro — Şantiye Yönetimi</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <style>
+    .site-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all var(--duration-normal) var(--ease-out);
+      cursor: pointer;
+    }
+    .site-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--slate-300);
+    }
+    [data-theme="dark"] .site-card:hover { border-color: var(--slate-600); }
+    .site-card-header {
+      height: 120px;
+      background: linear-gradient(135deg, var(--teal-600), var(--teal-800));
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding: var(--space-4);
+    }
+    .site-card-header.office { background: linear-gradient(135deg, #4f46e5, #3730a3); }
+    .site-card-header.logistics { background: linear-gradient(135deg, #ea580c, #9a3412); }
+    .site-card-header.residential { background: linear-gradient(135deg, #0891b2, #155e75); }
+    .site-card-header.industrial { background: linear-gradient(135deg, #65a30d, #3f6212); }
+    .site-card-badge {
+      position: absolute;
+      top: var(--space-3);
+      right: var(--space-3);
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      color: white;
+      font-size: var(--text-xs);
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 9999px;
+    }
+    .site-card-title {
+      color: white;
+      font-weight: 700;
+      font-size: var(--text-lg);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    .site-card-body { padding: var(--space-4); }
+    .site-card-meta {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-3);
+      margin-top: var(--space-3);
+    }
+    .site-meta-item {
+      text-align: center;
+      padding: var(--space-2);
+      background: var(--bg-secondary);
+      border-radius: var(--radius-md);
+    }
+    .site-meta-value {
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .site-meta-label {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .site-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-3) var(--space-4);
+      border-top: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+    }
+    .site-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-5);
+    }
+    @media (max-width: 1024px) { .site-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .site-grid { grid-template-columns: 1fr; } }
+    .map-pin { font-size: var(--text-3xl); }
+    .detail-section { margin-bottom: var(--space-5); }
+    .detail-section-title { font-weight: 600; margin-bottom: var(--space-3); display: flex; align-items: center; gap: var(--space-2); }
+    .detail-list { display: flex; flex-direction: column; gap: var(--space-2); }
+    .detail-list-item {
+      display: flex; align-items: center; gap: var(--space-3);
+      padding: var(--space-3); background: var(--bg-secondary);
+      border-radius: var(--radius-md);
+    }
+    .detail-list-item .avatar-sm { flex-shrink: 0; }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand-icon">BP</div>
+        <span class="sidebar-brand-text">BuildPro</span>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">Genel</div>
+          <a class="sidebar-link" href="buildpro-dashboard.html"><span class="icon">📊</span><span class="sidebar-text">Dashboard</span></a>
+          <a class="sidebar-link" href="buildpro-projects.html"><span class="icon">🏗️</span><span class="sidebar-text">Projeler</span></a>
+          <a class="sidebar-link" href="buildpro-staff.html"><span class="icon">👷</span><span class="sidebar-text">Personel</span></a>
+          <a class="sidebar-link active" href="buildpro-site.html"><span class="icon">📍</span><span class="sidebar-text">Şantiyeler</span></a>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">Operasyon</div>
+          <a class="sidebar-link" href="buildpro-calendar.html"><span class="icon">📅</span><span class="sidebar-text">Takvim</span></a>
+          <a class="sidebar-link" href="buildpro-costs.html"><span class="icon">💶</span><span class="sidebar-text">Maliyetler</span></a>
+          <a class="sidebar-link" href="buildpro-equipment.html"><span class="icon">🚜</span><span class="sidebar-text">Ekipman</span></a>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">Müşteri</div>
+          <a class="sidebar-link" href="buildpro-clients.html"><span class="icon">🤝</span><span class="sidebar-text">Müşteriler</span></a>
+          <a class="sidebar-link" href="buildpro-quotes.html"><span class="icon">📄</span><span class="sidebar-text">Teklifler</span></a>
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <a class="sidebar-link" href="#"><span class="icon">⚙️</span><span class="sidebar-text">Ayarlar</span></a>
+      </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <main class="main">
+      <header class="header">
+        <div class="header-left">
+          <button class="header-btn mobile-visible" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+          <div>
+            <div class="header-title">Şantiye Yönetimi</div>
+            <div class="header-breadcrumb">BuildPro / Şantiyeler</div>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="header-search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" placeholder="Şantiye ara...">
+          </div>
+          <button class="header-btn" onclick="toggleTheme()" aria-label="Tema">🌓</button>
+          <button class="header-btn" aria-label="Bildirimler">🔔<span class="badge-dot"></span></button>
+          <div class="header-avatar">DY</div>
+        </div>
+      </header>
+
+      <div class="page">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Şantiyeler</div>
+            <div class="page-subtitle">Belçika genelindeki tüm aktif şantiyeler</div>
+          </div>
+          <div class="page-actions">
+            <button class="btn btn-secondary">📥 Rapor</button>
+            <button class="btn btn-primary" onclick="openModal('addSiteModal')">+ Şantiye Ekle</button>
+          </div>
+        </div>
+
+        <div class="site-grid">
+          <!-- Site 1 -->
+          <div class="site-card" onclick="openModal('detailModal')">
+            <div class="site-card-header">
+              <span class="site-card-badge">🟢 Aktif</span>
+              <div class="site-card-title">📍 Brüksel Merkez Ofis<br><span style="font-size:var(--text-sm);font-weight:400;opacity:.85;">Rue de la Loi 155, 1040 Brüksel</span></div>
+            </div>
+            <div class="site-card-body">
+              <div style="display:flex;gap:var(--space-2);flex-wrap:wrap;">
+                <span class="badge badge-info">Ticari</span>
+                <span class="badge badge-neutral">Yenileme</span>
+              </div>
+              <div class="site-card-meta">
+                <div class="site-meta-item"><div class="site-meta-value">4</div><div class="site-meta-label">Proje</div></div>
+                <div class="site-meta-item"><div class="site-meta-value">7</div><div class="site-meta-label">Personel</div></div>
+                <div class="site-meta-item"><div class="site-meta-value">5</div><div class="site-meta-label">Ekipman</div></div>
+                <div class="site-meta-item"><div class="site-meta-value">€2.1K</div><div class="site-meta-label">Günlük Maliyet</div></div>
+              </div>
+            </div>
+            <div class="site-card-footer">
+              <span class="text-sm text-muted">Son günlük: Bugün 08:30</span>
+              <button class="btn btn-sm btn-secondary" onclick="event.stopPropagation();editSite(1)">Düzenle</button>
+            </div>
+          </div>
+
+          <!-- Site 2 -->
+          <div class="site-card" onclick="openModal('detailModal')">
+            <div class="site-card-header logistics">
+              <span class="site-card-badge">🟢 Aktif</span>
+              <div class="site-card-title">📍 Anvers Lojistik Merkezi<br><span style="font-size:var(--text-sm);font-weight:400;opacity:.85;">Haven 1200, 2030 Anvers</span></div>
+            </div>
+            <div class="site-card-body">
+              <div style="display:flex;gap:var(--space-2);flex-wrap:wrap;">
+                <span class="badge badge-warning">Endüstriyel</span>
+                <span class="badge badge-neutral">Yeni İnşaat</span>
+              </div>
+              <div class="site-card-meta">
+                <div class="site-meta-item"><div class="site-meta-value">2</div><div class="site-meta-label">Proje</div></div>
+                <div class="site-meta-item"><div class="site-meta-value">9</div><div class="site-meta-label">Personel</div></div>
+                <div class="site-meta-item"><div class="site-meta-value">12</div><div class="site-meta-label">Ekipman</div></div>
+                <div class="site-meta-item"><div class="site-meta-value">€3.8K</div><div class="site-meta-label">Günlük Maliyet</div></div>
+              </div>
+            </div>
+            <div class="site-card-footer">
+              <span class="text-sm text-muted">Son günlük: Bugün 07:15</span>
+              <button class="btn btn-sm btn-secondary" onclick="event.stopPropagation();editSite(2)">Düzenle</button>
+            </div>
+          </div>
+
+          <!-- Site 3 -->
+          <div class="site-card" onclick="openModal('detailModal')">
+            <div class="site-card-header residential">
+              <span class="site-card-badge">🟢 Aktif</span>
+              <div class="site-card-title">📍 Gent Konut Kompleksi<br><span style="font-size:var(--text-sm);font-weight:400;opacity:.85;">Kortrijksesteenweg 112, 9000 Gent</span></div>
+            </div>
+            <div class="site-card-body">
+              <div style="display:flex;gap:var(--space-2);flex-wrap:wrap;">
+                <span class="badge badge-success">Konut</span>
+                <span class="badge badge-neutral">Yeni İnşaat</span>
+              </div>
+              <div class="site-card-meta">
+                <div class="site-meta-item"><div class="site-meta-value">3</div><div class="site-meta-label">Proje</div></div>
+                <div class="site-meta-item"><div class="site-meta-value">6</div><div class="site-meta-label">Personel</div></div>
+                <div class="site-meta-item"><div class="site-meta-value">8</div><div class="site-meta-label">Ekipman</div></div>
+                <div class="site-meta-item"><div class="site-meta-value">€2.6K</div><div class="site-meta-label">Günlük Maliyet</div></div>
+              </div>
+            </div>
+            <div class="site-card-footer">
+              <span class="text-sm text-muted">Son günlük: Dün 17:45</span>
+              <button class="btn btn-sm btn-secondary" onclick="event.stopPropagation();editSite(3)">Düzenle</button>
+            </div>
+          </div>
+
+          <!-- Site 4 -->
+          <div class="site-card" onclick="openModal('detailModal')">
+            <div class="site-card-header industrial">
+              <span class="site-card-badge">🟡 Beklemede</span>
+              <div class="site-card-title">📍 Charleroi Fabrika Yenileme<br><span style="font-size:var(--text-sm);font-weight:400;opacity:.85;">Rue de l'Industrie 45, 6000 Charleroi</span></div>
+            </div>
+            <div class="site-card-body">
+              <div style="display:flex;gap:var(--space-2);flex-wrap:wrap;">
+                <span class="badge badge-warning">Endüstriyel</span>
+                <span class="badge badge-neutral">Yenileme</span>
+              </div>
+              <div class="site-card-meta">
+                <div class="site-meta-item"><div class="site-meta-value">1</div><div class="site-meta-label">Proje</div></div>
+                <div class="site-meta-item"><div class="site-meta-value">0</div><div class="site-meta-label">Personel</div></div>
+                <div class="site-meta-item"><div class="site-meta-value">3</div><div class="site-meta-label">Ekipman</div></div>
+                <div class="site-meta-item"><div class="site-meta-value">€0</div><div class="site-meta-label">Günlük Maliyet</div></div>
+              </div>
+            </div>
+            <div class="site-card-footer">
+              <span class="text-sm text-muted">Başlangıç: 01.06.2025</span>
+              <button class="btn btn-sm btn-secondary" onclick="event.stopPropagation();editSite(4)">Düzenle</button>
+            </div>
+          </div>
+
+          <!-- Site 5 -->
+          <div class="site-card" onclick="openModal('detailModal')">
+            <div class="site-card-header office">
+              <span class="site-card-badge">🟢 Aktif</span>
+              <div class="site-card-title">📍 Leuven Üniversite Kütüphanesi<br><span style="font-size:var(--text-sm);font-weight:400;opacity:.85;">Naamsestraat 22, 3000 Leuven</span></div>
+            </div>
+            <div class="site-card-body">
+              <div style="display:flex;gap:var(--space-2);flex-wrap:wrap;">
+                <span class="badge badge-info">Ticari</span>
+                <span class="badge badge-neutral">Yenileme</span>
+              </div>
+              <div class="site-card-meta">
+                <div class="site-meta-item"><div class="site-meta-value">2</div><div class="site-meta-label">Proje</div></div>
+                <div class="site-meta-item"><div class="site-meta-value">5</div><div class="site-meta-label">Personel</div></div>
+                <div class="site-meta-item"><div class="site-meta-value">4</div><div class="site-meta-label">Ekipman</div></div>
+                <div class="site-meta-item"><div class="site-meta-value">€1.9K</div><div class="site-meta-label">Günlük Maliyet</div></div>
+              </div>
+            </div>
+            <div class="site-card-footer">
+              <span class="text-sm text-muted">Son günlük: Bugün 09:00</span>
+              <button class="btn btn-sm btn-secondary" onclick="event.stopPropagation();editSite(5)">Düzenle</button>
+            </div>
+          </div>
+
+          <!-- Site 6 -->
+          <div class="site-card" onclick="openModal('detailModal')">
+            <div class="site-card-header residential">
+              <span class="site-card-badge">🟢 Aktif</span>
+              <div class="site-card-title">📍 Brugge Tarihi Restorasyon<br><span style="font-size:var(--text-sm);font-weight:400;opacity:.85;">Markt 7, 8000 Brugge</span></div>
+            </div>
+            <div class="site-card-body">
+              <div style="display:flex;gap:var(--space-2);flex-wrap:wrap;">
+                <span class="badge badge-success">Konut</span>
+                <span class="badge badge-neutral">Restorasyon</span>
+              </div>
+              <div class="site-card-meta">
+                <div class="site-meta-item"><div class="site-meta-value">1</div><div class="site-meta-label">Proje</div></div>
+                <div class="site-meta-item"><div class="site-meta-value">4</div><div class="site-meta-label">Personel</div></div>
+                <div class="site-meta-item"><div class="site-meta-value">6</div><div class="site-meta-label">Ekipman</div></div>
+                <div class="site-meta-item"><div class="site-meta-value">€1.4K</div><div class="site-meta-label">Günlük Maliyet</div></div>
+              </div>
+            </div>
+            <div class="site-card-footer">
+              <span class="text-sm text-muted">Son günlük: Dün 16:30</span>
+              <button class="btn btn-sm btn-secondary" onclick="event.stopPropagation();editSite(6)">Düzenle</button>
+            </div>
+          </div>
+
+          <!-- Site 7 -->
+          <div class="site-card" onclick="openModal('detailModal')">
+            <div class="site-card-header logistics">
+              <span class="site-card-badge">🟢 Aktif</span>
+              <div class="site-card-title">📍 Liège Otomotiv Tesisleri<br><span style="font-size:var(--text-sm);font-weight:400;opacity:.85;">Rue des Bayards 88, 4000 Liège</span></div>
+            </div>
+            <div class="site-card-body">
+              <div style="display:flex;gap:var(--space-2);flex-wrap:wrap;">
+                <span class="badge badge-warning">Endüstriyel</span>
+                <span class="badge badge-neutral">Yeni İnşaat</span>
+              </div>
+              <div class="site-card-meta">
+                <div class="site-meta-item"><div class="site-meta-value">2</div><div class="site-meta-label">Proje</div></div>
+                <div class="site-meta-item"><div class="site-meta-value">8</div><div class="site-meta-label">Personel</div></div>
+                <div class="site-meta-item"><div class="site-meta-value">10</div><div class="site-meta-label">Ekipman</div></div>
+                <div class="site-meta-item"><div class="site-meta-value">€3.2K</div><div class="site-meta-label">Günlük Maliyet</div></div>
+              </div>
+            </div>
+            <div class="site-card-footer">
+              <span class="text-sm text-muted">Son günlük: Bugün 06:45</span>
+              <button class="btn btn-sm btn-secondary" onclick="event.stopPropagation();editSite(7)">Düzenle</button>
+            </div>
+          </div>
+
+          <!-- Site 8 -->
+          <div class="site-card" onclick="openModal('detailModal')">
+            <div class="site-card-header office">
+              <span class="site-card-badge">🔴 Tamamlandı</span>
+              <div class="site-card-title">📍 Namur Hükümet Binası<br><span style="font-size:var(--text-sm);font-weight:400;opacity:.85;">Place Saint-Aubain 2, 5000 Namur</span></div>
+            </div>
+            <div class="site-card-body">
+              <div style="display:flex;gap:var(--space-2);flex-wrap:wrap;">
+                <span class="badge badge-info">Ticari</span>
+                <span class="badge badge-neutral">Yenileme</span>
+              </div>
+              <div class="site-card-meta">
+                <div class="site-meta-item"><div class="site-meta-value">0</div><div class="site-meta-label">Proje</div></div>
+                <div class="site-meta-item"><div class="site-meta-value">0</div><div class="site-meta-label">Personel</div></div>
+                <div class="site-meta-item"><div class="site-meta-value">0</div><div class="site-meta-label">Ekipman</div></div>
+                <div class="site-meta-item"><div class="site-meta-value">€0</div><div class="site-meta-label">Günlük Maliyet</div></div>
+              </div>
+            </div>
+            <div class="site-card-footer">
+              <span class="text-sm text-muted">Teslim: 15.04.2025</span>
+              <button class="btn btn-sm btn-secondary" onclick="event.stopPropagation();editSite(8)">Düzenle</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Add Site Modal -->
+  <div class="modal-overlay" id="addSiteModal">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <div class="modal-title">Yeni Şantiye Ekle</div>
+        <button class="modal-close" onclick="closeModal('addSiteModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
+          <div class="form-group">
+            <label class="form-label">Şantiye Adı</label>
+            <input type="text" class="form-input" placeholder="örn: Brüksel Merkez">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Alt Sektör</label>
+            <select class="form-select">
+              <option>Ticari</option>
+              <option>Konut</option>
+              <option>Endüstriyel</option>
+              <option>Altyapı</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Adres</label>
+            <input type="text" class="form-input" placeholder="Sokak, Posta Kodu, Şehir">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Şehir</label>
+            <select class="form-select">
+              <option>Brüksel</option>
+              <option>Anvers</option>
+              <option>Gent</option>
+              <option>Charleroi</option>
+              <option>Leuven</option>
+              <option>Brugge</option>
+              <option>Liège</option>
+              <option>Namur</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Durum</label>
+            <select class="form-select">
+              <option>Aktif</option>
+              <option>Beklemede</option>
+              <option>Tamamlandı</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Başlangıç Tarihi</label>
+            <input type="date" class="form-input">
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:var(--space-4);">
+          <label class="form-label">Açıklama</label>
+          <textarea class="form-textarea" rows="3" placeholder="Şantiye hakkında notlar..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('addSiteModal')">İptal</button>
+        <button class="btn btn-primary" onclick="closeModal('addSiteModal');showToast('Şantiye eklendi','success')">Kaydet</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Site Modal -->
+  <div class="modal-overlay" id="editSiteModal">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <div class="modal-title">Şantiye Düzenle</div>
+        <button class="modal-close" onclick="closeModal('editSiteModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
+          <div class="form-group">
+            <label class="form-label">Şantiye Adı</label>
+            <input type="text" class="form-input" value="Brüksel Merkez Ofis">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Alt Sektör</label>
+            <select class="form-select"><option selected>Ticari</option><option>Konut</option><option>Endüstriyel</option><option>Altyapı</option></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Adres</label>
+            <input type="text" class="form-input" value="Rue de la Loi 155, 1040 Brüksel">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Durum</label>
+            <select class="form-select"><option selected>Aktif</option><option>Beklemede</option><option>Tamamlandı</option></select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('editSiteModal')">İptal</button>
+        <button class="btn btn-primary" onclick="closeModal('editSiteModal');showToast('Şantiye güncellendi','success')">Güncelle</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detail Modal -->
+  <div class="modal-overlay" id="detailModal">
+    <div class="modal modal-xl">
+      <div class="modal-header">
+        <div class="modal-title">📍 Brüksel Merkez Ofis — Detay</div>
+        <button class="modal-close" onclick="closeModal('detailModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);margin-bottom:var(--space-4);">
+          <div><strong>Adres:</strong> Rue de la Loi 155, 1040 Brüksel</div>
+          <div><strong>Sektör:</strong> Ticari — Yenileme</div>
+          <div><strong>Durum:</strong> <span class="badge badge-success">Aktif</span></div>
+          <div><strong>Başlangıç:</strong> 15.02.2025</div>
+        </div>
+
+        <div class="detail-section">
+          <div class="detail-section-title">👷 Atanan Personel (7)</div>
+          <div class="detail-list">
+            <div class="detail-list-item"><div class="avatar avatar-sm" style="background:linear-gradient(135deg,#0d9488,#115e59);">MK</div><div><div style="font-weight:500;">Mehmet Kaya</div><div style="font-size:var(--text-xs);color:var(--text-muted);">Şantiye Şefi</div></div></div>
+            <div class="detail-list-item"><div class="avatar avatar-sm" style="background:linear-gradient(135deg,#2563eb,#1e40af);">JD</div><div><div style="font-weight:500;">Jan De Vries</div><div style="font-size:var(--text-xs);color:var(--text-muted);">Mühendis</div></div></div>
+            <div class="detail-list-item"><div class="avatar avatar-sm" style="background:linear-gradient(135deg,#ea580c,#9a3412);">HD</div><div><div style="font-weight:500;">Hassan Demir</div><div style="font-size:var(--text-xs);color:var(--text-muted);">İşçi</div></div></div>
+            <div class="detail-list-item"><div class="avatar avatar-sm" style="background:linear-gradient(135deg,#9333ea,#6b21a8);">EO</div><div><div style="font-weight:500;">Emre Özdemir</div><div style="font-size:var(--text-xs);color:var(--text-muted);">Usta — Sıhhi Tesisat</div></div></div>
+            <div class="detail-list-item"><div class="avatar avatar-sm" style="background:linear-gradient(135deg,#4338ca,#312e81);">JB</div><div><div style="font-weight:500;">Jeroen Beekman</div><div style="font-size:var(--text-xs);color:var(--text-muted);">Usta — Mermer/Seramik</div></div></div>
+            <div class="detail-list-item"><div class="avatar avatar-sm" style="background:linear-gradient(135deg,#a855f7,#6b21a8);">BS</div><div><div style="font-weight:500;">Burak Şahin</div><div style="font-size:var(--text-xs);color:var(--text-muted);">İşçi</div></div></div>
+            <div class="detail-list-item"><div class="avatar avatar-sm" style="background:linear-gradient(135deg,#ca8a04,#854d0e);">DV</div><div><div style="font-weight:500;">Dirk Vermeulen</div><div style="font-size:var(--text-xs);color:var(--text-muted);">Operatör — Forklift</div></div></div>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <div class="detail-section-title">🚜 Ekipman (5)</div>
+          <div class="detail-list">
+            <div class="detail-list-item"><span style="font-size:var(--text-lg);">🏗️</span><div><div style="font-weight:500;">Liebherr 81K.1 Vinç</div><div style="font-size:var(--text-xs);color:var(--text-muted);">Kiralık — Operatör: DV</div></div></div>
+            <div class="detail-list-item"><span style="font-size:var(--text-lg);">🚜</span><div><div style="font-weight:500;">Bobcat S650 Yükleyici</div><div style="font-size:var(--text-xs);color:var(--text-muted);">Sahip — Durum: Aktif</div></div></div>
+            <div class="detail-list-item"><span style="font-size:var(--text-lg);">🔨</span><div><div style="font-weight:500;">Hilti TE 2000-AVR Kırıcı</div><div style="font-size:var(--text-xs);color:var(--text-muted);">Sahip — Bakım: 20.05.2025</div></div></div>
+            <div class="detail-list-item"><span style="font-size:var(--text-lg);">⚡</span><div><div style="font-weight:500;">Aggreko 200kVA Jeneratör</div><div style="font-size:var(--text-xs);color:var(--text-muted);">Kiralık — Yakıt: %72</div></div></div>
+            <div class="detail-list-item"><span style="font-size:var(--text-lg);">🪜</span><div><div style="font-weight:500;">Layher İskele Sistemi (120m²)</div><div style="font-size:var(--text-xs);color:var(--text-muted);">Kiralık — Kurulum: Tamamlandı</div></div></div>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <div class="detail-section-title">🏗️ Aktif Projeler (4)</div>
+          <div class="detail-list">
+            <div class="detail-list-item"><span style="font-size:var(--text-lg);">🏢</span><div><div style="font-weight:500;">Ofis Kat 3 Yenileme</div><div style="font-size:var(--text-xs);color:var(--text-muted);">İlerleme: %65 — Bitiş: 30.06.2025</div></div></div>
+            <div class="detail-list-item"><span style="font-size:var(--text-lg);">🪟</span><div><div style="font-weight:500;">Cephe Cam Değişimi</div><div style="font-size:var(--text-xs);color:var(--text-muted);">İlerleme: %40 — Bitiş: 15.07.2025</div></div></div>
+            <div class="detail-list-item"><span style="font-size:var(--text-lg);">🔌</span><div><div style="font-weight:500;">Elektrik Altyapı Modernizasyonu</div><div style="font-size:var(--text-xs);color:var(--text-muted);">İlerleme: %80 — Bitiş: 20.05.2025</div></div></div>
+            <div class="detail-list-item"><span style="font-size:var(--text-lg);">🚿</span><div><div style="font-weight:500;">Banyo Tesisatı Yenileme</div><div style="font-size:var(--text-xs);color:var(--text-muted);">İlerleme: %90 — Bitiş: 18.05.2025</div></div></div>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <div class="detail-section-title">📝 Son Günlük Kayıtları</div>
+          <div class="detail-list">
+            <div class="detail-list-item">
+              <span style="font-size:var(--text-xs);color:var(--text-muted);white-space:nowrap;">15.05.2025<br>08:30</span>
+              <div><div style="font-weight:500;">Günlük kontrol</div><div style="font-size:var(--text-xs);color:var(--text-muted);">7 personel yerinde. İSG kontrolü tamamlandı. Vinç operasyonu güvenli. Bobcat yakıtı dolduruldu (%45→%100).</div></div>
+            </div>
+            <div class="detail-list-item">
+              <span style="font-size:var(--text-xs);color:var(--text-muted);white-space:nowrap;">14.05.2025<br>17:45</span>
+              <div><div style="font-weight:500;">Günlük kontrol</div><div style="font-size:var(--text-xs);color:var(--text-muted);">Cephe camı 4. panel takıldı. Elektrik altyapısı %80 tamamlandı. Jeneratör yakıt seviyesi %72.</div></div>
+            </div>
+            <div class="detail-list-item">
+              <span style="font-size:var(--text-xs);color:var(--text-muted);white-space:nowrap;">13.05.2025<br>08:15</span>
+              <div><div style="font-weight:500;">Günlük kontrol</div><div style="font-size:var(--text-xs);color:var(--text-muted);">Beton dökümü için hazırlık yapıldı. İskele kontrolü: güvenli. 1 personel (Ibrahim Korkmaz) raporlu.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('detailModal')">Kapat</button>
+        <button class="btn btn-primary" onclick="closeModal('detailModal');editSite(1)">Düzenle</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Modal -->
+  <div class="modal-overlay" id="deleteSiteModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">Şantiye Sil</div>
+        <button class="modal-close" onclick="closeModal('deleteSiteModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="color:var(--text-secondary);"><strong style="color:var(--text-primary);">Brüksel Merkez Ofis</strong> şantiyesini silmek istediğinize emin misiniz?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('deleteSiteModal')">İptal</button>
+        <button class="btn btn-amber" onclick="closeModal('deleteSiteModal');showToast('Şantiye silindi','warning')">Sil</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('mobile-open');
+      document.getElementById('sidebarOverlay').classList.toggle('active');
+    }
+    function toggleTheme() {
+      const h = document.documentElement;
+      h.setAttribute('data-theme', h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    }
+    function openModal(id) { document.getElementById(id).classList.add('active'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+    function editSite(id) { openModal('editSiteModal'); }
+    function deleteSite(id) { openModal('deleteSiteModal'); }
+
+    function showToast(message, type='info') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `toast toast-${type}`;
+      const icons = { success:'✅', error:'❌', warning:'⚠️', info:'ℹ️' };
+      toast.innerHTML = `<div class="toast-icon">${icons[type]}</div><div class="toast-content"><div class="toast-title">${type==='success'?'Başarılı':type==='error'?'Hata':type==='warning'?'Uyarı':'Bilgi'}</div><div class="toast-message">${message}</div></div><button class="toast-close" onclick="this.parentElement.remove()">✕</button><div class="toast-progress"></div>`;
+      container.appendChild(toast);
+      setTimeout(() => { toast.classList.add('exit'); setTimeout(()=>toast.remove(),300); }, 4000);
+    }
+  </script>
+</body>
+</html>
