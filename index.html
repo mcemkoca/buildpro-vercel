@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="tr" data-theme="dark">
+<html data-theme="dark" lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BuildPro — İnşaat ve Renovasyon Yönetimi</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/main.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title data-i18n="buildpro_inşaat_ve_renovasyon_yönetimi">BuildPro — İnşaat ve Renovasyon Yönetimi</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="css/main.css" rel="stylesheet"/>
 <style>
 /* ================================================================
    BuildPro Landing Page Styles
@@ -225,7 +225,7 @@
   .features-grid,.sectors-grid,.pricing-grid,.testimonials-grid { grid-template-columns:1fr; }
   .footer-grid { grid-template-columns:1fr; }
   .hero-buttons { flex-direction:column; align-items:center; }
-  .hero-buttons .btn { width:100%; max-width:280px; }
+  .hero-buttons .btn { width:100%; max-width:260px; }
   .cta-form { flex-direction:column; }
   .cta-form input { width:100%; }
   .hero h1 { font-size:2.2rem; }
@@ -233,384 +233,378 @@
 </style>
 </head>
 <body class="landing">
-
 <!-- Navbar -->
 <nav style="position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,23,42,0.8);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-color);padding:0 24px;">
-  <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;">
-    <div style="display:flex;align-items:center;gap:12px;">
-      <div style="width:36px;height:36px;background:linear-gradient(135deg,var(--teal-500),var(--teal-700));border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:14px;">BP</div>
-      <span style="font-weight:700;font-size:var(--text-lg);">BuildPro</span>
-    </div>
-    <div style="display:flex;gap:24px;align-items:center;">
-      <a href="#sectors" style="font-size:var(--text-sm);color:var(--text-muted);text-decoration:none;font-weight:500;transition:color var(--duration-fast);" onmouseover="this.style.color='var(--teal-500)'" onmouseout="this.style.color='var(--text-muted)'">Sektörler</a>
-      <a href="#features" style="font-size:var(--text-sm);color:var(--text-muted);text-decoration:none;font-weight:500;transition:color var(--duration-fast);" onmouseover="this.style.color='var(--teal-500)'" onmouseout="this.style.color='var(--text-muted)'">Özellikler</a>
-      <a href="#pricing" style="font-size:var(--text-sm);color:var(--text-muted);text-decoration:none;font-weight:500;transition:color var(--duration-fast);" onmouseover="this.style.color='var(--teal-500)'" onmouseout="this.style.color='var(--text-muted)'">Fiyatlandırma</a>
-      <a href="dashboard.html" class="btn btn-primary btn-sm">Demo'ya Git</a>
-    </div>
-  </div>
+<div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;">
+<div style="display:flex;align-items:center;gap:12px;">
+<div data-i18n="bp" style="width:36px;height:36px;background:linear-gradient(135deg,var(--teal-500),var(--teal-700));border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:14px;">BP</div>
+<span data-i18n="buildpro" style="font-weight:700;font-size:var(--text-lg);">BuildPro</span>
+</div>
+<div style="display:flex;gap:24px;align-items:center;">
+<a data-i18n="sektörler" href="#sectors" onmouseout="this.style.color='var(--text-muted)'" onmouseover="this.style.color='var(--teal-500)'" style="font-size:var(--text-sm);color:var(--text-muted);text-decoration:none;font-weight:500;transition:color var(--duration-fast);">Sektörler</a>
+<a data-i18n="özellikler" href="#features" onmouseout="this.style.color='var(--text-muted)'" onmouseover="this.style.color='var(--teal-500)'" style="font-size:var(--text-sm);color:var(--text-muted);text-decoration:none;font-weight:500;transition:color var(--duration-fast);">Özellikler</a>
+<a data-i18n="fiyatlandırma" href="#pricing" onmouseout="this.style.color='var(--text-muted)'" onmouseover="this.style.color='var(--teal-500)'" style="font-size:var(--text-sm);color:var(--text-muted);text-decoration:none;font-weight:500;transition:color var(--duration-fast);">Fiyatlandırma</a>
+<div class="lang-switcher" style="display:flex;gap:4px;">
+<button class="lang-btn" data-lang="tr" onclick="switchLang('tr')" style="padding:4px 8px;font-size:12px;border-radius:4px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;">TR</button>
+<button class="lang-btn" data-lang="en" onclick="switchLang('en')" style="padding:4px 8px;font-size:12px;border-radius:4px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;">EN</button>
+<button class="lang-btn" data-lang="nl" onclick="switchLang('nl')" style="padding:4px 8px;font-size:12px;border-radius:4px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;">NL</button>
+</div>
+<style>.lang-btn.active{background:var(--teal-500)!important;color:white!important;border-color:var(--teal-500)!important;font-weight:600;}</style>
+<a class="btn btn-primary btn-sm" data-i18n="demoya_git" href="dashboard.html">Demo'ya Git</a>
+</div>
+</div>
 </nav>
-
 <!-- Hero -->
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-orb hero-orb-1"></div>
-  <div class="hero-orb hero-orb-2"></div>
-  <div class="hero-content">
-    <div class="hero-badge"><span class="pulse"></span> Yeni — BuildPro v1.0</div>
-    <h1>İnşaat ve Renovasyonun <span>Akıllı Yönetimi</span></h1>
-    <p>Konut inşaatından endüstriyel tesise, peyzajdan restorasyona — 6 sektör, tek platform. Proje takibi, maliyet analizi, şantiye yönetimi. Hepsi bir arada.</p>
-    <div class="hero-buttons">
-      <a href="dashboard.html" class="btn btn-primary btn-xl">Demo'yu Dene</a>
-      <a href="#how" class="btn btn-secondary btn-xl">Nasıl Çalışır?</a>
-    </div>
-  </div>
-  <!-- Floating Stats Cards -->
-  <div class="hero-float-cards">
-    <div class="float-card">
-      <div class="fc-label">Aktif Projeler</div>
-      <div class="fc-value">247</div>
-      <div class="fc-change up">▲ +18 bu ay</div>
-    </div>
-    <div class="float-card">
-      <div class="fc-label">Toplam Bütçe</div>
-      <div class="fc-value">€14.2M</div>
-      <div class="fc-change up">▲ +€2.1M</div>
-    </div>
-    <div class="float-card">
-      <div class="fc-label">Tamamlanan İşler</div>
-      <div class="fc-value">1,843</div>
-      <div class="fc-change up">▲ +156</div>
-    </div>
-  </div>
+<div class="hero-bg"></div>
+<div class="hero-orb hero-orb-1"></div>
+<div class="hero-orb hero-orb-2"></div>
+<div class="hero-content">
+<div class="hero-badge"><span class="pulse"></span> Yeni — BuildPro v1.0</div>
+<h1>İnşaat ve Renovasyonun <span data-i18n="akıllı_yönetimi">Akıllı Yönetimi</span></h1>
+<p data-i18n="konut_inşaatından_endüstriyel_tesise_peyzajdan_restorasyona_">Konut inşaatından endüstriyel tesise, peyzajdan restorasyona — 6 sektör, tek platform. Proje takibi, maliyet analizi, şantiye yönetimi. Hepsi bir arada.</p>
+<div class="hero-buttons">
+<a class="btn btn-primary btn-xl" data-i18n="demoyu_dene" href="dashboard.html">Demo'yu Dene</a>
+<a class="btn btn-secondary btn-xl" data-i18n="nasıl_çalışır" href="#how">Nasıl Çalışır?</a>
+</div>
+</div>
+<!-- Floating Stats Cards -->
+<div class="hero-float-cards">
+<div class="float-card">
+<div class="fc-label" data-i18n="aktif_projeler">Aktif Projeler</div>
+<div class="fc-value">247</div>
+<div class="fc-change up" data-i18n="_8_bu_ay">▲ +18 bu ay</div>
+</div>
+<div class="float-card">
+<div class="fc-label" data-i18n="toplam_bütçe">Toplam Bütçe</div>
+<div class="fc-value" data-i18n="_42m">€14.2M</div>
+<div class="fc-change up" data-i18n="_1m">▲ +€2.1M</div>
+</div>
+<div class="float-card">
+<div class="fc-label" data-i18n="tamamlanan_işler">Tamamlanan İşler</div>
+<div class="fc-value" data-i18n="_843">1,843</div>
+<div class="fc-change up" data-i18n="_56">▲ +156</div>
+</div>
+</div>
 </section>
-
 <!-- Trust -->
 <section class="trust">
-  <p>Güvenilen Şirketler</p>
-  <div class="trust-logos">
-    <span>BouwMeester NV</span>
-    <span>Constructeur Plus</span>
-    <span>RenovaTec</span>
-    <span>UrbanPlan BE</span>
-    <span>InduBuild</span>
-    <span>GreenScape BV</span>
-  </div>
+<p data-i18n="güvenilen_şirketler">Güvenilen Şirketler</p>
+<div class="trust-logos">
+<span data-i18n="bouwmeester_nv">BouwMeester NV</span>
+<span data-i18n="constructeur_plus">Constructeur Plus</span>
+<span data-i18n="renovatec">RenovaTec</span>
+<span data-i18n="urbanplan_be">UrbanPlan BE</span>
+<span data-i18n="indubuild">InduBuild</span>
+<span data-i18n="greenscape_bv">GreenScape BV</span>
+</div>
 </section>
-
 <!-- Sub-Sectors -->
 <section class="section" id="sectors">
-  <div class="section-header reveal">
-    <h2>6 Sektör, Tek Platform</h2>
-    <p>İhtiyacınıza göre sektörleri aktifleştirin, kullanmaya başlayın. İsterseniz hepsini aynı anda yönetin.</p>
-  </div>
-  <div class="sectors-grid">
-    <div class="sector-card reveal">
-      <span class="sector-status active">Aktif</span>
-      <div class="sector-icon">🏠</div>
-      <h3>Konut İnşaatı</h3>
-      <p>Apartman, villa, site ve konut kompleksi projelerinin tam yönetimi. Birim bazlı takip, teslimat planlaması.</p>
-      <div class="sector-features">
-        <span>Daire Planlama</span><span>Teslimat</span><span>Satış Takibi</span><span>Kalite Kontrol</span>
-      </div>
-    </div>
-    <div class="sector-card reveal">
-      <span class="sector-status active">Aktif</span>
-      <div class="sector-icon">🏢</div>
-      <h3>Ticari İnşaat</h3>
-      <p>Ofis binaları, alışveriş merkezleri, otel ve hastane projeleri. Kat mülkiyeti yönetimi, kiralama takibi.</p>
-      <div class="sector-features">
-        <span>Kat Planlama</span><span>Kiralama</span><span>CE Belgesi</span><span>Aktivasyon</span>
-      </div>
-    </div>
-    <div class="sector-card reveal">
-      <span class="sector-status active">Aktif</span>
-      <div class="sector-icon">🏛️</div>
-      <h3>Renovasyon & Restore</h3>
-      <p>Tarihi yapı restorasyonu, iç mekan renovasyonu, enerji verimliliği yükseltme. Belgelendirme ve izin takibi.</p>
-      <div class="sector-features">
-        <span>Fotografik Kayıt</span><span>İzinler</span><span>Enerji Etiketi</span><span>Heritage</span>
-      </div>
-    </div>
-    <div class="sector-card reveal">
-      <span class="sector-status active">Aktif</span>
-      <div class="sector-icon">🌉</div>
-      <h3>Altyapı & İmar</h3>
-      <p>Yol, köprü, kanalizasyon ve kentsel dönüşüm projeleri. Belediye koordinasyonu, kamulaştırma takibi.</p>
-      <div class="sector-features">
-        <span>Kamulaştırma</span><span>Ruhsat</span><span>ÇED</span><span>Belediye</span>
-      </div>
-    </div>
-    <div class="sector-card reveal">
-      <span class="sector-status active">Aktif</span>
-      <div class="sector-icon">🏭</div>
-      <h3>Endüstriyel Tesis</h3>
-      <p>Fabrika, depo, lojistik merkezi ve üretim tesisi inşaatları. Makine entegrasyonu, güvenlik protokolleri.</p>
-      <div class="sector-features">
-        <span>ISO Uyum</span><span>Makine Yerleşimi</span><span>Güvenlik</span><span>Proses</span>
-      </div>
-    </div>
-    <div class="sector-card reveal">
-      <span class="sector-status active">Aktif</span>
-      <div class="sector-icon">🌳</div>
-      <h3>Peyzaj & Dış Mekan</h3>
-      <p>Park, bahçe, spor kompleksi ve rekreasyon alanları. Bitki envanteri, sulama sistemi, sezonluk bakım.</p>
-      <div class="sector-features">
-        <span>Bitki Envanteri</span><span>Sulama</span><span>Sezon Takibi</span><span>Ekoloji</span>
-      </div>
-    </div>
-  </div>
+<div class="section-header reveal">
+<h2 data-i18n="__sektör_tek_platform">6 Sektör, Tek Platform</h2>
+<p data-i18n="ihtiyacınıza_göre_sektörleri_aktifleştirin_kullanmaya_başlay">İhtiyacınıza göre sektörleri aktifleştirin, kullanmaya başlayın. İsterseniz hepsini aynı anda yönetin.</p>
+</div>
+<div class="sectors-grid">
+<div class="sector-card reveal">
+<span class="sector-status active" data-i18n="aktif">Aktif</span>
+<div class="sector-icon">🏠</div>
+<h3 data-i18n="konut_inşaatı">Konut İnşaatı</h3>
+<p data-i18n="apartman_villa_site_ve_konut_kompleksi_projelerinin_tam_yöne">Apartman, villa, site ve konut kompleksi projelerinin tam yönetimi. Birim bazlı takip, teslimat planlaması.</p>
+<div class="sector-features">
+<span data-i18n="daire_planlama">Daire Planlama</span><span data-i18n="teslimat">Teslimat</span><span data-i18n="satış_takibi">Satış Takibi</span><span data-i18n="kalite_kontrol">Kalite Kontrol</span>
+</div>
+</div>
+<div class="sector-card reveal">
+<span class="sector-status active" data-i18n="aktif_2">Aktif</span>
+<div class="sector-icon">🏢</div>
+<h3 data-i18n="ticari_inşaat">Ticari İnşaat</h3>
+<p data-i18n="ofis_binaları_alışveriş_merkezleri_otel_ve_hastane_projeleri">Ofis binaları, alışveriş merkezleri, otel ve hastane projeleri. Kat mülkiyeti yönetimi, kiralama takibi.</p>
+<div class="sector-features">
+<span data-i18n="kat_planlama">Kat Planlama</span><span data-i18n="kiralama">Kiralama</span><span data-i18n="ce_belgesi">CE Belgesi</span><span data-i18n="aktivasyon">Aktivasyon</span>
+</div>
+</div>
+<div class="sector-card reveal">
+<span class="sector-status active" data-i18n="aktif_3">Aktif</span>
+<div class="sector-icon">🏛️</div>
+<h3 data-i18n="renovasyon_restore">Renovasyon &amp; Restore</h3>
+<p data-i18n="tarihi_yapı_restorasyonu_iç_mekan_renovasyonu_enerji_verimli">Tarihi yapı restorasyonu, iç mekan renovasyonu, enerji verimliliği yükseltme. Belgelendirme ve izin takibi.</p>
+<div class="sector-features">
+<span data-i18n="fotografik_kayıt">Fotografik Kayıt</span><span data-i18n="izinler">İzinler</span><span data-i18n="enerji_etiketi">Enerji Etiketi</span><span data-i18n="heritage">Heritage</span>
+</div>
+</div>
+<div class="sector-card reveal">
+<span class="sector-status active" data-i18n="aktif_4">Aktif</span>
+<div class="sector-icon">🌉</div>
+<h3 data-i18n="altyapı_imar">Altyapı &amp; İmar</h3>
+<p data-i18n="yol_köprü_kanalizasyon_ve_kentsel_dönüşüm_projeleri_belediye">Yol, köprü, kanalizasyon ve kentsel dönüşüm projeleri. Belediye koordinasyonu, kamulaştırma takibi.</p>
+<div class="sector-features">
+<span data-i18n="kamulaştırma">Kamulaştırma</span><span data-i18n="ruhsat">Ruhsat</span><span data-i18n="çed">ÇED</span><span data-i18n="belediye">Belediye</span>
+</div>
+</div>
+<div class="sector-card reveal">
+<span class="sector-status active" data-i18n="aktif_5">Aktif</span>
+<div class="sector-icon">🏭</div>
+<h3 data-i18n="endüstriyel_tesis">Endüstriyel Tesis</h3>
+<p data-i18n="fabrika_depo_lojistik_merkezi_ve_üretim_tesisi_inşaatları_ma">Fabrika, depo, lojistik merkezi ve üretim tesisi inşaatları. Makine entegrasyonu, güvenlik protokolleri.</p>
+<div class="sector-features">
+<span data-i18n="iso_uyum">ISO Uyum</span><span data-i18n="makine_yerleşimi">Makine Yerleşimi</span><span data-i18n="güvenlik">Güvenlik</span><span data-i18n="proses">Proses</span>
+</div>
+</div>
+<div class="sector-card reveal">
+<span class="sector-status active" data-i18n="aktif_6">Aktif</span>
+<div class="sector-icon">🌳</div>
+<h3 data-i18n="peyzaj_dış_mekan">Peyzaj &amp; Dış Mekan</h3>
+<p data-i18n="park_bahçe_spor_kompleksi_ve_rekreasyon_alanları_bitki_envan">Park, bahçe, spor kompleksi ve rekreasyon alanları. Bitki envanteri, sulama sistemi, sezonluk bakım.</p>
+<div class="sector-features">
+<span data-i18n="bitki_envanteri">Bitki Envanteri</span><span data-i18n="sulama">Sulama</span><span data-i18n="sezon_takibi">Sezon Takibi</span><span data-i18n="ekoloji">Ekoloji</span>
+</div>
+</div>
+</div>
 </section>
-
 <!-- Features -->
-<section class="section" style="background:var(--bg-secondary);" id="features">
-  <div class="section-header reveal">
-    <h2>Tüm Proje İhtiyaçlarınız İçin</h2>
-    <p>Planlamadan teslimata, maliyetten kaliteye — BuildPro her aşamada yanınızda.</p>
-  </div>
-  <div class="features-grid">
-    <div class="feature-card reveal">
-      <div class="feature-icon" style="background:rgba(20,184,166,0.1);color:var(--teal-500);">📋</div>
-      <h3>Proje Takibi</h3>
-      <p>Gantt şemaları, kilometre taşları, kritik yol analizi. Her projenin durumunu gerçek zamanlı görün. Gecikme uyarıları otomatik.</p>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon" style="background:rgba(59,130,246,0.1);color:var(--info-500);">👷</div>
-      <h3>Ekip ve Şantiye Yönetimi</h3>
-      <p>Personel atama, vardiya planlama, şantiye günlük raporları, ekipman kullanım kaydı. Tüm ekipler senkronize.</p>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon" style="background:rgba(245,158,11,0.1);color:var(--amber-500);">💰</div>
-      <h3>Maliyet ve Teklif</h3>
-      <p>Detaylı bütçe planlama, hammadde maliyet analizi, otomatik teklif oluşturma. Kar marjı hesaplama anlık.</p>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon" style="background:rgba(16,185,129,0.1);color:var(--success-500);">📦</div>
-      <h3>Stok ve Malzeme</h3>
-      <p>Depo yönetimi, malzeme giriş-çıkış, otomatik sipariş önerisi. Tedarikçi karşılaştırma ve fiyat takibi.</p>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6;">📅</div>
-      <h3>Zamanlama ve Takvim</h3>
-      <p>Şantiye takvimi, ekipman rezervasyonu, alt yüklenici koordinasyonu. Weather API ile hava durumu entegrasyonu.</p>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon" style="background:rgba(244,63,94,0.1);color:var(--error-500);">✅</div>
-      <h3>Kalite ve Güvenlik Kontrol</h3>
-      <p>Fotoğraflı kontrol listeleri, ISO denetim raporları, iş güvenliği eğitim takibi. NCR ve CAPA yönetimi.</p>
-    </div>
-  </div>
+<section class="section" id="features" style="background:var(--bg-secondary);">
+<div class="section-header reveal">
+<h2 data-i18n="tüm_proje_ihtiyaçlarınız_için">Tüm Proje İhtiyaçlarınız İçin</h2>
+<p data-i18n="planlamadan_teslimata_maliyetten_kaliteye_buildpro_her_aşama">Planlamadan teslimata, maliyetten kaliteye — BuildPro her aşamada yanınızda.</p>
+</div>
+<div class="features-grid">
+<div class="feature-card reveal">
+<div class="feature-icon" style="background:rgba(20,184,166,0.1);color:var(--teal-500);">📋</div>
+<h3 data-i18n="proje_takibi">Proje Takibi</h3>
+<p data-i18n="gantt_şemaları_kilometre_taşları_kritik_yol_analizi_her_proj">Gantt şemaları, kilometre taşları, kritik yol analizi. Her projenin durumunu gerçek zamanlı görün. Gecikme uyarıları otomatik.</p>
+</div>
+<div class="feature-card reveal">
+<div class="feature-icon" style="background:rgba(59,130,246,0.1);color:var(--info-500);">👷</div>
+<h3 data-i18n="ekip_ve_şantiye_yönetimi">Ekip ve Şantiye Yönetimi</h3>
+<p data-i18n="personel_atama_vardiya_planlama_şantiye_günlük_raporları_eki">Personel atama, vardiya planlama, şantiye günlük raporları, ekipman kullanım kaydı. Tüm ekipler senkronize.</p>
+</div>
+<div class="feature-card reveal">
+<div class="feature-icon" style="background:rgba(245,158,11,0.1);color:var(--amber-500);">💰</div>
+<h3 data-i18n="maliyet_ve_teklif">Maliyet ve Teklif</h3>
+<p data-i18n="detaylı_bütçe_planlama_hammadde_maliyet_analizi_otomatik_tek">Detaylı bütçe planlama, hammadde maliyet analizi, otomatik teklif oluşturma. Kar marjı hesaplama anlık.</p>
+</div>
+<div class="feature-card reveal">
+<div class="feature-icon" style="background:rgba(16,185,129,0.1);color:var(--success-500);">📦</div>
+<h3 data-i18n="stok_ve_malzeme">Stok ve Malzeme</h3>
+<p data-i18n="depo_yönetimi_malzeme_giriş-çıkış_otomatik_sipariş_önerisi_t">Depo yönetimi, malzeme giriş-çıkış, otomatik sipariş önerisi. Tedarikçi karşılaştırma ve fiyat takibi.</p>
+</div>
+<div class="feature-card reveal">
+<div class="feature-icon" style="background:rgba(139,92,246,0.1);color:#14b8a6;">📅</div>
+<h3 data-i18n="zamanlama_ve_takvim">Zamanlama ve Takvim</h3>
+<p data-i18n="şantiye_takvimi_ekipman_rezervasyonu_alt_yüklenici_koordinas">Şantiye takvimi, ekipman rezervasyonu, alt yüklenici koordinasyonu. Weather API ile hava durumu entegrasyonu.</p>
+</div>
+<div class="feature-card reveal">
+<div class="feature-icon" style="background:rgba(244,63,94,0.1);color:var(--error-500);">✅</div>
+<h3 data-i18n="kalite_ve_güvenlik_kontrol">Kalite ve Güvenlik Kontrol</h3>
+<p data-i18n="fotoğraflı_kontrol_listeleri_iso_denetim_raporları_iş_güvenl">Fotoğraflı kontrol listeleri, ISO denetim raporları, iş güvenliği eğitim takibi. NCR ve CAPA yönetimi.</p>
+</div>
+</div>
 </section>
-
 <!-- How It Works -->
 <section class="section" id="how" style="background:var(--bg-secondary);">
-  <div class="section-header reveal">
-    <h2>3 Adımda Başlayın</h2>
-    <p>Kurulum dakikalar içinde. Karmaşık entegrasyonlar, uzun eğitimler yok.</p>
-  </div>
-  <div class="steps">
-    <div class="step reveal">
-      <div class="step-num">1</div>
-      <h3>Sektörlerinizi Seçin</h3>
-      <p>6 farklı inşaat sektöründen ihtiyacınız olanları aktifleştirin. Her biri bağımsız yönetilebilir.</p>
-    </div>
-    <div class="step reveal">
-      <div class="step-num">2</div>
-      <h3>Projeleri Ekleyin</h3>
-      <p>Şablonlardan hızla proje oluşturun, ekipmanları atayın, bütçeyi belirleyin. 5 dakikada hazır.</p>
-    </div>
-    <div class="step reveal">
-      <div class="step-num">3</div>
-      <h3>Şantiyeyi Yönetin</h3>
-      <p>Gerçek zamanlı takip, mobil raporlama, anlık bildirimler. Artık BuildPro sizinle.</p>
-    </div>
-  </div>
+<div class="section-header reveal">
+<h2 data-i18n="__adımda_başlayın">3 Adımda Başlayın</h2>
+<p data-i18n="kurulum_dakikalar_içinde_karmaşık_entegrasyonlar_uzun_eğitim">Kurulum dakikalar içinde. Karmaşık entegrasyonlar, uzun eğitimler yok.</p>
+</div>
+<div class="steps">
+<div class="step reveal">
+<div class="step-num">1</div>
+<h3 data-i18n="sektörlerinizi_seçin">Sektörlerinizi Seçin</h3>
+<p data-i18n="__farklı_inşaat_sektöründen_ihtiyacınız_olanları_aktifleştir">6 farklı inşaat sektöründen ihtiyacınız olanları aktifleştirin. Her biri bağımsız yönetilebilir.</p>
+</div>
+<div class="step reveal">
+<div class="step-num">2</div>
+<h3 data-i18n="projeleri_ekleyin">Projeleri Ekleyin</h3>
+<p data-i18n="şablonlardan_hızla_proje_oluşturun_ekipmanları_atayın_bütçey">Şablonlardan hızla proje oluşturun, ekipmanları atayın, bütçeyi belirleyin. 5 dakikada hazır.</p>
+</div>
+<div class="step reveal">
+<div class="step-num">3</div>
+<h3 data-i18n="şantiyeyi_yönetin">Şantiyeyi Yönetin</h3>
+<p data-i18n="gerçek_zamanlı_takip_mobil_raporlama_anlık_bildirimler_artık">Gerçek zamanlı takip, mobil raporlama, anlık bildirimler. Artık BuildPro sizinle.</p>
+</div>
+</div>
 </section>
-
 <!-- Pricing -->
 <section class="section" id="pricing">
-  <div class="section-header reveal">
-    <h2>Esnek Fiyatlandırma</h2>
-    <p>Proje hacminize uygun plan. Dilediğinizde yükseltin veya düşürün.</p>
-  </div>
-  <div class="pricing-grid">
-    <div class="pricing-card reveal">
-      <h3>Starter</h3>
-      <div class="price">€49<span>/ay</span></div>
-      <ul>
-        <li>3 Aktif Sektör</li>
-        <li>10 Proje</li>
-        <li>5 Kullanıcı</li>
-        <li>50GB Depolama</li>
-        <li>Email Destek</li>
-        <li>Temel Raporlar</li>
-      </ul>
-      <a href="dashboard.html" class="btn btn-secondary" style="width:100%;">Başla</a>
-    </div>
-    <div class="pricing-card featured reveal">
-      <h3>Pro</h3>
-      <div class="price">€129<span>/ay</span></div>
-      <ul>
-        <li>Tüm 6 Sektör</li>
-        <li>Sınırsız Proje</li>
-        <li>25 Kullanıcı</li>
-        <li>500GB Depolama</li>
-        <li>Öncelikli Destek</li>
-        <li>Gelişmiş Raporlar</li>
-        <li>API Erişimi</li>
-        <li>Alt Yüklenici Modülü</li>
-      </ul>
-      <a href="dashboard.html" class="btn btn-primary" style="width:100%;">Başla</a>
-    </div>
-    <div class="pricing-card reveal">
-      <h3>Enterprise</h3>
-      <div class="price">€299<span>/ay</span></div>
-      <ul>
-        <li>Tüm 6 Sektör</li>
-        <li>Sınırsız Proje</li>
-        <li>Sınırsız Kullanıcı</li>
-        <li>2TB Depolama</li>
-        <li>7/24 Telefon Desteği</li>
-        <li>Özel Dashboard</li>
-        <li>White-label</li>
-        <li>Dedicated Sunucu</li>
-      </ul>
-      <a href="#" class="btn btn-secondary" style="width:100%;">Satışla Konuş</a>
-    </div>
-  </div>
+<div class="section-header reveal">
+<h2 data-i18n="esnek_fiyatlandırma">Esnek Fiyatlandırma</h2>
+<p data-i18n="proje_hacminize_uygun_plan_dilediğinizde_yükseltin_veya_düşü">Proje hacminize uygun plan. Dilediğinizde yükseltin veya düşürün.</p>
+</div>
+<div class="pricing-grid">
+<div class="pricing-card reveal">
+<h3 data-i18n="starter">Starter</h3>
+<div class="price">€49<span data-i18n="ay">/ay</span></div>
+<ul>
+<li data-i18n="__aktif_sektör">3 Aktif Sektör</li>
+<li data-i18n="_0_proje">10 Proje</li>
+<li data-i18n="__kullanıcı">5 Kullanıcı</li>
+<li data-i18n="_0gb_depolama">50GB Depolama</li>
+<li data-i18n="email_destek">Email Destek</li>
+<li data-i18n="temel_raporlar">Temel Raporlar</li>
+</ul>
+<a class="btn btn-secondary" data-i18n="başla" href="dashboard.html" style="width:100%;">Başla</a>
+</div>
+<div class="pricing-card featured reveal">
+<h3 data-i18n="pro">Pro</h3>
+<div class="price">€129<span data-i18n="ay_2">/ay</span></div>
+<ul>
+<li data-i18n="tüm_6_sektör">Tüm 6 Sektör</li>
+<li data-i18n="sınırsız_proje">Sınırsız Proje</li>
+<li data-i18n="_5_kullanıcı">25 Kullanıcı</li>
+<li data-i18n="_00gb_depolama">500GB Depolama</li>
+<li data-i18n="öncelikli_destek">Öncelikli Destek</li>
+<li data-i18n="gelişmiş_raporlar">Gelişmiş Raporlar</li>
+<li data-i18n="api_erişimi">API Erişimi</li>
+<li data-i18n="alt_yüklenici_modülü">Alt Yüklenici Modülü</li>
+</ul>
+<a class="btn btn-primary" data-i18n="başla_2" href="dashboard.html" style="width:100%;">Başla</a>
+</div>
+<div class="pricing-card reveal">
+<h3 data-i18n="enterprise">Enterprise</h3>
+<div class="price">€299<span data-i18n="ay_3">/ay</span></div>
+<ul>
+<li data-i18n="tüm_6_sektör_2">Tüm 6 Sektör</li>
+<li data-i18n="sınırsız_proje_2">Sınırsız Proje</li>
+<li data-i18n="sınırsız_kullanıcı">Sınırsız Kullanıcı</li>
+<li data-i18n="_tb_depolama">2TB Depolama</li>
+<li data-i18n="_24_telefon_desteği">7/24 Telefon Desteği</li>
+<li data-i18n="özel_dashboard">Özel Dashboard</li>
+<li data-i18n="white-label">White-label</li>
+<li data-i18n="dedicated_sunucu">Dedicated Sunucu</li>
+</ul>
+<a class="btn btn-secondary" data-i18n="satışla_konuş" href="#" style="width:100%;">Satışla Konuş</a>
+</div>
+</div>
 </section>
-
 <!-- Testimonials -->
 <section class="section" style="background:var(--bg-secondary);">
-  <div class="section-header reveal">
-    <h2>Müşterilerimiz Ne Diyor?</h2>
-    <p>Belçika, Hollanda ve Lüksemburg'dan 180+ inşaat firması BuildPro'yu kullanıyor.</p>
-  </div>
-  <div class="testimonials-grid">
-    <div class="testimonial reveal">
-      <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-      <p>"Önce 3 farklı Excel dosyasıyla proje takibi yapıyorduk. BuildPro ile tüm şantiyeleri tek ekranda görüyoruz. Maliyet sapmalarını anında fark ediyoruz."</p>
-      <div class="testimonial-author">
-        <div class="avatar" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);">PV</div>
-        <div>
-          <p>Pieter Van den Berg</p>
-          <span>BouwMeester NV, Brüksel</span>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial reveal">
-      <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-      <p>"Renovasyon projelerinde fotoğraflı raporlama özelliği hayat kurtarıyor. Müşterilerimize her hafta otomatik ilerleme raporu gönderiyoruz."</p>
-      <div class="testimonial-author">
-        <div class="avatar" style="background:linear-gradient(135deg,#8b5cf6,#6d28d9);">LD</div>
-        <div>
-          <p>Laurent Dubois</p>
-          <span>RenovaTec, Anvers</span>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial reveal">
-      <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-      <p>"Endüstriyel tesis projelerinde ekipman rezervasyonu çakışmaları tamamen bitti. Artık vinç ve iş makinesi programı herkes tarafından canlı görülüyor."</p>
-      <div class="testimonial-author">
-        <div class="avatar" style="background:linear-gradient(135deg,#f59e0b,#d97706);">JM</div>
-        <div>
-          <p>Johan Maes</p>
-          <span>InduBuild BV, Gent</span>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="section-header reveal">
+<h2 data-i18n="müşterilerimiz_ne_diyor">Müşterilerimiz Ne Diyor?</h2>
+<p data-i18n="belçika_hollanda_ve_lüksemburgdan_180_inşaat_firması_buildpr">Belçika, Hollanda ve Lüksemburg'dan 180+ inşaat firması BuildPro'yu kullanıyor.</p>
+</div>
+<div class="testimonials-grid">
+<div class="testimonial reveal">
+<div class="testimonial-stars" data-i18n="text">⭐⭐⭐⭐⭐</div>
+<p data-i18n="önce_3_farklı_excel_dosyasıyla_proje_takibi_yapıyorduk_build">"Önce 3 farklı Excel dosyasıyla proje takibi yapıyorduk. BuildPro ile tüm şantiyeleri tek ekranda görüyoruz. Maliyet sapmalarını anında fark ediyoruz."</p>
+<div class="testimonial-author">
+<div class="avatar" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);">PV</div>
+<div>
+<p data-i18n="pieter_van_den_berg">Pieter Van den Berg</p>
+<span data-i18n="bouwmeester_nv_brüksel">BouwMeester NV, Brüksel</span>
+</div>
+</div>
+</div>
+<div class="testimonial reveal">
+<div class="testimonial-stars" data-i18n="text_2">⭐⭐⭐⭐⭐</div>
+<p data-i18n="renovasyon_projelerinde_fotoğraflı_raporlama_özelliği_hayat_">"Renovasyon projelerinde fotoğraflı raporlama özelliği hayat kurtarıyor. Müşterilerimize her hafta otomatik ilerleme raporu gönderiyoruz."</p>
+<div class="testimonial-author">
+<div class="avatar" style="background:linear-gradient(135deg,#14b8a6,#0f766e);">LD</div>
+<div>
+<p data-i18n="laurent_dubois">Laurent Dubois</p>
+<span data-i18n="renovatec_anvers">RenovaTec, Anvers</span>
+</div>
+</div>
+</div>
+<div class="testimonial reveal">
+<div class="testimonial-stars" data-i18n="text_3">⭐⭐⭐⭐⭐</div>
+<p data-i18n="endüstriyel_tesis_projelerinde_ekipman_rezervasyonu_çakışmal">"Endüstriyel tesis projelerinde ekipman rezervasyonu çakışmaları tamamen bitti. Artık vinç ve iş makinesi programı herkes tarafından canlı görülüyor."</p>
+<div class="testimonial-author">
+<div class="avatar" style="background:linear-gradient(135deg,#14b8a6,#0f766e);">JM</div>
+<div>
+<p data-i18n="johan_maes">Johan Maes</p>
+<span data-i18n="indubuild_bv_gent">InduBuild BV, Gent</span>
+</div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- Security -->
 <section class="section" style="padding:60px 24px;text-align:center;">
-  <div class="reveal">
-    <h2 style="font-size:var(--text-xl);font-weight:700;margin-bottom:32px;">Güvenlik ve Uyumluluk</h2>
-    <div style="display:flex;flex-wrap:wrap;gap:24px;justify-content:center;align-items:center;">
-      <div style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:16px 24px;display:flex;align-items:center;gap:10px;">
-        <span style="font-size:20px;">🔒</span>
-        <span style="font-weight:600;font-size:var(--text-sm);">SSL Şifreleme</span>
-      </div>
-      <div style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:16px 24px;display:flex;align-items:center;gap:10px;">
-        <span style="font-size:20px;">🇪🇺</span>
-        <span style="font-weight:600;font-size:var(--text-sm);">GDPR Uyumlu</span>
-      </div>
-      <div style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:16px 24px;display:flex;align-items:center;gap:10px;">
-        <span style="font-size:20px;">✓</span>
-        <span style="font-weight:600;font-size:var(--text-sm);">ISO 19650 BIM</span>
-      </div>
-      <div style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:16px 24px;display:flex;align-items:center;gap:10px;">
-        <span style="font-size:20px;">🛡️</span>
-        <span style="font-weight:600;font-size:var(--text-sm);">ISO 27001</span>
-      </div>
-      <div style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:16px 24px;display:flex;align-items:center;gap:10px;">
-        <span style="font-size:20px;">💾</span>
-        <span style="font-weight:600;font-size:var(--text-sm);">Günlük Yedekleme</span>
-      </div>
-      <div style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:16px 24px;display:flex;align-items:center;gap:10px;">
-        <span style="font-size:20px;">🌍</span>
-        <span style="font-weight:600;font-size:var(--text-sm);">EU Sunucuları</span>
-      </div>
-    </div>
-  </div>
+<div class="reveal">
+<h2 data-i18n="güvenlik_ve_uyumluluk" style="font-size:var(--text-xl);font-weight:700;margin-bottom:32px;">Güvenlik ve Uyumluluk</h2>
+<div style="display:flex;flex-wrap:wrap;gap:24px;justify-content:center;align-items:center;">
+<div style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:16px 24px;display:flex;align-items:center;gap:10px;">
+<span style="font-size:20px;">🔒</span>
+<span data-i18n="ssl_şifreleme" style="font-weight:600;font-size:var(--text-sm);">SSL Şifreleme</span>
+</div>
+<div style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:16px 24px;display:flex;align-items:center;gap:10px;">
+<span style="font-size:20px;">🇪🇺</span>
+<span data-i18n="gdpr_uyumlu" style="font-weight:600;font-size:var(--text-sm);">GDPR Uyumlu</span>
+</div>
+<div style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:16px 24px;display:flex;align-items:center;gap:10px;">
+<span style="font-size:20px;">✓</span>
+<span data-i18n="iso_19650_bim" style="font-weight:600;font-size:var(--text-sm);">ISO 19650 BIM</span>
+</div>
+<div style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:16px 24px;display:flex;align-items:center;gap:10px;">
+<span style="font-size:20px;">🛡️</span>
+<span data-i18n="iso_27001" style="font-weight:600;font-size:var(--text-sm);">ISO 27001</span>
+</div>
+<div style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:16px 24px;display:flex;align-items:center;gap:10px;">
+<span style="font-size:20px;">💾</span>
+<span data-i18n="günlük_yedekleme" style="font-weight:600;font-size:var(--text-sm);">Günlük Yedekleme</span>
+</div>
+<div style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:16px 24px;display:flex;align-items:center;gap:10px;">
+<span style="font-size:20px;">🌍</span>
+<span data-i18n="eu_sunucuları" style="font-weight:600;font-size:var(--text-sm);">EU Sunucuları</span>
+</div>
+</div>
+</div>
 </section>
-
 <!-- CTA -->
 <section class="cta">
-  <div class="reveal">
-    <h2>Bugün Başlayın</h2>
-    <p>30 gün ücretsiz deneme. Kredi kartı gerekmez. İstediğinizde iptal edin.</p>
-    <div class="cta-form">
-      <input type="email" placeholder="E-posta adresiniz" id="ctaEmail">
-      <button class="btn btn-primary" onclick="const e=document.getElementById('ctaEmail').value;if(e&&e.includes('@')){location.href='dashboard.html?email='+encodeURIComponent(e);}else{alert('Geçerli bir e-posta girin');}">Ücretsiz Başla</button>
-    </div>
-  </div>
+<div class="reveal">
+<h2 data-i18n="bugün_başlayın">Bugün Başlayın</h2>
+<p data-i18n="_0_gün_ücretsiz_deneme_kredi_kartı_gerekmez_istediğinizde_ip">30 gün ücretsiz deneme. Kredi kartı gerekmez. İstediğinizde iptal edin.</p>
+<div class="cta-form">
+<input data-i18n-placeholder="ph_e-posta_adresiniz" id="ctaEmail" placeholder="E-posta adresiniz" type="email"/>
+<button class="btn btn-primary" data-i18n="ücretsiz_başla" onclick="const e=document.getElementById('ctaEmail').value;if(e&amp;&amp;e.includes('@')){location.href='dashboard.html?email='+encodeURIComponent(e);}else{alert('Geçerli bir e-posta girin');}">Ücretsiz Başla</button>
+</div>
+</div>
 </section>
-
 <!-- Footer -->
 <footer class="footer">
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <h3>BuildPro</h3>
-      <p>İnşaat ve renovasyon sektörünün dijital dönüşümünde güvenilir ortağınız. 2024'ten beri 180+ firmaya hizmet veriyoruz.</p>
-      <div class="footer-social">
-        <a href="#">𝕏</a>
-        <a href="#">in</a>
-        <a href="#">f</a>
-        <a href="#">ig</a>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h4>Ürün</h4>
-      <a href="#sectors">Sektörler</a>
-      <a href="#features">Özellikler</a>
-      <a href="#pricing">Fiyatlandırma</a>
-      <a href="dashboard.html">Demo</a>
-      <a href="#">Yol Haritası</a>
-      <a href="#">API</a>
-    </div>
-    <div class="footer-col">
-      <h4>Platformlar</h4>
-      <a href="https://mcemkoca.github.io/cleanfix-vercel/">🧹 CleanFix — Temizlik</a>
-      <a href="https://mcemkoca.github.io/buildpro-vercel/" style="color:var(--teal-400);font-weight:600;">🏗️ BuildPro — İnşaat</a>
-      <a href="https://mcemkoca.github.io/barberpro-vercel/">💜 BarberPro — Berber</a>
-      <a href="#">🛒 MarketPro — Market (Yakında)</a>
-      <a href="#">🏥 MediPro — Klinik (Yakında)</a>
-    </div>
-    <div class="footer-col">
-      <h4>Yasal</h4>
-      <a href="#">Gizlilik</a>
-      <a href="#">Kullanım Koşulları</a>
-      <a href="#">GDPR</a>
-      <a href="#">SLA</a>
-      <a href="#">Güvenlik</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
+<div class="footer-grid">
+<div class="footer-brand">
+<h3 data-i18n="buildpro_2">BuildPro</h3>
+<p data-i18n="inşaat_ve_renovasyon_sektörünün_dijital_dönüşümünde_güvenili">İnşaat ve renovasyon sektörünün dijital dönüşümünde güvenilir ortağınız. 2024'ten beri 180+ firmaya hizmet veriyoruz.</p>
+<div class="footer-social">
+<a data-i18n="𝕏" href="#">𝕏</a>
+<a data-i18n="in" href="#">in</a>
+<a data-i18n="f" href="#">f</a>
+<a data-i18n="ig" href="#">ig</a>
+</div>
+</div>
+<div class="footer-col">
+<h4 data-i18n="ürün">Ürün</h4>
+<a data-i18n="sektörler_2" href="#sectors">Sektörler</a>
+<a data-i18n="özellikler_2" href="#features">Özellikler</a>
+<a data-i18n="fiyatlandırma_2" href="#pricing">Fiyatlandırma</a>
+<a data-i18n="demo" href="dashboard.html">Demo</a>
+<a data-i18n="yol_haritası" href="#">Yol Haritası</a>
+<a data-i18n="api" href="#">API</a>
+</div>
+<div class="footer-col">
+<h4 data-i18n="platformlar">Platformlar</h4>
+<a data-i18n="cleanfix_temizlik" href="https://mcemkoca.github.io/cleanfix-vercel/">🧹 CleanFix — Temizlik</a>
+<a data-i18n="buildpro_inşaat" href="https://mcemkoca.github.io/buildpro-vercel/" style="color:var(--teal-400);font-weight:600;">🏗️ BuildPro — İnşaat</a>
+<a data-i18n="barberpro_berber" href="https://mcemkoca.github.io/barberpro-vercel/">💜 BarberPro — Berber</a>
+<a data-i18n="marketpro_market_yakında" href="#">🛒 MarketPro — Market (Yakında)</a>
+<a data-i18n="medipro_klinik_yakında" href="#">🏥 MediPro — Klinik (Yakında)</a>
+</div>
+<div class="footer-col">
+<h4 data-i18n="yasal">Yasal</h4>
+<a data-i18n="gizlilik" href="#">Gizlilik</a>
+<a data-i18n="kullanım_koşulları" href="#">Kullanım Koşulları</a>
+<a data-i18n="gdpr" href="#">GDPR</a>
+<a data-i18n="sla" href="#">SLA</a>
+<a data-i18n="güvenlik_2" href="#">Güvenlik</a>
+</div>
+</div>
+<div class="footer-bottom" data-i18n="_026_buildpro_bv_tüm_hakları_saklıdır_belçikada_geliştirildi">
     © 2026 BuildPro BV. Tüm hakları saklıdır. Belçika'da geliştirildi 🏗️
   </div>
 </footer>
-
 <script>
 /* Scroll Reveal */
 const observer = new IntersectionObserver((entries) => {
@@ -627,6 +621,585 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 </script>
-
-</body>
+<script>
+const i18n = {
+  "tr": {
+    "buildpro_inşaat_ve_renovasyon_yönetimi": "BuildPro — İnşaat ve Renovasyon Yönetimi",
+    "bp": "BP",
+    "buildpro": "BuildPro",
+    "sektörler": "Sektörler",
+    "özellikler": "Özellikler",
+    "fiyatlandırma": "Fiyatlandırma",
+    "demoya_git": "Demo'ya Git",
+    "akıllı_yönetimi": "Akıllı Yönetimi",
+    "konut_inşaatından_endüstriyel_tesise_peyzajdan_restorasyona_": "Konut inşaatından endüstriyel tesise, peyzajdan restorasyona — 6 sektör, tek platform. Proje takibi, maliyet analizi, şantiye yönetimi. Hepsi bir arada.",
+    "demoyu_dene": "Demo'yu Dene",
+    "nasıl_çalışır": "Nasıl Çalışır?",
+    "aktif_projeler": "Aktif Projeler",
+    "_8_bu_ay": "▲ +18 bu ay",
+    "toplam_bütçe": "Toplam Bütçe",
+    "_42m": "€14.2M",
+    "_1m": "▲ +€2.1M",
+    "tamamlanan_işler": "Tamamlanan İşler",
+    "_843": "1,843",
+    "_56": "▲ +156",
+    "güvenilen_şirketler": "Güvenilen Şirketler",
+    "bouwmeester_nv": "BouwMeester NV",
+    "constructeur_plus": "Constructeur Plus",
+    "renovatec": "RenovaTec",
+    "urbanplan_be": "UrbanPlan BE",
+    "indubuild": "InduBuild",
+    "greenscape_bv": "GreenScape BV",
+    "__sektör_tek_platform": "6 Sektör, Tek Platform",
+    "ihtiyacınıza_göre_sektörleri_aktifleştirin_kullanmaya_başlay": "İhtiyacınıza göre sektörleri aktifleştirin, kullanmaya başlayın. İsterseniz hepsini aynı anda yönetin.",
+    "aktif": "Aktif",
+    "konut_inşaatı": "Konut İnşaatı",
+    "apartman_villa_site_ve_konut_kompleksi_projelerinin_tam_yöne": "Apartman, villa, site ve konut kompleksi projelerinin tam yönetimi. Birim bazlı takip, teslimat planlaması.",
+    "daire_planlama": "Daire Planlama",
+    "teslimat": "Teslimat",
+    "satış_takibi": "Satış Takibi",
+    "kalite_kontrol": "Kalite Kontrol",
+    "aktif_2": "Aktif",
+    "ticari_inşaat": "Ticari İnşaat",
+    "ofis_binaları_alışveriş_merkezleri_otel_ve_hastane_projeleri": "Ofis binaları, alışveriş merkezleri, otel ve hastane projeleri. Kat mülkiyeti yönetimi, kiralama takibi.",
+    "kat_planlama": "Kat Planlama",
+    "kiralama": "Kiralama",
+    "ce_belgesi": "CE Belgesi",
+    "aktivasyon": "Aktivasyon",
+    "aktif_3": "Aktif",
+    "renovasyon_restore": "Renovasyon & Restore",
+    "tarihi_yapı_restorasyonu_iç_mekan_renovasyonu_enerji_verimli": "Tarihi yapı restorasyonu, iç mekan renovasyonu, enerji verimliliği yükseltme. Belgelendirme ve izin takibi.",
+    "fotografik_kayıt": "Fotografik Kayıt",
+    "izinler": "İzinler",
+    "enerji_etiketi": "Enerji Etiketi",
+    "heritage": "Heritage",
+    "aktif_4": "Aktif",
+    "altyapı_imar": "Altyapı & İmar",
+    "yol_köprü_kanalizasyon_ve_kentsel_dönüşüm_projeleri_belediye": "Yol, köprü, kanalizasyon ve kentsel dönüşüm projeleri. Belediye koordinasyonu, kamulaştırma takibi.",
+    "kamulaştırma": "Kamulaştırma",
+    "ruhsat": "Ruhsat",
+    "çed": "ÇED",
+    "belediye": "Belediye",
+    "aktif_5": "Aktif",
+    "endüstriyel_tesis": "Endüstriyel Tesis",
+    "fabrika_depo_lojistik_merkezi_ve_üretim_tesisi_inşaatları_ma": "Fabrika, depo, lojistik merkezi ve üretim tesisi inşaatları. Makine entegrasyonu, güvenlik protokolleri.",
+    "iso_uyum": "ISO Uyum",
+    "makine_yerleşimi": "Makine Yerleşimi",
+    "güvenlik": "Güvenlik",
+    "proses": "Proses",
+    "aktif_6": "Aktif",
+    "peyzaj_dış_mekan": "Peyzaj & Dış Mekan",
+    "park_bahçe_spor_kompleksi_ve_rekreasyon_alanları_bitki_envan": "Park, bahçe, spor kompleksi ve rekreasyon alanları. Bitki envanteri, sulama sistemi, sezonluk bakım.",
+    "bitki_envanteri": "Bitki Envanteri",
+    "sulama": "Sulama",
+    "sezon_takibi": "Sezon Takibi",
+    "ekoloji": "Ekoloji",
+    "tüm_proje_ihtiyaçlarınız_için": "Tüm Proje İhtiyaçlarınız İçin",
+    "planlamadan_teslimata_maliyetten_kaliteye_buildpro_her_aşama": "Planlamadan teslimata, maliyetten kaliteye — BuildPro her aşamada yanınızda.",
+    "proje_takibi": "Proje Takibi",
+    "gantt_şemaları_kilometre_taşları_kritik_yol_analizi_her_proj": "Gantt şemaları, kilometre taşları, kritik yol analizi. Her projenin durumunu gerçek zamanlı görün. Gecikme uyarıları otomatik.",
+    "ekip_ve_şantiye_yönetimi": "Ekip ve Şantiye Yönetimi",
+    "personel_atama_vardiya_planlama_şantiye_günlük_raporları_eki": "Personel atama, vardiya planlama, şantiye günlük raporları, ekipman kullanım kaydı. Tüm ekipler senkronize.",
+    "maliyet_ve_teklif": "Maliyet ve Teklif",
+    "detaylı_bütçe_planlama_hammadde_maliyet_analizi_otomatik_tek": "Detaylı bütçe planlama, hammadde maliyet analizi, otomatik teklif oluşturma. Kar marjı hesaplama anlık.",
+    "stok_ve_malzeme": "Stok ve Malzeme",
+    "depo_yönetimi_malzeme_giriş-çıkış_otomatik_sipariş_önerisi_t": "Depo yönetimi, malzeme giriş-çıkış, otomatik sipariş önerisi. Tedarikçi karşılaştırma ve fiyat takibi.",
+    "zamanlama_ve_takvim": "Zamanlama ve Takvim",
+    "şantiye_takvimi_ekipman_rezervasyonu_alt_yüklenici_koordinas": "Şantiye takvimi, ekipman rezervasyonu, alt yüklenici koordinasyonu. Weather API ile hava durumu entegrasyonu.",
+    "kalite_ve_güvenlik_kontrol": "Kalite ve Güvenlik Kontrol",
+    "fotoğraflı_kontrol_listeleri_iso_denetim_raporları_iş_güvenl": "Fotoğraflı kontrol listeleri, ISO denetim raporları, iş güvenliği eğitim takibi. NCR ve CAPA yönetimi.",
+    "__adımda_başlayın": "3 Adımda Başlayın",
+    "kurulum_dakikalar_içinde_karmaşık_entegrasyonlar_uzun_eğitim": "Kurulum dakikalar içinde. Karmaşık entegrasyonlar, uzun eğitimler yok.",
+    "sektörlerinizi_seçin": "Sektörlerinizi Seçin",
+    "__farklı_inşaat_sektöründen_ihtiyacınız_olanları_aktifleştir": "6 farklı inşaat sektöründen ihtiyacınız olanları aktifleştirin. Her biri bağımsız yönetilebilir.",
+    "projeleri_ekleyin": "Projeleri Ekleyin",
+    "şablonlardan_hızla_proje_oluşturun_ekipmanları_atayın_bütçey": "Şablonlardan hızla proje oluşturun, ekipmanları atayın, bütçeyi belirleyin. 5 dakikada hazır.",
+    "şantiyeyi_yönetin": "Şantiyeyi Yönetin",
+    "gerçek_zamanlı_takip_mobil_raporlama_anlık_bildirimler_artık": "Gerçek zamanlı takip, mobil raporlama, anlık bildirimler. Artık BuildPro sizinle.",
+    "esnek_fiyatlandırma": "Esnek Fiyatlandırma",
+    "proje_hacminize_uygun_plan_dilediğinizde_yükseltin_veya_düşü": "Proje hacminize uygun plan. Dilediğinizde yükseltin veya düşürün.",
+    "starter": "Starter",
+    "ay": "/ay",
+    "__aktif_sektör": "3 Aktif Sektör",
+    "_0_proje": "10 Proje",
+    "__kullanıcı": "5 Kullanıcı",
+    "_0gb_depolama": "50GB Depolama",
+    "email_destek": "Email Destek",
+    "temel_raporlar": "Temel Raporlar",
+    "başla": "Başla",
+    "pro": "Pro",
+    "ay_2": "/ay",
+    "tüm_6_sektör": "Tüm 6 Sektör",
+    "sınırsız_proje": "Sınırsız Proje",
+    "_5_kullanıcı": "25 Kullanıcı",
+    "_00gb_depolama": "500GB Depolama",
+    "öncelikli_destek": "Öncelikli Destek",
+    "gelişmiş_raporlar": "Gelişmiş Raporlar",
+    "api_erişimi": "API Erişimi",
+    "alt_yüklenici_modülü": "Alt Yüklenici Modülü",
+    "başla_2": "Başla",
+    "enterprise": "Enterprise",
+    "ay_3": "/ay",
+    "tüm_6_sektör_2": "Tüm 6 Sektör",
+    "sınırsız_proje_2": "Sınırsız Proje",
+    "sınırsız_kullanıcı": "Sınırsız Kullanıcı",
+    "_tb_depolama": "2TB Depolama",
+    "_24_telefon_desteği": "7/24 Telefon Desteği",
+    "özel_dashboard": "Özel Dashboard",
+    "white-label": "White-label",
+    "dedicated_sunucu": "Dedicated Sunucu",
+    "satışla_konuş": "Satışla Konuş",
+    "müşterilerimiz_ne_diyor": "Müşterilerimiz Ne Diyor?",
+    "belçika_hollanda_ve_lüksemburgdan_180_inşaat_firması_buildpr": "Belçika, Hollanda ve Lüksemburg'dan 180+ inşaat firması BuildPro'yu kullanıyor.",
+    "text": "⭐⭐⭐⭐⭐",
+    "önce_3_farklı_excel_dosyasıyla_proje_takibi_yapıyorduk_build": "\"Önce 3 farklı Excel dosyasıyla proje takibi yapıyorduk. BuildPro ile tüm şantiyeleri tek ekranda görüyoruz. Maliyet sapmalarını anında fark ediyoruz.\"",
+    "pieter_van_den_berg": "Pieter Van den Berg",
+    "bouwmeester_nv_brüksel": "BouwMeester NV, Brüksel",
+    "text_2": "⭐⭐⭐⭐⭐",
+    "renovasyon_projelerinde_fotoğraflı_raporlama_özelliği_hayat_": "\"Renovasyon projelerinde fotoğraflı raporlama özelliği hayat kurtarıyor. Müşterilerimize her hafta otomatik ilerleme raporu gönderiyoruz.\"",
+    "laurent_dubois": "Laurent Dubois",
+    "renovatec_anvers": "RenovaTec, Anvers",
+    "text_3": "⭐⭐⭐⭐⭐",
+    "endüstriyel_tesis_projelerinde_ekipman_rezervasyonu_çakışmal": "\"Endüstriyel tesis projelerinde ekipman rezervasyonu çakışmaları tamamen bitti. Artık vinç ve iş makinesi programı herkes tarafından canlı görülüyor.\"",
+    "johan_maes": "Johan Maes",
+    "indubuild_bv_gent": "InduBuild BV, Gent",
+    "güvenlik_ve_uyumluluk": "Güvenlik ve Uyumluluk",
+    "ssl_şifreleme": "SSL Şifreleme",
+    "gdpr_uyumlu": "GDPR Uyumlu",
+    "iso_19650_bim": "ISO 19650 BIM",
+    "iso_27001": "ISO 27001",
+    "günlük_yedekleme": "Günlük Yedekleme",
+    "eu_sunucuları": "EU Sunucuları",
+    "bugün_başlayın": "Bugün Başlayın",
+    "_0_gün_ücretsiz_deneme_kredi_kartı_gerekmez_istediğinizde_ip": "30 gün ücretsiz deneme. Kredi kartı gerekmez. İstediğinizde iptal edin.",
+    "ücretsiz_başla": "Ücretsiz Başla",
+    "buildpro_2": "BuildPro",
+    "inşaat_ve_renovasyon_sektörünün_dijital_dönüşümünde_güvenili": "İnşaat ve renovasyon sektörünün dijital dönüşümünde güvenilir ortağınız. 2024'ten beri 180+ firmaya hizmet veriyoruz.",
+    "𝕏": "𝕏",
+    "in": "in",
+    "f": "f",
+    "ig": "ig",
+    "ürün": "Ürün",
+    "sektörler_2": "Sektörler",
+    "özellikler_2": "Özellikler",
+    "fiyatlandırma_2": "Fiyatlandırma",
+    "demo": "Demo",
+    "yol_haritası": "Yol Haritası",
+    "api": "API",
+    "platformlar": "Platformlar",
+    "cleanfix_temizlik": "🧹 CleanFix — Temizlik",
+    "buildpro_inşaat": "🏗️ BuildPro — İnşaat",
+    "barberpro_berber": "💜 BarberPro — Berber",
+    "marketpro_market_yakında": "🛒 MarketPro — Market (Yakında)",
+    "medipro_klinik_yakında": "🏥 MediPro — Klinik (Yakında)",
+    "yasal": "Yasal",
+    "gizlilik": "Gizlilik",
+    "kullanım_koşulları": "Kullanım Koşulları",
+    "gdpr": "GDPR",
+    "sla": "SLA",
+    "güvenlik_2": "Güvenlik",
+    "_026_buildpro_bv_tüm_hakları_saklıdır_belçikada_geliştirildi": "© 2026 BuildPro BV. Tüm hakları saklıdır. Belçika'da geliştirildi 🏗️",
+    "ph_e-posta_adresiniz": "E-posta adresiniz"
+  },
+  "en": {
+    "buildpro_inşaat_ve_renovasyon_yönetimi": "BuildPro — İnşaat ve Renovasyon Management",
+    "bp": "BP",
+    "buildpro": "BuildPro",
+    "sektörler": "Sectors",
+    "özellikler": "Features",
+    "fiyatlandırma": "Pricing",
+    "demoya_git": "Demo'ya Git",
+    "akıllı_yönetimi": "Akıllı Management",
+    "konut_inşaatından_endüstriyel_tesise_peyzajdan_restorasyona_": "Konut inşaatından endüstriyel tesise, peyzajdan restorasyona — 6 sektör, tek platform. Proje takibi, maliyet analizi, şantiye yönetimi. Hepsi bir arada.",
+    "demoyu_dene": "Demo'yu Dene",
+    "nasıl_çalışır": "How It Works",
+    "aktif_projeler": "Aktif Projeler",
+    "_8_bu_ay": "▲ +18 bu ay",
+    "toplam_bütçe": "Total Budget",
+    "_42m": "€14.2M",
+    "_1m": "▲ +€2.1M",
+    "tamamlanan_işler": "Tamamlanan İşler",
+    "_843": "1,843",
+    "_56": "▲ +156",
+    "güvenilen_şirketler": "Güvenilen Şirketler",
+    "bouwmeester_nv": "BouwMeester NV",
+    "constructeur_plus": "Constructeur Plus",
+    "renovatec": "RenovaTec",
+    "urbanplan_be": "UrbanPlan BE",
+    "indubuild": "InduBuild",
+    "greenscape_bv": "GreenScape BV",
+    "__sektör_tek_platform": "6 Sektör, Tek Platform",
+    "ihtiyacınıza_göre_sektörleri_aktifleştirin_kullanmaya_başlay": "İhtiyacınıza göre sektörleri aktifleştirin, kullanmaya başlayın. İsterseniz hepsini aynı anda yönetin.",
+    "aktif": "Active",
+    "konut_inşaatı": "Konut İnşaatı",
+    "apartman_villa_site_ve_konut_kompleksi_projelerinin_tam_yöne": "Apartman, villa, site ve konut kompleksi projelerinin tam yönetimi. Birim bazlı takip, teslimat planlaması.",
+    "daire_planlama": "Daire Planlama",
+    "teslimat": "Delivery",
+    "satış_takibi": "Satış Takibi",
+    "kalite_kontrol": "Kalite Kontrol",
+    "aktif_2": "Active",
+    "ticari_inşaat": "Ticari İnşaat",
+    "ofis_binaları_alışveriş_merkezleri_otel_ve_hastane_projeleri": "Ofis binaları, alışveriş merkezleri, otel ve hastane projeleri. Kat mülkiyeti yönetimi, kiralama takibi.",
+    "kat_planlama": "Kat Planlama",
+    "kiralama": "Kiralama",
+    "ce_belgesi": "CE Belgesi",
+    "aktivasyon": "Aktivasyon",
+    "aktif_3": "Active",
+    "renovasyon_restore": "Renovasyon & Restore",
+    "tarihi_yapı_restorasyonu_iç_mekan_renovasyonu_enerji_verimli": "Tarihi yapı restorasyonu, iç mekan renovasyonu, enerji verimliliği yükseltme. Belgelendirme ve izin takibi.",
+    "fotografik_kayıt": "Fotografik Kayıt",
+    "izinler": "İzinler",
+    "enerji_etiketi": "Enerji Etiketi",
+    "heritage": "Heritage",
+    "aktif_4": "Active",
+    "altyapı_imar": "Altyapı & İmar",
+    "yol_köprü_kanalizasyon_ve_kentsel_dönüşüm_projeleri_belediye": "Yol, köprü, kanalizasyon ve kentsel dönüşüm projeleri. Belediye koordinasyonu, kamulaştırma takibi.",
+    "kamulaştırma": "Kamulaştırma",
+    "ruhsat": "Permit",
+    "çed": "ÇED",
+    "belediye": "Belediye",
+    "aktif_5": "Active",
+    "endüstriyel_tesis": "Endüstriyel Tesis",
+    "fabrika_depo_lojistik_merkezi_ve_üretim_tesisi_inşaatları_ma": "Fabrika, depo, lojistik merkezi ve üretim tesisi inşaatları. Makine entegrasyonu, güvenlik protokolleri.",
+    "iso_uyum": "ISO Uyum",
+    "makine_yerleşimi": "Makine Yerleşimi",
+    "güvenlik": "Safety",
+    "proses": "Proses",
+    "aktif_6": "Active",
+    "peyzaj_dış_mekan": "Peyzaj & Dış Mekan",
+    "park_bahçe_spor_kompleksi_ve_rekreasyon_alanları_bitki_envan": "Park, bahçe, spor kompleksi ve rekreasyon alanları. Bitki envanteri, sulama sistemi, sezonluk bakım.",
+    "bitki_envanteri": "Bitki Envanteri",
+    "sulama": "Sulama",
+    "sezon_takibi": "Sezon Takibi",
+    "ekoloji": "Ekoloji",
+    "tüm_proje_ihtiyaçlarınız_için": "Tüm Proje İhtiyaçlarınız İçin",
+    "planlamadan_teslimata_maliyetten_kaliteye_buildpro_her_aşama": "Planlamadan teslimata, maliyetten kaliteye — BuildPro her aşamada yanınızda.",
+    "proje_takibi": "Proje Takibi",
+    "gantt_şemaları_kilometre_taşları_kritik_yol_analizi_her_proj": "Gantt şemaları, kilometre taşları, kritik yol analizi. Her projenin durumunu gerçek zamanlı görün. Gecikme uyarıları otomatik.",
+    "ekip_ve_şantiye_yönetimi": "Ekip ve Şantiye Management",
+    "personel_atama_vardiya_planlama_şantiye_günlük_raporları_eki": "Personel atama, vardiya planlama, şantiye günlük raporları, ekipman kullanım kaydı. Tüm ekipler senkronize.",
+    "maliyet_ve_teklif": "Maliyet ve Teklif",
+    "detaylı_bütçe_planlama_hammadde_maliyet_analizi_otomatik_tek": "Detaylı bütçe planlama, hammadde maliyet analizi, otomatik teklif oluşturma. Kar marjı hesaplama anlık.",
+    "stok_ve_malzeme": "Stok ve Malzeme",
+    "depo_yönetimi_malzeme_giriş-çıkış_otomatik_sipariş_önerisi_t": "Depo yönetimi, malzeme giriş-çıkış, otomatik sipariş önerisi. Tedarikçi karşılaştırma ve fiyat takibi.",
+    "zamanlama_ve_takvim": "Zamanlama ve Takvim",
+    "şantiye_takvimi_ekipman_rezervasyonu_alt_yüklenici_koordinas": "Şantiye takvimi, ekipman rezervasyonu, alt yüklenici koordinasyonu. Weather API ile hava durumu entegrasyonu.",
+    "kalite_ve_güvenlik_kontrol": "Kalite ve Güvenlik Kontrol",
+    "fotoğraflı_kontrol_listeleri_iso_denetim_raporları_iş_güvenl": "Fotoğraflı kontrol listeleri, ISO denetim raporları, iş güvenliği eğitim takibi. NCR ve CAPA yönetimi.",
+    "__adımda_başlayın": "3 Adımda Başlayın",
+    "kurulum_dakikalar_içinde_karmaşık_entegrasyonlar_uzun_eğitim": "Kurulum dakikalar içinde. Karmaşık entegrasyonlar, uzun eğitimler yok.",
+    "sektörlerinizi_seçin": "Sektörlerinizi Seçin",
+    "__farklı_inşaat_sektöründen_ihtiyacınız_olanları_aktifleştir": "6 farklı inşaat sektöründen ihtiyacınız olanları aktifleştirin. Her biri bağımsız yönetilebilir.",
+    "projeleri_ekleyin": "Projeleri Ekleyin",
+    "şablonlardan_hızla_proje_oluşturun_ekipmanları_atayın_bütçey": "Şablonlardan hızla proje oluşturun, ekipmanları atayın, bütçeyi belirleyin. 5 dakikada hazır.",
+    "şantiyeyi_yönetin": "Şantiyeyi Yönetin",
+    "gerçek_zamanlı_takip_mobil_raporlama_anlık_bildirimler_artık": "Gerçek zamanlı takip, mobil raporlama, anlık bildirimler. Artık BuildPro sizinle.",
+    "esnek_fiyatlandırma": "Esnek Fiyatlandırma",
+    "proje_hacminize_uygun_plan_dilediğinizde_yükseltin_veya_düşü": "Proje hacminize uygun plan. Dilediğinizde yükseltin veya düşürün.",
+    "starter": "Starter",
+    "ay": "/ay",
+    "__aktif_sektör": "3 Aktif Sektör",
+    "_0_proje": "10 Proje",
+    "__kullanıcı": "5 Kullanıcı",
+    "_0gb_depolama": "50GB Depolama",
+    "email_destek": "Email Destek",
+    "temel_raporlar": "Temel Raporlar",
+    "başla": "Başla",
+    "pro": "Pro",
+    "ay_2": "/ay",
+    "tüm_6_sektör": "Tüm 6 Sektör",
+    "sınırsız_proje": "Sınırsız Proje",
+    "_5_kullanıcı": "25 Kullanıcı",
+    "_00gb_depolama": "500GB Depolama",
+    "öncelikli_destek": "Öncelikli Destek",
+    "gelişmiş_raporlar": "Gelişmiş Raporlar",
+    "api_erişimi": "API Erişimi",
+    "alt_yüklenici_modülü": "Alt Yüklenici Modülü",
+    "başla_2": "Başla",
+    "enterprise": "Enterprise",
+    "ay_3": "/ay",
+    "tüm_6_sektör_2": "Tüm 6 Sektör",
+    "sınırsız_proje_2": "Sınırsız Proje",
+    "sınırsız_kullanıcı": "Sınırsız Kullanıcı",
+    "_tb_depolama": "2TB Depolama",
+    "_24_telefon_desteği": "7/24 Telefon Desteği",
+    "özel_dashboard": "Özel Dashboard",
+    "white-label": "White-label",
+    "dedicated_sunucu": "Dedicated Sunucu",
+    "satışla_konuş": "Satışla Konuş",
+    "müşterilerimiz_ne_diyor": "Müşterilerimiz Ne Diyor?",
+    "belçika_hollanda_ve_lüksemburgdan_180_inşaat_firması_buildpr": "Belçika, Hollanda ve Lüksemburg'dan 180+ inşaat firması BuildPro'yu kullanıyor.",
+    "text": "⭐⭐⭐⭐⭐",
+    "önce_3_farklı_excel_dosyasıyla_proje_takibi_yapıyorduk_build": "\"Önce 3 farklı Excel dosyasıyla proje takibi yapıyorduk. BuildPro ile tüm şantiyeleri tek ekranda görüyoruz. Maliyet sapmalarını anında fark ediyoruz.\"",
+    "pieter_van_den_berg": "Pieter Van den Berg",
+    "bouwmeester_nv_brüksel": "BouwMeester NV, Brüksel",
+    "text_2": "⭐⭐⭐⭐⭐",
+    "renovasyon_projelerinde_fotoğraflı_raporlama_özelliği_hayat_": "\"Renovasyon projelerinde fotoğraflı raporlama özelliği hayat kurtarıyor. Müşterilerimize her hafta otomatik ilerleme raporu gönderiyoruz.\"",
+    "laurent_dubois": "Laurent Dubois",
+    "renovatec_anvers": "RenovaTec, Anvers",
+    "text_3": "⭐⭐⭐⭐⭐",
+    "endüstriyel_tesis_projelerinde_ekipman_rezervasyonu_çakışmal": "\"Endüstriyel tesis projelerinde ekipman rezervasyonu çakışmaları tamamen bitti. Artık vinç ve iş makinesi programı herkes tarafından canlı görülüyor.\"",
+    "johan_maes": "Johan Maes",
+    "indubuild_bv_gent": "InduBuild BV, Gent",
+    "güvenlik_ve_uyumluluk": "Güvenlik ve Uyumluluk",
+    "ssl_şifreleme": "SSL Şifreleme",
+    "gdpr_uyumlu": "GDPR Uyumlu",
+    "iso_19650_bim": "ISO 19650 BIM",
+    "iso_27001": "ISO 27001",
+    "günlük_yedekleme": "Günlük Yedekleme",
+    "eu_sunucuları": "EU Sunucuları",
+    "bugün_başlayın": "Bugün Başlayın",
+    "_0_gün_ücretsiz_deneme_kredi_kartı_gerekmez_istediğinizde_ip": "30 gün ücretsiz deneme. Kredi kartı gerekmez. İstediğinizde iptal edin.",
+    "ücretsiz_başla": "Ücretsiz Başla",
+    "buildpro_2": "BuildPro",
+    "inşaat_ve_renovasyon_sektörünün_dijital_dönüşümünde_güvenili": "İnşaat ve renovasyon sektörünün dijital dönüşümünde güvenilir ortağınız. 2024'ten beri 180+ firmaya hizmet veriyoruz.",
+    "𝕏": "𝕏",
+    "in": "in",
+    "f": "f",
+    "ig": "ig",
+    "ürün": "Product",
+    "sektörler_2": "Sectors",
+    "özellikler_2": "Features",
+    "fiyatlandırma_2": "Pricing",
+    "demo": "Demo",
+    "yol_haritası": "Yol Haritası",
+    "api": "API",
+    "platformlar": "Platformlar",
+    "cleanfix_temizlik": "🧹 CleanFix — Temizlik",
+    "buildpro_inşaat": "🏗️ BuildPro — İnşaat",
+    "barberpro_berber": "💜 BarberPro — Berber",
+    "marketpro_market_yakında": "🛒 MarketPro — Market (Yakında)",
+    "medipro_klinik_yakında": "🏥 MediPro — Klinik (Yakında)",
+    "yasal": "Yasal",
+    "gizlilik": "Gizlilik",
+    "kullanım_koşulları": "Terms of Service",
+    "gdpr": "GDPR",
+    "sla": "SLA",
+    "güvenlik_2": "Safety",
+    "_026_buildpro_bv_tüm_hakları_saklıdır_belçikada_geliştirildi": "© 2026 BuildPro BV. Tüm hakları saklıdır. Belçika'da geliştirildi 🏗️",
+    "ph_e-posta_adresiniz": "E-posta adresiniz"
+  },
+  "nl": {
+    "buildpro_inşaat_ve_renovasyon_yönetimi": "BuildPro — İnşaat ve Renovasyon Beheer",
+    "bp": "BP",
+    "buildpro": "BuildPro",
+    "sektörler": "Sectoren",
+    "özellikler": "Functies",
+    "fiyatlandırma": "Prijzen",
+    "demoya_git": "Demo'ya Git",
+    "akıllı_yönetimi": "Akıllı Beheer",
+    "konut_inşaatından_endüstriyel_tesise_peyzajdan_restorasyona_": "Konut inşaatından endüstriyel tesise, peyzajdan restorasyona — 6 sektör, tek platform. Proje takibi, maliyet analizi, şantiye yönetimi. Hepsi bir arada.",
+    "demoyu_dene": "Demo'yu Dene",
+    "nasıl_çalışır": "Hoe Werkt Het?",
+    "aktif_projeler": "Aktif Projeler",
+    "_8_bu_ay": "▲ +18 bu ay",
+    "toplam_bütçe": "Totaal Budget",
+    "_42m": "€14.2M",
+    "_1m": "▲ +€2.1M",
+    "tamamlanan_işler": "Tamamlanan İşler",
+    "_843": "1,843",
+    "_56": "▲ +156",
+    "güvenilen_şirketler": "Güvenilen Şirketler",
+    "bouwmeester_nv": "BouwMeester NV",
+    "constructeur_plus": "Constructeur Plus",
+    "renovatec": "RenovaTec",
+    "urbanplan_be": "UrbanPlan BE",
+    "indubuild": "InduBuild",
+    "greenscape_bv": "GreenScape BV",
+    "__sektör_tek_platform": "6 Sektör, Tek Platform",
+    "ihtiyacınıza_göre_sektörleri_aktifleştirin_kullanmaya_başlay": "İhtiyacınıza göre sektörleri aktifleştirin, kullanmaya başlayın. İsterseniz hepsini aynı anda yönetin.",
+    "aktif": "Actief",
+    "konut_inşaatı": "Konut İnşaatı",
+    "apartman_villa_site_ve_konut_kompleksi_projelerinin_tam_yöne": "Apartman, villa, site ve konut kompleksi projelerinin tam yönetimi. Birim bazlı takip, teslimat planlaması.",
+    "daire_planlama": "Daire Planlama",
+    "teslimat": "Levering",
+    "satış_takibi": "Satış Takibi",
+    "kalite_kontrol": "Kalite Kontrol",
+    "aktif_2": "Actief",
+    "ticari_inşaat": "Ticari İnşaat",
+    "ofis_binaları_alışveriş_merkezleri_otel_ve_hastane_projeleri": "Ofis binaları, alışveriş merkezleri, otel ve hastane projeleri. Kat mülkiyeti yönetimi, kiralama takibi.",
+    "kat_planlama": "Kat Planlama",
+    "kiralama": "Kiralama",
+    "ce_belgesi": "CE Belgesi",
+    "aktivasyon": "Aktivasyon",
+    "aktif_3": "Actief",
+    "renovasyon_restore": "Renovasyon & Restore",
+    "tarihi_yapı_restorasyonu_iç_mekan_renovasyonu_enerji_verimli": "Tarihi yapı restorasyonu, iç mekan renovasyonu, enerji verimliliği yükseltme. Belgelendirme ve izin takibi.",
+    "fotografik_kayıt": "Fotografik Kayıt",
+    "izinler": "İzinler",
+    "enerji_etiketi": "Enerji Etiketi",
+    "heritage": "Heritage",
+    "aktif_4": "Actief",
+    "altyapı_imar": "Altyapı & İmar",
+    "yol_köprü_kanalizasyon_ve_kentsel_dönüşüm_projeleri_belediye": "Yol, köprü, kanalizasyon ve kentsel dönüşüm projeleri. Belediye koordinasyonu, kamulaştırma takibi.",
+    "kamulaştırma": "Kamulaştırma",
+    "ruhsat": "Vergunning",
+    "çed": "ÇED",
+    "belediye": "Belediye",
+    "aktif_5": "Actief",
+    "endüstriyel_tesis": "Endüstriyel Tesis",
+    "fabrika_depo_lojistik_merkezi_ve_üretim_tesisi_inşaatları_ma": "Fabrika, depo, lojistik merkezi ve üretim tesisi inşaatları. Makine entegrasyonu, güvenlik protokolleri.",
+    "iso_uyum": "ISO Uyum",
+    "makine_yerleşimi": "Makine Yerleşimi",
+    "güvenlik": "Veiligheid",
+    "proses": "Proses",
+    "aktif_6": "Actief",
+    "peyzaj_dış_mekan": "Peyzaj & Dış Mekan",
+    "park_bahçe_spor_kompleksi_ve_rekreasyon_alanları_bitki_envan": "Park, bahçe, spor kompleksi ve rekreasyon alanları. Bitki envanteri, sulama sistemi, sezonluk bakım.",
+    "bitki_envanteri": "Bitki Envanteri",
+    "sulama": "Sulama",
+    "sezon_takibi": "Sezon Takibi",
+    "ekoloji": "Ekoloji",
+    "tüm_proje_ihtiyaçlarınız_için": "Tüm Proje İhtiyaçlarınız İçin",
+    "planlamadan_teslimata_maliyetten_kaliteye_buildpro_her_aşama": "Planlamadan teslimata, maliyetten kaliteye — BuildPro her aşamada yanınızda.",
+    "proje_takibi": "Proje Takibi",
+    "gantt_şemaları_kilometre_taşları_kritik_yol_analizi_her_proj": "Gantt şemaları, kilometre taşları, kritik yol analizi. Her projenin durumunu gerçek zamanlı görün. Gecikme uyarıları otomatik.",
+    "ekip_ve_şantiye_yönetimi": "Ekip ve Şantiye Beheer",
+    "personel_atama_vardiya_planlama_şantiye_günlük_raporları_eki": "Personel atama, vardiya planlama, şantiye günlük raporları, ekipman kullanım kaydı. Tüm ekipler senkronize.",
+    "maliyet_ve_teklif": "Maliyet ve Teklif",
+    "detaylı_bütçe_planlama_hammadde_maliyet_analizi_otomatik_tek": "Detaylı bütçe planlama, hammadde maliyet analizi, otomatik teklif oluşturma. Kar marjı hesaplama anlık.",
+    "stok_ve_malzeme": "Stok ve Malzeme",
+    "depo_yönetimi_malzeme_giriş-çıkış_otomatik_sipariş_önerisi_t": "Depo yönetimi, malzeme giriş-çıkış, otomatik sipariş önerisi. Tedarikçi karşılaştırma ve fiyat takibi.",
+    "zamanlama_ve_takvim": "Zamanlama ve Takvim",
+    "şantiye_takvimi_ekipman_rezervasyonu_alt_yüklenici_koordinas": "Şantiye takvimi, ekipman rezervasyonu, alt yüklenici koordinasyonu. Weather API ile hava durumu entegrasyonu.",
+    "kalite_ve_güvenlik_kontrol": "Kalite ve Güvenlik Kontrol",
+    "fotoğraflı_kontrol_listeleri_iso_denetim_raporları_iş_güvenl": "Fotoğraflı kontrol listeleri, ISO denetim raporları, iş güvenliği eğitim takibi. NCR ve CAPA yönetimi.",
+    "__adımda_başlayın": "3 Adımda Başlayın",
+    "kurulum_dakikalar_içinde_karmaşık_entegrasyonlar_uzun_eğitim": "Kurulum dakikalar içinde. Karmaşık entegrasyonlar, uzun eğitimler yok.",
+    "sektörlerinizi_seçin": "Sektörlerinizi Seçin",
+    "__farklı_inşaat_sektöründen_ihtiyacınız_olanları_aktifleştir": "6 farklı inşaat sektöründen ihtiyacınız olanları aktifleştirin. Her biri bağımsız yönetilebilir.",
+    "projeleri_ekleyin": "Projeleri Ekleyin",
+    "şablonlardan_hızla_proje_oluşturun_ekipmanları_atayın_bütçey": "Şablonlardan hızla proje oluşturun, ekipmanları atayın, bütçeyi belirleyin. 5 dakikada hazır.",
+    "şantiyeyi_yönetin": "Şantiyeyi Yönetin",
+    "gerçek_zamanlı_takip_mobil_raporlama_anlık_bildirimler_artık": "Gerçek zamanlı takip, mobil raporlama, anlık bildirimler. Artık BuildPro sizinle.",
+    "esnek_fiyatlandırma": "Esnek Fiyatlandırma",
+    "proje_hacminize_uygun_plan_dilediğinizde_yükseltin_veya_düşü": "Proje hacminize uygun plan. Dilediğinizde yükseltin veya düşürün.",
+    "starter": "Starter",
+    "ay": "/ay",
+    "__aktif_sektör": "3 Aktif Sektör",
+    "_0_proje": "10 Proje",
+    "__kullanıcı": "5 Kullanıcı",
+    "_0gb_depolama": "50GB Depolama",
+    "email_destek": "Email Destek",
+    "temel_raporlar": "Temel Raporlar",
+    "başla": "Başla",
+    "pro": "Pro",
+    "ay_2": "/ay",
+    "tüm_6_sektör": "Tüm 6 Sektör",
+    "sınırsız_proje": "Sınırsız Proje",
+    "_5_kullanıcı": "25 Kullanıcı",
+    "_00gb_depolama": "500GB Depolama",
+    "öncelikli_destek": "Öncelikli Destek",
+    "gelişmiş_raporlar": "Gelişmiş Raporlar",
+    "api_erişimi": "API Erişimi",
+    "alt_yüklenici_modülü": "Alt Yüklenici Modülü",
+    "başla_2": "Başla",
+    "enterprise": "Enterprise",
+    "ay_3": "/ay",
+    "tüm_6_sektör_2": "Tüm 6 Sektör",
+    "sınırsız_proje_2": "Sınırsız Proje",
+    "sınırsız_kullanıcı": "Sınırsız Kullanıcı",
+    "_tb_depolama": "2TB Depolama",
+    "_24_telefon_desteği": "7/24 Telefon Desteği",
+    "özel_dashboard": "Özel Dashboard",
+    "white-label": "White-label",
+    "dedicated_sunucu": "Dedicated Sunucu",
+    "satışla_konuş": "Satışla Konuş",
+    "müşterilerimiz_ne_diyor": "Müşterilerimiz Ne Diyor?",
+    "belçika_hollanda_ve_lüksemburgdan_180_inşaat_firması_buildpr": "Belçika, Hollanda ve Lüksemburg'dan 180+ inşaat firması BuildPro'yu kullanıyor.",
+    "text": "⭐⭐⭐⭐⭐",
+    "önce_3_farklı_excel_dosyasıyla_proje_takibi_yapıyorduk_build": "\"Önce 3 farklı Excel dosyasıyla proje takibi yapıyorduk. BuildPro ile tüm şantiyeleri tek ekranda görüyoruz. Maliyet sapmalarını anında fark ediyoruz.\"",
+    "pieter_van_den_berg": "Pieter Van den Berg",
+    "bouwmeester_nv_brüksel": "BouwMeester NV, Brüksel",
+    "text_2": "⭐⭐⭐⭐⭐",
+    "renovasyon_projelerinde_fotoğraflı_raporlama_özelliği_hayat_": "\"Renovasyon projelerinde fotoğraflı raporlama özelliği hayat kurtarıyor. Müşterilerimize her hafta otomatik ilerleme raporu gönderiyoruz.\"",
+    "laurent_dubois": "Laurent Dubois",
+    "renovatec_anvers": "RenovaTec, Anvers",
+    "text_3": "⭐⭐⭐⭐⭐",
+    "endüstriyel_tesis_projelerinde_ekipman_rezervasyonu_çakışmal": "\"Endüstriyel tesis projelerinde ekipman rezervasyonu çakışmaları tamamen bitti. Artık vinç ve iş makinesi programı herkes tarafından canlı görülüyor.\"",
+    "johan_maes": "Johan Maes",
+    "indubuild_bv_gent": "InduBuild BV, Gent",
+    "güvenlik_ve_uyumluluk": "Güvenlik ve Uyumluluk",
+    "ssl_şifreleme": "SSL Şifreleme",
+    "gdpr_uyumlu": "GDPR Uyumlu",
+    "iso_19650_bim": "ISO 19650 BIM",
+    "iso_27001": "ISO 27001",
+    "günlük_yedekleme": "Günlük Yedekleme",
+    "eu_sunucuları": "EU Sunucuları",
+    "bugün_başlayın": "Bugün Başlayın",
+    "_0_gün_ücretsiz_deneme_kredi_kartı_gerekmez_istediğinizde_ip": "30 gün ücretsiz deneme. Kredi kartı gerekmez. İstediğinizde iptal edin.",
+    "ücretsiz_başla": "Ücretsiz Başla",
+    "buildpro_2": "BuildPro",
+    "inşaat_ve_renovasyon_sektörünün_dijital_dönüşümünde_güvenili": "İnşaat ve renovasyon sektörünün dijital dönüşümünde güvenilir ortağınız. 2024'ten beri 180+ firmaya hizmet veriyoruz.",
+    "𝕏": "𝕏",
+    "in": "in",
+    "f": "f",
+    "ig": "ig",
+    "ürün": "Product",
+    "sektörler_2": "Sectoren",
+    "özellikler_2": "Functies",
+    "fiyatlandırma_2": "Prijzen",
+    "demo": "Demo",
+    "yol_haritası": "Yol Haritası",
+    "api": "API",
+    "platformlar": "Platformlar",
+    "cleanfix_temizlik": "🧹 CleanFix — Temizlik",
+    "buildpro_inşaat": "🏗️ BuildPro — İnşaat",
+    "barberpro_berber": "💜 BarberPro — Berber",
+    "marketpro_market_yakında": "🛒 MarketPro — Market (Yakında)",
+    "medipro_klinik_yakında": "🏥 MediPro — Klinik (Yakında)",
+    "yasal": "Yasal",
+    "gizlilik": "Gizlilik",
+    "kullanım_koşulları": "Gebruiksvoorwaarden",
+    "gdpr": "GDPR",
+    "sla": "SLA",
+    "güvenlik_2": "Veiligheid",
+    "_026_buildpro_bv_tüm_hakları_saklıdır_belçikada_geliştirildi": "© 2026 BuildPro BV. Tüm hakları saklıdır. Belçika'da geliştirildi 🏗️",
+    "ph_e-posta_adresiniz": "E-posta adresiniz"
+  }
+};
+let currentLang = localStorage.getItem('buildpro_lang') || 'tr';
+document.documentElement.lang = currentLang;
+function switchLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('buildpro_lang', lang);
+  document.documentElement.lang = lang;
+  applyLang();
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+}
+function applyLang() {
+  const t = i18n[currentLang] || i18n['tr'];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) {
+      const attr = el.getAttribute('data-i18n-attr');
+      if (attr) {
+        el.setAttribute(attr, t[key]);
+      } else if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        if (el.type !== 'submit' && el.type !== 'button') {
+          // keep value for inputs unless button
+        }
+        el.value = t[key];
+      } else if (el.tagName === 'OPTION') {
+        el.textContent = t[key];
+      } else {
+        el.textContent = t[key];
+      }
+    }
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key]) el.placeholder = t[key];
+  });
+  const titleEl = document.querySelector('title');
+  if (titleEl) {
+    const key = titleEl.getAttribute('data-i18n');
+    if (key && t[key]) document.title = t[key];
+  }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  applyLang();
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === currentLang));
+});
+</script></body>
 </html>

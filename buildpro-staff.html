@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="tr" data-theme="dark">
+<html data-theme="dark" lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BuildPro — Personel Yönetimi</title>
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/dashboard.css">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title data-i18n="buildpro_personel_yönetimi">BuildPro — Personel Yönetimi</title>
+<link href="css/main.css" rel="stylesheet"/>
+<link href="css/components.css" rel="stylesheet"/>
+<link href="css/dashboard.css" rel="stylesheet"/>
+<style>
     .cert-tags { display:flex; flex-wrap:wrap; gap:4px; }
     .cert-tag { font-size:10px; padding:2px 8px; border-radius:9999px; background:var(--bg-tertiary); color:var(--text-secondary); border:1px solid var(--border-color); }
     .staff-avatar { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:var(--text-xs); font-weight:600; color:white; flex-shrink:0; }
@@ -26,561 +26,558 @@
   </style>
 </head>
 <body>
-  <div class="dashboard">
-    <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-brand">
-        <div class="sidebar-brand-icon">BP</div>
-        <span class="sidebar-brand-text">BuildPro</span>
-      </div>
-      <nav class="sidebar-nav">
-        <div class="sidebar-section">
-          <div class="sidebar-section-title">Genel</div>
-          <a class="sidebar-link" href="buildpro-dashboard.html"><span class="icon">📊</span><span class="sidebar-text">Dashboard</span></a>
-          <a class="sidebar-link" href="buildpro-projects.html"><span class="icon">🏗️</span><span class="sidebar-text">Projeler</span></a>
-          <a class="sidebar-link active" href="buildpro-staff.html"><span class="icon">👷</span><span class="sidebar-text">Personel</span></a>
-          <a class="sidebar-link" href="buildpro-site.html"><span class="icon">📍</span><span class="sidebar-text">Şantiyeler</span></a>
-        </div>
-        <div class="sidebar-section">
-          <div class="sidebar-section-title">Operasyon</div>
-          <a class="sidebar-link" href="buildpro-calendar.html"><span class="icon">📅</span><span class="sidebar-text">Takvim</span></a>
-          <a class="sidebar-link" href="buildpro-costs.html"><span class="icon">💶</span><span class="sidebar-text">Maliyetler</span></a>
-          <a class="sidebar-link" href="buildpro-equipment.html"><span class="icon">🚜</span><span class="sidebar-text">Ekipman</span></a>
-        </div>
-        <div class="sidebar-section">
-          <div class="sidebar-section-title">Müşteri</div>
-          <a class="sidebar-link" href="buildpro-clients.html"><span class="icon">🤝</span><span class="sidebar-text">Müşteriler</span></a>
-          <a class="sidebar-link" href="buildpro-quotes.html"><span class="icon">📄</span><span class="sidebar-text">Teklifler</span></a>
-        </div>
-      </nav>
-      <div class="sidebar-footer">
-        <a class="sidebar-link" href="#"><span class="icon">⚙️</span><span class="sidebar-text">Ayarlar</span></a>
-      </div>
-    </aside>
-    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+<div class="dashboard">
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+<div class="sidebar-brand">
+<div class="sidebar-brand-icon">BP</div>
+<span class="sidebar-brand-text" data-i18n="buildpro">BuildPro</span>
+</div>
+<nav class="sidebar-nav">
+<div class="sidebar-section">
+<div class="sidebar-section-title" data-i18n="genel">Genel</div>
+<a class="sidebar-link" href="buildpro-dashboard.html"><span class="icon">📊</span><span class="sidebar-text" data-i18n="dashboard">Dashboard</span></a>
+<a class="sidebar-link" href="buildpro-projects.html"><span class="icon">🏗️</span><span class="sidebar-text" data-i18n="projeler">Projeler</span></a>
+<a class="sidebar-link active" href="buildpro-staff.html"><span class="icon">👷</span><span class="sidebar-text" data-i18n="personel">Personel</span></a>
+<a class="sidebar-link" href="buildpro-site.html"><span class="icon">📍</span><span class="sidebar-text" data-i18n="şantiyeler">Şantiyeler</span></a>
+</div>
+<div class="sidebar-section">
+<div class="sidebar-section-title" data-i18n="operasyon">Operasyon</div>
+<a class="sidebar-link" href="buildpro-calendar.html"><span class="icon">📅</span><span class="sidebar-text" data-i18n="takvim">Takvim</span></a>
+<a class="sidebar-link" href="buildpro-costs.html"><span class="icon">💶</span><span class="sidebar-text" data-i18n="maliyetler">Maliyetler</span></a>
+<a class="sidebar-link" href="buildpro-equipment.html"><span class="icon">🚜</span><span class="sidebar-text" data-i18n="ekipman">Ekipman</span></a>
+</div>
+<div class="sidebar-section">
+<div class="sidebar-section-title" data-i18n="müşteri">Müşteri</div>
+<a class="sidebar-link" href="buildpro-clients.html"><span class="icon">🤝</span><span class="sidebar-text" data-i18n="müşteriler">Müşteriler</span></a>
+<a class="sidebar-link" href="buildpro-quotes.html"><span class="icon">📄</span><span class="sidebar-text" data-i18n="teklifler">Teklifler</span></a>
+</div>
+</nav>
+<div class="sidebar-footer">
+<a class="sidebar-link" href="#"><span class="icon">⚙️</span><span class="sidebar-text" data-i18n="ayarlar">Ayarlar</span></a>
+</div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+<!-- Main -->
+<main class="main">
+<!-- Header -->
+<header class="header">
+<div class="header-left">
+<button aria-label="Menu" class="header-btn mobile-visible" data-i18n="aria_menu" data-i18n-attr="aria-label" onclick="toggleSidebar()">☰</button>
+<div>
+<div class="header-title" data-i18n="personel_yönetimi">Personel Yönetimi</div>
+<div class="header-breadcrumb" data-i18n="buildpro_personel">BuildPro / Personel</div>
+</div>
+</div>
+<div class="header-right">
+<div class="lang-switcher" style="display:flex;gap:4px;margin-right:12px;">
+<button class="lang-btn" data-lang="tr" onclick="switchLang('tr')" style="padding:4px 8px;font-size:12px;border-radius:4px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;">TR</button>
+<button class="lang-btn" data-lang="en" onclick="switchLang('en')" style="padding:4px 8px;font-size:12px;border-radius:4px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;">EN</button>
+<button class="lang-btn" data-lang="nl" onclick="switchLang('nl')" style="padding:4px 8px;font-size:12px;border-radius:4px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;">NL</button>
+</div>
+<style>.lang-btn.active{background:var(--teal-500)!important;color:white!important;border-color:var(--teal-500)!important;font-weight:600;}</style>
 
-    <!-- Main -->
-    <main class="main">
-      <!-- Header -->
-      <header class="header">
-        <div class="header-left">
-          <button class="header-btn mobile-visible" onclick="toggleSidebar()" aria-label="Menu">☰</button>
-          <div>
-            <div class="header-title">Personel Yönetimi</div>
-            <div class="header-breadcrumb">BuildPro / Personel</div>
-          </div>
-        </div>
-        <div class="header-right">
-          <div class="header-search">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-            <input type="text" placeholder="Personel ara..." id="globalSearch">
-          </div>
-          <button class="header-btn" onclick="toggleTheme()" aria-label="Tema">🌓</button>
-          <button class="header-btn" aria-label="Bildirimler">🔔<span class="badge-dot"></span></button>
-          <div class="header-avatar">DY</div>
-        </div>
-      </header>
-
-      <!-- Page -->
-      <div class="page">
-        <!-- Summary Cards -->
-        <div class="summary-cards">
-          <div class="card stat-card">
-            <div class="stat-icon" style="background:var(--teal-100);color:var(--teal-600);">👷</div>
-            <div class="stat-value">24</div>
-            <div class="stat-label">Toplam Personel</div>
-            <div class="stat-change up">↑ 3 yeni bu ay</div>
-          </div>
-          <div class="card stat-card">
-            <div class="stat-icon" style="background:var(--success-100);color:var(--success-500);">✅</div>
-            <div class="stat-value">19</div>
-            <div class="stat-label">Aktif Çalışan</div>
-            <div class="stat-change up">↑ %79 oran</div>
-          </div>
-          <div class="card stat-card">
-            <div class="stat-icon" style="background:var(--warning-100);color:var(--warning-500);">🎫</div>
-            <div class="stat-value">3</div>
-            <div class="stat-label">İzin / Raporlu</div>
-            <div class="stat-change down">↓ 1 azalma</div>
-          </div>
-          <div class="card stat-card">
-            <div class="stat-icon" style="background:var(--info-100);color:var(--info-500);">💶</div>
-            <div class="stat-value">€847K</div>
-            <div class="stat-label">Aylık Maaş Bütçesi</div>
-            <div class="stat-change up">↑ %4.2 artış</div>
-          </div>
-        </div>
-
-        <!-- Page Header -->
-        <div class="page-header">
-          <div>
-            <div class="page-title">Personel Listesi</div>
-            <div class="page-subtitle">Tüm çalışanlar, roller ve sertifikalar</div>
-          </div>
-          <div class="page-actions">
-            <button class="btn btn-secondary" onclick="exportStaff()">📥 Dışa Aktar</button>
-            <button class="btn btn-primary" onclick="openModal('addModal')">+ Personel Ekle</button>
-          </div>
-        </div>
-
-        <!-- Filters -->
-        <div class="filter-bar">
-          <div class="search-input" style="flex:1;max-width:320px;">
-            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-            <input type="text" class="form-input" placeholder="İsim, görev veya sertifika ara..." id="staffSearch">
-          </div>
-          <select class="form-select" id="roleFilter">
-            <option value="">Tüm Görevler</option>
-            <option value="Şantiye Şefi">Şantiye Şefi</option>
-            <option value="Mühendis">Mühendis</option>
-            <option value="Mimar">Mimar</option>
-            <option value="Usta">Usta</option>
-            <option value="İşçi">İşçi</option>
-            <option value="Operatör">Operatör</option>
-          </select>
-          <select class="form-select" id="siteFilter">
-            <option value="">Tüm Şantiyeler</option>
-            <option value="Brüksel Merkez">Brüksel Merkez</option>
-            <option value="Anvers Lojistik">Anvers Lojistik</option>
-            <option value="Gent Konut">Gent Konut</option>
-            <option value="Ofis">Ofis</option>
-          </select>
-          <select class="form-select" id="statusFilter">
-            <option value="">Tüm Durumlar</option>
-            <option value="Aktif">Aktif</option>
-            <option value="İzin">İzin</option>
-            <option value="Raporlu">Raporlu</option>
-            <option value="Ayrıldı">Ayrıldı</option>
-          </select>
-        </div>
-
-        <!-- Table -->
-        <div class="table-wrap">
-          <table class="table" id="staffTable">
-            <thead>
-              <tr>
-                <th>Ad Soyad</th>
-                <th>Görev</th>
-                <th>Sertifikalar</th>
-                <th>Atandığı Şantiye</th>
-                <th>Durum</th>
-                <th>Maaş</th>
-                <th>Başlangıç</th>
-                <th style="width:100px;text-align:right;">Actions</th>
-              </tr>
-            </thead>
-            <tbody id="staffTableBody">
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#0d9488,#115e59);">MK</div><span>Mehmet Kaya</span></div></td>
-                <td><span class="badge badge-info">Şantiye Şefi</span></td>
-                <td><div class="cert-tags"><span class="cert-tag">İSG</span><span class="cert-tag">Yüksekte</span><span class="cert-tag">Vinç</span></div></td>
-                <td><span class="site-badge">📍 Brüksel Merkez</span></td>
-                <td><span class="badge badge-success">Aktif</span></td>
-                <td class="salary-cell">€4.200</td>
-                <td>15.03.2021</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(1)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(1)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#2563eb,#1e40af);">JD</div><span>Jan De Vries</span></div></td>
-                <td><span class="badge badge-info">Mühendis</span></td>
-                <td><div class="cert-tags"><span class="cert-tag">Beton</span><span class="cert-tag">Yapı Denetim</span></div></td>
-                <td><span class="site-badge">📍 Brüksel Merkez</span></td>
-                <td><span class="badge badge-success">Aktif</span></td>
-                <td class="salary-cell">€3.800</td>
-                <td>02.09.2022</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(2)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(2)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#7c3aed,#5b21b6);">AY</div><span>Ayşe Yılmaz</span></div></td>
-                <td><span class="badge badge-info">Mimar</span></td>
-                <td><div class="cert-tags"><span class="cert-tag">AutoCAD</span><span class="cert-tag">Revit</span><span class="cert-tag">Enerji Pasaport</span></div></td>
-                <td><span class="site-badge">📍 Ofis</span></td>
-                <td><span class="badge badge-success">Aktif</span></td>
-                <td class="salary-cell">€3.500</td>
-                <td>10.01.2023</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(3)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(3)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#dc2626,#991b1b);">PO</div><span>Pieter Ooms</span></div></td>
-                <td><span class="badge badge-warning">Usta</span></td>
-                <td><div class="cert-tags"><span class="cert-tag">Elektrik</span><span class="cert-tag">İSG</span><span class="cert-tag">Yangın</span></div></td>
-                <td><span class="site-badge">📍 Anvers Lojistik</span></td>
-                <td><span class="badge badge-success">Aktif</span></td>
-                <td class="salary-cell">€3.100</td>
-                <td>22.06.2020</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(4)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(4)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#ea580c,#9a3412);">HD</div><span>Hassan Demir</span></div></td>
-                <td><span class="badge badge-neutral">İşçi</span></td>
-                <td><div class="cert-tags"><span class="cert-tag">İSG</span></div></td>
-                <td><span class="site-badge">📍 Brüksel Merkez</span></td>
-                <td><span class="badge badge-success">Aktif</span></td>
-                <td class="salary-cell">€2.450</td>
-                <td>05.04.2023</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(5)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(5)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#0891b2,#155e75);">LV</div><span>Liesbeth Van den Berg</span></div></td>
-                <td><span class="badge badge-info">Şantiye Şefi</span></td>
-                <td><div class="cert-tags"><span class="cert-tag">İSG</span><span class="cert-tag">Vinç</span><span class="cert-tag">Kalite</span></div></td>
-                <td><span class="site-badge">📍 Gent Konut</span></td>
-                <td><span class="badge badge-success">Aktif</span></td>
-                <td class="salary-cell">€4.350</td>
-                <td>18.11.2019</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(6)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(6)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#4f46e5,#3730a3);">TC</div><span>Thomas Claes</span></div></td>
-                <td><span class="badge badge-warning">Operatör</span></td>
-                <td><div class="cert-tags"><span class="cert-tag">Ekskavatör</span><span class="cert-tag">Vinç</span><span class="cert-tag">Forklift</span></div></td>
-                <td><span class="site-badge">📍 Anvers Lojistik</span></td>
-                <td><span class="badge badge-success">Aktif</span></td>
-                <td class="salary-cell">€2.800</td>
-                <td>30.07.2022</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(7)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(7)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#be123c,#881337);">SB</div><span>Sibel Bakırcı</span></div></td>
-                <td><span class="badge badge-neutral">İşçi</span></td>
-                <td><div class="cert-tags"><span class="cert-tag">İSG</span><span class="cert-tag">Yüksekte</span></div></td>
-                <td><span class="site-badge">📍 Gent Konut</span></td>
-                <td><span class="badge badge-warning">İzin</span></td>
-                <td class="salary-cell">€2.380</td>
-                <td>14.02.2024</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(8)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(8)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#047857,#065f46);">MB</div><span>Marc Baudewijn</span></div></td>
-                <td><span class="badge badge-info">Mühendis</span></td>
-                <td><div class="cert-tags"><span class="cert-tag">Beton</span><span class="cert-tag">Yapı Denetim</span><span class="cert-tag">Kalite</span></div></td>
-                <td><span class="site-badge">📍 Ofis</span></td>
-                <td><span class="badge badge-success">Aktif</span></td>
-                <td class="salary-cell">€3.650</td>
-                <td>08.05.2021</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(9)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(9)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#9333ea,#6b21a8);">EO</div><span>Emre Özdemir</span></div></td>
-                <td><span class="badge badge-warning">Usta</span></td>
-                <td><div class="cert-tags"><span class="cert-tag">Sıhhi Tesisat</span><span class="cert-tag">İSG</span></div></td>
-                <td><span class="site-badge">📍 Brüksel Merkez</span></td>
-                <td><span class="badge badge-success">Aktif</span></td>
-                <td class="salary-cell">€3.050</td>
-                <td>19.10.2022</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(10)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(10)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#c2410c,#9a3412);">NP</div><span>Nadia Peeters</span></div></td>
-                <td><span class="badge badge-info">Mimar</span></td>
-                <td><div class="cert-tags"><span class="cert-tag">Revit</span><span class="cert-tag">SketchUp</span><span class="cert-tag">Enerji Pasaport</span></div></td>
-                <td><span class="site-badge">📍 Ofis</span></td>
-                <td><span class="badge badge-success">Aktif</span></td>
-                <td class="salary-cell">€3.400</td>
-                <td>03.01.2024</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(11)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(11)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#1d4ed8,#1e3a8a);">IK</div><span>Ibrahim Korkmaz</span></div></td>
-                <td><span class="badge badge-neutral">İşçi</span></td>
-                <td><div class="cert-tags"><span class="cert-tag">İSG</span></div></td>
-                <td><span class="site-badge">📍 Anvers Lojistik</span></td>
-                <td><span class="badge badge-error">Raporlu</span></td>
-                <td class="salary-cell">€2.320</td>
-                <td>27.08.2023</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(12)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(12)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#b45309,#78350f);">WS</div><span>Wouter Smets</span></div></td>
-                <td><span class="badge badge-warning">Operatör</span></td>
-                <td><div class="cert-tags"><span class="cert-tag">Forklift</span><span class="cert-tag">Vinç</span><span class="cert-tag">Teleskopik</span></div></td>
-                <td><span class="site-badge">📍 Gent Konut</span></td>
-                <td><span class="badge badge-success">Aktif</span></td>
-                <td class="salary-cell">€2.750</td>
-                <td>11.12.2021</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(13)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(13)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#0f766e,#134e4a);">FC</div><span>Fatma Çelik</span></div></td>
-                <td><span class="badge badge-info">Mühendis</span></td>
-                <td><div class="cert-tags"><span class="cert-tag">Beton</span><span class="cert-tag">Yapı Denetim</span></div></td>
-                <td><span class="site-badge">📍 Ofis</span></td>
-                <td><span class="badge badge-warning">İzin</span></td>
-                <td class="salary-cell">€3.700</td>
-                <td>06.03.2023</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(14)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(14)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#4338ca,#312e81);">JB</div><span>Jeroen Beekman</span></div></td>
-                <td><span class="badge badge-warning">Usta</span></td>
-                <td><div class="cert-tags"><span class="cert-tag">Mermer</span><span class="cert-tag">Seramik</span><span class="cert-tag">İSG</span></div></td>
-                <td><span class="site-badge">📍 Brüksel Merkez</span></td>
-                <td><span class="badge badge-success">Aktif</span></td>
-                <td class="salary-cell">€2.950</td>
-                <td>25.09.2020</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(15)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(15)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#a16207,#713f12);">YA</div><span>Yusuf Aydın</span></div></td>
-                <td><span class="badge badge-neutral">İşçi</span></td>
-                <td><div class="cert-tags"><span class="cert-tag">İSG</span><span class="cert-tag">Yüksekte</span></div></td>
-                <td><span class="site-badge">📍 Anvers Lojistik</span></td>
-                <td><span class="badge badge-success">Aktif</span></td>
-                <td class="salary-cell">€2.400</td>
-                <td>17.01.2024</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(16)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(16)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);">KM</div><span>Karen Maes</span></div></td>
-                <td><span class="badge badge-info">Mimar</span></td>
-                <td><div class="cert-tags"><span class="cert-tag">AutoCAD</span><span class="cert-tag">Revit</span><span class="cert-tag">3ds Max</span></div></td>
-                <td><span class="site-badge">📍 Ofis</span></td>
-                <td><span class="badge badge-success">Aktif</span></td>
-                <td class="salary-cell">€3.550</td>
-                <td>09.06.2022</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(17)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(17)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#ca8a04,#854d0e);">DV</div><span>Dirk Vermeulen</span></div></td>
-                <td><span class="badge badge-warning">Operatör</span></td>
-                <td><div class="cert-tags"><span class="cert-tag">Ekskavatör</span><span class="cert-tag">Forklift</span></div></td>
-                <td><span class="site-badge">📍 Brüksel Merkez</span></td>
-                <td><span class="badge badge-success">Aktif</span></td>
-                <td class="salary-cell">€2.680</td>
-                <td>04.05.2023</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(18)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(18)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#db2777,#9d174d);">ST</div><span>Stefanie Timmermans</span></div></td>
-                <td><span class="badge badge-neutral">İşçi</span></td>
-                <td><div class="cert-tags"><span class="cert-tag">İSG</span></div></td>
-                <td><span class="site-badge">📍 Gent Konut</span></td>
-                <td><span class="badge badge-success">Aktif</span></td>
-                <td class="salary-cell">€2.300</td>
-                <td>13.07.2023</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(19)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(19)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#65a30d,#3f6212);">GD</div><span>Gert Deschacht</span></div></td>
-                <td><span class="badge badge-info">Şantiye Şefi</span></td>
-                <td><div class="cert-tags"><span class="cert-tag">İSG</span><span class="cert-tag">Kalite</span><span class="cert-tag">Yapı Denetim</span></div></td>
-                <td><span class="site-badge">📍 Anvers Lojistik</span></td>
-                <td><span class="badge badge-success">Aktif</span></td>
-                <td class="salary-cell">€4.500</td>
-                <td>01.02.2018</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(20)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(20)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#7c2d12,#451a03);">MK2</div><span>Murat Karaca</span></div></td>
-                <td><span class="badge badge-warning">Usta</span></td>
-                <td><div class="cert-tags"><span class="cert-tag">Kaynak</span><span class="cert-tag">İSG</span><span class="cert-tag">Yangın</span></div></td>
-                <td><span class="site-badge">📍 Gent Konut</span></td>
-                <td><span class="badge badge-neutral">Ayrıldı</span></td>
-                <td class="salary-cell">€2.900</td>
-                <td>12.04.2019</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(21)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(21)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#0369a1,#0c4a6e);">ED</div><span>Elke Dubois</span></div></td>
-                <td><span class="badge badge-info">Mühendis</span></td>
-                <td><div class="cert-tags"><span class="cert-tag">Beton</span><span class="cert-tag">Statik</span></div></td>
-                <td><span class="site-badge">📍 Ofis</span></td>
-                <td><span class="badge badge-success">Aktif</span></td>
-                <td class="salary-cell">€3.900</td>
-                <td>20.03.2022</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(22)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(22)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#a855f7,#6b21a8);">BS</div><span>Burak Şahin</span></div></td>
-                <td><span class="badge badge-neutral">İşçi</span></td>
-                <td><div class="cert-tags"><span class="cert-tag">İSG</span><span class="cert-tag">Yüksekte</span></div></td>
-                <td><span class="site-badge">📍 Brüksel Merkez</span></td>
-                <td><span class="badge badge-success">Aktif</span></td>
-                <td class="salary-cell">€2.350</td>
-                <td>28.11.2023</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(23)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(23)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" style="background:linear-gradient(135deg,#14b8a6,#0f766e);">LN</div><span>Lucas Neyt</span></div></td>
-                <td><span class="badge badge-warning">Operatör</span></td>
-                <td><div class="cert-tags"><span class="cert-tag">Forklift</span><span class="cert-tag">Vinç</span><span class="cert-tag">Teleskopik</span></div></td>
-                <td><span class="site-badge">📍 Anvers Lojistik</span></td>
-                <td><span class="badge badge-success">Aktif</span></td>
-                <td class="salary-cell">€2.620</td>
-                <td>15.09.2022</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(24)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(24)">🗑️</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </main>
-  </div>
-
-  <!-- Add Modal -->
-  <div class="modal-overlay" id="addModal">
-    <div class="modal modal-lg">
-      <div class="modal-header">
-        <div class="modal-title">Yeni Personel Ekle</div>
-        <button class="modal-close" onclick="closeModal('addModal')">✕</button>
-      </div>
-      <div class="modal-body">
-        <div class="modal-body grid-2">
-          <div class="form-group">
-            <label class="form-label">Ad</label>
-            <input type="text" class="form-input" placeholder="örn: Mehmet">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Soyad</label>
-            <input type="text" class="form-input" placeholder="örn: Kaya">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Görev</label>
-            <select class="form-select">
-              <option>Şantiye Şefi</option>
-              <option>Mühendis</option>
-              <option>Mimar</option>
-              <option>Usta</option>
-              <option>İşçi</option>
-              <option>Operatör</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Atandığı Şantiye</label>
-            <select class="form-select">
-              <option>Brüksel Merkez</option>
-              <option>Anvers Lojistik</option>
-              <option>Gent Konut</option>
-              <option>Ofis</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Maaş (€)</label>
-            <input type="number" class="form-input" placeholder="örn: 3500">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Başlangıç Tarihi</label>
-            <input type="date" class="form-input">
-          </div>
-        </div>
-        <div class="form-group" style="margin-top:var(--space-4);">
-          <label class="form-label">Sertifikalar</label>
-          <div class="checkbox-group">
-            <label class="checkbox-item"><input type="checkbox"> İSG</label>
-            <label class="checkbox-item"><input type="checkbox"> Yüksekte Çalışma</label>
-            <label class="checkbox-item"><input type="checkbox"> Vinç Operatörlüğü</label>
-            <label class="checkbox-item"><input type="checkbox"> Forklift</label>
-            <label class="checkbox-item"><input type="checkbox"> Ekskavatör</label>
-            <label class="checkbox-item"><input type="checkbox"> Beton Teknolojisi</label>
-            <label class="checkbox-item"><input type="checkbox"> Yapı Denetim</label>
-            <label class="checkbox-item"><input type="checkbox"> Elektrik Ustalığı</label>
-            <label class="checkbox-item"><input type="checkbox"> Sıhhi Tesisat</label>
-            <label class="checkbox-item"><input type="checkbox"> Kaynakçılık</label>
-            <label class="checkbox-item"><input type="checkbox"> Yangın Güvenliği</label>
-            <label class="checkbox-item"><input type="checkbox"> Enerji Pasaportu</label>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Durum</label>
-          <select class="form-select">
-            <option>Aktif</option>
-            <option>İzin</option>
-            <option>Raporlu</option>
-            <option>Ayrıldı</option>
-          </select>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" onclick="closeModal('addModal')">İptal</button>
-        <button class="btn btn-primary" onclick="saveStaff();closeModal('addModal');showToast('Personel başarıyla eklendi','success')">Kaydet</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Edit Modal -->
-  <div class="modal-overlay" id="editModal">
-    <div class="modal modal-lg">
-      <div class="modal-header">
-        <div class="modal-title">Personel Düzenle</div>
-        <button class="modal-close" onclick="closeModal('editModal')">✕</button>
-      </div>
-      <div class="modal-body">
-        <div class="modal-body grid-2">
-          <div class="form-group">
-            <label class="form-label">Ad</label>
-            <input type="text" class="form-input" value="Mehmet">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Soyad</label>
-            <input type="text" class="form-input" value="Kaya">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Görev</label>
-            <select class="form-select"><option selected>Şantiye Şefi</option><option>Mühendis</option><option>Mimar</option><option>Usta</option><option>İşçi</option><option>Operatör</option></select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Atandığı Şantiye</label>
-            <select class="form-select"><option selected>Brüksel Merkez</option><option>Anvers Lojistik</option><option>Gent Konut</option><option>Ofis</option></select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Maaş (€)</label>
-            <input type="number" class="form-input" value="4200">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Başlangıç Tarihi</label>
-            <input type="date" class="form-input" value="2021-03-15">
-          </div>
-        </div>
-        <div class="form-group" style="margin-top:var(--space-4);">
-          <label class="form-label">Sertifikalar</label>
-          <div class="checkbox-group">
-            <label class="checkbox-item"><input type="checkbox" checked> İSG</label>
-            <label class="checkbox-item"><input type="checkbox" checked> Yüksekte Çalışma</label>
-            <label class="checkbox-item"><input type="checkbox" checked> Vinç Operatörlüğü</label>
-            <label class="checkbox-item"><input type="checkbox"> Forklift</label>
-            <label class="checkbox-item"><input type="checkbox"> Ekskavatör</label>
-            <label class="checkbox-item"><input type="checkbox"> Beton Teknolojisi</label>
-            <label class="checkbox-item"><input type="checkbox"> Yapı Denetim</label>
-            <label class="checkbox-item"><input type="checkbox"> Elektrik Ustalığı</label>
-            <label class="checkbox-item"><input type="checkbox"> Sıhhi Tesisat</label>
-            <label class="checkbox-item"><input type="checkbox"> Kaynakçılık</label>
-            <label class="checkbox-item"><input type="checkbox"> Yangın Güvenliği</label>
-            <label class="checkbox-item"><input type="checkbox"> Enerji Pasaportu</label>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Durum</label>
-          <select class="form-select"><option selected>Aktif</option><option>İzin</option><option>Raporlu</option><option>Ayrıldı</option></select>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" onclick="closeModal('editModal')">İptal</button>
-        <button class="btn btn-primary" onclick="closeModal('editModal');showToast('Personel güncellendi','success')">Güncelle</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Delete Modal -->
-  <div class="modal-overlay" id="deleteModal">
-    <div class="modal">
-      <div class="modal-header">
-        <div class="modal-title">Personel Sil</div>
-        <button class="modal-close" onclick="closeModal('deleteModal')">✕</button>
-      </div>
-      <div class="modal-body">
-        <p style="color:var(--text-secondary);"><strong style="color:var(--text-primary);">Mehmet Kaya</strong> isimli personeli silmek istediğinize emin misiniz? Bu işlem geri alınamaz.</p>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" onclick="closeModal('deleteModal')">İptal</button>
-        <button class="btn btn-amber" onclick="closeModal('deleteModal');showToast('Personel silindi','warning')">Sil</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Toast Container -->
-  <div class="toast-container" id="toastContainer"></div>
-
-  <script>
+<div class="header-search">
+<svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+<input data-i18n-placeholder="ph_personel_ara" id="globalSearch" placeholder="Personel ara..." type="text"/>
+</div>
+<button aria-label="Tema" class="header-btn" data-i18n="aria_tema" data-i18n-attr="aria-label" onclick="toggleTheme()">🌓</button>
+<button aria-label="Bildirimler" class="header-btn" data-i18n="aria_bildirimler" data-i18n-attr="aria-label">🔔<span class="badge-dot"></span></button>
+<div class="header-avatar">DY</div>
+</div>
+</header>
+<!-- Page -->
+<div class="page">
+<!-- Summary Cards -->
+<div class="summary-cards">
+<div class="card stat-card">
+<div class="stat-icon" style="background:var(--teal-100);color:var(--teal-600);">👷</div>
+<div class="stat-value">24</div>
+<div class="stat-label" data-i18n="toplam_personel">Toplam Personel</div>
+<div class="stat-change up" data-i18n="__yeni_bu_ay">↑ 3 yeni bu ay</div>
+</div>
+<div class="card stat-card">
+<div class="stat-icon" style="background:var(--success-100);color:var(--success-500);">✅</div>
+<div class="stat-value">19</div>
+<div class="stat-label" data-i18n="aktif_çalışan">Aktif Çalışan</div>
+<div class="stat-change up" data-i18n="_9_oran">↑ %79 oran</div>
+</div>
+<div class="card stat-card">
+<div class="stat-icon" style="background:var(--warning-100);color:var(--warning-500);">🎫</div>
+<div class="stat-value">3</div>
+<div class="stat-label" data-i18n="izin_raporlu">İzin / Raporlu</div>
+<div class="stat-change down" data-i18n="__azalma">↓ 1 azalma</div>
+</div>
+<div class="card stat-card">
+<div class="stat-icon" style="background:var(--info-100);color:var(--info-500);">💶</div>
+<div class="stat-value" data-i18n="_47k">€847K</div>
+<div class="stat-label" data-i18n="aylık_maaş_bütçesi">Aylık Maaş Bütçesi</div>
+<div class="stat-change up" data-i18n="_2_artış">↑ %4.2 artış</div>
+</div>
+</div>
+<!-- Page Header -->
+<div class="page-header">
+<div>
+<div class="page-title" data-i18n="personel_listesi">Personel Listesi</div>
+<div class="page-subtitle" data-i18n="tüm_çalışanlar_roller_ve_sertifikalar">Tüm çalışanlar, roller ve sertifikalar</div>
+</div>
+<div class="page-actions">
+<button class="btn btn-secondary" data-i18n="dışa_aktar" onclick="exportStaff()">📥 Dışa Aktar</button>
+<button class="btn btn-primary" data-i18n="personel_ekle" onclick="openModal('addModal')">+ Personel Ekle</button>
+</div>
+</div>
+<!-- Filters -->
+<div class="filter-bar">
+<div class="search-input" style="flex:1;max-width:320px;">
+<svg class="search-icon" fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+<input class="form-input" data-i18n-placeholder="ph_isim_görev_veya_sertifika_ara" id="staffSearch" placeholder="İsim, görev veya sertifika ara..." type="text"/>
+</div>
+<select class="form-select" id="roleFilter">
+<option data-i18n="tüm_görevler" value="">Tüm Görevler</option>
+<option data-i18n="şantiye_şefi" value="Şantiye Şefi">Şantiye Şefi</option>
+<option data-i18n="mühendis" value="Mühendis">Mühendis</option>
+<option data-i18n="mimar" value="Mimar">Mimar</option>
+<option data-i18n="usta" value="Usta">Usta</option>
+<option data-i18n="işçi" value="İşçi">İşçi</option>
+<option data-i18n="operatör" value="Operatör">Operatör</option>
+</select>
+<select class="form-select" id="siteFilter">
+<option data-i18n="tüm_şantiyeler" value="">Tüm Şantiyeler</option>
+<option data-i18n="brüksel_merkez" value="Brüksel Merkez">Brüksel Merkez</option>
+<option data-i18n="anvers_lojistik" value="Anvers Lojistik">Anvers Lojistik</option>
+<option data-i18n="gent_konut" value="Gent Konut">Gent Konut</option>
+<option data-i18n="ofis" value="Ofis">Ofis</option>
+</select>
+<select class="form-select" id="statusFilter">
+<option data-i18n="tüm_durumlar" value="">Tüm Durumlar</option>
+<option data-i18n="aktif" value="Aktif">Aktif</option>
+<option data-i18n="izin" value="İzin">İzin</option>
+<option data-i18n="raporlu" value="Raporlu">Raporlu</option>
+<option data-i18n="ayrıldı" value="Ayrıldı">Ayrıldı</option>
+</select>
+</div>
+<!-- Table -->
+<div class="table-wrap">
+<table class="table" id="staffTable">
+<thead>
+<tr>
+<th data-i18n="ad_soyad">Ad Soyad</th>
+<th data-i18n="görev">Görev</th>
+<th data-i18n="sertifikalar">Sertifikalar</th>
+<th data-i18n="atandığı_şantiye">Atandığı Şantiye</th>
+<th data-i18n="durum">Durum</th>
+<th data-i18n="maaş">Maaş</th>
+<th data-i18n="başlangıç">Başlangıç</th>
+<th data-i18n="actions" style="width:100px;text-align:right;">Actions</th>
+</tr>
+</thead>
+<tbody id="staffTableBody">
+<tr>
+<td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" data-i18n="mk" style="background:linear-gradient(135deg,#0d9488,#115e59);">MK</div><span data-i18n="mehmet_kaya">Mehmet Kaya</span></div></td>
+<td><span class="badge badge-info">Şantiye Şefi</span></td>
+<td><div class="cert-tags"><span class="cert-tag" data-i18n="isg">İSG</span><span class="cert-tag" data-i18n="yüksekte">Yüksekte</span><span class="cert-tag" data-i18n="vinç">Vinç</span></div></td>
+<td><span class="site-badge" data-i18n="brüksel_merkez_2">📍 Brüksel Merkez</span></td>
+<td><span class="badge badge-success">Aktif</span></td>
+<td class="salary-cell" data-i18n="_200">€4.200</td>
+<td data-i18n="_5032021">15.03.2021</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(1)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(1)">🗑️</button></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" data-i18n="jd" style="background:linear-gradient(135deg,#2563eb,#1e40af);">JD</div><span data-i18n="jan_de_vries">Jan De Vries</span></div></td>
+<td><span class="badge badge-info">Mühendis</span></td>
+<td><div class="cert-tags"><span class="cert-tag" data-i18n="beton">Beton</span><span class="cert-tag" data-i18n="yapı_denetim">Yapı Denetim</span></div></td>
+<td><span class="site-badge" data-i18n="brüksel_merkez_3">📍 Brüksel Merkez</span></td>
+<td><span class="badge badge-success">Aktif</span></td>
+<td class="salary-cell" data-i18n="_800">€3.800</td>
+<td data-i18n="_2092022">02.09.2022</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(2)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(2)">🗑️</button></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" data-i18n="ay" style="background:linear-gradient(135deg,#0d9488,#5b21b6);">AY</div><span data-i18n="ayşe_yılmaz">Ayşe Yılmaz</span></div></td>
+<td><span class="badge badge-info">Mimar</span></td>
+<td><div class="cert-tags"><span class="cert-tag" data-i18n="autocad">AutoCAD</span><span class="cert-tag" data-i18n="revit">Revit</span><span class="cert-tag" data-i18n="enerji_pasaport">Enerji Pasaport</span></div></td>
+<td><span class="site-badge" data-i18n="ofis_2">📍 Ofis</span></td>
+<td><span class="badge badge-success">Aktif</span></td>
+<td class="salary-cell" data-i18n="_500">€3.500</td>
+<td data-i18n="_0012023">10.01.2023</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(3)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(3)">🗑️</button></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" data-i18n="po" style="background:linear-gradient(135deg,#dc2626,#991b1b);">PO</div><span data-i18n="pieter_ooms">Pieter Ooms</span></div></td>
+<td><span class="badge badge-warning">Usta</span></td>
+<td><div class="cert-tags"><span class="cert-tag" data-i18n="elektrik">Elektrik</span><span class="cert-tag" data-i18n="isg_2">İSG</span><span class="cert-tag" data-i18n="yangın">Yangın</span></div></td>
+<td><span class="site-badge" data-i18n="anvers_lojistik_2">📍 Anvers Lojistik</span></td>
+<td><span class="badge badge-success">Aktif</span></td>
+<td class="salary-cell" data-i18n="_100">€3.100</td>
+<td data-i18n="_2062020">22.06.2020</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(4)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(4)">🗑️</button></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" data-i18n="hd" style="background:linear-gradient(135deg,#ea580c,#115e59);">HD</div><span data-i18n="hassan_demir">Hassan Demir</span></div></td>
+<td><span class="badge badge-neutral">İşçi</span></td>
+<td><div class="cert-tags"><span class="cert-tag" data-i18n="isg_3">İSG</span></div></td>
+<td><span class="site-badge" data-i18n="brüksel_merkez_4">📍 Brüksel Merkez</span></td>
+<td><span class="badge badge-success">Aktif</span></td>
+<td class="salary-cell" data-i18n="_450">€2.450</td>
+<td data-i18n="_5042023">05.04.2023</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(5)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(5)">🗑️</button></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" data-i18n="lv" style="background:linear-gradient(135deg,#0891b2,#155e75);">LV</div><span data-i18n="liesbeth_van_den_berg">Liesbeth Van den Berg</span></div></td>
+<td><span class="badge badge-info">Şantiye Şefi</span></td>
+<td><div class="cert-tags"><span class="cert-tag" data-i18n="isg_4">İSG</span><span class="cert-tag" data-i18n="vinç_2">Vinç</span><span class="cert-tag" data-i18n="kalite">Kalite</span></div></td>
+<td><span class="site-badge" data-i18n="gent_konut_2">📍 Gent Konut</span></td>
+<td><span class="badge badge-success">Aktif</span></td>
+<td class="salary-cell" data-i18n="_350">€4.350</td>
+<td data-i18n="_8112019">18.11.2019</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(6)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(6)">🗑️</button></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" data-i18n="tc" style="background:linear-gradient(135deg,#4f46e5,#3730a3);">TC</div><span data-i18n="thomas_claes">Thomas Claes</span></div></td>
+<td><span class="badge badge-warning">Operatör</span></td>
+<td><div class="cert-tags"><span class="cert-tag" data-i18n="ekskavatör">Ekskavatör</span><span class="cert-tag" data-i18n="vinç_3">Vinç</span><span class="cert-tag" data-i18n="forklift">Forklift</span></div></td>
+<td><span class="site-badge" data-i18n="anvers_lojistik_3">📍 Anvers Lojistik</span></td>
+<td><span class="badge badge-success">Aktif</span></td>
+<td class="salary-cell" data-i18n="_800_2">€2.800</td>
+<td data-i18n="_0072022">30.07.2022</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(7)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(7)">🗑️</button></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" data-i18n="sb" style="background:linear-gradient(135deg,#be123c,#881337);">SB</div><span data-i18n="sibel_bakırcı">Sibel Bakırcı</span></div></td>
+<td><span class="badge badge-neutral">İşçi</span></td>
+<td><div class="cert-tags"><span class="cert-tag" data-i18n="isg_5">İSG</span><span class="cert-tag" data-i18n="yüksekte_2">Yüksekte</span></div></td>
+<td><span class="site-badge" data-i18n="gent_konut_3">📍 Gent Konut</span></td>
+<td><span class="badge badge-warning">İzin</span></td>
+<td class="salary-cell" data-i18n="_380">€2.380</td>
+<td data-i18n="_4022024">14.02.2024</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(8)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(8)">🗑️</button></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" data-i18n="mb" style="background:linear-gradient(135deg,#047857,#065f46);">MB</div><span data-i18n="marc_baudewijn">Marc Baudewijn</span></div></td>
+<td><span class="badge badge-info">Mühendis</span></td>
+<td><div class="cert-tags"><span class="cert-tag" data-i18n="beton_2">Beton</span><span class="cert-tag" data-i18n="yapı_denetim_2">Yapı Denetim</span><span class="cert-tag" data-i18n="kalite_2">Kalite</span></div></td>
+<td><span class="site-badge" data-i18n="ofis_3">📍 Ofis</span></td>
+<td><span class="badge badge-success">Aktif</span></td>
+<td class="salary-cell" data-i18n="_650">€3.650</td>
+<td data-i18n="_8052021">08.05.2021</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(9)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(9)">🗑️</button></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" data-i18n="eo" style="background:linear-gradient(135deg,#9333ea,#6b21a8);">EO</div><span data-i18n="emre_özdemir">Emre Özdemir</span></div></td>
+<td><span class="badge badge-warning">Usta</span></td>
+<td><div class="cert-tags"><span class="cert-tag" data-i18n="sıhhi_tesisat">Sıhhi Tesisat</span><span class="cert-tag" data-i18n="isg_6">İSG</span></div></td>
+<td><span class="site-badge" data-i18n="brüksel_merkez_5">📍 Brüksel Merkez</span></td>
+<td><span class="badge badge-success">Aktif</span></td>
+<td class="salary-cell" data-i18n="_050">€3.050</td>
+<td data-i18n="_9102022">19.10.2022</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(10)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(10)">🗑️</button></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" data-i18n="np" style="background:linear-gradient(135deg,#c2410c,#115e59);">NP</div><span data-i18n="nadia_peeters">Nadia Peeters</span></div></td>
+<td><span class="badge badge-info">Mimar</span></td>
+<td><div class="cert-tags"><span class="cert-tag" data-i18n="revit_2">Revit</span><span class="cert-tag" data-i18n="sketchup">SketchUp</span><span class="cert-tag" data-i18n="enerji_pasaport_2">Enerji Pasaport</span></div></td>
+<td><span class="site-badge" data-i18n="ofis_4">📍 Ofis</span></td>
+<td><span class="badge badge-success">Aktif</span></td>
+<td class="salary-cell" data-i18n="_400">€3.400</td>
+<td data-i18n="_3012024">03.01.2024</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(11)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(11)">🗑️</button></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" data-i18n="ik" style="background:linear-gradient(135deg,#1d4ed8,#1e3a8a);">IK</div><span data-i18n="ibrahim_korkmaz">Ibrahim Korkmaz</span></div></td>
+<td><span class="badge badge-neutral">İşçi</span></td>
+<td><div class="cert-tags"><span class="cert-tag" data-i18n="isg_7">İSG</span></div></td>
+<td><span class="site-badge" data-i18n="anvers_lojistik_4">📍 Anvers Lojistik</span></td>
+<td><span class="badge badge-error">Raporlu</span></td>
+<td class="salary-cell" data-i18n="_320">€2.320</td>
+<td data-i18n="_7082023">27.08.2023</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(12)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(12)">🗑️</button></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" data-i18n="ws" style="background:linear-gradient(135deg,#b45309,#78350f);">WS</div><span data-i18n="wouter_smets">Wouter Smets</span></div></td>
+<td><span class="badge badge-warning">Operatör</span></td>
+<td><div class="cert-tags"><span class="cert-tag" data-i18n="forklift_2">Forklift</span><span class="cert-tag" data-i18n="vinç_4">Vinç</span><span class="cert-tag" data-i18n="teleskopik">Teleskopik</span></div></td>
+<td><span class="site-badge" data-i18n="gent_konut_4">📍 Gent Konut</span></td>
+<td><span class="badge badge-success">Aktif</span></td>
+<td class="salary-cell" data-i18n="_750">€2.750</td>
+<td data-i18n="_1122021">11.12.2021</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(13)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(13)">🗑️</button></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" data-i18n="fc" style="background:linear-gradient(135deg,#0f766e,#134e4a);">FC</div><span data-i18n="fatma_çelik">Fatma Çelik</span></div></td>
+<td><span class="badge badge-info">Mühendis</span></td>
+<td><div class="cert-tags"><span class="cert-tag" data-i18n="beton_3">Beton</span><span class="cert-tag" data-i18n="yapı_denetim_3">Yapı Denetim</span></div></td>
+<td><span class="site-badge" data-i18n="ofis_5">📍 Ofis</span></td>
+<td><span class="badge badge-warning">İzin</span></td>
+<td class="salary-cell" data-i18n="_700">€3.700</td>
+<td data-i18n="_6032023">06.03.2023</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(14)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(14)">🗑️</button></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" data-i18n="jb" style="background:linear-gradient(135deg,#4338ca,#312e81);">JB</div><span data-i18n="jeroen_beekman">Jeroen Beekman</span></div></td>
+<td><span class="badge badge-warning">Usta</span></td>
+<td><div class="cert-tags"><span class="cert-tag" data-i18n="mermer">Mermer</span><span class="cert-tag" data-i18n="seramik">Seramik</span><span class="cert-tag" data-i18n="isg_8">İSG</span></div></td>
+<td><span class="site-badge" data-i18n="brüksel_merkez_6">📍 Brüksel Merkez</span></td>
+<td><span class="badge badge-success">Aktif</span></td>
+<td class="salary-cell" data-i18n="_950">€2.950</td>
+<td data-i18n="_5092020">25.09.2020</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(15)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(15)">🗑️</button></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" data-i18n="ya" style="background:linear-gradient(135deg,#a16207,#713f12);">YA</div><span data-i18n="yusuf_aydın">Yusuf Aydın</span></div></td>
+<td><span class="badge badge-neutral">İşçi</span></td>
+<td><div class="cert-tags"><span class="cert-tag" data-i18n="isg_9">İSG</span><span class="cert-tag" data-i18n="yüksekte_3">Yüksekte</span></div></td>
+<td><span class="site-badge" data-i18n="anvers_lojistik_5">📍 Anvers Lojistik</span></td>
+<td><span class="badge badge-success">Aktif</span></td>
+<td class="salary-cell" data-i18n="_400_2">€2.400</td>
+<td data-i18n="_7012024">17.01.2024</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(16)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(16)">🗑️</button></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" data-i18n="km" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);">KM</div><span data-i18n="karen_maes">Karen Maes</span></div></td>
+<td><span class="badge badge-info">Mimar</span></td>
+<td><div class="cert-tags"><span class="cert-tag" data-i18n="autocad_2">AutoCAD</span><span class="cert-tag" data-i18n="revit_3">Revit</span><span class="cert-tag" data-i18n="_ds_max">3ds Max</span></div></td>
+<td><span class="site-badge" data-i18n="ofis_6">📍 Ofis</span></td>
+<td><span class="badge badge-success">Aktif</span></td>
+<td class="salary-cell" data-i18n="_550">€3.550</td>
+<td data-i18n="_9062022">09.06.2022</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(17)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(17)">🗑️</button></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" data-i18n="dv" style="background:linear-gradient(135deg,#ca8a04,#854d0e);">DV</div><span data-i18n="dirk_vermeulen">Dirk Vermeulen</span></div></td>
+<td><span class="badge badge-warning">Operatör</span></td>
+<td><div class="cert-tags"><span class="cert-tag" data-i18n="ekskavatör_2">Ekskavatör</span><span class="cert-tag" data-i18n="forklift_3">Forklift</span></div></td>
+<td><span class="site-badge" data-i18n="brüksel_merkez_7">📍 Brüksel Merkez</span></td>
+<td><span class="badge badge-success">Aktif</span></td>
+<td class="salary-cell" data-i18n="_680">€2.680</td>
+<td data-i18n="_4052023">04.05.2023</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(18)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(18)">🗑️</button></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" data-i18n="st" style="background:linear-gradient(135deg,#db2777,#9d174d);">ST</div><span data-i18n="stefanie_timmermans">Stefanie Timmermans</span></div></td>
+<td><span class="badge badge-neutral">İşçi</span></td>
+<td><div class="cert-tags"><span class="cert-tag" data-i18n="isg_10">İSG</span></div></td>
+<td><span class="site-badge" data-i18n="gent_konut_5">📍 Gent Konut</span></td>
+<td><span class="badge badge-success">Aktif</span></td>
+<td class="salary-cell" data-i18n="_300">€2.300</td>
+<td data-i18n="_3072023">13.07.2023</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(19)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(19)">🗑️</button></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" data-i18n="gd" style="background:linear-gradient(135deg,#65a30d,#3f6212);">GD</div><span data-i18n="gert_deschacht">Gert Deschacht</span></div></td>
+<td><span class="badge badge-info">Şantiye Şefi</span></td>
+<td><div class="cert-tags"><span class="cert-tag" data-i18n="isg_11">İSG</span><span class="cert-tag" data-i18n="kalite_3">Kalite</span><span class="cert-tag" data-i18n="yapı_denetim_4">Yapı Denetim</span></div></td>
+<td><span class="site-badge" data-i18n="anvers_lojistik_6">📍 Anvers Lojistik</span></td>
+<td><span class="badge badge-success">Aktif</span></td>
+<td class="salary-cell" data-i18n="_500_2">€4.500</td>
+<td data-i18n="_1022018">01.02.2018</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(20)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(20)">🗑️</button></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" data-i18n="mk2" style="background:linear-gradient(135deg,#134e4a,#451a03);">MK2</div><span data-i18n="murat_karaca">Murat Karaca</span></div></td>
+<td><span class="badge badge-warning">Usta</span></td>
+<td><div class="cert-tags"><span class="cert-tag" data-i18n="kaynak">Kaynak</span><span class="cert-tag" data-i18n="isg_12">İSG</span><span class="cert-tag" data-i18n="yangın_2">Yangın</span></div></td>
+<td><span class="site-badge" data-i18n="gent_konut_6">📍 Gent Konut</span></td>
+<td><span class="badge badge-neutral">Ayrıldı</span></td>
+<td class="salary-cell" data-i18n="_900">€2.900</td>
+<td data-i18n="_2042019">12.04.2019</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(21)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(21)">🗑️</button></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" data-i18n="ed" style="background:linear-gradient(135deg,#0369a1,#0c4a6e);">ED</div><span data-i18n="elke_dubois">Elke Dubois</span></div></td>
+<td><span class="badge badge-info">Mühendis</span></td>
+<td><div class="cert-tags"><span class="cert-tag" data-i18n="beton_4">Beton</span><span class="cert-tag" data-i18n="statik">Statik</span></div></td>
+<td><span class="site-badge" data-i18n="ofis_7">📍 Ofis</span></td>
+<td><span class="badge badge-success">Aktif</span></td>
+<td class="salary-cell" data-i18n="_900_2">€3.900</td>
+<td data-i18n="_0032022">20.03.2022</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(22)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(22)">🗑️</button></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" data-i18n="bs" style="background:linear-gradient(135deg,#a855f7,#6b21a8);">BS</div><span data-i18n="burak_şahin">Burak Şahin</span></div></td>
+<td><span class="badge badge-neutral">İşçi</span></td>
+<td><div class="cert-tags"><span class="cert-tag" data-i18n="isg_13">İSG</span><span class="cert-tag" data-i18n="yüksekte_4">Yüksekte</span></div></td>
+<td><span class="site-badge" data-i18n="brüksel_merkez_8">📍 Brüksel Merkez</span></td>
+<td><span class="badge badge-success">Aktif</span></td>
+<td class="salary-cell" data-i18n="_350_2">€2.350</td>
+<td data-i18n="_8112023">28.11.2023</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(23)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(23)">🗑️</button></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:var(--space-3);"><div class="staff-avatar" data-i18n="ln" style="background:linear-gradient(135deg,#14b8a6,#0f766e);">LN</div><span data-i18n="lucas_neyt">Lucas Neyt</span></div></td>
+<td><span class="badge badge-warning">Operatör</span></td>
+<td><div class="cert-tags"><span class="cert-tag" data-i18n="forklift_4">Forklift</span><span class="cert-tag" data-i18n="vinç_5">Vinç</span><span class="cert-tag" data-i18n="teleskopik_2">Teleskopik</span></div></td>
+<td><span class="site-badge" data-i18n="anvers_lojistik_7">📍 Anvers Lojistik</span></td>
+<td><span class="badge badge-success">Aktif</span></td>
+<td class="salary-cell" data-i18n="_620">€2.620</td>
+<td data-i18n="_5092022">15.09.2022</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editStaff(24)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteStaff(24)">🗑️</button></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</div>
+<!-- Add Modal -->
+<div class="modal-overlay" id="addModal">
+<div class="modal modal-lg">
+<div class="modal-header">
+<div class="modal-title" data-i18n="yeni_personel_ekle">Yeni Personel Ekle</div>
+<button class="modal-close" onclick="closeModal('addModal')">✕</button>
+</div>
+<div class="modal-body">
+<div class="modal-body grid-2">
+<div class="form-group">
+<label class="form-label" data-i18n="ad">Ad</label>
+<input class="form-input" data-i18n-placeholder="ph_örn_mehmet" placeholder="örn: Mehmet" type="text"/>
+</div>
+<div class="form-group">
+<label class="form-label" data-i18n="soyad">Soyad</label>
+<input class="form-input" data-i18n-placeholder="ph_örn_kaya" placeholder="örn: Kaya" type="text"/>
+</div>
+<div class="form-group">
+<label class="form-label" data-i18n="görev_2">Görev</label>
+<select class="form-select">
+<option data-i18n="şantiye_şefi_2">Şantiye Şefi</option>
+<option data-i18n="mühendis_2">Mühendis</option>
+<option data-i18n="mimar_2">Mimar</option>
+<option data-i18n="usta_2">Usta</option>
+<option data-i18n="işçi_2">İşçi</option>
+<option data-i18n="operatör_2">Operatör</option>
+</select>
+</div>
+<div class="form-group">
+<label class="form-label" data-i18n="atandığı_şantiye_2">Atandığı Şantiye</label>
+<select class="form-select">
+<option data-i18n="brüksel_merkez_9">Brüksel Merkez</option>
+<option data-i18n="anvers_lojistik_8">Anvers Lojistik</option>
+<option data-i18n="gent_konut_7">Gent Konut</option>
+<option data-i18n="ofis_8">Ofis</option>
+</select>
+</div>
+<div class="form-group">
+<label class="form-label" data-i18n="maaş_2">Maaş (€)</label>
+<input class="form-input" data-i18n-placeholder="ph_örn_3500" placeholder="örn: 3500" type="number"/>
+</div>
+<div class="form-group">
+<label class="form-label" data-i18n="başlangıç_tarihi">Başlangıç Tarihi</label>
+<input class="form-input" type="date"/>
+</div>
+</div>
+<div class="form-group" style="margin-top:var(--space-4);">
+<label class="form-label" data-i18n="sertifikalar_2">Sertifikalar</label>
+<div class="checkbox-group">
+<label class="checkbox-item"><input type="checkbox"/> İSG</label>
+<label class="checkbox-item"><input type="checkbox"/> Yüksekte Çalışma</label>
+<label class="checkbox-item"><input type="checkbox"/> Vinç Operatörlüğü</label>
+<label class="checkbox-item"><input type="checkbox"/> Forklift</label>
+<label class="checkbox-item"><input type="checkbox"/> Ekskavatör</label>
+<label class="checkbox-item"><input type="checkbox"/> Beton Teknolojisi</label>
+<label class="checkbox-item"><input type="checkbox"/> Yapı Denetim</label>
+<label class="checkbox-item"><input type="checkbox"/> Elektrik Ustalığı</label>
+<label class="checkbox-item"><input type="checkbox"/> Sıhhi Tesisat</label>
+<label class="checkbox-item"><input type="checkbox"/> Kaynakçılık</label>
+<label class="checkbox-item"><input type="checkbox"/> Yangın Güvenliği</label>
+<label class="checkbox-item"><input type="checkbox"/> Enerji Pasaportu</label>
+</div>
+</div>
+<div class="form-group">
+<label class="form-label" data-i18n="durum_2">Durum</label>
+<select class="form-select">
+<option data-i18n="aktif_2">Aktif</option>
+<option data-i18n="izin_2">İzin</option>
+<option data-i18n="raporlu_2">Raporlu</option>
+<option data-i18n="ayrıldı_2">Ayrıldı</option>
+</select>
+</div>
+</div>
+<div class="modal-footer">
+<button class="btn btn-secondary" data-i18n="iptal" onclick="closeModal('addModal')">İptal</button>
+<button class="btn btn-primary" data-i18n="kaydet" onclick="saveStaff();closeModal('addModal');showToast('Personel başarıyla eklendi','success')">Kaydet</button>
+</div>
+</div>
+</div>
+<!-- Edit Modal -->
+<div class="modal-overlay" id="editModal">
+<div class="modal modal-lg">
+<div class="modal-header">
+<div class="modal-title" data-i18n="personel_düzenle">Personel Düzenle</div>
+<button class="modal-close" onclick="closeModal('editModal')">✕</button>
+</div>
+<div class="modal-body">
+<div class="modal-body grid-2">
+<div class="form-group">
+<label class="form-label" data-i18n="ad_2">Ad</label>
+<input class="form-input" type="text" value="Mehmet"/>
+</div>
+<div class="form-group">
+<label class="form-label" data-i18n="soyad_2">Soyad</label>
+<input class="form-input" type="text" value="Kaya"/>
+</div>
+<div class="form-group">
+<label class="form-label" data-i18n="görev_3">Görev</label>
+<select class="form-select"><option data-i18n="şantiye_şefi_3" selected="">Şantiye Şefi</option><option data-i18n="mühendis_3">Mühendis</option><option data-i18n="mimar_3">Mimar</option><option data-i18n="usta_3">Usta</option><option data-i18n="işçi_3">İşçi</option><option data-i18n="operatör_3">Operatör</option></select>
+</div>
+<div class="form-group">
+<label class="form-label" data-i18n="atandığı_şantiye_3">Atandığı Şantiye</label>
+<select class="form-select"><option data-i18n="brüksel_merkez_10" selected="">Brüksel Merkez</option><option data-i18n="anvers_lojistik_9">Anvers Lojistik</option><option data-i18n="gent_konut_8">Gent Konut</option><option data-i18n="ofis_9">Ofis</option></select>
+</div>
+<div class="form-group">
+<label class="form-label" data-i18n="maaş_3">Maaş (€)</label>
+<input class="form-input" type="number" value="4200"/>
+</div>
+<div class="form-group">
+<label class="form-label" data-i18n="başlangıç_tarihi_2">Başlangıç Tarihi</label>
+<input class="form-input" type="date" value="2021-03-15"/>
+</div>
+</div>
+<div class="form-group" style="margin-top:var(--space-4);">
+<label class="form-label" data-i18n="sertifikalar_3">Sertifikalar</label>
+<div class="checkbox-group">
+<label class="checkbox-item"><input checked="" type="checkbox"/> İSG</label>
+<label class="checkbox-item"><input checked="" type="checkbox"/> Yüksekte Çalışma</label>
+<label class="checkbox-item"><input checked="" type="checkbox"/> Vinç Operatörlüğü</label>
+<label class="checkbox-item"><input type="checkbox"/> Forklift</label>
+<label class="checkbox-item"><input type="checkbox"/> Ekskavatör</label>
+<label class="checkbox-item"><input type="checkbox"/> Beton Teknolojisi</label>
+<label class="checkbox-item"><input type="checkbox"/> Yapı Denetim</label>
+<label class="checkbox-item"><input type="checkbox"/> Elektrik Ustalığı</label>
+<label class="checkbox-item"><input type="checkbox"/> Sıhhi Tesisat</label>
+<label class="checkbox-item"><input type="checkbox"/> Kaynakçılık</label>
+<label class="checkbox-item"><input type="checkbox"/> Yangın Güvenliği</label>
+<label class="checkbox-item"><input type="checkbox"/> Enerji Pasaportu</label>
+</div>
+</div>
+<div class="form-group">
+<label class="form-label" data-i18n="durum_3">Durum</label>
+<select class="form-select"><option data-i18n="aktif_3" selected="">Aktif</option><option data-i18n="izin_3">İzin</option><option data-i18n="raporlu_3">Raporlu</option><option data-i18n="ayrıldı_3">Ayrıldı</option></select>
+</div>
+</div>
+<div class="modal-footer">
+<button class="btn btn-secondary" data-i18n="iptal_2" onclick="closeModal('editModal')">İptal</button>
+<button class="btn btn-primary" data-i18n="güncelle" onclick="closeModal('editModal');showToast('Personel güncellendi','success')">Güncelle</button>
+</div>
+</div>
+</div>
+<!-- Delete Modal -->
+<div class="modal-overlay" id="deleteModal">
+<div class="modal">
+<div class="modal-header">
+<div class="modal-title" data-i18n="personel_sil">Personel Sil</div>
+<button class="modal-close" onclick="closeModal('deleteModal')">✕</button>
+</div>
+<div class="modal-body">
+<p style="color:var(--text-secondary);"><strong data-i18n="mehmet_kaya_2" style="color:var(--text-primary);">Mehmet Kaya</strong> isimli personeli silmek istediğinize emin misiniz? Bu işlem geri alınamaz.</p>
+</div>
+<div class="modal-footer">
+<button class="btn btn-secondary" data-i18n="iptal_3" onclick="closeModal('deleteModal')">İptal</button>
+<button class="btn btn-amber" data-i18n="sil" onclick="closeModal('deleteModal');showToast('Personel silindi','warning')">Sil</button>
+</div>
+</div>
+</div>
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+<script>
     function toggleSidebar() {
       document.getElementById('sidebar').classList.toggle('mobile-open');
       document.getElementById('sidebarOverlay').classList.toggle('active');
@@ -601,7 +598,7 @@
       const toast = document.createElement('div');
       toast.className = `toast toast-${type}`;
       const icons = { success:'✅', error:'❌', warning:'⚠️', info:'ℹ️' };
-      toast.innerHTML = `<div class="toast-icon">${icons[type]}</div><div class="toast-content"><div class="toast-title">${type==='success'?'Başarılı':type==='error'?'Hata':type==='warning'?'Uyarı':'Bilgi'}</div><div class="toast-message">${message}</div></div><button class="toast-close" onclick="this.parentElement.remove()">✕</button><div class="toast-progress"></div>`;
+      toast.innerHTML = `<div class="toast-icon">${icons[type]}</div><div class="toast-content"><div class="toast-title">${type==='success'?(t['başarılı']||'Success'):type==='error'?(t['hata_oluştu']||'Error'):type==='warning'?(t['uyarı']||'Warning'):(t['bilgi']||'Info')}</div><div class="toast-message">${message}</div></div><button class="toast-close" onclick="this.parentElement.remove()">✕</button><div class="toast-progress"></div>`;
       container.appendChild(toast);
       setTimeout(() => { toast.classList.add('exit'); setTimeout(()=>toast.remove(),300); }, 4000);
     }
@@ -628,5 +625,942 @@
       });
     }
   </script>
-</body>
+<script>
+const i18n = {
+  "tr": {
+    "buildpro_personel_yönetimi": "BuildPro — Personel Yönetimi",
+    "buildpro": "BuildPro",
+    "genel": "Genel",
+    "dashboard": "Dashboard",
+    "projeler": "Projeler",
+    "personel": "Personel",
+    "şantiyeler": "Şantiyeler",
+    "operasyon": "Operasyon",
+    "takvim": "Takvim",
+    "maliyetler": "Maliyetler",
+    "ekipman": "Ekipman",
+    "müşteri": "Müşteri",
+    "müşteriler": "Müşteriler",
+    "teklifler": "Teklifler",
+    "ayarlar": "Ayarlar",
+    "personel_yönetimi": "Personel Yönetimi",
+    "buildpro_personel": "BuildPro / Personel",
+    "toplam_personel": "Toplam Personel",
+    "__yeni_bu_ay": "↑ 3 yeni bu ay",
+    "aktif_çalışan": "Aktif Çalışan",
+    "_9_oran": "↑ %79 oran",
+    "izin_raporlu": "İzin / Raporlu",
+    "__azalma": "↓ 1 azalma",
+    "_47k": "€847K",
+    "aylık_maaş_bütçesi": "Aylık Maaş Bütçesi",
+    "_2_artış": "↑ %4.2 artış",
+    "personel_listesi": "Personel Listesi",
+    "tüm_çalışanlar_roller_ve_sertifikalar": "Tüm çalışanlar, roller ve sertifikalar",
+    "dışa_aktar": "📥 Dışa Aktar",
+    "personel_ekle": "+ Personel Ekle",
+    "tüm_görevler": "Tüm Görevler",
+    "şantiye_şefi": "Şantiye Şefi",
+    "mühendis": "Mühendis",
+    "mimar": "Mimar",
+    "usta": "Usta",
+    "işçi": "İşçi",
+    "operatör": "Operatör",
+    "tüm_şantiyeler": "Tüm Şantiyeler",
+    "brüksel_merkez": "Brüksel Merkez",
+    "anvers_lojistik": "Anvers Lojistik",
+    "gent_konut": "Gent Konut",
+    "ofis": "Ofis",
+    "tüm_durumlar": "Tüm Durumlar",
+    "aktif": "Aktif",
+    "izin": "İzin",
+    "raporlu": "Raporlu",
+    "ayrıldı": "Ayrıldı",
+    "ad_soyad": "Ad Soyad",
+    "görev": "Görev",
+    "sertifikalar": "Sertifikalar",
+    "atandığı_şantiye": "Atandığı Şantiye",
+    "durum": "Durum",
+    "maaş": "Maaş",
+    "başlangıç": "Başlangıç",
+    "actions": "Actions",
+    "mk": "MK",
+    "mehmet_kaya": "Mehmet Kaya",
+    "isg": "İSG",
+    "yüksekte": "Yüksekte",
+    "vinç": "Vinç",
+    "brüksel_merkez_2": "📍 Brüksel Merkez",
+    "_200": "€4.200",
+    "_5032021": "15.03.2021",
+    "jd": "JD",
+    "jan_de_vries": "Jan De Vries",
+    "beton": "Beton",
+    "yapı_denetim": "Yapı Denetim",
+    "brüksel_merkez_3": "📍 Brüksel Merkez",
+    "_800": "€3.800",
+    "_2092022": "02.09.2022",
+    "ay": "AY",
+    "ayşe_yılmaz": "Ayşe Yılmaz",
+    "autocad": "AutoCAD",
+    "revit": "Revit",
+    "enerji_pasaport": "Enerji Pasaport",
+    "ofis_2": "📍 Ofis",
+    "_500": "€3.500",
+    "_0012023": "10.01.2023",
+    "po": "PO",
+    "pieter_ooms": "Pieter Ooms",
+    "elektrik": "Elektrik",
+    "isg_2": "İSG",
+    "yangın": "Yangın",
+    "anvers_lojistik_2": "📍 Anvers Lojistik",
+    "_100": "€3.100",
+    "_2062020": "22.06.2020",
+    "hd": "HD",
+    "hassan_demir": "Hassan Demir",
+    "isg_3": "İSG",
+    "brüksel_merkez_4": "📍 Brüksel Merkez",
+    "_450": "€2.450",
+    "_5042023": "05.04.2023",
+    "lv": "LV",
+    "liesbeth_van_den_berg": "Liesbeth Van den Berg",
+    "isg_4": "İSG",
+    "vinç_2": "Vinç",
+    "kalite": "Kalite",
+    "gent_konut_2": "📍 Gent Konut",
+    "_350": "€4.350",
+    "_8112019": "18.11.2019",
+    "tc": "TC",
+    "thomas_claes": "Thomas Claes",
+    "ekskavatör": "Ekskavatör",
+    "vinç_3": "Vinç",
+    "forklift": "Forklift",
+    "anvers_lojistik_3": "📍 Anvers Lojistik",
+    "_800_2": "€2.800",
+    "_0072022": "30.07.2022",
+    "sb": "SB",
+    "sibel_bakırcı": "Sibel Bakırcı",
+    "isg_5": "İSG",
+    "yüksekte_2": "Yüksekte",
+    "gent_konut_3": "📍 Gent Konut",
+    "_380": "€2.380",
+    "_4022024": "14.02.2024",
+    "mb": "MB",
+    "marc_baudewijn": "Marc Baudewijn",
+    "beton_2": "Beton",
+    "yapı_denetim_2": "Yapı Denetim",
+    "kalite_2": "Kalite",
+    "ofis_3": "📍 Ofis",
+    "_650": "€3.650",
+    "_8052021": "08.05.2021",
+    "eo": "EO",
+    "emre_özdemir": "Emre Özdemir",
+    "sıhhi_tesisat": "Sıhhi Tesisat",
+    "isg_6": "İSG",
+    "brüksel_merkez_5": "📍 Brüksel Merkez",
+    "_050": "€3.050",
+    "_9102022": "19.10.2022",
+    "np": "NP",
+    "nadia_peeters": "Nadia Peeters",
+    "revit_2": "Revit",
+    "sketchup": "SketchUp",
+    "enerji_pasaport_2": "Enerji Pasaport",
+    "ofis_4": "📍 Ofis",
+    "_400": "€3.400",
+    "_3012024": "03.01.2024",
+    "ik": "IK",
+    "ibrahim_korkmaz": "Ibrahim Korkmaz",
+    "isg_7": "İSG",
+    "anvers_lojistik_4": "📍 Anvers Lojistik",
+    "_320": "€2.320",
+    "_7082023": "27.08.2023",
+    "ws": "WS",
+    "wouter_smets": "Wouter Smets",
+    "forklift_2": "Forklift",
+    "vinç_4": "Vinç",
+    "teleskopik": "Teleskopik",
+    "gent_konut_4": "📍 Gent Konut",
+    "_750": "€2.750",
+    "_1122021": "11.12.2021",
+    "fc": "FC",
+    "fatma_çelik": "Fatma Çelik",
+    "beton_3": "Beton",
+    "yapı_denetim_3": "Yapı Denetim",
+    "ofis_5": "📍 Ofis",
+    "_700": "€3.700",
+    "_6032023": "06.03.2023",
+    "jb": "JB",
+    "jeroen_beekman": "Jeroen Beekman",
+    "mermer": "Mermer",
+    "seramik": "Seramik",
+    "isg_8": "İSG",
+    "brüksel_merkez_6": "📍 Brüksel Merkez",
+    "_950": "€2.950",
+    "_5092020": "25.09.2020",
+    "ya": "YA",
+    "yusuf_aydın": "Yusuf Aydın",
+    "isg_9": "İSG",
+    "yüksekte_3": "Yüksekte",
+    "anvers_lojistik_5": "📍 Anvers Lojistik",
+    "_400_2": "€2.400",
+    "_7012024": "17.01.2024",
+    "km": "KM",
+    "karen_maes": "Karen Maes",
+    "autocad_2": "AutoCAD",
+    "revit_3": "Revit",
+    "_ds_max": "3ds Max",
+    "ofis_6": "📍 Ofis",
+    "_550": "€3.550",
+    "_9062022": "09.06.2022",
+    "dv": "DV",
+    "dirk_vermeulen": "Dirk Vermeulen",
+    "ekskavatör_2": "Ekskavatör",
+    "forklift_3": "Forklift",
+    "brüksel_merkez_7": "📍 Brüksel Merkez",
+    "_680": "€2.680",
+    "_4052023": "04.05.2023",
+    "st": "ST",
+    "stefanie_timmermans": "Stefanie Timmermans",
+    "isg_10": "İSG",
+    "gent_konut_5": "📍 Gent Konut",
+    "_300": "€2.300",
+    "_3072023": "13.07.2023",
+    "gd": "GD",
+    "gert_deschacht": "Gert Deschacht",
+    "isg_11": "İSG",
+    "kalite_3": "Kalite",
+    "yapı_denetim_4": "Yapı Denetim",
+    "anvers_lojistik_6": "📍 Anvers Lojistik",
+    "_500_2": "€4.500",
+    "_1022018": "01.02.2018",
+    "mk2": "MK2",
+    "murat_karaca": "Murat Karaca",
+    "kaynak": "Kaynak",
+    "isg_12": "İSG",
+    "yangın_2": "Yangın",
+    "gent_konut_6": "📍 Gent Konut",
+    "_900": "€2.900",
+    "_2042019": "12.04.2019",
+    "ed": "ED",
+    "elke_dubois": "Elke Dubois",
+    "beton_4": "Beton",
+    "statik": "Statik",
+    "ofis_7": "📍 Ofis",
+    "_900_2": "€3.900",
+    "_0032022": "20.03.2022",
+    "bs": "BS",
+    "burak_şahin": "Burak Şahin",
+    "isg_13": "İSG",
+    "yüksekte_4": "Yüksekte",
+    "brüksel_merkez_8": "📍 Brüksel Merkez",
+    "_350_2": "€2.350",
+    "_8112023": "28.11.2023",
+    "ln": "LN",
+    "lucas_neyt": "Lucas Neyt",
+    "forklift_4": "Forklift",
+    "vinç_5": "Vinç",
+    "teleskopik_2": "Teleskopik",
+    "anvers_lojistik_7": "📍 Anvers Lojistik",
+    "_620": "€2.620",
+    "_5092022": "15.09.2022",
+    "yeni_personel_ekle": "Yeni Personel Ekle",
+    "ad": "Ad",
+    "soyad": "Soyad",
+    "görev_2": "Görev",
+    "şantiye_şefi_2": "Şantiye Şefi",
+    "mühendis_2": "Mühendis",
+    "mimar_2": "Mimar",
+    "usta_2": "Usta",
+    "işçi_2": "İşçi",
+    "operatör_2": "Operatör",
+    "atandığı_şantiye_2": "Atandığı Şantiye",
+    "brüksel_merkez_9": "Brüksel Merkez",
+    "anvers_lojistik_8": "Anvers Lojistik",
+    "gent_konut_7": "Gent Konut",
+    "ofis_8": "Ofis",
+    "maaş_2": "Maaş (€)",
+    "başlangıç_tarihi": "Başlangıç Tarihi",
+    "sertifikalar_2": "Sertifikalar",
+    "durum_2": "Durum",
+    "aktif_2": "Aktif",
+    "izin_2": "İzin",
+    "raporlu_2": "Raporlu",
+    "ayrıldı_2": "Ayrıldı",
+    "iptal": "İptal",
+    "kaydet": "Kaydet",
+    "personel_düzenle": "Personel Düzenle",
+    "ad_2": "Ad",
+    "soyad_2": "Soyad",
+    "görev_3": "Görev",
+    "şantiye_şefi_3": "Şantiye Şefi",
+    "mühendis_3": "Mühendis",
+    "mimar_3": "Mimar",
+    "usta_3": "Usta",
+    "işçi_3": "İşçi",
+    "operatör_3": "Operatör",
+    "atandığı_şantiye_3": "Atandığı Şantiye",
+    "brüksel_merkez_10": "Brüksel Merkez",
+    "anvers_lojistik_9": "Anvers Lojistik",
+    "gent_konut_8": "Gent Konut",
+    "ofis_9": "Ofis",
+    "maaş_3": "Maaş (€)",
+    "başlangıç_tarihi_2": "Başlangıç Tarihi",
+    "sertifikalar_3": "Sertifikalar",
+    "durum_3": "Durum",
+    "aktif_3": "Aktif",
+    "izin_3": "İzin",
+    "raporlu_3": "Raporlu",
+    "ayrıldı_3": "Ayrıldı",
+    "iptal_2": "İptal",
+    "güncelle": "Güncelle",
+    "personel_sil": "Personel Sil",
+    "mehmet_kaya_2": "Mehmet Kaya",
+    "iptal_3": "İptal",
+    "sil": "Sil",
+    "aria_menu": "Menu",
+    "ph_personel_ara": "Personel ara...",
+    "aria_tema": "Tema",
+    "aria_bildirimler": "Bildirimler",
+    "ph_isim_görev_veya_sertifika_ara": "İsim, görev veya sertifika ara...",
+    "ph_örn_mehmet": "örn: Mehmet",
+    "ph_örn_kaya": "örn: Kaya",
+    "ph_örn_3500": "örn: 3500"
+  },
+  "en": {
+    "buildpro_personel_yönetimi": "BuildPro — Personel Management",
+    "buildpro": "BuildPro",
+    "genel": "General",
+    "dashboard": "Dashboard",
+    "projeler": "Projects",
+    "personel": "Staff",
+    "şantiyeler": "Sites",
+    "operasyon": "Operations",
+    "takvim": "Calendar",
+    "maliyetler": "Costs",
+    "ekipman": "Equipment",
+    "müşteri": "Client",
+    "müşteriler": "Clients",
+    "teklifler": "Quotes",
+    "ayarlar": "Settings",
+    "personel_yönetimi": "Staff Management",
+    "buildpro_personel": "BuildPro / Personel",
+    "toplam_personel": "Total Staff",
+    "__yeni_bu_ay": "↑ 3 yeni bu ay",
+    "aktif_çalışan": "Aktif Çalışan",
+    "_9_oran": "↑ %79 oran",
+    "izin_raporlu": "İzin / Raporlu",
+    "__azalma": "↓ 1 azalma",
+    "_47k": "€847K",
+    "aylık_maaş_bütçesi": "Aylık Maaş Bütçesi",
+    "_2_artış": "↑ %4.2 artış",
+    "personel_listesi": "Staff List",
+    "tüm_çalışanlar_roller_ve_sertifikalar": "Tüm çalışanlar, roller ve sertifikalar",
+    "dışa_aktar": "📥 Export",
+    "personel_ekle": "Add + Personel",
+    "tüm_görevler": "Tüm Görevler",
+    "şantiye_şefi": "Site Manager",
+    "mühendis": "Engineer",
+    "mimar": "Architect",
+    "usta": "Master Craftsman",
+    "işçi": "İşçi",
+    "operatör": "Operator",
+    "tüm_şantiyeler": "All sites",
+    "brüksel_merkez": "Brussels Center",
+    "anvers_lojistik": "Antwerp Logistics",
+    "gent_konut": "Ghent Residential",
+    "ofis": "Office",
+    "tüm_durumlar": "All statuses",
+    "aktif": "Active",
+    "izin": "Leave",
+    "raporlu": "Raporlu",
+    "ayrıldı": "Ayrıldı",
+    "ad_soyad": "Full Name",
+    "görev": "Task",
+    "sertifikalar": "Sertifikalar",
+    "atandığı_şantiye": "Atandığı Şantiye",
+    "durum": "Status",
+    "maaş": "Salary",
+    "başlangıç": "Start",
+    "actions": "Actions",
+    "mk": "MK",
+    "mehmet_kaya": "Mehmet Kaya",
+    "isg": "HSE",
+    "yüksekte": "Yüksekte",
+    "vinç": "Crane",
+    "brüksel_merkez_2": "📍 Brüksel Merkez",
+    "_200": "€4.200",
+    "_5032021": "15.03.2021",
+    "jd": "JD",
+    "jan_de_vries": "Jan De Vries",
+    "beton": "Beton",
+    "yapı_denetim": "Yapı Denetim",
+    "brüksel_merkez_3": "📍 Brüksel Merkez",
+    "_800": "€3.800",
+    "_2092022": "02.09.2022",
+    "ay": "Month",
+    "ayşe_yılmaz": "Ayşe Yılmaz",
+    "autocad": "AutoCAD",
+    "revit": "Revit",
+    "enerji_pasaport": "Enerji Pasaport",
+    "ofis_2": "📍 Ofis",
+    "_500": "€3.500",
+    "_0012023": "10.01.2023",
+    "po": "PO",
+    "pieter_ooms": "Pieter Ooms",
+    "elektrik": "Electrical",
+    "isg_2": "HSE",
+    "yangın": "Yangın",
+    "anvers_lojistik_2": "📍 Anvers Lojistik",
+    "_100": "€3.100",
+    "_2062020": "22.06.2020",
+    "hd": "HD",
+    "hassan_demir": "Hassan Demir",
+    "isg_3": "HSE",
+    "brüksel_merkez_4": "📍 Brüksel Merkez",
+    "_450": "€2.450",
+    "_5042023": "05.04.2023",
+    "lv": "LV",
+    "liesbeth_van_den_berg": "Liesbeth Van den Berg",
+    "isg_4": "HSE",
+    "vinç_2": "Crane",
+    "kalite": "Quality",
+    "gent_konut_2": "📍 Gent Konut",
+    "_350": "€4.350",
+    "_8112019": "18.11.2019",
+    "tc": "TC",
+    "thomas_claes": "Thomas Claes",
+    "ekskavatör": "Excavator",
+    "vinç_3": "Crane",
+    "forklift": "Forklift",
+    "anvers_lojistik_3": "📍 Anvers Lojistik",
+    "_800_2": "€2.800",
+    "_0072022": "30.07.2022",
+    "sb": "SB",
+    "sibel_bakırcı": "Sibel Bakırcı",
+    "isg_5": "HSE",
+    "yüksekte_2": "Yüksekte",
+    "gent_konut_3": "📍 Gent Konut",
+    "_380": "€2.380",
+    "_4022024": "14.02.2024",
+    "mb": "MB",
+    "marc_baudewijn": "Marc Baudewijn",
+    "beton_2": "Beton",
+    "yapı_denetim_2": "Yapı Denetim",
+    "kalite_2": "Quality",
+    "ofis_3": "📍 Ofis",
+    "_650": "€3.650",
+    "_8052021": "08.05.2021",
+    "eo": "EO",
+    "emre_özdemir": "Emre Özdemir",
+    "sıhhi_tesisat": "Sıhhi Tesisat",
+    "isg_6": "HSE",
+    "brüksel_merkez_5": "📍 Brüksel Merkez",
+    "_050": "€3.050",
+    "_9102022": "19.10.2022",
+    "np": "NP",
+    "nadia_peeters": "Nadia Peeters",
+    "revit_2": "Revit",
+    "sketchup": "SketchUp",
+    "enerji_pasaport_2": "Enerji Pasaport",
+    "ofis_4": "📍 Ofis",
+    "_400": "€3.400",
+    "_3012024": "03.01.2024",
+    "ik": "IK",
+    "ibrahim_korkmaz": "Ibrahim Korkmaz",
+    "isg_7": "HSE",
+    "anvers_lojistik_4": "📍 Anvers Lojistik",
+    "_320": "€2.320",
+    "_7082023": "27.08.2023",
+    "ws": "WS",
+    "wouter_smets": "Wouter Smets",
+    "forklift_2": "Forklift",
+    "vinç_4": "Crane",
+    "teleskopik": "Teleskopik",
+    "gent_konut_4": "📍 Gent Konut",
+    "_750": "€2.750",
+    "_1122021": "11.12.2021",
+    "fc": "FC",
+    "fatma_çelik": "Fatma Çelik",
+    "beton_3": "Beton",
+    "yapı_denetim_3": "Yapı Denetim",
+    "ofis_5": "📍 Ofis",
+    "_700": "€3.700",
+    "_6032023": "06.03.2023",
+    "jb": "JB",
+    "jeroen_beekman": "Jeroen Beekman",
+    "mermer": "Mermer",
+    "seramik": "Seramik",
+    "isg_8": "HSE",
+    "brüksel_merkez_6": "📍 Brüksel Merkez",
+    "_950": "€2.950",
+    "_5092020": "25.09.2020",
+    "ya": "YA",
+    "yusuf_aydın": "Yusuf Aydın",
+    "isg_9": "HSE",
+    "yüksekte_3": "Yüksekte",
+    "anvers_lojistik_5": "📍 Anvers Lojistik",
+    "_400_2": "€2.400",
+    "_7012024": "17.01.2024",
+    "km": "km",
+    "karen_maes": "Karen Maes",
+    "autocad_2": "AutoCAD",
+    "revit_3": "Revit",
+    "_ds_max": "3ds Max",
+    "ofis_6": "📍 Ofis",
+    "_550": "€3.550",
+    "_9062022": "09.06.2022",
+    "dv": "DV",
+    "dirk_vermeulen": "Dirk Vermeulen",
+    "ekskavatör_2": "Excavator",
+    "forklift_3": "Forklift",
+    "brüksel_merkez_7": "📍 Brüksel Merkez",
+    "_680": "€2.680",
+    "_4052023": "04.05.2023",
+    "st": "ST",
+    "stefanie_timmermans": "Stefanie Timmermans",
+    "isg_10": "HSE",
+    "gent_konut_5": "📍 Gent Konut",
+    "_300": "€2.300",
+    "_3072023": "13.07.2023",
+    "gd": "GD",
+    "gert_deschacht": "Gert Deschacht",
+    "isg_11": "HSE",
+    "kalite_3": "Quality",
+    "yapı_denetim_4": "Yapı Denetim",
+    "anvers_lojistik_6": "📍 Anvers Lojistik",
+    "_500_2": "€4.500",
+    "_1022018": "01.02.2018",
+    "mk2": "MK2",
+    "murat_karaca": "Murat Karaca",
+    "kaynak": "Kaynak",
+    "isg_12": "HSE",
+    "yangın_2": "Yangın",
+    "gent_konut_6": "📍 Gent Konut",
+    "_900": "€2.900",
+    "_2042019": "12.04.2019",
+    "ed": "ED",
+    "elke_dubois": "Elke Dubois",
+    "beton_4": "Beton",
+    "statik": "Statik",
+    "ofis_7": "📍 Ofis",
+    "_900_2": "€3.900",
+    "_0032022": "20.03.2022",
+    "bs": "BS",
+    "burak_şahin": "Burak Şahin",
+    "isg_13": "HSE",
+    "yüksekte_4": "Yüksekte",
+    "brüksel_merkez_8": "📍 Brüksel Merkez",
+    "_350_2": "€2.350",
+    "_8112023": "28.11.2023",
+    "ln": "LN",
+    "lucas_neyt": "Lucas Neyt",
+    "forklift_4": "Forklift",
+    "vinç_5": "Crane",
+    "teleskopik_2": "Teleskopik",
+    "anvers_lojistik_7": "📍 Anvers Lojistik",
+    "_620": "€2.620",
+    "_5092022": "15.09.2022",
+    "yeni_personel_ekle": "Add New Staff",
+    "ad": "Name",
+    "soyad": "Surname",
+    "görev_2": "Task",
+    "şantiye_şefi_2": "Site Manager",
+    "mühendis_2": "Engineer",
+    "mimar_2": "Architect",
+    "usta_2": "Master Craftsman",
+    "işçi_2": "İşçi",
+    "operatör_2": "Operator",
+    "atandığı_şantiye_2": "Atandığı Şantiye",
+    "brüksel_merkez_9": "Brussels Center",
+    "anvers_lojistik_8": "Antwerp Logistics",
+    "gent_konut_7": "Ghent Residential",
+    "ofis_8": "Office",
+    "maaş_2": "Maaş (€)",
+    "başlangıç_tarihi": "Start Date",
+    "sertifikalar_2": "Sertifikalar",
+    "durum_2": "Status",
+    "aktif_2": "Active",
+    "izin_2": "Leave",
+    "raporlu_2": "Raporlu",
+    "ayrıldı_2": "Ayrıldı",
+    "iptal": "Cancel",
+    "kaydet": "Save",
+    "personel_düzenle": "Edit Staff",
+    "ad_2": "Name",
+    "soyad_2": "Surname",
+    "görev_3": "Task",
+    "şantiye_şefi_3": "Site Manager",
+    "mühendis_3": "Engineer",
+    "mimar_3": "Architect",
+    "usta_3": "Master Craftsman",
+    "işçi_3": "İşçi",
+    "operatör_3": "Operator",
+    "atandığı_şantiye_3": "Atandığı Şantiye",
+    "brüksel_merkez_10": "Brussels Center",
+    "anvers_lojistik_9": "Antwerp Logistics",
+    "gent_konut_8": "Ghent Residential",
+    "ofis_9": "Office",
+    "maaş_3": "Maaş (€)",
+    "başlangıç_tarihi_2": "Start Date",
+    "sertifikalar_3": "Sertifikalar",
+    "durum_3": "Status",
+    "aktif_3": "Active",
+    "izin_3": "Leave",
+    "raporlu_3": "Raporlu",
+    "ayrıldı_3": "Ayrıldı",
+    "iptal_2": "Cancel",
+    "güncelle": "Update",
+    "personel_sil": "Delete Staff",
+    "mehmet_kaya_2": "Mehmet Kaya",
+    "iptal_3": "Cancel",
+    "sil": "Delete",
+    "aria_menu": "Menu",
+    "ph_personel_ara": "Personel ara...",
+    "aria_tema": "Theme",
+    "aria_bildirimler": "Notifications",
+    "ph_isim_görev_veya_sertifika_ara": "İsim, görev veya sertifika ara...",
+    "ph_örn_mehmet": "örn: Mehmet",
+    "ph_örn_kaya": "örn: Kaya",
+    "ph_örn_3500": "örn: 3500"
+  },
+  "nl": {
+    "buildpro_personel_yönetimi": "BuildPro — Personel Beheer",
+    "buildpro": "BuildPro",
+    "genel": "Algemeen",
+    "dashboard": "Dashboard",
+    "projeler": "Projecten",
+    "personel": "Personeel",
+    "şantiyeler": "Werven",
+    "operasyon": "Operaties",
+    "takvim": "Kalender",
+    "maliyetler": "Kosten",
+    "ekipman": "Uitrusting",
+    "müşteri": "Klant",
+    "müşteriler": "Klanten",
+    "teklifler": "Offertes",
+    "ayarlar": "Instellingen",
+    "personel_yönetimi": "Personeel Beheer",
+    "buildpro_personel": "BuildPro / Personel",
+    "toplam_personel": "Totaal Personeel",
+    "__yeni_bu_ay": "↑ 3 yeni bu ay",
+    "aktif_çalışan": "Aktif Çalışan",
+    "_9_oran": "↑ %79 oran",
+    "izin_raporlu": "İzin / Raporlu",
+    "__azalma": "↓ 1 azalma",
+    "_47k": "€847K",
+    "aylık_maaş_bütçesi": "Aylık Maaş Bütçesi",
+    "_2_artış": "↑ %4.2 artış",
+    "personel_listesi": "Personeel Lijst",
+    "tüm_çalışanlar_roller_ve_sertifikalar": "Tüm çalışanlar, roller ve sertifikalar",
+    "dışa_aktar": "📥 Exporteren",
+    "personel_ekle": "+ Personel Toevoegen",
+    "tüm_görevler": "Tüm Görevler",
+    "şantiye_şefi": "Werfmanager",
+    "mühendis": "Ingenieur",
+    "mimar": "Architect",
+    "usta": "Meester",
+    "işçi": "İşçi",
+    "operatör": "Operator",
+    "tüm_şantiyeler": "Alle werven",
+    "brüksel_merkez": "Brussels Centrum",
+    "anvers_lojistik": "Antwerpen Logistiek",
+    "gent_konut": "Gent Woonproject",
+    "ofis": "Kantoor",
+    "tüm_durumlar": "Alle statussen",
+    "aktif": "Actief",
+    "izin": "Verlof",
+    "raporlu": "Raporlu",
+    "ayrıldı": "Ayrıldı",
+    "ad_soyad": "Volledige naam",
+    "görev": "Taak",
+    "sertifikalar": "Sertifikalar",
+    "atandığı_şantiye": "Atandığı Şantiye",
+    "durum": "Status",
+    "maaş": "Salaris",
+    "başlangıç": "Start",
+    "actions": "Actions",
+    "mk": "MK",
+    "mehmet_kaya": "Mehmet Kaya",
+    "isg": "VGM",
+    "yüksekte": "Yüksekte",
+    "vinç": "Kraan",
+    "brüksel_merkez_2": "📍 Brüksel Merkez",
+    "_200": "€4.200",
+    "_5032021": "15.03.2021",
+    "jd": "JD",
+    "jan_de_vries": "Jan De Vries",
+    "beton": "Beton",
+    "yapı_denetim": "Yapı Denetim",
+    "brüksel_merkez_3": "📍 Brüksel Merkez",
+    "_800": "€3.800",
+    "_2092022": "02.09.2022",
+    "ay": "Maand",
+    "ayşe_yılmaz": "Ayşe Yılmaz",
+    "autocad": "AutoCAD",
+    "revit": "Revit",
+    "enerji_pasaport": "Enerji Pasaport",
+    "ofis_2": "📍 Ofis",
+    "_500": "€3.500",
+    "_0012023": "10.01.2023",
+    "po": "PO",
+    "pieter_ooms": "Pieter Ooms",
+    "elektrik": "Elektrisch",
+    "isg_2": "VGM",
+    "yangın": "Yangın",
+    "anvers_lojistik_2": "📍 Anvers Lojistik",
+    "_100": "€3.100",
+    "_2062020": "22.06.2020",
+    "hd": "HD",
+    "hassan_demir": "Hassan Demir",
+    "isg_3": "VGM",
+    "brüksel_merkez_4": "📍 Brüksel Merkez",
+    "_450": "€2.450",
+    "_5042023": "05.04.2023",
+    "lv": "LV",
+    "liesbeth_van_den_berg": "Liesbeth Van den Berg",
+    "isg_4": "VGM",
+    "vinç_2": "Kraan",
+    "kalite": "Kwaliteit",
+    "gent_konut_2": "📍 Gent Konut",
+    "_350": "€4.350",
+    "_8112019": "18.11.2019",
+    "tc": "TC",
+    "thomas_claes": "Thomas Claes",
+    "ekskavatör": "Graafmachine",
+    "vinç_3": "Kraan",
+    "forklift": "Heftruck",
+    "anvers_lojistik_3": "📍 Anvers Lojistik",
+    "_800_2": "€2.800",
+    "_0072022": "30.07.2022",
+    "sb": "SB",
+    "sibel_bakırcı": "Sibel Bakırcı",
+    "isg_5": "VGM",
+    "yüksekte_2": "Yüksekte",
+    "gent_konut_3": "📍 Gent Konut",
+    "_380": "€2.380",
+    "_4022024": "14.02.2024",
+    "mb": "MB",
+    "marc_baudewijn": "Marc Baudewijn",
+    "beton_2": "Beton",
+    "yapı_denetim_2": "Yapı Denetim",
+    "kalite_2": "Kwaliteit",
+    "ofis_3": "📍 Ofis",
+    "_650": "€3.650",
+    "_8052021": "08.05.2021",
+    "eo": "EO",
+    "emre_özdemir": "Emre Özdemir",
+    "sıhhi_tesisat": "Sıhhi Tesisat",
+    "isg_6": "VGM",
+    "brüksel_merkez_5": "📍 Brüksel Merkez",
+    "_050": "€3.050",
+    "_9102022": "19.10.2022",
+    "np": "NP",
+    "nadia_peeters": "Nadia Peeters",
+    "revit_2": "Revit",
+    "sketchup": "SketchUp",
+    "enerji_pasaport_2": "Enerji Pasaport",
+    "ofis_4": "📍 Ofis",
+    "_400": "€3.400",
+    "_3012024": "03.01.2024",
+    "ik": "IK",
+    "ibrahim_korkmaz": "Ibrahim Korkmaz",
+    "isg_7": "VGM",
+    "anvers_lojistik_4": "📍 Anvers Lojistik",
+    "_320": "€2.320",
+    "_7082023": "27.08.2023",
+    "ws": "WS",
+    "wouter_smets": "Wouter Smets",
+    "forklift_2": "Heftruck",
+    "vinç_4": "Kraan",
+    "teleskopik": "Teleskopik",
+    "gent_konut_4": "📍 Gent Konut",
+    "_750": "€2.750",
+    "_1122021": "11.12.2021",
+    "fc": "FC",
+    "fatma_çelik": "Fatma Çelik",
+    "beton_3": "Beton",
+    "yapı_denetim_3": "Yapı Denetim",
+    "ofis_5": "📍 Ofis",
+    "_700": "€3.700",
+    "_6032023": "06.03.2023",
+    "jb": "JB",
+    "jeroen_beekman": "Jeroen Beekman",
+    "mermer": "Mermer",
+    "seramik": "Seramik",
+    "isg_8": "VGM",
+    "brüksel_merkez_6": "📍 Brüksel Merkez",
+    "_950": "€2.950",
+    "_5092020": "25.09.2020",
+    "ya": "YA",
+    "yusuf_aydın": "Yusuf Aydın",
+    "isg_9": "VGM",
+    "yüksekte_3": "Yüksekte",
+    "anvers_lojistik_5": "📍 Anvers Lojistik",
+    "_400_2": "€2.400",
+    "_7012024": "17.01.2024",
+    "km": "km",
+    "karen_maes": "Karen Maes",
+    "autocad_2": "AutoCAD",
+    "revit_3": "Revit",
+    "_ds_max": "3ds Max",
+    "ofis_6": "📍 Ofis",
+    "_550": "€3.550",
+    "_9062022": "09.06.2022",
+    "dv": "DV",
+    "dirk_vermeulen": "Dirk Vermeulen",
+    "ekskavatör_2": "Graafmachine",
+    "forklift_3": "Heftruck",
+    "brüksel_merkez_7": "📍 Brüksel Merkez",
+    "_680": "€2.680",
+    "_4052023": "04.05.2023",
+    "st": "ST",
+    "stefanie_timmermans": "Stefanie Timmermans",
+    "isg_10": "VGM",
+    "gent_konut_5": "📍 Gent Konut",
+    "_300": "€2.300",
+    "_3072023": "13.07.2023",
+    "gd": "GD",
+    "gert_deschacht": "Gert Deschacht",
+    "isg_11": "VGM",
+    "kalite_3": "Kwaliteit",
+    "yapı_denetim_4": "Yapı Denetim",
+    "anvers_lojistik_6": "📍 Anvers Lojistik",
+    "_500_2": "€4.500",
+    "_1022018": "01.02.2018",
+    "mk2": "MK2",
+    "murat_karaca": "Murat Karaca",
+    "kaynak": "Kaynak",
+    "isg_12": "VGM",
+    "yangın_2": "Yangın",
+    "gent_konut_6": "📍 Gent Konut",
+    "_900": "€2.900",
+    "_2042019": "12.04.2019",
+    "ed": "ED",
+    "elke_dubois": "Elke Dubois",
+    "beton_4": "Beton",
+    "statik": "Statik",
+    "ofis_7": "📍 Ofis",
+    "_900_2": "€3.900",
+    "_0032022": "20.03.2022",
+    "bs": "BS",
+    "burak_şahin": "Burak Şahin",
+    "isg_13": "VGM",
+    "yüksekte_4": "Yüksekte",
+    "brüksel_merkez_8": "📍 Brüksel Merkez",
+    "_350_2": "€2.350",
+    "_8112023": "28.11.2023",
+    "ln": "LN",
+    "lucas_neyt": "Lucas Neyt",
+    "forklift_4": "Heftruck",
+    "vinç_5": "Kraan",
+    "teleskopik_2": "Teleskopik",
+    "anvers_lojistik_7": "📍 Anvers Lojistik",
+    "_620": "€2.620",
+    "_5092022": "15.09.2022",
+    "yeni_personel_ekle": "Nieuw Personeel Toevoegen",
+    "ad": "Naam",
+    "soyad": "Achternaam",
+    "görev_2": "Taak",
+    "şantiye_şefi_2": "Werfmanager",
+    "mühendis_2": "Ingenieur",
+    "mimar_2": "Architect",
+    "usta_2": "Meester",
+    "işçi_2": "İşçi",
+    "operatör_2": "Operator",
+    "atandığı_şantiye_2": "Atandığı Şantiye",
+    "brüksel_merkez_9": "Brussels Centrum",
+    "anvers_lojistik_8": "Antwerpen Logistiek",
+    "gent_konut_7": "Gent Woonproject",
+    "ofis_8": "Kantoor",
+    "maaş_2": "Maaş (€)",
+    "başlangıç_tarihi": "Startdatum",
+    "sertifikalar_2": "Sertifikalar",
+    "durum_2": "Status",
+    "aktif_2": "Actief",
+    "izin_2": "Verlof",
+    "raporlu_2": "Raporlu",
+    "ayrıldı_2": "Ayrıldı",
+    "iptal": "Annuleren",
+    "kaydet": "Opslaan",
+    "personel_düzenle": "Personeel Bewerken",
+    "ad_2": "Naam",
+    "soyad_2": "Achternaam",
+    "görev_3": "Taak",
+    "şantiye_şefi_3": "Werfmanager",
+    "mühendis_3": "Ingenieur",
+    "mimar_3": "Architect",
+    "usta_3": "Meester",
+    "işçi_3": "İşçi",
+    "operatör_3": "Operator",
+    "atandığı_şantiye_3": "Atandığı Şantiye",
+    "brüksel_merkez_10": "Brussels Centrum",
+    "anvers_lojistik_9": "Antwerpen Logistiek",
+    "gent_konut_8": "Gent Woonproject",
+    "ofis_9": "Kantoor",
+    "maaş_3": "Maaş (€)",
+    "başlangıç_tarihi_2": "Startdatum",
+    "sertifikalar_3": "Sertifikalar",
+    "durum_3": "Status",
+    "aktif_3": "Actief",
+    "izin_3": "Verlof",
+    "raporlu_3": "Raporlu",
+    "ayrıldı_3": "Ayrıldı",
+    "iptal_2": "Annuleren",
+    "güncelle": "Bijwerken",
+    "personel_sil": "Personeel Verwijderen",
+    "mehmet_kaya_2": "Mehmet Kaya",
+    "iptal_3": "Annuleren",
+    "sil": "Verwijderen",
+    "aria_menu": "Menu",
+    "ph_personel_ara": "Personel ara...",
+    "aria_tema": "Thema",
+    "aria_bildirimler": "Meldingen",
+    "ph_isim_görev_veya_sertifika_ara": "İsim, görev veya sertifika ara...",
+    "ph_örn_mehmet": "örn: Mehmet",
+    "ph_örn_kaya": "örn: Kaya",
+    "ph_örn_3500": "örn: 3500"
+  }
+};
+let currentLang = localStorage.getItem('buildpro_lang') || 'tr';
+document.documentElement.lang = currentLang;
+function switchLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('buildpro_lang', lang);
+  document.documentElement.lang = lang;
+  applyLang();
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+}
+function applyLang() {
+  const t = i18n[currentLang] || i18n['tr'];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) {
+      const attr = el.getAttribute('data-i18n-attr');
+      if (attr) {
+        el.setAttribute(attr, t[key]);
+      } else if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        if (el.type !== 'submit' && el.type !== 'button') {
+          // keep value for inputs unless button
+        }
+        el.value = t[key];
+      } else if (el.tagName === 'OPTION') {
+        el.textContent = t[key];
+      } else {
+        el.textContent = t[key];
+      }
+    }
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key]) el.placeholder = t[key];
+  });
+  const titleEl = document.querySelector('title');
+  if (titleEl) {
+    const key = titleEl.getAttribute('data-i18n');
+    if (key && t[key]) document.title = t[key];
+  }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  applyLang();
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === currentLang));
+});
+</script></body>
 </html>

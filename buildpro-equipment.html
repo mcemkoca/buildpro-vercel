@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="tr" data-theme="dark">
+<html data-theme="dark" lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BuildPro — Ekipman Yönetimi</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/components.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title data-i18n="buildpro_ekipman_yönetimi">BuildPro — Ekipman Yönetimi</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="css/main.css" rel="stylesheet"/>
+<link href="css/components.css" rel="stylesheet"/>
 <style>
 .dashboard{display:flex;min-height:100vh;background:var(--bg-primary);}
-.sidebar{width:280px;height:100vh;background:var(--bg-card);border-right:1px solid var(--border-color);display:flex;flex-direction:column;position:fixed;left:0;top:0;z-index:100;}
+.sidebar{width:260px;height:100vh;background:var(--bg-card);border-right:1px solid var(--border-color);display:flex;flex-direction:column;position:fixed;left:0;top:0;z-index:100;}
 .sidebar-header{padding:20px 24px;border-bottom:1px solid var(--border-color);display:flex;align-items:center;gap:12px;}
 .sidebar-logo{width:36px;height:36px;background:linear-gradient(135deg,var(--teal-500),var(--teal-700));border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:14px;}
 .sidebar-nav{flex:1;overflow-y:auto;padding:16px 12px;}
@@ -19,7 +19,7 @@
 .nav-item:hover{background:var(--bg-tertiary);color:var(--text-primary);}
 .nav-item.active{background:rgba(20,184,166,0.1);color:var(--teal-500);}
 .nav-icon{width:20px;height:20px;opacity:0.7;}
-.main-content{flex:1;margin-left:280px;min-height:100vh;}
+.main-content{flex:1;margin-left:260px;min-height:100vh;}
 .header{height:64px;background:var(--bg-card);border-bottom:1px solid var(--border-color);display:flex;align-items:center;justify-content:space-between;padding:0 32px;position:sticky;top:0;z-index:50;}
 .hamburger{display:none;background:none;border:none;color:var(--text-secondary);cursor:pointer;padding:8px;}
 .content{padding:32px;max-width:1400px;}
@@ -39,7 +39,7 @@
 .tag-blue{background:rgba(59,130,246,0.1);color:var(--info-500);}
 .tag-amber{background:rgba(245,158,11,0.1);color:var(--amber-500);}
 .tag-red{background:rgba(244,63,94,0.1);color:var(--error-500);}
-.tag-purple{background:rgba(139,92,246,0.1);color:#8b5cf6;}
+.tag-purple{background:rgba(139,92,246,0.1);color:#14b8a6;}
 .actions{display:flex;gap:6px;}
 .action-btn{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;background:transparent;border:none;color:var(--text-muted);cursor:pointer;transition:all var(--duration-fast);}
 .action-btn:hover{background:var(--bg-tertiary);color:var(--text-primary);}
@@ -92,427 +92,421 @@
 </head>
 <body>
 <div class="dashboard">
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <div class="sidebar-logo">BP</div>
-      <div><div style="font-weight:700;font-size:var(--text-sm);">BuildPro</div><div style="font-size:var(--text-xs);color:var(--text-muted);">İnşaat & Yenileme</div></div>
-    </div>
-    <nav class="sidebar-nav">
-      <div class="nav-group">
-        <div class="nav-group-header">Ana Menü</div>
-        <a href="buildpro-dashboard.html" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>Dashboard</a>
-        <a href="buildpro-projects.html" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/></svg>Projeler</a>
-        <a href="buildpro-quotes.html" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Teklifler</a>
-        <a href="buildpro-equipment.html" class="nav-item active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Ekipman</a>
-        <a href="buildpro-staff.html" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>Çalışanlar</a>
-        <a href="buildpro-reports.html" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>Raporlar</a>
-      </div>
-      <div class="nav-group">
-        <div class="nav-group-header">Ayarlar</div>
-        <a href="buildpro-profile.html" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Firma Profili</a>
-        <a href="login.html" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Çıkış Yap</a>
-      </div>
-    </nav>
-  </aside>
-
-  <main class="main-content">
-    <header class="header">
-      <div class="header-left">
-        <button class="hamburger" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
-        <h1 style="font-size:var(--text-lg);font-weight:700;">Ekipman Yönetimi</h1>
-      </div>
-      <div class="header-right">
-        <div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,#14b8a6,#0d9488);">BP</div><div><div style="font-weight:600;font-size:var(--text-sm);">BuildPro NV</div><div style="font-size:var(--text-xs);color:var(--text-muted);">Enterprise Plan</div></div></div>
-      </div>
-    </header>
-
-    <div class="content">
-      <div class="stats-row">
-        <div class="stat-card"><div class="stat-value" style="color:var(--success-500);">9</div><div class="stat-label">Müsait</div></div>
-        <div class="stat-card"><div class="stat-value" style="color:var(--info-500);">6</div><div class="stat-label">Kullanımda</div></div>
-        <div class="stat-card"><div class="stat-value" style="color:var(--amber-500);">2</div><div class="stat-label">Bakımda</div></div>
-        <div class="stat-card"><div class="stat-value" style="color:var(--error-500);">1</div><div class="stat-label">Arızalı</div></div>
-      </div>
-
-      <div class="tabs">
-        <button class="tab active" onclick="switchTab('list',this)">Ekipman Listesi</button>
-        <button class="tab" onclick="switchTab('maintenance',this)">Bakım Takvimi</button>
-      </div>
-
-      <div id="listTab">
-        <div class="toolbar">
-          <div class="search-box">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input type="text" placeholder="Ekipman ara..." id="searchInput">
-          </div>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;">
-            <select id="typeFilter" style="padding:10px 32px 10px 14px;background:var(--bg-card);border:1.5px solid var(--border-color);border-radius:var(--radius-md);color:var(--text-primary);font-size:var(--text-sm);">
-              <option value="">Tüm Tipler</option>
-              <option value="Ekskavatör">Ekskavatör</option>
-              <option value="Vinç">Vinç</option>
-              <option value="Beton Mikseri">Beton Mikseri</option>
-              <option value="Kompaktör">Kompaktör</option>
-              <option value="Jeneratör">Jeneratör</option>
-              <option value="İskele">İskele</option>
-              <option value="Forklift">Forklift</option>
-              <option value="Lazer Nivo">Lazer Nivo</option>
-              <option value="Hilti">Hilti</option>
-              <option value="Kaynak Makinesi">Kaynak Makinesi</option>
-              <option value="Bobcat">Bobcat</option>
-              <option value="Beton Pompası">Beton Pompası</option>
-            </select>
-            <select id="statusFilter" style="padding:10px 32px 10px 14px;background:var(--bg-card);border:1.5px solid var(--border-color);border-radius:var(--radius-md);color:var(--text-primary);font-size:var(--text-sm);">
-              <option value="">Tüm Durumlar</option>
-              <option value="Müsait">Müsait</option>
-              <option value="Kullanımda">Kullanımda</option>
-              <option value="Bakımda">Bakımda</option>
-              <option value="Arızalı">Arızalı</option>
-            </select>
-            <button class="btn btn-primary" onclick="openModal('addModal')">+ Yeni Ekipman</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <table class="table" id="equipmentTable">
-            <thead><tr><th>Ekipman</th><th>Tipi</th><th>Şantiye</th><th>Durum</th><th>Son Bakım</th><th>Sonraki Bakım</th><th>Günlük Maliyet</th><th>İşlemler</th></tr></thead>
-            <tbody>
-              <tr data-id="1">
-                <td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">🚜</div><div><div style="font-weight:600;color:var(--text-primary);">CAT 320E</div><div style="font-size:var(--text-xs);color:var(--text-muted);">SN: CAT0320E7ABC</div></div></div></td>
-                <td>Ekskavatör</td>
-                <td>Lemaire Konutları</td>
-                <td><span class="tag tag-blue">Kullanımda</span></td>
-                <td>15 Mart 2026</td>
-                <td>15 Haziran 2026</td>
-                <td style="font-weight:600;color:var(--teal-500);">€450</td>
-                <td><div class="actions"><button class="action-btn" onclick="openEditModal(1)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(1)" title="Sil">🗑</button></div></td>
-              </tr>
-              <tr data-id="2">
-                <td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">🏗️</div><div><div style="font-weight:600;color:var(--text-primary);">Liebherr 81K</div><div style="font-size:var(--text-xs);color:var(--text-muted);">SN: LHB81K2026X</div></div></div></td>
-                <td>Vinç</td>
-                <td>EU Tower</td>
-                <td><span class="tag tag-blue">Kullanımda</span></td>
-                <td>01 Nisan 2026</td>
-                <td>01 Temmuz 2026</td>
-                <td style="font-weight:600;color:var(--teal-500);">€850</td>
-                <td><div class="actions"><button class="action-btn" onclick="openEditModal(2)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(2)" title="Sil">🗑</button></div></td>
-              </tr>
-              <tr data-id="3">
-                <td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">🚛</div><div><div style="font-weight:600;color:var(--text-primary);">Mercedes Arocs 4142</div><div style="font-size:var(--text-xs);color:var(--text-muted);">SN: MBAR4142K9</div></div></div></td>
-                <td>Beton Mikseri</td>
-                <td>E19 Otoyol</td>
-                <td><span class="tag tag-blue">Kullanımda</span></td>
-                <td>20 Mart 2026</td>
-                <td>20 Haziran 2026</td>
-                <td style="font-weight:600;color:var(--teal-500);">€320</td>
-                <td><div class="actions"><button class="action-btn" onclick="openEditModal(3)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(3)" title="Sil">🗑</button></div></td>
-              </tr>
-              <tr data-id="4">
-                <td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">⚡</div><div><div style="font-weight:600;color:var(--text-primary);">Atlas Copco QAS 150</div><div style="font-size:var(--text-xs);color:var(--text-muted);">SN: ATQAS15044</div></div></div></td>
-                <td>Jeneratör</td>
-                <td>Port of Antwerp</td>
-                <td><span class="tag tag-green">Müsait</span></td>
-                <td>10 Şubat 2026</td>
-                <td>10 Mayıs 2026</td>
-                <td style="font-weight:600;color:var(--teal-500);">€180</td>
-                <td><div class="actions"><button class="action-btn" onclick="openEditModal(4)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(4)" title="Sil">🗑</button></div></td>
-              </tr>
-              <tr data-id="5">
-                <td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">⛏️</div><div><div style="font-weight:600;color:var(--text-primary);">Hilti TE 70-AVR</div><div style="font-size:var(--text-xs);color:var(--text-muted);">SN: HLTTE70VR2</div></div></div></td>
-                <td>Hilti</td>
-                <td>Depo</td>
-                <td><span class="tag tag-green">Müsait</span></td>
-                <td>01 Mart 2026</td>
-                <td>01 Haziran 2026</td>
-                <td style="font-weight:600;color:var(--teal-500);">€45</td>
-                <td><div class="actions"><button class="action-btn" onclick="openEditModal(5)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(5)" title="Sil">🗑</button></div></td>
-              </tr>
-              <tr data-id="6">
-                <td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">🦺</div><div><div style="font-weight:600;color:var(--text-primary);">Layher Allround İskele</div><div style="font-size:var(--text-xs);color:var(--text-muted);">SN: LAYALR600M</div></div></div></td>
-                <td>İskele</td>
-                <td>Leuven Restorasyon</td>
-                <td><span class="tag tag-blue">Kullanımda</span></td>
-                <td>05 Ocak 2026</td>
-                <td>05 Temmuz 2026</td>
-                <td style="font-weight:600;color:var(--teal-500);">€95</td>
-                <td><div class="actions"><button class="action-btn" onclick="openEditModal(6)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(6)" title="Sil">🗑</button></div></td>
-              </tr>
-              <tr data-id="7">
-                <td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">🔄</div><div><div style="font-weight:600;color:var(--text-primary);">Wacker Neuson DPU 100</div><div style="font-size:var(--text-xs);color:var(--text-muted);">SN: WCKDPU1005</div></div></div></td>
-                <td>Kompaktör</td>
-                <td>Kanalizasyon</td>
-                <td><span class="tag tag-blue">Kullanımda</span></td>
-                <td>12 Mart 2026</td>
-                <td>12 Haziran 2026</td>
-                <td style="font-weight:600;color:var(--teal-500);">€120</td>
-                <td><div class="actions"><button class="action-btn" onclick="openEditModal(7)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(7)" title="Sil">🗑</button></div></td>
-              </tr>
-              <tr data-id="8">
-                <td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">📐</div><div><div style="font-weight:600;color:var(--text-primary);">Spectra Precision GL612</div><div style="font-size:var(--text-xs);color:var(--text-muted);">SN: SPGL61288</div></div></div></td>
-                <td>Lazer Nivo</td>
-                <td>Depo</td>
-                <td><span class="tag tag-green">Müsait</span></td>
-                <td>20 Şubat 2026</td>
-                <td>20 Mayıs 2026</td>
-                <td style="font-weight:600;color:var(--teal-500);">€65</td>
-                <td><div class="actions"><button class="action-btn" onclick="openEditModal(8)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(8)" title="Sil">🗑</button></div></td>
-              </tr>
-              <tr data-id="9">
-                <td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">🔧</div><div><div style="font-weight:600;color:var(--text-primary);">Lincoln Electric Powertec</div><div style="font-size:var(--text-xs);color:var(--text-muted);">SN: LNCPT500S</div></div></div></td>
-                <td>Kaynak Makinesi</td>
-                <td>Liège Tesisi</td>
-                <td><span class="tag tag-amber">Bakımda</span></td>
-                <td>01 Mart 2026</td>
-                <td>20 Mayıs 2026</td>
-                <td style="font-weight:600;color:var(--teal-500);">€75</td>
-                <td><div class="actions"><button class="action-btn" onclick="openEditModal(9)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(9)" title="Sil">🗑</button></div></td>
-              </tr>
-              <tr data-id="10">
-                <td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">🚜</div><div><div style="font-weight:600;color:var(--text-primary);">Bobcat S650</div><div style="font-size:var(--text-xs);color:var(--text-muted);">SN: BBS65077A</div></div></div></td>
-                <td>Bobcat</td>
-                <td>Kraliyet Parkı</td>
-                <td><span class="tag tag-blue">Kullanımda</span></td>
-                <td>08 Nisan 2026</td>
-                <td>08 Temmuz 2026</td>
-                <td style="font-weight:600;color:var(--teal-500);">€210</td>
-                <td><div class="actions"><button class="action-btn" onclick="openEditModal(10)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(10)" title="Sil">🗑</button></div></td>
-              </tr>
-              <tr data-id="11">
-                <td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">🚧</div><div><div style="font-weight:600;color:var(--text-primary);">Putzmeister BSA 1409</div><div style="font-size:var(--text-xs);color:var(--text-muted);">SN: PTZBSA1409</div></div></div></td>
-                <td>Beton Pompası</td>
-                <td>EU Tower</td>
-                <td><span class="tag tag-green">Müsait</span></td>
-                <td>25 Mart 2026</td>
-                <td>25 Haziran 2026</td>
-                <td style="font-weight:600;color:var(--teal-500);">€580</td>
-                <td><div class="actions"><button class="action-btn" onclick="openEditModal(11)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(11)" title="Sil">🗑</button></div></td>
-              </tr>
-              <tr data-id="12">
-                <td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">🚜</div><div><div style="font-weight:600;color:var(--text-primary);">Komatsu PC210LC</div><div style="font-size:var(--text-xs);color:var(--text-muted);">SN: KMPC210LC8</div></div></div></td>
-                <td>Ekskavatör</td>
-                <td>Depo</td>
-                <td><span class="tag tag-green">Müsait</span></td>
-                <td>01 Nisan 2026</td>
-                <td>01 Temmuz 2026</td>
-                <td style="font-weight:600;color:var(--teal-500);">€380</td>
-                <td><div class="actions"><button class="action-btn" onclick="openEditModal(12)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(12)" title="Sil">🗑</button></div></td>
-              </tr>
-              <tr data-id="13">
-                <td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">📦</div><div><div style="font-weight:600;color:var(--text-primary);">Toyota 8FBE20</div><div style="font-size:var(--text-xs);color:var(--text-muted);">SN: TY8FBE20X3</div></div></div></td>
-                <td>Forklift</td>
-                <td>Port of Antwerp</td>
-                <td><span class="tag tag-green">Müsait</span></td>
-                <td>15 Şubat 2026</td>
-                <td>15 Mayıs 2026</td>
-                <td style="font-weight:600;color:var(--teal-500);">€95</td>
-                <td><div class="actions"><button class="action-btn" onclick="openEditModal(13)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(13)" title="Sil">🗑</button></div></td>
-              </tr>
-              <tr data-id="14">
-                <td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">📐</div><div><div style="font-weight:600;color:var(--text-primary);">Leica Rugby 610</div><div style="font-size:var(--text-xs);color:var(--text-muted);">SN: LCRUG61022</div></div></div></td>
-                <td>Lazer Nivo</td>
-                <td>Brugge Villa</td>
-                <td><span class="tag tag-green">Müsait</span></td>
-                <td>01 Mart 2026</td>
-                <td>01 Haziran 2026</td>
-                <td style="font-weight:600;color:var(--teal-500);">€55</td>
-                <td><div class="actions"><button class="action-btn" onclick="openEditModal(14)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(14)" title="Sil">🗑</button></div></td>
-              </tr>
-              <tr data-id="15">
-                <td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">🏗️</div><div><div style="font-weight:600;color:var(--text-primary);">Potain MDT 178</div><div style="font-size:var(--text-xs);color:var(--text-muted);">SN: PTMDT178K</div></div></div></td>
-                <td>Vinç</td>
-                <td>Gent AVM</td>
-                <td><span class="tag tag-red">Arızalı</span></td>
-                <td>10 Mart 2026</td>
-                <td>10 Haziran 2026</td>
-                <td style="font-weight:600;color:var(--teal-500);">€720</td>
-                <td><div class="actions"><button class="action-btn" onclick="openEditModal(15)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(15)" title="Sil">🗑</button></div></td>
-              </tr>
-              <tr data-id="16">
-                <td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">⚡</div><div><div style="font-weight:600;color:var(--text-primary);">FG Wilson P550E</div><div style="font-size:var(--text-xs);color:var(--text-muted);">SN: FGP550E99</div></div></div></td>
-                <td>Jeneratör</td>
-                <td>E19 Otoyol</td>
-                <td><span class="tag tag-blue">Kullanımda</span></td>
-                <td>05 Mart 2026</td>
-                <td>05 Haziran 2026</td>
-                <td style="font-weight:600;color:var(--teal-500);">€250</td>
-                <td><div class="actions"><button class="action-btn" onclick="openEditModal(16)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(16)" title="Sil">🗑</button></div></td>
-              </tr>
-              <tr data-id="17">
-                <td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">🚜</div><div><div style="font-weight:600;color:var(--text-primary);">Volvo EC220E</div><div style="font-size:var(--text-xs);color:var(--text-muted);">SN: VLEC220E4D</div></div></div></td>
-                <td>Ekskavatör</td>
-                <td>Depo</td>
-                <td><span class="tag tag-green">Müsait</span></td>
-                <td>20 Nisan 2026</td>
-                <td>20 Temmuz 2026</td>
-                <td style="font-weight:600;color:var(--teal-500);">€420</td>
-                <td><div class="actions"><button class="action-btn" onclick="openEditModal(17)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(17)" title="Sil">🗑</button></div></td>
-              </tr>
-              <tr data-id="18">
-                <td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">📦</div><div><div style="font-weight:600;color:var(--text-primary);">Linde H25D</div><div style="font-size:var(--text-xs);color:var(--text-muted);">SN: LNH25D2026</div></div></div></td>
-                <td>Forklift</td>
-                <td>Liège Tesisi</td>
-                <td><span class="tag tag-green">Müsait</span></td>
-                <td>01 Nisan 2026</td>
-                <td>01 Temmuz 2026</td>
-                <td style="font-weight:600;color:var(--teal-500);">€85</td>
-                <td><div class="actions"><button class="action-btn" onclick="openEditModal(18)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(18)" title="Sil">🗑</button></div></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="pagination">
-          <button class="page-btn" disabled>←</button>
-          <button class="page-btn active">1</button>
-          <button class="page-btn">2</button>
-          <button class="page-btn">→</button>
-        </div>
-      </div>
-
-      <div id="maintenanceTab" style="display:none;">
-        <div class="card" style="padding:20px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-            <h3 style="font-size:var(--text-lg);font-weight:700;">Mayıs 2026 Bakım Takvimi</h3>
-            <button class="btn btn-primary" onclick="openModal('maintenanceModal')">+ Bakım Planla</button>
-          </div>
-          <div class="maintenance-calendar">
-            <div class="cal-day-header">Pt</div><div class="cal-day-header">Sa</div><div class="cal-day-header">Ça</div><div class="cal-day-header">Pe</div><div class="cal-day-header">Cu</div><div class="cal-day-header">Ct</div><div class="cal-day-header">Pa</div>
-            <div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day">1</div><div class="cal-day">2</div><div class="cal-day">3</div><div class="cal-day">4</div>
-            <div class="cal-day">5</div><div class="cal-day">6</div><div class="cal-day">7</div><div class="cal-day">8</div><div class="cal-day">9</div><div class="cal-day">10</div><div class="cal-day">11</div>
-            <div class="cal-day">12</div><div class="cal-day has-maintenance">13</div><div class="cal-day">14</div><div class="cal-day has-maintenance">15</div><div class="cal-day">16</div><div class="cal-day">17</div><div class="cal-day">18</div>
-            <div class="cal-day has-maintenance">19</div><div class="cal-day">20</div><div class="cal-day today">21</div><div class="cal-day">22</div><div class="cal-day has-maintenance">23</div><div class="cal-day">24</div><div class="cal-day">25</div>
-            <div class="cal-day">26</div><div class="cal-day has-maintenance">27</div><div class="cal-day">28</div><div class="cal-day">29</div><div class="cal-day">30</div><div class="cal-day">31</div><div class="cal-day empty"></div>
-          </div>
-          <h4 style="font-size:var(--text-sm);font-weight:600;margin:24px 0 12px;color:var(--text-primary);">Yaklaşan Bakımlar</h4>
-          <div class="maintenance-list">
-            <div class="maintenance-item">
-              <div class="maintenance-date">27 May</div>
-              <div><div class="maintenance-title">Periyodik Yağ Değişimi — CAT 320E</div><div class="maintenance-equip">Ekskavatör • Lemaire Konutları • Marc Kenis</div></div>
-              <span class="tag tag-amber">Planlandı</span>
-            </div>
-            <div class="maintenance-item">
-              <div class="maintenance-date">23 May</div>
-              <div><div class="maintenance-title">Fren Sistemi Kontrolü — Toyota 8FBE20</div><div class="maintenance-equip">Forklift • Port of Antwerp • Thomas De Smet</div></div>
-              <span class="tag tag-amber">Planlandı</span>
-            </div>
-            <div class="maintenance-item">
-              <div class="maintenance-date">19 May</div>
-              <div><div class="maintenance-title">Hidrolik Sistem Testi — Liebherr 81K</div><div class="maintenance-equip">Vinç • EU Tower • Sophie Bernard</div></div>
-              <span class="tag tag-green">Tamamlandı</span>
-            </div>
-            <div class="maintenance-item">
-              <div class="maintenance-date">15 May</div>
-              <div><div class="maintenance-title">Motor Bakımı — Mercedes Arocs 4142</div><div class="maintenance-equip">Beton Mikseri • E19 Otoyol • Johan Vermeulen</div></div>
-              <span class="tag tag-green">Tamamlandı</span>
-            </div>
-            <div class="maintenance-item overdue">
-              <div class="maintenance-date">13 May</div>
-              <div><div class="maintenance-title">Kalibrasyon — Spectra Precision GL612</div><div class="maintenance-equip">Lazer Nivo • Depo • Gecikmiş</div></div>
-              <span class="tag tag-red">Gecikti</span>
-            </div>
-            <div class="maintenance-item">
-              <div class="maintenance-date">01 Haz</div>
-              <div><div class="maintenance-title">Yıllık Genel Bakım — Potain MDT 178</div><div class="maintenance-equip">Vinç • Gent AVM • Bekleniyor</div></div>
-              <span class="tag tag-blue">Yaklaşıyor</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
+<aside class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<div class="sidebar-logo" data-i18n="bp">BP</div>
+<div><div data-i18n="buildpro" style="font-weight:700;font-size:var(--text-sm);">BuildPro</div><div data-i18n="inşaat_yenileme" style="font-size:var(--text-xs);color:var(--text-muted);">İnşaat &amp; Yenileme</div></div>
 </div>
+<nav class="sidebar-nav">
+<div class="nav-group">
+<div class="nav-group-header" data-i18n="ana_menü">Ana Menü</div>
+<a class="nav-item" href="buildpro-dashboard.html"><svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><line x1="3" x2="21" y1="9" y2="9"></line><line x1="9" x2="9" y1="21" y2="9"></line></svg>Dashboard</a>
+<a class="nav-item" href="buildpro-projects.html"><svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M2 20h.01"></path><path d="M7 20v-4"></path><path d="M12 20v-8"></path><path d="M17 20V8"></path></svg>Projeler</a>
+<a class="nav-item" href="buildpro-quotes.html"><svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" x2="8" y1="13" y2="13"></line><line x1="16" x2="8" y1="17" y2="17"></line></svg>Teklifler</a>
+<a class="nav-item active" href="buildpro-equipment.html"><svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="14" rx="2" ry="2" width="20" x="2" y="3"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg>Ekipman</a>
+<a class="nav-item" href="buildpro-staff.html"><svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path></svg>Çalışanlar</a>
+<a class="nav-item" href="buildpro-reports.html"><svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg>Raporlar</a>
+</div>
+<div class="nav-group">
+<div class="nav-group-header" data-i18n="ayarlar">Ayarlar</div>
+<a class="nav-item" href="buildpro-profile.html"><svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Firma Profili</a>
+<a class="nav-item" href="login.html"><svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" x2="9" y1="12" y2="12"></line></svg>Çıkış Yap</a>
+</div>
+</nav>
+</aside>
+<main class="main-content">
+<header class="header">
+<div class="header-left">
+<button class="hamburger" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+<h1 data-i18n="ekipman_yönetimi" style="font-size:var(--text-lg);font-weight:700;">Ekipman Yönetimi</h1>
+</div>
+<div class="header-right">
+<div class="lang-switcher" style="display:flex;gap:4px;margin-right:12px;">
+<button class="lang-btn" data-lang="tr" onclick="switchLang('tr')" style="padding:4px 8px;font-size:12px;border-radius:4px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;">TR</button>
+<button class="lang-btn" data-lang="en" onclick="switchLang('en')" style="padding:4px 8px;font-size:12px;border-radius:4px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;">EN</button>
+<button class="lang-btn" data-lang="nl" onclick="switchLang('nl')" style="padding:4px 8px;font-size:12px;border-radius:4px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;">NL</button>
+</div>
+<style>.lang-btn.active{background:var(--teal-500)!important;color:white!important;border-color:var(--teal-500)!important;font-weight:600;}</style>
 
+<div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,#14b8a6,#0d9488);">BP</div><div><div data-i18n="buildpro_nv" style="font-weight:600;font-size:var(--text-sm);">BuildPro NV</div><div data-i18n="enterprise_plan" style="font-size:var(--text-xs);color:var(--text-muted);">Enterprise Plan</div></div></div>
+</div>
+</header>
+<div class="content">
+<div class="stats-row">
+<div class="stat-card"><div class="stat-value" style="color:var(--success-500);">9</div><div class="stat-label" data-i18n="müsait">Müsait</div></div>
+<div class="stat-card"><div class="stat-value" style="color:var(--info-500);">6</div><div class="stat-label" data-i18n="kullanımda">Kullanımda</div></div>
+<div class="stat-card"><div class="stat-value" style="color:var(--amber-500);">2</div><div class="stat-label" data-i18n="bakımda">Bakımda</div></div>
+<div class="stat-card"><div class="stat-value" style="color:var(--error-500);">1</div><div class="stat-label" data-i18n="arızalı">Arızalı</div></div>
+</div>
+<div class="tabs">
+<button class="tab active" data-i18n="ekipman_listesi" onclick="switchTab('list',this)">Ekipman Listesi</button>
+<button class="tab" data-i18n="bakım_takvimi" onclick="switchTab('maintenance',this)">Bakım Takvimi</button>
+</div>
+<div id="listTab">
+<div class="toolbar">
+<div class="search-box">
+<svg fill="none" height="16" stroke="currentColor" stroke-width="2" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);" viewbox="0 0 24 24" width="16"><circle cx="11" cy="11" r="8"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line></svg>
+<input data-i18n-placeholder="ph_ekipman_ara" id="searchInput" placeholder="Ekipman ara..." type="text"/>
+</div>
+<div style="display:flex;gap:10px;flex-wrap:wrap;">
+<select id="typeFilter" style="padding:10px 32px 10px 14px;background:var(--bg-card);border:1.5px solid var(--border-color);border-radius:var(--radius-md);color:var(--text-primary);font-size:var(--text-sm);">
+<option data-i18n="tüm_tipler" value="">Tüm Tipler</option>
+<option data-i18n="ekskavatör" value="Ekskavatör">Ekskavatör</option>
+<option data-i18n="vinç" value="Vinç">Vinç</option>
+<option data-i18n="beton_mikseri" value="Beton Mikseri">Beton Mikseri</option>
+<option data-i18n="kompaktör" value="Kompaktör">Kompaktör</option>
+<option data-i18n="jeneratör" value="Jeneratör">Jeneratör</option>
+<option data-i18n="iskele" value="İskele">İskele</option>
+<option data-i18n="forklift" value="Forklift">Forklift</option>
+<option data-i18n="lazer_nivo" value="Lazer Nivo">Lazer Nivo</option>
+<option data-i18n="hilti" value="Hilti">Hilti</option>
+<option data-i18n="kaynak_makinesi" value="Kaynak Makinesi">Kaynak Makinesi</option>
+<option data-i18n="bobcat" value="Bobcat">Bobcat</option>
+<option data-i18n="beton_pompası" value="Beton Pompası">Beton Pompası</option>
+</select>
+<select id="statusFilter" style="padding:10px 32px 10px 14px;background:var(--bg-card);border:1.5px solid var(--border-color);border-radius:var(--radius-md);color:var(--text-primary);font-size:var(--text-sm);">
+<option data-i18n="tüm_durumlar" value="">Tüm Durumlar</option>
+<option data-i18n="müsait_2" value="Müsait">Müsait</option>
+<option data-i18n="kullanımda_2" value="Kullanımda">Kullanımda</option>
+<option data-i18n="bakımda_2" value="Bakımda">Bakımda</option>
+<option data-i18n="arızalı_2" value="Arızalı">Arızalı</option>
+</select>
+<button class="btn btn-primary" data-i18n="yeni_ekipman" onclick="openModal('addModal')">+ Yeni Ekipman</button>
+</div>
+</div>
+<div class="card">
+<table class="table" id="equipmentTable">
+<thead><tr><th data-i18n="ekipman">Ekipman</th><th data-i18n="tipi">Tipi</th><th data-i18n="şantiye">Şantiye</th><th data-i18n="durum">Durum</th><th data-i18n="son_bakım">Son Bakım</th><th data-i18n="sonraki_bakım">Sonraki Bakım</th><th data-i18n="günlük_maliyet">Günlük Maliyet</th><th data-i18n="işlemler">İşlemler</th></tr></thead>
+<tbody>
+<tr data-id="1">
+<td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">🚜</div><div><div data-i18n="cat_320e" style="font-weight:600;color:var(--text-primary);">CAT 320E</div><div data-i18n="sn_cat0320e7abc" style="font-size:var(--text-xs);color:var(--text-muted);">SN: CAT0320E7ABC</div></div></div></td>
+<td data-i18n="ekskavatör_2">Ekskavatör</td>
+<td data-i18n="lemaire_konutları">Lemaire Konutları</td>
+<td><span class="tag tag-blue" data-i18n="kullanımda_3">Kullanımda</span></td>
+<td data-i18n="_5_mart_2026">15 Mart 2026</td>
+<td data-i18n="_5_haziran_2026">15 Haziran 2026</td>
+<td data-i18n="_50" style="font-weight:600;color:var(--teal-500);">€450</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_düzenle" data-i18n-attr="title" onclick="openEditModal(1)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil" data-i18n-attr="title" onclick="openDeleteModal(1)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="2">
+<td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">🏗️</div><div><div data-i18n="liebherr_81k" style="font-weight:600;color:var(--text-primary);">Liebherr 81K</div><div data-i18n="sn_lhb81k2026x" style="font-size:var(--text-xs);color:var(--text-muted);">SN: LHB81K2026X</div></div></div></td>
+<td data-i18n="vinç_2">Vinç</td>
+<td data-i18n="eu_tower">EU Tower</td>
+<td><span class="tag tag-blue" data-i18n="kullanımda_4">Kullanımda</span></td>
+<td data-i18n="_1_nisan_2026">01 Nisan 2026</td>
+<td data-i18n="_1_temmuz_2026">01 Temmuz 2026</td>
+<td data-i18n="_50_2" style="font-weight:600;color:var(--teal-500);">€850</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_düzenle_2" data-i18n-attr="title" onclick="openEditModal(2)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_2" data-i18n-attr="title" onclick="openDeleteModal(2)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="3">
+<td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">🚛</div><div><div data-i18n="mercedes_arocs_4142" style="font-weight:600;color:var(--text-primary);">Mercedes Arocs 4142</div><div data-i18n="sn_mbar4142k9" style="font-size:var(--text-xs);color:var(--text-muted);">SN: MBAR4142K9</div></div></div></td>
+<td data-i18n="beton_mikseri_2">Beton Mikseri</td>
+<td data-i18n="e19_otoyol">E19 Otoyol</td>
+<td><span class="tag tag-blue" data-i18n="kullanımda_5">Kullanımda</span></td>
+<td data-i18n="_0_mart_2026">20 Mart 2026</td>
+<td data-i18n="_0_haziran_2026">20 Haziran 2026</td>
+<td data-i18n="_20" style="font-weight:600;color:var(--teal-500);">€320</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_düzenle_3" data-i18n-attr="title" onclick="openEditModal(3)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_3" data-i18n-attr="title" onclick="openDeleteModal(3)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="4">
+<td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">⚡</div><div><div data-i18n="atlas_copco_qas_150" style="font-weight:600;color:var(--text-primary);">Atlas Copco QAS 150</div><div data-i18n="sn_atqas15044" style="font-size:var(--text-xs);color:var(--text-muted);">SN: ATQAS15044</div></div></div></td>
+<td data-i18n="jeneratör_2">Jeneratör</td>
+<td data-i18n="port_of_antwerp">Port of Antwerp</td>
+<td><span class="tag tag-green" data-i18n="müsait_3">Müsait</span></td>
+<td data-i18n="_0_şubat_2026">10 Şubat 2026</td>
+<td data-i18n="_0_mayıs_2026">10 Mayıs 2026</td>
+<td data-i18n="_80" style="font-weight:600;color:var(--teal-500);">€180</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_düzenle_4" data-i18n-attr="title" onclick="openEditModal(4)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_4" data-i18n-attr="title" onclick="openDeleteModal(4)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="5">
+<td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">⛏️</div><div><div data-i18n="hilti_te_70-avr" style="font-weight:600;color:var(--text-primary);">Hilti TE 70-AVR</div><div data-i18n="sn_hltte70vr2" style="font-size:var(--text-xs);color:var(--text-muted);">SN: HLTTE70VR2</div></div></div></td>
+<td data-i18n="hilti_2">Hilti</td>
+<td data-i18n="depo">Depo</td>
+<td><span class="tag tag-green" data-i18n="müsait_4">Müsait</span></td>
+<td data-i18n="_1_mart_2026">01 Mart 2026</td>
+<td data-i18n="_1_haziran_2026">01 Haziran 2026</td>
+<td style="font-weight:600;color:var(--teal-500);">€45</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_düzenle_5" data-i18n-attr="title" onclick="openEditModal(5)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_5" data-i18n-attr="title" onclick="openDeleteModal(5)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="6">
+<td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">🦺</div><div><div data-i18n="layher_allround_iskele" style="font-weight:600;color:var(--text-primary);">Layher Allround İskele</div><div data-i18n="sn_layalr600m" style="font-size:var(--text-xs);color:var(--text-muted);">SN: LAYALR600M</div></div></div></td>
+<td data-i18n="iskele_2">İskele</td>
+<td data-i18n="leuven_restorasyon">Leuven Restorasyon</td>
+<td><span class="tag tag-blue" data-i18n="kullanımda_6">Kullanımda</span></td>
+<td data-i18n="_5_ocak_2026">05 Ocak 2026</td>
+<td data-i18n="_5_temmuz_2026">05 Temmuz 2026</td>
+<td style="font-weight:600;color:var(--teal-500);">€95</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_düzenle_6" data-i18n-attr="title" onclick="openEditModal(6)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_6" data-i18n-attr="title" onclick="openDeleteModal(6)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="7">
+<td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">🔄</div><div><div data-i18n="wacker_neuson_dpu_100" style="font-weight:600;color:var(--text-primary);">Wacker Neuson DPU 100</div><div data-i18n="sn_wckdpu1005" style="font-size:var(--text-xs);color:var(--text-muted);">SN: WCKDPU1005</div></div></div></td>
+<td data-i18n="kompaktör_2">Kompaktör</td>
+<td data-i18n="kanalizasyon">Kanalizasyon</td>
+<td><span class="tag tag-blue" data-i18n="kullanımda_7">Kullanımda</span></td>
+<td data-i18n="_2_mart_2026">12 Mart 2026</td>
+<td data-i18n="_2_haziran_2026">12 Haziran 2026</td>
+<td data-i18n="_20_2" style="font-weight:600;color:var(--teal-500);">€120</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_düzenle_7" data-i18n-attr="title" onclick="openEditModal(7)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_7" data-i18n-attr="title" onclick="openDeleteModal(7)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="8">
+<td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">📐</div><div><div data-i18n="spectra_precision_gl612" style="font-weight:600;color:var(--text-primary);">Spectra Precision GL612</div><div data-i18n="sn_spgl61288" style="font-size:var(--text-xs);color:var(--text-muted);">SN: SPGL61288</div></div></div></td>
+<td data-i18n="lazer_nivo_2">Lazer Nivo</td>
+<td data-i18n="depo_2">Depo</td>
+<td><span class="tag tag-green" data-i18n="müsait_5">Müsait</span></td>
+<td data-i18n="_0_şubat_2026_2">20 Şubat 2026</td>
+<td data-i18n="_0_mayıs_2026_2">20 Mayıs 2026</td>
+<td style="font-weight:600;color:var(--teal-500);">€65</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_düzenle_8" data-i18n-attr="title" onclick="openEditModal(8)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_8" data-i18n-attr="title" onclick="openDeleteModal(8)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="9">
+<td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">🔧</div><div><div data-i18n="lincoln_electric_powertec" style="font-weight:600;color:var(--text-primary);">Lincoln Electric Powertec</div><div data-i18n="sn_lncpt500s" style="font-size:var(--text-xs);color:var(--text-muted);">SN: LNCPT500S</div></div></div></td>
+<td data-i18n="kaynak_makinesi_2">Kaynak Makinesi</td>
+<td data-i18n="liège_tesisi">Liège Tesisi</td>
+<td><span class="tag tag-amber" data-i18n="bakımda_3">Bakımda</span></td>
+<td data-i18n="_1_mart_2026_2">01 Mart 2026</td>
+<td data-i18n="_0_mayıs_2026_3">20 Mayıs 2026</td>
+<td style="font-weight:600;color:var(--teal-500);">€75</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_düzenle_9" data-i18n-attr="title" onclick="openEditModal(9)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_9" data-i18n-attr="title" onclick="openDeleteModal(9)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="10">
+<td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">🚜</div><div><div data-i18n="bobcat_s650" style="font-weight:600;color:var(--text-primary);">Bobcat S650</div><div data-i18n="sn_bbs65077a" style="font-size:var(--text-xs);color:var(--text-muted);">SN: BBS65077A</div></div></div></td>
+<td data-i18n="bobcat_2">Bobcat</td>
+<td data-i18n="kraliyet_parkı">Kraliyet Parkı</td>
+<td><span class="tag tag-blue" data-i18n="kullanımda_8">Kullanımda</span></td>
+<td data-i18n="_8_nisan_2026">08 Nisan 2026</td>
+<td data-i18n="_8_temmuz_2026">08 Temmuz 2026</td>
+<td data-i18n="_10" style="font-weight:600;color:var(--teal-500);">€210</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_düzenle_10" data-i18n-attr="title" onclick="openEditModal(10)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_10" data-i18n-attr="title" onclick="openDeleteModal(10)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="11">
+<td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">🚧</div><div><div data-i18n="putzmeister_bsa_1409" style="font-weight:600;color:var(--text-primary);">Putzmeister BSA 1409</div><div data-i18n="sn_ptzbsa1409" style="font-size:var(--text-xs);color:var(--text-muted);">SN: PTZBSA1409</div></div></div></td>
+<td data-i18n="beton_pompası_2">Beton Pompası</td>
+<td data-i18n="eu_tower_2">EU Tower</td>
+<td><span class="tag tag-green" data-i18n="müsait_6">Müsait</span></td>
+<td data-i18n="_5_mart_2026_2">25 Mart 2026</td>
+<td data-i18n="_5_haziran_2026_2">25 Haziran 2026</td>
+<td data-i18n="_80_2" style="font-weight:600;color:var(--teal-500);">€580</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_düzenle_11" data-i18n-attr="title" onclick="openEditModal(11)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_11" data-i18n-attr="title" onclick="openDeleteModal(11)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="12">
+<td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">🚜</div><div><div data-i18n="komatsu_pc210lc" style="font-weight:600;color:var(--text-primary);">Komatsu PC210LC</div><div data-i18n="sn_kmpc210lc8" style="font-size:var(--text-xs);color:var(--text-muted);">SN: KMPC210LC8</div></div></div></td>
+<td data-i18n="ekskavatör_3">Ekskavatör</td>
+<td data-i18n="depo_3">Depo</td>
+<td><span class="tag tag-green" data-i18n="müsait_7">Müsait</span></td>
+<td data-i18n="_1_nisan_2026_2">01 Nisan 2026</td>
+<td data-i18n="_1_temmuz_2026_2">01 Temmuz 2026</td>
+<td data-i18n="_80_3" style="font-weight:600;color:var(--teal-500);">€380</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_düzenle_12" data-i18n-attr="title" onclick="openEditModal(12)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_12" data-i18n-attr="title" onclick="openDeleteModal(12)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="13">
+<td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">📦</div><div><div data-i18n="toyota_8fbe20" style="font-weight:600;color:var(--text-primary);">Toyota 8FBE20</div><div data-i18n="sn_ty8fbe20x3" style="font-size:var(--text-xs);color:var(--text-muted);">SN: TY8FBE20X3</div></div></div></td>
+<td data-i18n="forklift_2">Forklift</td>
+<td data-i18n="port_of_antwerp_2">Port of Antwerp</td>
+<td><span class="tag tag-green" data-i18n="müsait_8">Müsait</span></td>
+<td data-i18n="_5_şubat_2026">15 Şubat 2026</td>
+<td data-i18n="_5_mayıs_2026">15 Mayıs 2026</td>
+<td style="font-weight:600;color:var(--teal-500);">€95</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_düzenle_13" data-i18n-attr="title" onclick="openEditModal(13)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_13" data-i18n-attr="title" onclick="openDeleteModal(13)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="14">
+<td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">📐</div><div><div data-i18n="leica_rugby_610" style="font-weight:600;color:var(--text-primary);">Leica Rugby 610</div><div data-i18n="sn_lcrug61022" style="font-size:var(--text-xs);color:var(--text-muted);">SN: LCRUG61022</div></div></div></td>
+<td data-i18n="lazer_nivo_3">Lazer Nivo</td>
+<td data-i18n="brugge_villa">Brugge Villa</td>
+<td><span class="tag tag-green" data-i18n="müsait_9">Müsait</span></td>
+<td data-i18n="_1_mart_2026_3">01 Mart 2026</td>
+<td data-i18n="_1_haziran_2026_2">01 Haziran 2026</td>
+<td style="font-weight:600;color:var(--teal-500);">€55</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_düzenle_14" data-i18n-attr="title" onclick="openEditModal(14)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_14" data-i18n-attr="title" onclick="openDeleteModal(14)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="15">
+<td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">🏗️</div><div><div data-i18n="potain_mdt_178" style="font-weight:600;color:var(--text-primary);">Potain MDT 178</div><div data-i18n="sn_ptmdt178k" style="font-size:var(--text-xs);color:var(--text-muted);">SN: PTMDT178K</div></div></div></td>
+<td data-i18n="vinç_3">Vinç</td>
+<td data-i18n="gent_avm">Gent AVM</td>
+<td><span class="tag tag-red" data-i18n="arızalı_3">Arızalı</span></td>
+<td data-i18n="_0_mart_2026_2">10 Mart 2026</td>
+<td data-i18n="_0_haziran_2026_2">10 Haziran 2026</td>
+<td data-i18n="_20_3" style="font-weight:600;color:var(--teal-500);">€720</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_düzenle_15" data-i18n-attr="title" onclick="openEditModal(15)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_15" data-i18n-attr="title" onclick="openDeleteModal(15)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="16">
+<td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">⚡</div><div><div data-i18n="fg_wilson_p550e" style="font-weight:600;color:var(--text-primary);">FG Wilson P550E</div><div data-i18n="sn_fgp550e99" style="font-size:var(--text-xs);color:var(--text-muted);">SN: FGP550E99</div></div></div></td>
+<td data-i18n="jeneratör_3">Jeneratör</td>
+<td data-i18n="e19_otoyol_2">E19 Otoyol</td>
+<td><span class="tag tag-blue" data-i18n="kullanımda_9">Kullanımda</span></td>
+<td data-i18n="_5_mart_2026_3">05 Mart 2026</td>
+<td data-i18n="_5_haziran_2026_3">05 Haziran 2026</td>
+<td data-i18n="_50_3" style="font-weight:600;color:var(--teal-500);">€250</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_düzenle_16" data-i18n-attr="title" onclick="openEditModal(16)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_16" data-i18n-attr="title" onclick="openDeleteModal(16)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="17">
+<td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">🚜</div><div><div data-i18n="volvo_ec220e" style="font-weight:600;color:var(--text-primary);">Volvo EC220E</div><div data-i18n="sn_vlec220e4d" style="font-size:var(--text-xs);color:var(--text-muted);">SN: VLEC220E4D</div></div></div></td>
+<td data-i18n="ekskavatör_4">Ekskavatör</td>
+<td data-i18n="depo_4">Depo</td>
+<td><span class="tag tag-green" data-i18n="müsait_10">Müsait</span></td>
+<td data-i18n="_0_nisan_2026">20 Nisan 2026</td>
+<td data-i18n="_0_temmuz_2026">20 Temmuz 2026</td>
+<td data-i18n="_20_4" style="font-weight:600;color:var(--teal-500);">€420</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_düzenle_17" data-i18n-attr="title" onclick="openEditModal(17)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_17" data-i18n-attr="title" onclick="openDeleteModal(17)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="18">
+<td><div style="display:flex;align-items:center;gap:12px;"><div class="equip-icon">📦</div><div><div data-i18n="linde_h25d" style="font-weight:600;color:var(--text-primary);">Linde H25D</div><div data-i18n="sn_lnh25d2026" style="font-size:var(--text-xs);color:var(--text-muted);">SN: LNH25D2026</div></div></div></td>
+<td data-i18n="forklift_3">Forklift</td>
+<td data-i18n="liège_tesisi_2">Liège Tesisi</td>
+<td><span class="tag tag-green" data-i18n="müsait_11">Müsait</span></td>
+<td data-i18n="_1_nisan_2026_3">01 Nisan 2026</td>
+<td data-i18n="_1_temmuz_2026_3">01 Temmuz 2026</td>
+<td style="font-weight:600;color:var(--teal-500);">€85</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_düzenle_18" data-i18n-attr="title" onclick="openEditModal(18)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_18" data-i18n-attr="title" onclick="openDeleteModal(18)" title="Sil">🗑</button></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="pagination">
+<button class="page-btn" disabled="">←</button>
+<button class="page-btn active">1</button>
+<button class="page-btn">2</button>
+<button class="page-btn">→</button>
+</div>
+</div>
+<div id="maintenanceTab" style="display:none;">
+<div class="card" style="padding:20px;">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+<h3 data-i18n="mayıs_2026_bakım_takvimi" style="font-size:var(--text-lg);font-weight:700;">Mayıs 2026 Bakım Takvimi</h3>
+<button class="btn btn-primary" data-i18n="bakım_planla" onclick="openModal('maintenanceModal')">+ Bakım Planla</button>
+</div>
+<div class="maintenance-calendar">
+<div class="cal-day-header" data-i18n="pt">Pt</div><div class="cal-day-header" data-i18n="sa">Sa</div><div class="cal-day-header" data-i18n="ça">Ça</div><div class="cal-day-header" data-i18n="pe">Pe</div><div class="cal-day-header" data-i18n="cu">Cu</div><div class="cal-day-header" data-i18n="ct">Ct</div><div class="cal-day-header" data-i18n="pa">Pa</div>
+<div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day">1</div><div class="cal-day">2</div><div class="cal-day">3</div><div class="cal-day">4</div>
+<div class="cal-day">5</div><div class="cal-day">6</div><div class="cal-day">7</div><div class="cal-day">8</div><div class="cal-day">9</div><div class="cal-day">10</div><div class="cal-day">11</div>
+<div class="cal-day">12</div><div class="cal-day has-maintenance">13</div><div class="cal-day">14</div><div class="cal-day has-maintenance">15</div><div class="cal-day">16</div><div class="cal-day">17</div><div class="cal-day">18</div>
+<div class="cal-day has-maintenance">19</div><div class="cal-day">20</div><div class="cal-day today">21</div><div class="cal-day">22</div><div class="cal-day has-maintenance">23</div><div class="cal-day">24</div><div class="cal-day">25</div>
+<div class="cal-day">26</div><div class="cal-day has-maintenance">27</div><div class="cal-day">28</div><div class="cal-day">29</div><div class="cal-day">30</div><div class="cal-day">31</div><div class="cal-day empty"></div>
+</div>
+<h4 data-i18n="yaklaşan_bakımlar" style="font-size:var(--text-sm);font-weight:600;margin:24px 0 12px;color:var(--text-primary);">Yaklaşan Bakımlar</h4>
+<div class="maintenance-list">
+<div class="maintenance-item">
+<div class="maintenance-date" data-i18n="_7_may">27 May</div>
+<div><div class="maintenance-title" data-i18n="periyodik_yağ_değişimi_cat_320e">Periyodik Yağ Değişimi — CAT 320E</div><div class="maintenance-equip" data-i18n="ekskavatör_lemaire_konutları_marc_kenis">Ekskavatör • Lemaire Konutları • Marc Kenis</div></div>
+<span class="tag tag-amber" data-i18n="planlandı">Planlandı</span>
+</div>
+<div class="maintenance-item">
+<div class="maintenance-date" data-i18n="_3_may">23 May</div>
+<div><div class="maintenance-title" data-i18n="fren_sistemi_kontrolü_toyota_8fbe20">Fren Sistemi Kontrolü — Toyota 8FBE20</div><div class="maintenance-equip" data-i18n="forklift_port_of_antwerp_thomas_de_smet">Forklift • Port of Antwerp • Thomas De Smet</div></div>
+<span class="tag tag-amber" data-i18n="planlandı_2">Planlandı</span>
+</div>
+<div class="maintenance-item">
+<div class="maintenance-date" data-i18n="_9_may">19 May</div>
+<div><div class="maintenance-title" data-i18n="hidrolik_sistem_testi_liebherr_81k">Hidrolik Sistem Testi — Liebherr 81K</div><div class="maintenance-equip" data-i18n="vinç_eu_tower_sophie_bernard">Vinç • EU Tower • Sophie Bernard</div></div>
+<span class="tag tag-green" data-i18n="tamamlandı">Tamamlandı</span>
+</div>
+<div class="maintenance-item">
+<div class="maintenance-date" data-i18n="_5_may">15 May</div>
+<div><div class="maintenance-title" data-i18n="motor_bakımı_mercedes_arocs_4142">Motor Bakımı — Mercedes Arocs 4142</div><div class="maintenance-equip" data-i18n="beton_mikseri_e19_otoyol_johan_vermeulen">Beton Mikseri • E19 Otoyol • Johan Vermeulen</div></div>
+<span class="tag tag-green" data-i18n="tamamlandı_2">Tamamlandı</span>
+</div>
+<div class="maintenance-item overdue">
+<div class="maintenance-date" data-i18n="_3_may_2">13 May</div>
+<div><div class="maintenance-title" data-i18n="kalibrasyon_spectra_precision_gl612">Kalibrasyon — Spectra Precision GL612</div><div class="maintenance-equip" data-i18n="lazer_nivo_depo_gecikmiş">Lazer Nivo • Depo • Gecikmiş</div></div>
+<span class="tag tag-red" data-i18n="gecikti">Gecikti</span>
+</div>
+<div class="maintenance-item">
+<div class="maintenance-date" data-i18n="_1_haz">01 Haz</div>
+<div><div class="maintenance-title" data-i18n="yıllık_genel_bakım_potain_mdt_178">Yıllık Genel Bakım — Potain MDT 178</div><div class="maintenance-equip" data-i18n="vinç_gent_avm_bekleniyor">Vinç • Gent AVM • Bekleniyor</div></div>
+<span class="tag tag-blue" data-i18n="yaklaşıyor">Yaklaşıyor</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
 <!-- Add Modal -->
 <div class="modal-overlay" id="addModal">
-  <div class="modal">
-    <div class="modal-header"><div class="modal-title">Yeni Ekipman Ekle</div><button class="modal-close" onclick="closeModal('addModal')">✕</button></div>
-    <div class="modal-body">
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Ekipman Adı</label><input class="form-input" placeholder="Örn: CAT 320E"></div>
-        <div class="form-group"><label class="form-label">Seri No</label><input class="form-input" placeholder="SN: ..."></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Tipi</label>
-          <select class="form-select"><option>Ekskavatör</option><option>Vinç</option><option>Beton Mikseri</option><option>Kompaktör</option><option>Jeneratör</option><option>İskele</option><option>Forklift</option><option>Lazer Nivo</option><option>Hilti</option><option>Kaynak Makinesi</option><option>Bobcat</option><option>Beton Pompası</option></select>
-        </div>
-        <div class="form-group"><label class="form-label">Şantiye</label><input class="form-input" placeholder="Şantiye adı"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Durum</label>
-          <select class="form-select"><option>Müsait</option><option>Kullanımda</option><option>Bakımda</option><option>Arızalı</option></select>
-        </div>
-        <div class="form-group"><label class="form-label">Günlük Maliyet (€)</label><input class="form-input" type="number" placeholder="0"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Son Bakım</label><input class="form-input" type="date"></div>
-        <div class="form-group"><label class="form-label">Sonraki Bakım</label><input class="form-input" type="date"></div>
-      </div>
-    </div>
-    <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('addModal')">İptal</button><button class="btn btn-primary" onclick="closeModal('addModal');showToast('Ekipman eklendi','success')">Kaydet</button></div>
-  </div>
+<div class="modal">
+<div class="modal-header"><div class="modal-title" data-i18n="yeni_ekipman_ekle">Yeni Ekipman Ekle</div><button class="modal-close" onclick="closeModal('addModal')">✕</button></div>
+<div class="modal-body">
+<div class="form-row">
+<div class="form-group"><label class="form-label" data-i18n="ekipman_adı">Ekipman Adı</label><input class="form-input" data-i18n-placeholder="ph_örn_cat_320e" placeholder="Örn: CAT 320E"/></div>
+<div class="form-group"><label class="form-label" data-i18n="seri_no">Seri No</label><input class="form-input" data-i18n-placeholder="ph_sn" placeholder="SN: ..."/></div>
 </div>
-
+<div class="form-row">
+<div class="form-group"><label class="form-label" data-i18n="tipi_2">Tipi</label>
+<select class="form-select"><option data-i18n="ekskavatör_5">Ekskavatör</option><option data-i18n="vinç_4">Vinç</option><option data-i18n="beton_mikseri_3">Beton Mikseri</option><option data-i18n="kompaktör_3">Kompaktör</option><option data-i18n="jeneratör_4">Jeneratör</option><option data-i18n="iskele_3">İskele</option><option data-i18n="forklift_4">Forklift</option><option data-i18n="lazer_nivo_4">Lazer Nivo</option><option data-i18n="hilti_3">Hilti</option><option data-i18n="kaynak_makinesi_3">Kaynak Makinesi</option><option data-i18n="bobcat_3">Bobcat</option><option data-i18n="beton_pompası_3">Beton Pompası</option></select>
+</div>
+<div class="form-group"><label class="form-label" data-i18n="şantiye_2">Şantiye</label><input class="form-input" data-i18n-placeholder="ph_şantiye_adı" placeholder="Şantiye adı"/></div>
+</div>
+<div class="form-row">
+<div class="form-group"><label class="form-label" data-i18n="durum_2">Durum</label>
+<select class="form-select"><option data-i18n="müsait_12">Müsait</option><option data-i18n="kullanımda_10">Kullanımda</option><option data-i18n="bakımda_4">Bakımda</option><option data-i18n="arızalı_4">Arızalı</option></select>
+</div>
+<div class="form-group"><label class="form-label" data-i18n="günlük_maliyet_2">Günlük Maliyet (€)</label><input class="form-input" data-i18n-placeholder="ph__" placeholder="0" type="number"/></div>
+</div>
+<div class="form-row">
+<div class="form-group"><label class="form-label" data-i18n="son_bakım_2">Son Bakım</label><input class="form-input" type="date"/></div>
+<div class="form-group"><label class="form-label" data-i18n="sonraki_bakım_2">Sonraki Bakım</label><input class="form-input" type="date"/></div>
+</div>
+</div>
+<div class="modal-footer"><button class="btn btn-secondary" data-i18n="iptal" onclick="closeModal('addModal')">İptal</button><button class="btn btn-primary" data-i18n="kaydet" onclick="closeModal('addModal');showToast('Ekipman eklendi','success')">Kaydet</button></div>
+</div>
+</div>
 <!-- Edit Modal -->
 <div class="modal-overlay" id="editModal">
-  <div class="modal">
-    <div class="modal-header"><div class="modal-title">Ekipmanı Düzenle</div><button class="modal-close" onclick="closeModal('editModal')">✕</button></div>
-    <div class="modal-body">
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Ekipman Adı</label><input class="form-input" value="CAT 320E"></div>
-        <div class="form-group"><label class="form-label">Seri No</label><input class="form-input" value="CAT0320E7ABC"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Tipi</label>
-          <select class="form-select"><option selected>Ekskavatör</option><option>Vinç</option><option>Beton Mikseri</option><option>Kompaktör</option><option>Jeneratör</option><option>İskele</option><option>Forklift</option><option>Lazer Nivo</option><option>Hilti</option><option>Kaynak Makinesi</option><option>Bobcat</option><option>Beton Pompası</option></select>
-        </div>
-        <div class="form-group"><label class="form-label">Şantiye</label><input class="form-input" value="Lemaire Konutları"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Durum</label>
-          <select class="form-select"><option>Müsait</option><option selected>Kullanımda</option><option>Bakımda</option><option>Arızalı</option></select>
-        </div>
-        <div class="form-group"><label class="form-label">Günlük Maliyet (€)</label><input class="form-input" type="number" value="450"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Son Bakım</label><input class="form-input" type="date" value="2026-03-15"></div>
-        <div class="form-group"><label class="form-label">Sonraki Bakım</label><input class="form-input" type="date" value="2026-06-15"></div>
-      </div>
-    </div>
-    <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('editModal')">İptal</button><button class="btn btn-primary" onclick="closeModal('editModal');showToast('Ekipman güncellendi','success')">Kaydet</button></div>
-  </div>
+<div class="modal">
+<div class="modal-header"><div class="modal-title" data-i18n="ekipmanı_düzenle">Ekipmanı Düzenle</div><button class="modal-close" onclick="closeModal('editModal')">✕</button></div>
+<div class="modal-body">
+<div class="form-row">
+<div class="form-group"><label class="form-label" data-i18n="ekipman_adı_2">Ekipman Adı</label><input class="form-input" value="CAT 320E"/></div>
+<div class="form-group"><label class="form-label" data-i18n="seri_no_2">Seri No</label><input class="form-input" value="CAT0320E7ABC"/></div>
 </div>
-
+<div class="form-row">
+<div class="form-group"><label class="form-label" data-i18n="tipi_3">Tipi</label>
+<select class="form-select"><option data-i18n="ekskavatör_6" selected="">Ekskavatör</option><option data-i18n="vinç_5">Vinç</option><option data-i18n="beton_mikseri_4">Beton Mikseri</option><option data-i18n="kompaktör_4">Kompaktör</option><option data-i18n="jeneratör_5">Jeneratör</option><option data-i18n="iskele_4">İskele</option><option data-i18n="forklift_5">Forklift</option><option data-i18n="lazer_nivo_5">Lazer Nivo</option><option data-i18n="hilti_4">Hilti</option><option data-i18n="kaynak_makinesi_4">Kaynak Makinesi</option><option data-i18n="bobcat_4">Bobcat</option><option data-i18n="beton_pompası_4">Beton Pompası</option></select>
+</div>
+<div class="form-group"><label class="form-label" data-i18n="şantiye_3">Şantiye</label><input class="form-input" value="Lemaire Konutları"/></div>
+</div>
+<div class="form-row">
+<div class="form-group"><label class="form-label" data-i18n="durum_3">Durum</label>
+<select class="form-select"><option data-i18n="müsait_13">Müsait</option><option data-i18n="kullanımda_11" selected="">Kullanımda</option><option data-i18n="bakımda_5">Bakımda</option><option data-i18n="arızalı_5">Arızalı</option></select>
+</div>
+<div class="form-group"><label class="form-label" data-i18n="günlük_maliyet_3">Günlük Maliyet (€)</label><input class="form-input" type="number" value="450"/></div>
+</div>
+<div class="form-row">
+<div class="form-group"><label class="form-label" data-i18n="son_bakım_3">Son Bakım</label><input class="form-input" type="date" value="2026-03-15"/></div>
+<div class="form-group"><label class="form-label" data-i18n="sonraki_bakım_3">Sonraki Bakım</label><input class="form-input" type="date" value="2026-06-15"/></div>
+</div>
+</div>
+<div class="modal-footer"><button class="btn btn-secondary" data-i18n="iptal_2" onclick="closeModal('editModal')">İptal</button><button class="btn btn-primary" data-i18n="kaydet_2" onclick="closeModal('editModal');showToast('Ekipman güncellendi','success')">Kaydet</button></div>
+</div>
+</div>
 <!-- Delete Modal -->
 <div class="modal-overlay" id="deleteModal">
-  <div class="modal" style="max-width:400px;">
-    <div class="modal-header"><div class="modal-title" style="color:var(--error-500);">Ekipmanı Sil</div><button class="modal-close" onclick="closeModal('deleteModal')">✕</button></div>
-    <div class="modal-body"><p style="font-size:var(--text-sm);color:var(--text-secondary);">Bu ekipmanı silmek istediğinize emin misiniz? Bu işlem geri alınamaz.</p></div>
-    <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('deleteModal')">İptal</button><button class="btn btn-primary" style="background:var(--error-500);" onclick="closeModal('deleteModal');showToast('Ekipman silindi','error')">Sil</button></div>
-  </div>
+<div class="modal" style="max-width:400px;">
+<div class="modal-header"><div class="modal-title" data-i18n="ekipmanı_sil" style="color:var(--error-500);">Ekipmanı Sil</div><button class="modal-close" onclick="closeModal('deleteModal')">✕</button></div>
+<div class="modal-body"><p data-i18n="bu_ekipmanı_silmek_istediğinize_emin_misiniz_bu_işlem_geri_a" style="font-size:var(--text-sm);color:var(--text-secondary);">Bu ekipmanı silmek istediğinize emin misiniz? Bu işlem geri alınamaz.</p></div>
+<div class="modal-footer"><button class="btn btn-secondary" data-i18n="iptal_3" onclick="closeModal('deleteModal')">İptal</button><button class="btn btn-primary" data-i18n="sil" onclick="closeModal('deleteModal');showToast('Ekipman silindi','error')" style="background:var(--error-500);">Sil</button></div>
 </div>
-
+</div>
 <!-- Maintenance Modal -->
 <div class="modal-overlay" id="maintenanceModal">
-  <div class="modal">
-    <div class="modal-header"><div class="modal-title">Bakım Planla</div><button class="modal-close" onclick="closeModal('maintenanceModal')">✕</button></div>
-    <div class="modal-body">
-      <div class="form-group"><label class="form-label">Ekipman</label>
-        <select class="form-select"><option>Ekipman Seçin...</option><option>CAT 320E</option><option>Liebherr 81K</option><option>Mercedes Arocs 4142</option><option>Atlas Copco QAS 150</option><option>Hilti TE 70-AVR</option><option>Layher Allround İskele</option><option>Wacker Neuson DPU 100</option><option>Spectra Precision GL612</option><option>Lincoln Electric Powertec</option><option>Bobcat S650</option><option>Putzmeister BSA 1409</option><option>Komatsu PC210LC</option><option>Toyota 8FBE20</option><option>Leica Rugby 610</option><option>Potain MDT 178</option><option>FG Wilson P550E</option><option>Volvo EC220E</option><option>Linde H25D</option></select>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Bakım Tipi</label>
-          <select class="form-select"><option>Periyodik Yağ Değişimi</option><option>Fren Sistemi Kontrolü</option><option>Hidrolik Sistem Testi</option><option>Motor Bakımı</option><option>Kalibrasyon</option><option>Yıllık Genel Bakım</option><option>Lastik/Far Değişimi</option></select>
-        </div>
-        <div class="form-group"><label class="form-label">Bakım Tarihi</label><input class="form-input" type="date" value="2026-05-27"></div>
-      </div>
-      <div class="form-group"><label class="form-label">Sorumlu Teknisyen</label><input class="form-input" placeholder="Teknisyen adı"></div>
-      <div class="form-group"><label class="form-label">Notlar</label><textarea class="form-input" rows="2" placeholder="Bakım detayları..."></textarea></div>
-    </div>
-    <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('maintenanceModal')">İptal</button><button class="btn btn-primary" onclick="closeModal('maintenanceModal');showToast('Bakım planlandı','success')">Planla</button></div>
-  </div>
+<div class="modal">
+<div class="modal-header"><div class="modal-title" data-i18n="bakım_planla_2">Bakım Planla</div><button class="modal-close" onclick="closeModal('maintenanceModal')">✕</button></div>
+<div class="modal-body">
+<div class="form-group"><label class="form-label" data-i18n="ekipman_2">Ekipman</label>
+<select class="form-select"><option data-i18n="ekipman_seçin">Ekipman Seçin...</option><option data-i18n="cat_320e_2">CAT 320E</option><option data-i18n="liebherr_81k_2">Liebherr 81K</option><option data-i18n="mercedes_arocs_4142_2">Mercedes Arocs 4142</option><option data-i18n="atlas_copco_qas_150_2">Atlas Copco QAS 150</option><option data-i18n="hilti_te_70-avr_2">Hilti TE 70-AVR</option><option data-i18n="layher_allround_iskele_2">Layher Allround İskele</option><option data-i18n="wacker_neuson_dpu_100_2">Wacker Neuson DPU 100</option><option data-i18n="spectra_precision_gl612_2">Spectra Precision GL612</option><option data-i18n="lincoln_electric_powertec_2">Lincoln Electric Powertec</option><option data-i18n="bobcat_s650_2">Bobcat S650</option><option data-i18n="putzmeister_bsa_1409_2">Putzmeister BSA 1409</option><option data-i18n="komatsu_pc210lc_2">Komatsu PC210LC</option><option data-i18n="toyota_8fbe20_2">Toyota 8FBE20</option><option data-i18n="leica_rugby_610_2">Leica Rugby 610</option><option data-i18n="potain_mdt_178_2">Potain MDT 178</option><option data-i18n="fg_wilson_p550e_2">FG Wilson P550E</option><option data-i18n="volvo_ec220e_2">Volvo EC220E</option><option data-i18n="linde_h25d_2">Linde H25D</option></select>
 </div>
-
+<div class="form-row">
+<div class="form-group"><label class="form-label" data-i18n="bakım_tipi">Bakım Tipi</label>
+<select class="form-select"><option data-i18n="periyodik_yağ_değişimi">Periyodik Yağ Değişimi</option><option data-i18n="fren_sistemi_kontrolü">Fren Sistemi Kontrolü</option><option data-i18n="hidrolik_sistem_testi">Hidrolik Sistem Testi</option><option data-i18n="motor_bakımı">Motor Bakımı</option><option data-i18n="kalibrasyon">Kalibrasyon</option><option data-i18n="yıllık_genel_bakım">Yıllık Genel Bakım</option><option data-i18n="lastikfar_değişimi">Lastik/Far Değişimi</option></select>
+</div>
+<div class="form-group"><label class="form-label" data-i18n="bakım_tarihi">Bakım Tarihi</label><input class="form-input" type="date" value="2026-05-27"/></div>
+</div>
+<div class="form-group"><label class="form-label" data-i18n="sorumlu_teknisyen">Sorumlu Teknisyen</label><input class="form-input" data-i18n-placeholder="ph_teknisyen_adı" placeholder="Teknisyen adı"/></div>
+<div class="form-group"><label class="form-label" data-i18n="notlar">Notlar</label><textarea class="form-input" data-i18n-placeholder="ph_bakım_detayları" placeholder="Bakım detayları..." rows="2"></textarea></div>
+</div>
+<div class="modal-footer"><button class="btn btn-secondary" data-i18n="iptal_4" onclick="closeModal('maintenanceModal')">İptal</button><button class="btn btn-primary" data-i18n="planla" onclick="closeModal('maintenanceModal');showToast('Bakım planlandı','success')">Planla</button></div>
+</div>
+</div>
 <div class="toast-container" id="toastContainer"></div>
-
 <script>
 function openModal(id){document.getElementById(id).classList.add('active');}
 function closeModal(id){document.getElementById(id).classList.remove('active');}
@@ -523,7 +517,7 @@ function showToast(message,type='info'){
   const t=document.createElement('div');
   t.className='toast toast-'+type;
   const icons={success:'✓',error:'✕',warning:'▲',info:'ℹ'};
-  t.innerHTML='<div class="toast-icon">'+icons[type]+'</div><div class="toast-content"><div class="toast-title">'+(type==='success'?'Başarılı':type==='error'?'Hata':type==='warning'?'Uyarı':'Bilgi')+'</div><div class="toast-message">'+message+'</div></div><button class="toast-close" onclick="this.parentElement.remove()">✕</button><div class="toast-progress"></div>';
+  t.innerHTML='<div class="toast-icon">'+icons[type]+'</div><div class="toast-content"><div class="toast-title">'+(type==='success'?(t['başarılı']||'Success'):type==='error'?(t['hata_oluştu']||'Error'):type==='warning'?(t['uyarı']||'Warning'):(t['bilgi']||'Info'))+'</div><div class="toast-message">'+message+'</div></div><button class="toast-close" onclick="this.parentElement.remove()">✕</button><div class="toast-progress"></div>';
   c.appendChild(t);
   setTimeout(()=>{t.classList.add('exit');setTimeout(()=>t.remove(),300);},4000);
 }
@@ -556,5 +550,1101 @@ document.getElementById('statusFilter').addEventListener('change',function(){
 });
 document.querySelectorAll('.modal-overlay').forEach(o=>{o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('active');});});
 </script>
-</body>
+<script>
+const i18n = {
+  "tr": {
+    "buildpro_ekipman_yönetimi": "BuildPro — Ekipman Yönetimi",
+    "bp": "BP",
+    "buildpro": "BuildPro",
+    "inşaat_yenileme": "İnşaat & Yenileme",
+    "ana_menü": "Ana Menü",
+    "ayarlar": "Ayarlar",
+    "ekipman_yönetimi": "Ekipman Yönetimi",
+    "buildpro_nv": "BuildPro NV",
+    "enterprise_plan": "Enterprise Plan",
+    "müsait": "Müsait",
+    "kullanımda": "Kullanımda",
+    "bakımda": "Bakımda",
+    "arızalı": "Arızalı",
+    "ekipman_listesi": "Ekipman Listesi",
+    "bakım_takvimi": "Bakım Takvimi",
+    "tüm_tipler": "Tüm Tipler",
+    "ekskavatör": "Ekskavatör",
+    "vinç": "Vinç",
+    "beton_mikseri": "Beton Mikseri",
+    "kompaktör": "Kompaktör",
+    "jeneratör": "Jeneratör",
+    "iskele": "İskele",
+    "forklift": "Forklift",
+    "lazer_nivo": "Lazer Nivo",
+    "hilti": "Hilti",
+    "kaynak_makinesi": "Kaynak Makinesi",
+    "bobcat": "Bobcat",
+    "beton_pompası": "Beton Pompası",
+    "tüm_durumlar": "Tüm Durumlar",
+    "müsait_2": "Müsait",
+    "kullanımda_2": "Kullanımda",
+    "bakımda_2": "Bakımda",
+    "arızalı_2": "Arızalı",
+    "yeni_ekipman": "+ Yeni Ekipman",
+    "ekipman": "Ekipman",
+    "tipi": "Tipi",
+    "şantiye": "Şantiye",
+    "durum": "Durum",
+    "son_bakım": "Son Bakım",
+    "sonraki_bakım": "Sonraki Bakım",
+    "günlük_maliyet": "Günlük Maliyet",
+    "işlemler": "İşlemler",
+    "cat_320e": "CAT 320E",
+    "sn_cat0320e7abc": "SN: CAT0320E7ABC",
+    "ekskavatör_2": "Ekskavatör",
+    "lemaire_konutları": "Lemaire Konutları",
+    "kullanımda_3": "Kullanımda",
+    "_5_mart_2026": "15 Mart 2026",
+    "_5_haziran_2026": "15 Haziran 2026",
+    "_50": "€450",
+    "liebherr_81k": "Liebherr 81K",
+    "sn_lhb81k2026x": "SN: LHB81K2026X",
+    "vinç_2": "Vinç",
+    "eu_tower": "EU Tower",
+    "kullanımda_4": "Kullanımda",
+    "_1_nisan_2026": "01 Nisan 2026",
+    "_1_temmuz_2026": "01 Temmuz 2026",
+    "_50_2": "€850",
+    "mercedes_arocs_4142": "Mercedes Arocs 4142",
+    "sn_mbar4142k9": "SN: MBAR4142K9",
+    "beton_mikseri_2": "Beton Mikseri",
+    "e19_otoyol": "E19 Otoyol",
+    "kullanımda_5": "Kullanımda",
+    "_0_mart_2026": "20 Mart 2026",
+    "_0_haziran_2026": "20 Haziran 2026",
+    "_20": "€320",
+    "atlas_copco_qas_150": "Atlas Copco QAS 150",
+    "sn_atqas15044": "SN: ATQAS15044",
+    "jeneratör_2": "Jeneratör",
+    "port_of_antwerp": "Port of Antwerp",
+    "müsait_3": "Müsait",
+    "_0_şubat_2026": "10 Şubat 2026",
+    "_0_mayıs_2026": "10 Mayıs 2026",
+    "_80": "€180",
+    "hilti_te_70-avr": "Hilti TE 70-AVR",
+    "sn_hltte70vr2": "SN: HLTTE70VR2",
+    "hilti_2": "Hilti",
+    "depo": "Depo",
+    "müsait_4": "Müsait",
+    "_1_mart_2026": "01 Mart 2026",
+    "_1_haziran_2026": "01 Haziran 2026",
+    "layher_allround_iskele": "Layher Allround İskele",
+    "sn_layalr600m": "SN: LAYALR600M",
+    "iskele_2": "İskele",
+    "leuven_restorasyon": "Leuven Restorasyon",
+    "kullanımda_6": "Kullanımda",
+    "_5_ocak_2026": "05 Ocak 2026",
+    "_5_temmuz_2026": "05 Temmuz 2026",
+    "wacker_neuson_dpu_100": "Wacker Neuson DPU 100",
+    "sn_wckdpu1005": "SN: WCKDPU1005",
+    "kompaktör_2": "Kompaktör",
+    "kanalizasyon": "Kanalizasyon",
+    "kullanımda_7": "Kullanımda",
+    "_2_mart_2026": "12 Mart 2026",
+    "_2_haziran_2026": "12 Haziran 2026",
+    "_20_2": "€120",
+    "spectra_precision_gl612": "Spectra Precision GL612",
+    "sn_spgl61288": "SN: SPGL61288",
+    "lazer_nivo_2": "Lazer Nivo",
+    "depo_2": "Depo",
+    "müsait_5": "Müsait",
+    "_0_şubat_2026_2": "20 Şubat 2026",
+    "_0_mayıs_2026_2": "20 Mayıs 2026",
+    "lincoln_electric_powertec": "Lincoln Electric Powertec",
+    "sn_lncpt500s": "SN: LNCPT500S",
+    "kaynak_makinesi_2": "Kaynak Makinesi",
+    "liège_tesisi": "Liège Tesisi",
+    "bakımda_3": "Bakımda",
+    "_1_mart_2026_2": "01 Mart 2026",
+    "_0_mayıs_2026_3": "20 Mayıs 2026",
+    "bobcat_s650": "Bobcat S650",
+    "sn_bbs65077a": "SN: BBS65077A",
+    "bobcat_2": "Bobcat",
+    "kraliyet_parkı": "Kraliyet Parkı",
+    "kullanımda_8": "Kullanımda",
+    "_8_nisan_2026": "08 Nisan 2026",
+    "_8_temmuz_2026": "08 Temmuz 2026",
+    "_10": "€210",
+    "putzmeister_bsa_1409": "Putzmeister BSA 1409",
+    "sn_ptzbsa1409": "SN: PTZBSA1409",
+    "beton_pompası_2": "Beton Pompası",
+    "eu_tower_2": "EU Tower",
+    "müsait_6": "Müsait",
+    "_5_mart_2026_2": "25 Mart 2026",
+    "_5_haziran_2026_2": "25 Haziran 2026",
+    "_80_2": "€580",
+    "komatsu_pc210lc": "Komatsu PC210LC",
+    "sn_kmpc210lc8": "SN: KMPC210LC8",
+    "ekskavatör_3": "Ekskavatör",
+    "depo_3": "Depo",
+    "müsait_7": "Müsait",
+    "_1_nisan_2026_2": "01 Nisan 2026",
+    "_1_temmuz_2026_2": "01 Temmuz 2026",
+    "_80_3": "€380",
+    "toyota_8fbe20": "Toyota 8FBE20",
+    "sn_ty8fbe20x3": "SN: TY8FBE20X3",
+    "forklift_2": "Forklift",
+    "port_of_antwerp_2": "Port of Antwerp",
+    "müsait_8": "Müsait",
+    "_5_şubat_2026": "15 Şubat 2026",
+    "_5_mayıs_2026": "15 Mayıs 2026",
+    "leica_rugby_610": "Leica Rugby 610",
+    "sn_lcrug61022": "SN: LCRUG61022",
+    "lazer_nivo_3": "Lazer Nivo",
+    "brugge_villa": "Brugge Villa",
+    "müsait_9": "Müsait",
+    "_1_mart_2026_3": "01 Mart 2026",
+    "_1_haziran_2026_2": "01 Haziran 2026",
+    "potain_mdt_178": "Potain MDT 178",
+    "sn_ptmdt178k": "SN: PTMDT178K",
+    "vinç_3": "Vinç",
+    "gent_avm": "Gent AVM",
+    "arızalı_3": "Arızalı",
+    "_0_mart_2026_2": "10 Mart 2026",
+    "_0_haziran_2026_2": "10 Haziran 2026",
+    "_20_3": "€720",
+    "fg_wilson_p550e": "FG Wilson P550E",
+    "sn_fgp550e99": "SN: FGP550E99",
+    "jeneratör_3": "Jeneratör",
+    "e19_otoyol_2": "E19 Otoyol",
+    "kullanımda_9": "Kullanımda",
+    "_5_mart_2026_3": "05 Mart 2026",
+    "_5_haziran_2026_3": "05 Haziran 2026",
+    "_50_3": "€250",
+    "volvo_ec220e": "Volvo EC220E",
+    "sn_vlec220e4d": "SN: VLEC220E4D",
+    "ekskavatör_4": "Ekskavatör",
+    "depo_4": "Depo",
+    "müsait_10": "Müsait",
+    "_0_nisan_2026": "20 Nisan 2026",
+    "_0_temmuz_2026": "20 Temmuz 2026",
+    "_20_4": "€420",
+    "linde_h25d": "Linde H25D",
+    "sn_lnh25d2026": "SN: LNH25D2026",
+    "forklift_3": "Forklift",
+    "liège_tesisi_2": "Liège Tesisi",
+    "müsait_11": "Müsait",
+    "_1_nisan_2026_3": "01 Nisan 2026",
+    "_1_temmuz_2026_3": "01 Temmuz 2026",
+    "mayıs_2026_bakım_takvimi": "Mayıs 2026 Bakım Takvimi",
+    "bakım_planla": "+ Bakım Planla",
+    "pt": "Pt",
+    "sa": "Sa",
+    "ça": "Ça",
+    "pe": "Pe",
+    "cu": "Cu",
+    "ct": "Ct",
+    "pa": "Pa",
+    "yaklaşan_bakımlar": "Yaklaşan Bakımlar",
+    "_7_may": "27 May",
+    "periyodik_yağ_değişimi_cat_320e": "Periyodik Yağ Değişimi — CAT 320E",
+    "ekskavatör_lemaire_konutları_marc_kenis": "Ekskavatör • Lemaire Konutları • Marc Kenis",
+    "planlandı": "Planlandı",
+    "_3_may": "23 May",
+    "fren_sistemi_kontrolü_toyota_8fbe20": "Fren Sistemi Kontrolü — Toyota 8FBE20",
+    "forklift_port_of_antwerp_thomas_de_smet": "Forklift • Port of Antwerp • Thomas De Smet",
+    "planlandı_2": "Planlandı",
+    "_9_may": "19 May",
+    "hidrolik_sistem_testi_liebherr_81k": "Hidrolik Sistem Testi — Liebherr 81K",
+    "vinç_eu_tower_sophie_bernard": "Vinç • EU Tower • Sophie Bernard",
+    "tamamlandı": "Tamamlandı",
+    "_5_may": "15 May",
+    "motor_bakımı_mercedes_arocs_4142": "Motor Bakımı — Mercedes Arocs 4142",
+    "beton_mikseri_e19_otoyol_johan_vermeulen": "Beton Mikseri • E19 Otoyol • Johan Vermeulen",
+    "tamamlandı_2": "Tamamlandı",
+    "_3_may_2": "13 May",
+    "kalibrasyon_spectra_precision_gl612": "Kalibrasyon — Spectra Precision GL612",
+    "lazer_nivo_depo_gecikmiş": "Lazer Nivo • Depo • Gecikmiş",
+    "gecikti": "Gecikti",
+    "_1_haz": "01 Haz",
+    "yıllık_genel_bakım_potain_mdt_178": "Yıllık Genel Bakım — Potain MDT 178",
+    "vinç_gent_avm_bekleniyor": "Vinç • Gent AVM • Bekleniyor",
+    "yaklaşıyor": "Yaklaşıyor",
+    "yeni_ekipman_ekle": "Yeni Ekipman Ekle",
+    "ekipman_adı": "Ekipman Adı",
+    "seri_no": "Seri No",
+    "tipi_2": "Tipi",
+    "ekskavatör_5": "Ekskavatör",
+    "vinç_4": "Vinç",
+    "beton_mikseri_3": "Beton Mikseri",
+    "kompaktör_3": "Kompaktör",
+    "jeneratör_4": "Jeneratör",
+    "iskele_3": "İskele",
+    "forklift_4": "Forklift",
+    "lazer_nivo_4": "Lazer Nivo",
+    "hilti_3": "Hilti",
+    "kaynak_makinesi_3": "Kaynak Makinesi",
+    "bobcat_3": "Bobcat",
+    "beton_pompası_3": "Beton Pompası",
+    "şantiye_2": "Şantiye",
+    "durum_2": "Durum",
+    "müsait_12": "Müsait",
+    "kullanımda_10": "Kullanımda",
+    "bakımda_4": "Bakımda",
+    "arızalı_4": "Arızalı",
+    "günlük_maliyet_2": "Günlük Maliyet (€)",
+    "son_bakım_2": "Son Bakım",
+    "sonraki_bakım_2": "Sonraki Bakım",
+    "iptal": "İptal",
+    "kaydet": "Kaydet",
+    "ekipmanı_düzenle": "Ekipmanı Düzenle",
+    "ekipman_adı_2": "Ekipman Adı",
+    "seri_no_2": "Seri No",
+    "tipi_3": "Tipi",
+    "ekskavatör_6": "Ekskavatör",
+    "vinç_5": "Vinç",
+    "beton_mikseri_4": "Beton Mikseri",
+    "kompaktör_4": "Kompaktör",
+    "jeneratör_5": "Jeneratör",
+    "iskele_4": "İskele",
+    "forklift_5": "Forklift",
+    "lazer_nivo_5": "Lazer Nivo",
+    "hilti_4": "Hilti",
+    "kaynak_makinesi_4": "Kaynak Makinesi",
+    "bobcat_4": "Bobcat",
+    "beton_pompası_4": "Beton Pompası",
+    "şantiye_3": "Şantiye",
+    "durum_3": "Durum",
+    "müsait_13": "Müsait",
+    "kullanımda_11": "Kullanımda",
+    "bakımda_5": "Bakımda",
+    "arızalı_5": "Arızalı",
+    "günlük_maliyet_3": "Günlük Maliyet (€)",
+    "son_bakım_3": "Son Bakım",
+    "sonraki_bakım_3": "Sonraki Bakım",
+    "iptal_2": "İptal",
+    "kaydet_2": "Kaydet",
+    "ekipmanı_sil": "Ekipmanı Sil",
+    "bu_ekipmanı_silmek_istediğinize_emin_misiniz_bu_işlem_geri_a": "Bu ekipmanı silmek istediğinize emin misiniz? Bu işlem geri alınamaz.",
+    "iptal_3": "İptal",
+    "sil": "Sil",
+    "bakım_planla_2": "Bakım Planla",
+    "ekipman_2": "Ekipman",
+    "ekipman_seçin": "Ekipman Seçin...",
+    "cat_320e_2": "CAT 320E",
+    "liebherr_81k_2": "Liebherr 81K",
+    "mercedes_arocs_4142_2": "Mercedes Arocs 4142",
+    "atlas_copco_qas_150_2": "Atlas Copco QAS 150",
+    "hilti_te_70-avr_2": "Hilti TE 70-AVR",
+    "layher_allround_iskele_2": "Layher Allround İskele",
+    "wacker_neuson_dpu_100_2": "Wacker Neuson DPU 100",
+    "spectra_precision_gl612_2": "Spectra Precision GL612",
+    "lincoln_electric_powertec_2": "Lincoln Electric Powertec",
+    "bobcat_s650_2": "Bobcat S650",
+    "putzmeister_bsa_1409_2": "Putzmeister BSA 1409",
+    "komatsu_pc210lc_2": "Komatsu PC210LC",
+    "toyota_8fbe20_2": "Toyota 8FBE20",
+    "leica_rugby_610_2": "Leica Rugby 610",
+    "potain_mdt_178_2": "Potain MDT 178",
+    "fg_wilson_p550e_2": "FG Wilson P550E",
+    "volvo_ec220e_2": "Volvo EC220E",
+    "linde_h25d_2": "Linde H25D",
+    "bakım_tipi": "Bakım Tipi",
+    "periyodik_yağ_değişimi": "Periyodik Yağ Değişimi",
+    "fren_sistemi_kontrolü": "Fren Sistemi Kontrolü",
+    "hidrolik_sistem_testi": "Hidrolik Sistem Testi",
+    "motor_bakımı": "Motor Bakımı",
+    "kalibrasyon": "Kalibrasyon",
+    "yıllık_genel_bakım": "Yıllık Genel Bakım",
+    "lastikfar_değişimi": "Lastik/Far Değişimi",
+    "bakım_tarihi": "Bakım Tarihi",
+    "sorumlu_teknisyen": "Sorumlu Teknisyen",
+    "notlar": "Notlar",
+    "iptal_4": "İptal",
+    "planla": "Planla",
+    "ph_ekipman_ara": "Ekipman ara...",
+    "title_düzenle": "Düzenle",
+    "title_sil": "Sil",
+    "title_düzenle_2": "Düzenle",
+    "title_sil_2": "Sil",
+    "title_düzenle_3": "Düzenle",
+    "title_sil_3": "Sil",
+    "title_düzenle_4": "Düzenle",
+    "title_sil_4": "Sil",
+    "title_düzenle_5": "Düzenle",
+    "title_sil_5": "Sil",
+    "title_düzenle_6": "Düzenle",
+    "title_sil_6": "Sil",
+    "title_düzenle_7": "Düzenle",
+    "title_sil_7": "Sil",
+    "title_düzenle_8": "Düzenle",
+    "title_sil_8": "Sil",
+    "title_düzenle_9": "Düzenle",
+    "title_sil_9": "Sil",
+    "title_düzenle_10": "Düzenle",
+    "title_sil_10": "Sil",
+    "title_düzenle_11": "Düzenle",
+    "title_sil_11": "Sil",
+    "title_düzenle_12": "Düzenle",
+    "title_sil_12": "Sil",
+    "title_düzenle_13": "Düzenle",
+    "title_sil_13": "Sil",
+    "title_düzenle_14": "Düzenle",
+    "title_sil_14": "Sil",
+    "title_düzenle_15": "Düzenle",
+    "title_sil_15": "Sil",
+    "title_düzenle_16": "Düzenle",
+    "title_sil_16": "Sil",
+    "title_düzenle_17": "Düzenle",
+    "title_sil_17": "Sil",
+    "title_düzenle_18": "Düzenle",
+    "title_sil_18": "Sil",
+    "ph_örn_cat_320e": "Örn: CAT 320E",
+    "ph_sn": "SN: ...",
+    "ph_şantiye_adı": "Şantiye adı",
+    "ph__": "0",
+    "ph_teknisyen_adı": "Teknisyen adı",
+    "ph_bakım_detayları": "Bakım detayları..."
+  },
+  "en": {
+    "buildpro_ekipman_yönetimi": "BuildPro — Ekipman Management",
+    "bp": "BP",
+    "buildpro": "BuildPro",
+    "inşaat_yenileme": "İnşaat & Yenileme",
+    "ana_menü": "Ana Menü",
+    "ayarlar": "Settings",
+    "ekipman_yönetimi": "Equipment Management",
+    "buildpro_nv": "BuildPro NV",
+    "enterprise_plan": "Enterprise Plan",
+    "müsait": "Müsait",
+    "kullanımda": "In Use",
+    "bakımda": "In Maintenance",
+    "arızalı": "Arızalı",
+    "ekipman_listesi": "Equipment List",
+    "bakım_takvimi": "Maintenance Calendar",
+    "tüm_tipler": "Tüm Tipler",
+    "ekskavatör": "Excavator",
+    "vinç": "Crane",
+    "beton_mikseri": "Concrete Mixer",
+    "kompaktör": "Compactor",
+    "jeneratör": "Generator",
+    "iskele": "Scaffolding",
+    "forklift": "Forklift",
+    "lazer_nivo": "Lazer Nivo",
+    "hilti": "Hilti",
+    "kaynak_makinesi": "Kaynak Makinesi",
+    "bobcat": "Bobcat",
+    "beton_pompası": "Beton Pompası",
+    "tüm_durumlar": "All statuses",
+    "müsait_2": "Müsait",
+    "kullanımda_2": "In Use",
+    "bakımda_2": "In Maintenance",
+    "arızalı_2": "Arızalı",
+    "yeni_ekipman": "+ Yeni Ekipman",
+    "ekipman": "Equipment",
+    "tipi": "Tipi",
+    "şantiye": "Site",
+    "durum": "Status",
+    "son_bakım": "Last Maintenance",
+    "sonraki_bakım": "Next Maintenance",
+    "günlük_maliyet": "Günlük Maliyet",
+    "işlemler": "Actions",
+    "cat_320e": "CAT 320E",
+    "sn_cat0320e7abc": "SN: CAT0320E7ABC",
+    "ekskavatör_2": "Excavator",
+    "lemaire_konutları": "Lemaire Konutları",
+    "kullanımda_3": "In Use",
+    "_5_mart_2026": "15 Mart 2026",
+    "_5_haziran_2026": "15 Haziran 2026",
+    "_50": "€450",
+    "liebherr_81k": "Liebherr 81K",
+    "sn_lhb81k2026x": "SN: LHB81K2026X",
+    "vinç_2": "Crane",
+    "eu_tower": "EU Tower",
+    "kullanımda_4": "In Use",
+    "_1_nisan_2026": "01 Nisan 2026",
+    "_1_temmuz_2026": "01 Temmuz 2026",
+    "_50_2": "€850",
+    "mercedes_arocs_4142": "Mercedes Arocs 4142",
+    "sn_mbar4142k9": "SN: MBAR4142K9",
+    "beton_mikseri_2": "Concrete Mixer",
+    "e19_otoyol": "E19 Otoyol",
+    "kullanımda_5": "In Use",
+    "_0_mart_2026": "20 Mart 2026",
+    "_0_haziran_2026": "20 Haziran 2026",
+    "_20": "€320",
+    "atlas_copco_qas_150": "Atlas Copco QAS 150",
+    "sn_atqas15044": "SN: ATQAS15044",
+    "jeneratör_2": "Generator",
+    "port_of_antwerp": "Port of Antwerp",
+    "müsait_3": "Müsait",
+    "_0_şubat_2026": "10 Şubat 2026",
+    "_0_mayıs_2026": "10 Mayıs 2026",
+    "_80": "€180",
+    "hilti_te_70-avr": "Hilti TE 70-AVR",
+    "sn_hltte70vr2": "SN: HLTTE70VR2",
+    "hilti_2": "Hilti",
+    "depo": "Depo",
+    "müsait_4": "Müsait",
+    "_1_mart_2026": "01 Mart 2026",
+    "_1_haziran_2026": "01 Haziran 2026",
+    "layher_allround_iskele": "Layher Allround İskele",
+    "sn_layalr600m": "SN: LAYALR600M",
+    "iskele_2": "Scaffolding",
+    "leuven_restorasyon": "Leuven Restorasyon",
+    "kullanımda_6": "In Use",
+    "_5_ocak_2026": "05 Ocak 2026",
+    "_5_temmuz_2026": "05 Temmuz 2026",
+    "wacker_neuson_dpu_100": "Wacker Neuson DPU 100",
+    "sn_wckdpu1005": "SN: WCKDPU1005",
+    "kompaktör_2": "Compactor",
+    "kanalizasyon": "Kanalizasyon",
+    "kullanımda_7": "In Use",
+    "_2_mart_2026": "12 Mart 2026",
+    "_2_haziran_2026": "12 Haziran 2026",
+    "_20_2": "€120",
+    "spectra_precision_gl612": "Spectra Precision GL612",
+    "sn_spgl61288": "SN: SPGL61288",
+    "lazer_nivo_2": "Lazer Nivo",
+    "depo_2": "Depo",
+    "müsait_5": "Müsait",
+    "_0_şubat_2026_2": "20 Şubat 2026",
+    "_0_mayıs_2026_2": "20 Mayıs 2026",
+    "lincoln_electric_powertec": "Lincoln Electric Powertec",
+    "sn_lncpt500s": "SN: LNCPT500S",
+    "kaynak_makinesi_2": "Kaynak Makinesi",
+    "liège_tesisi": "Liège Tesisi",
+    "bakımda_3": "In Maintenance",
+    "_1_mart_2026_2": "01 Mart 2026",
+    "_0_mayıs_2026_3": "20 Mayıs 2026",
+    "bobcat_s650": "Bobcat S650",
+    "sn_bbs65077a": "SN: BBS65077A",
+    "bobcat_2": "Bobcat",
+    "kraliyet_parkı": "Kraliyet Parkı",
+    "kullanımda_8": "In Use",
+    "_8_nisan_2026": "08 Nisan 2026",
+    "_8_temmuz_2026": "08 Temmuz 2026",
+    "_10": "€210",
+    "putzmeister_bsa_1409": "Putzmeister BSA 1409",
+    "sn_ptzbsa1409": "SN: PTZBSA1409",
+    "beton_pompası_2": "Beton Pompası",
+    "eu_tower_2": "EU Tower",
+    "müsait_6": "Müsait",
+    "_5_mart_2026_2": "25 Mart 2026",
+    "_5_haziran_2026_2": "25 Haziran 2026",
+    "_80_2": "€580",
+    "komatsu_pc210lc": "Komatsu PC210LC",
+    "sn_kmpc210lc8": "SN: KMPC210LC8",
+    "ekskavatör_3": "Excavator",
+    "depo_3": "Depo",
+    "müsait_7": "Müsait",
+    "_1_nisan_2026_2": "01 Nisan 2026",
+    "_1_temmuz_2026_2": "01 Temmuz 2026",
+    "_80_3": "€380",
+    "toyota_8fbe20": "Toyota 8FBE20",
+    "sn_ty8fbe20x3": "SN: TY8FBE20X3",
+    "forklift_2": "Forklift",
+    "port_of_antwerp_2": "Port of Antwerp",
+    "müsait_8": "Müsait",
+    "_5_şubat_2026": "15 Şubat 2026",
+    "_5_mayıs_2026": "15 Mayıs 2026",
+    "leica_rugby_610": "Leica Rugby 610",
+    "sn_lcrug61022": "SN: LCRUG61022",
+    "lazer_nivo_3": "Lazer Nivo",
+    "brugge_villa": "Brugge Villa",
+    "müsait_9": "Müsait",
+    "_1_mart_2026_3": "01 Mart 2026",
+    "_1_haziran_2026_2": "01 Haziran 2026",
+    "potain_mdt_178": "Potain MDT 178",
+    "sn_ptmdt178k": "SN: PTMDT178K",
+    "vinç_3": "Crane",
+    "gent_avm": "Gent AVM",
+    "arızalı_3": "Arızalı",
+    "_0_mart_2026_2": "10 Mart 2026",
+    "_0_haziran_2026_2": "10 Haziran 2026",
+    "_20_3": "€720",
+    "fg_wilson_p550e": "FG Wilson P550E",
+    "sn_fgp550e99": "SN: FGP550E99",
+    "jeneratör_3": "Generator",
+    "e19_otoyol_2": "E19 Otoyol",
+    "kullanımda_9": "In Use",
+    "_5_mart_2026_3": "05 Mart 2026",
+    "_5_haziran_2026_3": "05 Haziran 2026",
+    "_50_3": "€250",
+    "volvo_ec220e": "Volvo EC220E",
+    "sn_vlec220e4d": "SN: VLEC220E4D",
+    "ekskavatör_4": "Excavator",
+    "depo_4": "Depo",
+    "müsait_10": "Müsait",
+    "_0_nisan_2026": "20 Nisan 2026",
+    "_0_temmuz_2026": "20 Temmuz 2026",
+    "_20_4": "€420",
+    "linde_h25d": "Linde H25D",
+    "sn_lnh25d2026": "SN: LNH25D2026",
+    "forklift_3": "Forklift",
+    "liège_tesisi_2": "Liège Tesisi",
+    "müsait_11": "Müsait",
+    "_1_nisan_2026_3": "01 Nisan 2026",
+    "_1_temmuz_2026_3": "01 Temmuz 2026",
+    "mayıs_2026_bakım_takvimi": "Mayıs 2026 Bakım Takvimi",
+    "bakım_planla": "+ Bakım Planla",
+    "pt": "Pt",
+    "sa": "hr",
+    "ça": "Ça",
+    "pe": "Pe",
+    "cu": "Cu",
+    "ct": "Ct",
+    "pa": "Pa",
+    "yaklaşan_bakımlar": "Yaklaşan Bakımlar",
+    "_7_may": "27 May",
+    "periyodik_yağ_değişimi_cat_320e": "Periyodik Yağ Değişimi — CAT 320E",
+    "ekskavatör_lemaire_konutları_marc_kenis": "Ekskavatör • Lemaire Konutları • Marc Kenis",
+    "planlandı": "Planned",
+    "_3_may": "23 May",
+    "fren_sistemi_kontrolü_toyota_8fbe20": "Fren Sistemi Kontrolü — Toyota 8FBE20",
+    "forklift_port_of_antwerp_thomas_de_smet": "Forklift • Port of Antwerp • Thomas De Smet",
+    "planlandı_2": "Planned",
+    "_9_may": "19 May",
+    "hidrolik_sistem_testi_liebherr_81k": "Hidrolik Sistem Testi — Liebherr 81K",
+    "vinç_eu_tower_sophie_bernard": "Vinç • EU Tower • Sophie Bernard",
+    "tamamlandı": "Completed",
+    "_5_may": "15 May",
+    "motor_bakımı_mercedes_arocs_4142": "Motor Bakımı — Mercedes Arocs 4142",
+    "beton_mikseri_e19_otoyol_johan_vermeulen": "Beton Mikseri • E19 Otoyol • Johan Vermeulen",
+    "tamamlandı_2": "Completed",
+    "_3_may_2": "13 May",
+    "kalibrasyon_spectra_precision_gl612": "Kalibrasyon — Spectra Precision GL612",
+    "lazer_nivo_depo_gecikmiş": "Lazer Nivo • Depo • Gecikmiş",
+    "gecikti": "Delayed",
+    "_1_haz": "01 Haz",
+    "yıllık_genel_bakım_potain_mdt_178": "Yıllık Genel Bakım — Potain MDT 178",
+    "vinç_gent_avm_bekleniyor": "Vinç • Gent AVM • Bekleniyor",
+    "yaklaşıyor": "Yaklaşıyor",
+    "yeni_ekipman_ekle": "Add New Equipment",
+    "ekipman_adı": "Ekipman Adı",
+    "seri_no": "Serial No",
+    "tipi_2": "Tipi",
+    "ekskavatör_5": "Excavator",
+    "vinç_4": "Crane",
+    "beton_mikseri_3": "Concrete Mixer",
+    "kompaktör_3": "Compactor",
+    "jeneratör_4": "Generator",
+    "iskele_3": "Scaffolding",
+    "forklift_4": "Forklift",
+    "lazer_nivo_4": "Lazer Nivo",
+    "hilti_3": "Hilti",
+    "kaynak_makinesi_3": "Kaynak Makinesi",
+    "bobcat_3": "Bobcat",
+    "beton_pompası_3": "Beton Pompası",
+    "şantiye_2": "Site",
+    "durum_2": "Status",
+    "müsait_12": "Müsait",
+    "kullanımda_10": "In Use",
+    "bakımda_4": "In Maintenance",
+    "arızalı_4": "Arızalı",
+    "günlük_maliyet_2": "Günlük Maliyet (€)",
+    "son_bakım_2": "Last Maintenance",
+    "sonraki_bakım_2": "Next Maintenance",
+    "iptal": "Cancel",
+    "kaydet": "Save",
+    "ekipmanı_düzenle": "Edit Ekipmanı",
+    "ekipman_adı_2": "Ekipman Adı",
+    "seri_no_2": "Serial No",
+    "tipi_3": "Tipi",
+    "ekskavatör_6": "Excavator",
+    "vinç_5": "Crane",
+    "beton_mikseri_4": "Concrete Mixer",
+    "kompaktör_4": "Compactor",
+    "jeneratör_5": "Generator",
+    "iskele_4": "Scaffolding",
+    "forklift_5": "Forklift",
+    "lazer_nivo_5": "Lazer Nivo",
+    "hilti_4": "Hilti",
+    "kaynak_makinesi_4": "Kaynak Makinesi",
+    "bobcat_4": "Bobcat",
+    "beton_pompası_4": "Beton Pompası",
+    "şantiye_3": "Site",
+    "durum_3": "Status",
+    "müsait_13": "Müsait",
+    "kullanımda_11": "In Use",
+    "bakımda_5": "In Maintenance",
+    "arızalı_5": "Arızalı",
+    "günlük_maliyet_3": "Günlük Maliyet (€)",
+    "son_bakım_3": "Last Maintenance",
+    "sonraki_bakım_3": "Next Maintenance",
+    "iptal_2": "Cancel",
+    "kaydet_2": "Save",
+    "ekipmanı_sil": "Delete Ekipmanı",
+    "bu_ekipmanı_silmek_istediğinize_emin_misiniz_bu_işlem_geri_a": "Bu ekipmanı silmek istediğinize emin misiniz? Bu işlem geri alınamaz.",
+    "iptal_3": "Cancel",
+    "sil": "Delete",
+    "bakım_planla_2": "Bakım Planla",
+    "ekipman_2": "Equipment",
+    "ekipman_seçin": "Ekipman Seçin...",
+    "cat_320e_2": "CAT 320E",
+    "liebherr_81k_2": "Liebherr 81K",
+    "mercedes_arocs_4142_2": "Mercedes Arocs 4142",
+    "atlas_copco_qas_150_2": "Atlas Copco QAS 150",
+    "hilti_te_70-avr_2": "Hilti TE 70-AVR",
+    "layher_allround_iskele_2": "Layher Allround İskele",
+    "wacker_neuson_dpu_100_2": "Wacker Neuson DPU 100",
+    "spectra_precision_gl612_2": "Spectra Precision GL612",
+    "lincoln_electric_powertec_2": "Lincoln Electric Powertec",
+    "bobcat_s650_2": "Bobcat S650",
+    "putzmeister_bsa_1409_2": "Putzmeister BSA 1409",
+    "komatsu_pc210lc_2": "Komatsu PC210LC",
+    "toyota_8fbe20_2": "Toyota 8FBE20",
+    "leica_rugby_610_2": "Leica Rugby 610",
+    "potain_mdt_178_2": "Potain MDT 178",
+    "fg_wilson_p550e_2": "FG Wilson P550E",
+    "volvo_ec220e_2": "Volvo EC220E",
+    "linde_h25d_2": "Linde H25D",
+    "bakım_tipi": "Bakım Tipi",
+    "periyodik_yağ_değişimi": "Periyodik Yağ Değişimi",
+    "fren_sistemi_kontrolü": "Fren Sistemi Kontrolü",
+    "hidrolik_sistem_testi": "Hidrolik Sistem Testi",
+    "motor_bakımı": "Motor Bakımı",
+    "kalibrasyon": "Kalibrasyon",
+    "yıllık_genel_bakım": "Yıllık Genel Bakım",
+    "lastikfar_değişimi": "Lastik/Far Değişimi",
+    "bakım_tarihi": "Bakım Tarihi",
+    "sorumlu_teknisyen": "Sorumlu Teknisyen",
+    "notlar": "Notes",
+    "iptal_4": "Cancel",
+    "planla": "Planla",
+    "ph_ekipman_ara": "Ekipman ara...",
+    "title_düzenle": "Edit",
+    "title_sil": "Delete",
+    "title_düzenle_2": "Edit",
+    "title_sil_2": "Delete",
+    "title_düzenle_3": "Edit",
+    "title_sil_3": "Delete",
+    "title_düzenle_4": "Edit",
+    "title_sil_4": "Delete",
+    "title_düzenle_5": "Edit",
+    "title_sil_5": "Delete",
+    "title_düzenle_6": "Edit",
+    "title_sil_6": "Delete",
+    "title_düzenle_7": "Edit",
+    "title_sil_7": "Delete",
+    "title_düzenle_8": "Edit",
+    "title_sil_8": "Delete",
+    "title_düzenle_9": "Edit",
+    "title_sil_9": "Delete",
+    "title_düzenle_10": "Edit",
+    "title_sil_10": "Delete",
+    "title_düzenle_11": "Edit",
+    "title_sil_11": "Delete",
+    "title_düzenle_12": "Edit",
+    "title_sil_12": "Delete",
+    "title_düzenle_13": "Edit",
+    "title_sil_13": "Delete",
+    "title_düzenle_14": "Edit",
+    "title_sil_14": "Delete",
+    "title_düzenle_15": "Edit",
+    "title_sil_15": "Delete",
+    "title_düzenle_16": "Edit",
+    "title_sil_16": "Delete",
+    "title_düzenle_17": "Edit",
+    "title_sil_17": "Delete",
+    "title_düzenle_18": "Edit",
+    "title_sil_18": "Delete",
+    "ph_örn_cat_320e": "Örn: CAT 320E",
+    "ph_sn": "SN: ...",
+    "ph_şantiye_adı": "Site Name",
+    "ph__": "0",
+    "ph_teknisyen_adı": "Teknisyen adı",
+    "ph_bakım_detayları": "Bakım detayları..."
+  },
+  "nl": {
+    "buildpro_ekipman_yönetimi": "BuildPro — Ekipman Beheer",
+    "bp": "BP",
+    "buildpro": "BuildPro",
+    "inşaat_yenileme": "İnşaat & Yenileme",
+    "ana_menü": "Ana Menü",
+    "ayarlar": "Instellingen",
+    "ekipman_yönetimi": "Uitrusting Beheer",
+    "buildpro_nv": "BuildPro NV",
+    "enterprise_plan": "Enterprise Plan",
+    "müsait": "Müsait",
+    "kullanımda": "In Gebruik",
+    "bakımda": "In Onderhoud",
+    "arızalı": "Arızalı",
+    "ekipman_listesi": "Uitrusting Lijst",
+    "bakım_takvimi": "Onderhoudskalender",
+    "tüm_tipler": "Tüm Tipler",
+    "ekskavatör": "Graafmachine",
+    "vinç": "Kraan",
+    "beton_mikseri": "Betonmixer",
+    "kompaktör": "Trilplaat",
+    "jeneratör": "Generator",
+    "iskele": "Steiger",
+    "forklift": "Heftruck",
+    "lazer_nivo": "Lazer Nivo",
+    "hilti": "Hilti",
+    "kaynak_makinesi": "Kaynak Makinesi",
+    "bobcat": "Bobcat",
+    "beton_pompası": "Beton Pompası",
+    "tüm_durumlar": "Alle statussen",
+    "müsait_2": "Müsait",
+    "kullanımda_2": "In Gebruik",
+    "bakımda_2": "In Onderhoud",
+    "arızalı_2": "Arızalı",
+    "yeni_ekipman": "+ Yeni Ekipman",
+    "ekipman": "Uitrusting",
+    "tipi": "Tipi",
+    "şantiye": "Werf",
+    "durum": "Status",
+    "son_bakım": "Laatste Onderhoud",
+    "sonraki_bakım": "Volgende Onderhoud",
+    "günlük_maliyet": "Günlük Maliyet",
+    "işlemler": "Acties",
+    "cat_320e": "CAT 320E",
+    "sn_cat0320e7abc": "SN: CAT0320E7ABC",
+    "ekskavatör_2": "Graafmachine",
+    "lemaire_konutları": "Lemaire Konutları",
+    "kullanımda_3": "In Gebruik",
+    "_5_mart_2026": "15 Mart 2026",
+    "_5_haziran_2026": "15 Haziran 2026",
+    "_50": "€450",
+    "liebherr_81k": "Liebherr 81K",
+    "sn_lhb81k2026x": "SN: LHB81K2026X",
+    "vinç_2": "Kraan",
+    "eu_tower": "EU Tower",
+    "kullanımda_4": "In Gebruik",
+    "_1_nisan_2026": "01 Nisan 2026",
+    "_1_temmuz_2026": "01 Temmuz 2026",
+    "_50_2": "€850",
+    "mercedes_arocs_4142": "Mercedes Arocs 4142",
+    "sn_mbar4142k9": "SN: MBAR4142K9",
+    "beton_mikseri_2": "Betonmixer",
+    "e19_otoyol": "E19 Otoyol",
+    "kullanımda_5": "In Gebruik",
+    "_0_mart_2026": "20 Mart 2026",
+    "_0_haziran_2026": "20 Haziran 2026",
+    "_20": "€320",
+    "atlas_copco_qas_150": "Atlas Copco QAS 150",
+    "sn_atqas15044": "SN: ATQAS15044",
+    "jeneratör_2": "Generator",
+    "port_of_antwerp": "Port of Antwerp",
+    "müsait_3": "Müsait",
+    "_0_şubat_2026": "10 Şubat 2026",
+    "_0_mayıs_2026": "10 Mayıs 2026",
+    "_80": "€180",
+    "hilti_te_70-avr": "Hilti TE 70-AVR",
+    "sn_hltte70vr2": "SN: HLTTE70VR2",
+    "hilti_2": "Hilti",
+    "depo": "Depo",
+    "müsait_4": "Müsait",
+    "_1_mart_2026": "01 Mart 2026",
+    "_1_haziran_2026": "01 Haziran 2026",
+    "layher_allround_iskele": "Layher Allround İskele",
+    "sn_layalr600m": "SN: LAYALR600M",
+    "iskele_2": "Steiger",
+    "leuven_restorasyon": "Leuven Restorasyon",
+    "kullanımda_6": "In Gebruik",
+    "_5_ocak_2026": "05 Ocak 2026",
+    "_5_temmuz_2026": "05 Temmuz 2026",
+    "wacker_neuson_dpu_100": "Wacker Neuson DPU 100",
+    "sn_wckdpu1005": "SN: WCKDPU1005",
+    "kompaktör_2": "Trilplaat",
+    "kanalizasyon": "Kanalizasyon",
+    "kullanımda_7": "In Gebruik",
+    "_2_mart_2026": "12 Mart 2026",
+    "_2_haziran_2026": "12 Haziran 2026",
+    "_20_2": "€120",
+    "spectra_precision_gl612": "Spectra Precision GL612",
+    "sn_spgl61288": "SN: SPGL61288",
+    "lazer_nivo_2": "Lazer Nivo",
+    "depo_2": "Depo",
+    "müsait_5": "Müsait",
+    "_0_şubat_2026_2": "20 Şubat 2026",
+    "_0_mayıs_2026_2": "20 Mayıs 2026",
+    "lincoln_electric_powertec": "Lincoln Electric Powertec",
+    "sn_lncpt500s": "SN: LNCPT500S",
+    "kaynak_makinesi_2": "Kaynak Makinesi",
+    "liège_tesisi": "Liège Tesisi",
+    "bakımda_3": "In Onderhoud",
+    "_1_mart_2026_2": "01 Mart 2026",
+    "_0_mayıs_2026_3": "20 Mayıs 2026",
+    "bobcat_s650": "Bobcat S650",
+    "sn_bbs65077a": "SN: BBS65077A",
+    "bobcat_2": "Bobcat",
+    "kraliyet_parkı": "Kraliyet Parkı",
+    "kullanımda_8": "In Gebruik",
+    "_8_nisan_2026": "08 Nisan 2026",
+    "_8_temmuz_2026": "08 Temmuz 2026",
+    "_10": "€210",
+    "putzmeister_bsa_1409": "Putzmeister BSA 1409",
+    "sn_ptzbsa1409": "SN: PTZBSA1409",
+    "beton_pompası_2": "Beton Pompası",
+    "eu_tower_2": "EU Tower",
+    "müsait_6": "Müsait",
+    "_5_mart_2026_2": "25 Mart 2026",
+    "_5_haziran_2026_2": "25 Haziran 2026",
+    "_80_2": "€580",
+    "komatsu_pc210lc": "Komatsu PC210LC",
+    "sn_kmpc210lc8": "SN: KMPC210LC8",
+    "ekskavatör_3": "Graafmachine",
+    "depo_3": "Depo",
+    "müsait_7": "Müsait",
+    "_1_nisan_2026_2": "01 Nisan 2026",
+    "_1_temmuz_2026_2": "01 Temmuz 2026",
+    "_80_3": "€380",
+    "toyota_8fbe20": "Toyota 8FBE20",
+    "sn_ty8fbe20x3": "SN: TY8FBE20X3",
+    "forklift_2": "Heftruck",
+    "port_of_antwerp_2": "Port of Antwerp",
+    "müsait_8": "Müsait",
+    "_5_şubat_2026": "15 Şubat 2026",
+    "_5_mayıs_2026": "15 Mayıs 2026",
+    "leica_rugby_610": "Leica Rugby 610",
+    "sn_lcrug61022": "SN: LCRUG61022",
+    "lazer_nivo_3": "Lazer Nivo",
+    "brugge_villa": "Brugge Villa",
+    "müsait_9": "Müsait",
+    "_1_mart_2026_3": "01 Mart 2026",
+    "_1_haziran_2026_2": "01 Haziran 2026",
+    "potain_mdt_178": "Potain MDT 178",
+    "sn_ptmdt178k": "SN: PTMDT178K",
+    "vinç_3": "Kraan",
+    "gent_avm": "Gent AVM",
+    "arızalı_3": "Arızalı",
+    "_0_mart_2026_2": "10 Mart 2026",
+    "_0_haziran_2026_2": "10 Haziran 2026",
+    "_20_3": "€720",
+    "fg_wilson_p550e": "FG Wilson P550E",
+    "sn_fgp550e99": "SN: FGP550E99",
+    "jeneratör_3": "Generator",
+    "e19_otoyol_2": "E19 Otoyol",
+    "kullanımda_9": "In Gebruik",
+    "_5_mart_2026_3": "05 Mart 2026",
+    "_5_haziran_2026_3": "05 Haziran 2026",
+    "_50_3": "€250",
+    "volvo_ec220e": "Volvo EC220E",
+    "sn_vlec220e4d": "SN: VLEC220E4D",
+    "ekskavatör_4": "Graafmachine",
+    "depo_4": "Depo",
+    "müsait_10": "Müsait",
+    "_0_nisan_2026": "20 Nisan 2026",
+    "_0_temmuz_2026": "20 Temmuz 2026",
+    "_20_4": "€420",
+    "linde_h25d": "Linde H25D",
+    "sn_lnh25d2026": "SN: LNH25D2026",
+    "forklift_3": "Heftruck",
+    "liège_tesisi_2": "Liège Tesisi",
+    "müsait_11": "Müsait",
+    "_1_nisan_2026_3": "01 Nisan 2026",
+    "_1_temmuz_2026_3": "01 Temmuz 2026",
+    "mayıs_2026_bakım_takvimi": "Mayıs 2026 Bakım Takvimi",
+    "bakım_planla": "+ Bakım Planla",
+    "pt": "Pt",
+    "sa": "uur",
+    "ça": "Ça",
+    "pe": "Pe",
+    "cu": "Cu",
+    "ct": "Ct",
+    "pa": "Pa",
+    "yaklaşan_bakımlar": "Yaklaşan Bakımlar",
+    "_7_may": "27 May",
+    "periyodik_yağ_değişimi_cat_320e": "Periyodik Yağ Değişimi — CAT 320E",
+    "ekskavatör_lemaire_konutları_marc_kenis": "Ekskavatör • Lemaire Konutları • Marc Kenis",
+    "planlandı": "Gepland",
+    "_3_may": "23 May",
+    "fren_sistemi_kontrolü_toyota_8fbe20": "Fren Sistemi Kontrolü — Toyota 8FBE20",
+    "forklift_port_of_antwerp_thomas_de_smet": "Forklift • Port of Antwerp • Thomas De Smet",
+    "planlandı_2": "Gepland",
+    "_9_may": "19 May",
+    "hidrolik_sistem_testi_liebherr_81k": "Hidrolik Sistem Testi — Liebherr 81K",
+    "vinç_eu_tower_sophie_bernard": "Vinç • EU Tower • Sophie Bernard",
+    "tamamlandı": "Voltooid",
+    "_5_may": "15 May",
+    "motor_bakımı_mercedes_arocs_4142": "Motor Bakımı — Mercedes Arocs 4142",
+    "beton_mikseri_e19_otoyol_johan_vermeulen": "Beton Mikseri • E19 Otoyol • Johan Vermeulen",
+    "tamamlandı_2": "Voltooid",
+    "_3_may_2": "13 May",
+    "kalibrasyon_spectra_precision_gl612": "Kalibrasyon — Spectra Precision GL612",
+    "lazer_nivo_depo_gecikmiş": "Lazer Nivo • Depo • Gecikmiş",
+    "gecikti": "Vertraagd",
+    "_1_haz": "01 Haz",
+    "yıllık_genel_bakım_potain_mdt_178": "Yıllık Genel Bakım — Potain MDT 178",
+    "vinç_gent_avm_bekleniyor": "Vinç • Gent AVM • Bekleniyor",
+    "yaklaşıyor": "Yaklaşıyor",
+    "yeni_ekipman_ekle": "Nieuwe Uitrusting Toevoegen",
+    "ekipman_adı": "Ekipman Adı",
+    "seri_no": "Serienummer",
+    "tipi_2": "Tipi",
+    "ekskavatör_5": "Graafmachine",
+    "vinç_4": "Kraan",
+    "beton_mikseri_3": "Betonmixer",
+    "kompaktör_3": "Trilplaat",
+    "jeneratör_4": "Generator",
+    "iskele_3": "Steiger",
+    "forklift_4": "Heftruck",
+    "lazer_nivo_4": "Lazer Nivo",
+    "hilti_3": "Hilti",
+    "kaynak_makinesi_3": "Kaynak Makinesi",
+    "bobcat_3": "Bobcat",
+    "beton_pompası_3": "Beton Pompası",
+    "şantiye_2": "Werf",
+    "durum_2": "Status",
+    "müsait_12": "Müsait",
+    "kullanımda_10": "In Gebruik",
+    "bakımda_4": "In Onderhoud",
+    "arızalı_4": "Arızalı",
+    "günlük_maliyet_2": "Günlük Maliyet (€)",
+    "son_bakım_2": "Laatste Onderhoud",
+    "sonraki_bakım_2": "Volgende Onderhoud",
+    "iptal": "Annuleren",
+    "kaydet": "Opslaan",
+    "ekipmanı_düzenle": "Ekipmanı Bewerken",
+    "ekipman_adı_2": "Ekipman Adı",
+    "seri_no_2": "Serienummer",
+    "tipi_3": "Tipi",
+    "ekskavatör_6": "Graafmachine",
+    "vinç_5": "Kraan",
+    "beton_mikseri_4": "Betonmixer",
+    "kompaktör_4": "Trilplaat",
+    "jeneratör_5": "Generator",
+    "iskele_4": "Steiger",
+    "forklift_5": "Heftruck",
+    "lazer_nivo_5": "Lazer Nivo",
+    "hilti_4": "Hilti",
+    "kaynak_makinesi_4": "Kaynak Makinesi",
+    "bobcat_4": "Bobcat",
+    "beton_pompası_4": "Beton Pompası",
+    "şantiye_3": "Werf",
+    "durum_3": "Status",
+    "müsait_13": "Müsait",
+    "kullanımda_11": "In Gebruik",
+    "bakımda_5": "In Onderhoud",
+    "arızalı_5": "Arızalı",
+    "günlük_maliyet_3": "Günlük Maliyet (€)",
+    "son_bakım_3": "Laatste Onderhoud",
+    "sonraki_bakım_3": "Volgende Onderhoud",
+    "iptal_2": "Annuleren",
+    "kaydet_2": "Opslaan",
+    "ekipmanı_sil": "Ekipmanı Verwijderen",
+    "bu_ekipmanı_silmek_istediğinize_emin_misiniz_bu_işlem_geri_a": "Bu ekipmanı silmek istediğinize emin misiniz? Bu işlem geri alınamaz.",
+    "iptal_3": "Annuleren",
+    "sil": "Verwijderen",
+    "bakım_planla_2": "Bakım Planla",
+    "ekipman_2": "Uitrusting",
+    "ekipman_seçin": "Ekipman Seçin...",
+    "cat_320e_2": "CAT 320E",
+    "liebherr_81k_2": "Liebherr 81K",
+    "mercedes_arocs_4142_2": "Mercedes Arocs 4142",
+    "atlas_copco_qas_150_2": "Atlas Copco QAS 150",
+    "hilti_te_70-avr_2": "Hilti TE 70-AVR",
+    "layher_allround_iskele_2": "Layher Allround İskele",
+    "wacker_neuson_dpu_100_2": "Wacker Neuson DPU 100",
+    "spectra_precision_gl612_2": "Spectra Precision GL612",
+    "lincoln_electric_powertec_2": "Lincoln Electric Powertec",
+    "bobcat_s650_2": "Bobcat S650",
+    "putzmeister_bsa_1409_2": "Putzmeister BSA 1409",
+    "komatsu_pc210lc_2": "Komatsu PC210LC",
+    "toyota_8fbe20_2": "Toyota 8FBE20",
+    "leica_rugby_610_2": "Leica Rugby 610",
+    "potain_mdt_178_2": "Potain MDT 178",
+    "fg_wilson_p550e_2": "FG Wilson P550E",
+    "volvo_ec220e_2": "Volvo EC220E",
+    "linde_h25d_2": "Linde H25D",
+    "bakım_tipi": "Bakım Tipi",
+    "periyodik_yağ_değişimi": "Periyodik Yağ Değişimi",
+    "fren_sistemi_kontrolü": "Fren Sistemi Kontrolü",
+    "hidrolik_sistem_testi": "Hidrolik Sistem Testi",
+    "motor_bakımı": "Motor Bakımı",
+    "kalibrasyon": "Kalibrasyon",
+    "yıllık_genel_bakım": "Yıllık Genel Bakım",
+    "lastikfar_değişimi": "Lastik/Far Değişimi",
+    "bakım_tarihi": "Bakım Tarihi",
+    "sorumlu_teknisyen": "Sorumlu Teknisyen",
+    "notlar": "Notities",
+    "iptal_4": "Annuleren",
+    "planla": "Planla",
+    "ph_ekipman_ara": "Ekipman ara...",
+    "title_düzenle": "Bewerken",
+    "title_sil": "Verwijderen",
+    "title_düzenle_2": "Bewerken",
+    "title_sil_2": "Verwijderen",
+    "title_düzenle_3": "Bewerken",
+    "title_sil_3": "Verwijderen",
+    "title_düzenle_4": "Bewerken",
+    "title_sil_4": "Verwijderen",
+    "title_düzenle_5": "Bewerken",
+    "title_sil_5": "Verwijderen",
+    "title_düzenle_6": "Bewerken",
+    "title_sil_6": "Verwijderen",
+    "title_düzenle_7": "Bewerken",
+    "title_sil_7": "Verwijderen",
+    "title_düzenle_8": "Bewerken",
+    "title_sil_8": "Verwijderen",
+    "title_düzenle_9": "Bewerken",
+    "title_sil_9": "Verwijderen",
+    "title_düzenle_10": "Bewerken",
+    "title_sil_10": "Verwijderen",
+    "title_düzenle_11": "Bewerken",
+    "title_sil_11": "Verwijderen",
+    "title_düzenle_12": "Bewerken",
+    "title_sil_12": "Verwijderen",
+    "title_düzenle_13": "Bewerken",
+    "title_sil_13": "Verwijderen",
+    "title_düzenle_14": "Bewerken",
+    "title_sil_14": "Verwijderen",
+    "title_düzenle_15": "Bewerken",
+    "title_sil_15": "Verwijderen",
+    "title_düzenle_16": "Bewerken",
+    "title_sil_16": "Verwijderen",
+    "title_düzenle_17": "Bewerken",
+    "title_sil_17": "Verwijderen",
+    "title_düzenle_18": "Bewerken",
+    "title_sil_18": "Verwijderen",
+    "ph_örn_cat_320e": "Örn: CAT 320E",
+    "ph_sn": "SN: ...",
+    "ph_şantiye_adı": "Werfnaam",
+    "ph__": "0",
+    "ph_teknisyen_adı": "Teknisyen adı",
+    "ph_bakım_detayları": "Bakım detayları..."
+  }
+};
+let currentLang = localStorage.getItem('buildpro_lang') || 'tr';
+document.documentElement.lang = currentLang;
+function switchLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('buildpro_lang', lang);
+  document.documentElement.lang = lang;
+  applyLang();
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+}
+function applyLang() {
+  const t = i18n[currentLang] || i18n['tr'];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) {
+      const attr = el.getAttribute('data-i18n-attr');
+      if (attr) {
+        el.setAttribute(attr, t[key]);
+      } else if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        if (el.type !== 'submit' && el.type !== 'button') {
+          // keep value for inputs unless button
+        }
+        el.value = t[key];
+      } else if (el.tagName === 'OPTION') {
+        el.textContent = t[key];
+      } else {
+        el.textContent = t[key];
+      }
+    }
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key]) el.placeholder = t[key];
+  });
+  const titleEl = document.querySelector('title');
+  if (titleEl) {
+    const key = titleEl.getAttribute('data-i18n');
+    if (key && t[key]) document.title = t[key];
+  }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  applyLang();
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === currentLang));
+});
+</script></body>
 </html>

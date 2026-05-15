@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="tr" data-theme="dark">
+<html data-theme="dark" lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BuildPro — Teklif & Bütçeleme</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/components.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title data-i18n="buildpro_teklif_bütçeleme">BuildPro — Teklif &amp; Bütçeleme</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="css/main.css" rel="stylesheet"/>
+<link href="css/components.css" rel="stylesheet"/>
 <style>
 .dashboard{display:flex;min-height:100vh;background:var(--bg-primary);}
-.sidebar{width:280px;height:100vh;background:var(--bg-card);border-right:1px solid var(--border-color);display:flex;flex-direction:column;position:fixed;left:0;top:0;z-index:100;}
+.sidebar{width:260px;height:100vh;background:var(--bg-card);border-right:1px solid var(--border-color);display:flex;flex-direction:column;position:fixed;left:0;top:0;z-index:100;}
 .sidebar-header{padding:20px 24px;border-bottom:1px solid var(--border-color);display:flex;align-items:center;gap:12px;}
 .sidebar-logo{width:36px;height:36px;background:linear-gradient(135deg,var(--teal-500),var(--teal-700));border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:14px;}
 .sidebar-nav{flex:1;overflow-y:auto;padding:16px 12px;}
@@ -19,7 +19,7 @@
 .nav-item:hover{background:var(--bg-tertiary);color:var(--text-primary);}
 .nav-item.active{background:rgba(20,184,166,0.1);color:var(--teal-500);}
 .nav-icon{width:20px;height:20px;opacity:0.7;}
-.main-content{flex:1;margin-left:280px;min-height:100vh;}
+.main-content{flex:1;margin-left:260px;min-height:100vh;}
 .header{height:64px;background:var(--bg-card);border-bottom:1px solid var(--border-color);display:flex;align-items:center;justify-content:space-between;padding:0 32px;position:sticky;top:0;z-index:50;}
 .hamburger{display:none;background:none;border:none;color:var(--text-secondary);cursor:pointer;padding:8px;}
 .content{padding:32px;max-width:1400px;}
@@ -39,7 +39,7 @@
 .tag-blue{background:rgba(59,130,246,0.1);color:var(--info-500);}
 .tag-amber{background:rgba(245,158,11,0.1);color:var(--amber-500);}
 .tag-red{background:rgba(244,63,94,0.1);color:var(--error-500);}
-.tag-purple{background:rgba(139,92,246,0.1);color:#8b5cf6;}
+.tag-purple{background:rgba(139,92,246,0.1);color:#14b8a6;}
 .actions{display:flex;gap:6px;}
 .action-btn{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;background:transparent;border:none;color:var(--text-muted);cursor:pointer;transition:all var(--duration-fast);}
 .action-btn:hover{background:var(--bg-tertiary);color:var(--text-primary);}
@@ -84,335 +84,331 @@
 </head>
 <body>
 <div class="dashboard">
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <div class="sidebar-logo">BP</div>
-      <div><div style="font-weight:700;font-size:var(--text-sm);">BuildPro</div><div style="font-size:var(--text-xs);color:var(--text-muted);">İnşaat & Yenileme</div></div>
-    </div>
-    <nav class="sidebar-nav">
-      <div class="nav-group">
-        <div class="nav-group-header">Ana Menü</div>
-        <a href="buildpro-dashboard.html" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>Dashboard</a>
-        <a href="buildpro-projects.html" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/></svg>Projeler</a>
-        <a href="buildpro-quotes.html" class="nav-item active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Teklifler</a>
-        <a href="buildpro-equipment.html" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Ekipman</a>
-        <a href="buildpro-staff.html" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>Çalışanlar</a>
-        <a href="buildpro-reports.html" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>Raporlar</a>
-      </div>
-      <div class="nav-group">
-        <div class="nav-group-header">Ayarlar</div>
-        <a href="buildpro-profile.html" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Firma Profili</a>
-        <a href="login.html" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Çıkış Yap</a>
-      </div>
-    </nav>
-  </aside>
-
-  <main class="main-content">
-    <header class="header">
-      <div class="header-left">
-        <button class="hamburger" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
-        <h1 style="font-size:var(--text-lg);font-weight:700;">Teklif & Bütçeleme</h1>
-      </div>
-      <div class="header-right">
-        <div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,#14b8a6,#0d9488);">BP</div><div><div style="font-weight:600;font-size:var(--text-sm);">BuildPro NV</div><div style="font-size:var(--text-xs);color:var(--text-muted);">Enterprise Plan</div></div></div>
-      </div>
-    </header>
-
-    <div class="content">
-      <div class="stats-row">
-        <div class="stat-card"><div class="stat-value" style="color:var(--info-500);">18</div><div class="stat-label">Bekleyen Teklif</div></div>
-        <div class="stat-card"><div class="stat-value" style="color:var(--success-500);">12</div><div class="stat-label">Onaylanan</div></div>
-        <div class="stat-card"><div class="stat-value" style="color:var(--amber-500);">€8.4M</div><div class="stat-label">Bekleyen Değer</div></div>
-        <div class="stat-card"><div class="stat-value" style="color:var(--teal-500);">64%</div><div class="stat-label">Kabul Oranı</div></div>
-      </div>
-
-      <div class="toolbar">
-        <div class="search-box">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" placeholder="Teklif ara..." id="searchInput">
-        </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <select id="statusFilter" style="padding:10px 32px 10px 14px;background:var(--bg-card);border:1.5px solid var(--border-color);border-radius:var(--radius-md);color:var(--text-primary);font-size:var(--text-sm);">
-            <option value="">Tüm Durumlar</option>
-            <option value="Bekliyor">Bekliyor</option>
-            <option value="Onaylandı">Onaylandı</option>
-            <option value="Reddedildi">Reddedildi</option>
-            <option value="Revize">Revize</option>
-          </select>
-          <button class="btn btn-secondary" onclick="showToast('PDF raporu indirildi','success')">📄 Rapor</button>
-          <button class="btn btn-primary" onclick="openModal('addModal')">+ Yeni Teklif</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <table class="table" id="quotesTable">
-          <thead><tr><th>Teklif No</th><th>Müşteri</th><th>Proje Tipi</th><th>Tahmini Bütçe</th><th>Durum</th><th>Tarih</th><th>Geçerlilik</th><th>İşlemler</th></tr></thead>
-          <tbody>
-            <tr data-id="1">
-              <td><div style="font-weight:600;color:var(--text-primary);">TKF-2026-0154</div></td>
-              <td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);">VD</div><div><div style="font-weight:600;">Vlaams Domein</div><div style="font-size:var(--text-xs);color:var(--text-muted);">info@vlaamsdomein.be</div></div></div></td>
-              <td><span class="tag tag-blue">Konut</span></td>
-              <td style="font-weight:600;color:var(--teal-500);">€2.450.000</td>
-              <td><span class="tag tag-amber">Bekliyor</span></td>
-              <td>12 Mayıs 2026</td>
-              <td>12 Ağustos 2026</td>
-              <td><div class="actions"><button class="action-btn" onclick="openViewModal(1)" title="Görüntüle">👁</button><button class="action-btn" onclick="openEditModal(1)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(1)" title="Sil">🗑</button></div></td>
-            </tr>
-            <tr data-id="2">
-              <td><div style="font-weight:600;color:var(--text-primary);">TKF-2026-0153</div></td>
-              <td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,#8b5cf6,#6d28d9);">BW</div><div><div style="font-weight:600;">Brussels Waterworks NV</div><div style="font-size:var(--text-xs);color:var(--text-muted);">procurement@bwworks.be</div></div></div></td>
-              <td><span class="tag tag-purple">Altyapı</span></td>
-              <td style="font-weight:600;color:var(--teal-500);">€4.100.000</td>
-              <td><span class="tag tag-green">Onaylandı</span></td>
-              <td>05 Mayıs 2026</td>
-              <td>05 Ağustos 2026</td>
-              <td><div class="actions"><button class="action-btn" onclick="openViewModal(2)" title="Görüntüle">👁</button><button class="action-btn" onclick="openEditModal(2)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(2)" title="Sil">🗑</button></div></td>
-            </tr>
-            <tr data-id="3">
-              <td><div style="font-weight:600;color:var(--text-primary);">TKF-2026-0152</div></td>
-              <td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,#f59e0b,#d97706);">LH</div><div><div style="font-weight:600;">Lemaire Holding SA</div><div style="font-size:var(--text-xs);color:var(--text-muted);">projects@lemaire.be</div></div></div></td>
-              <td><span class="tag tag-blue">Konut</span></td>
-              <td style="font-weight:600;color:var(--teal-500);">€1.850.000</td>
-              <td><span class="tag tag-green">Onaylandı</span></td>
-              <td>28 Nisan 2026</td>
-              <td>28 Temmuz 2026</td>
-              <td><div class="actions"><button class="action-btn" onclick="openViewModal(3)" title="Görüntüle">👁</button><button class="action-btn" onclick="openEditModal(3)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(3)" title="Sil">🗑</button></div></td>
-            </tr>
-            <tr data-id="4">
-              <td><div style="font-weight:600;color:var(--text-primary);">TKF-2026-0151</div></td>
-              <td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,#ef4444,#b91c1c);">GB</div><div><div style="font-weight:600;">Ghent Brewery Co.</div><div style="font-size:var(--text-xs);color:var(--text-muted);">build@ghentbrewery.be</div></div></div></td>
-              <td><span class="tag tag-amber">Renovasyon</span></td>
-              <td style="font-weight:600;color:var(--teal-500);">€680.000</td>
-              <td><span class="tag tag-red">Reddedildi</span></td>
-              <td>20 Nisan 2026</td>
-              <td>20 Temmuz 2026</td>
-              <td><div class="actions"><button class="action-btn" onclick="openViewModal(4)" title="Görüntüle">👁</button><button class="action-btn" onclick="openEditModal(4)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(4)" title="Sil">🗑</button></div></td>
-            </tr>
-            <tr data-id="5">
-              <td><div style="font-weight:600;color:var(--text-primary);">TKF-2026-0150</div></td>
-              <td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,#14b8a6,#0d9488);">KP</div><div><div style="font-weight:600;">Koning Park BV</div><div style="font-size:var(--text-xs);color:var(--text-muted);">park@koning.brussels</div></div></div></td>
-              <td><span class="tag tag-green">Peyzaj</span></td>
-              <td style="font-weight:600;color:var(--teal-500);">€420.000</td>
-              <td><span class="tag tag-amber">Revize</span></td>
-              <td>15 Nisan 2026</td>
-              <td>15 Temmuz 2026</td>
-              <td><div class="actions"><button class="action-btn" onclick="openViewModal(5)" title="Görüntüle">👁</button><button class="action-btn" onclick="openEditModal(5)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(5)" title="Sil">🗑</button></div></td>
-            </tr>
-            <tr data-id="6">
-              <td><div style="font-weight:600;color:var(--text-primary);">TKF-2026-0149</div></td>
-              <td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,#6366f1,#4338ca);">AP</div><div><div style="font-weight:600;">Antwerp Port Authority</div><div style="font-size:var(--text-xs);color:var(--text-muted);">infrastructure@aport.be</div></div></div></td>
-              <td><span class="tag tag-red">Endüstriyel</span></td>
-              <td style="font-weight:600;color:var(--teal-500);">€3.750.000</td>
-              <td><span class="tag tag-green">Onaylandı</span></td>
-              <td>10 Nisan 2026</td>
-              <td>10 Temmuz 2026</td>
-              <td><div class="actions"><button class="action-btn" onclick="openViewModal(6)" title="Görüntüle">👁</button><button class="action-btn" onclick="openEditModal(6)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(6)" title="Sil">🗑</button></div></td>
-            </tr>
-            <tr data-id="7">
-              <td><div style="font-weight:600;color:var(--text-primary);">TKF-2026-0148</div></td>
-              <td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,#10b981,#047857);">EU</div><div><div style="font-weight:600;">EU Commission DG REGIO</div><div style="font-size:var(--text-xs);color:var(--text-muted);">procurement@ec.europa.eu</div></div></div></td>
-              <td><span class="tag tag-green">Ticari</span></td>
-              <td style="font-weight:600;color:var(--teal-500);">€5.200.000</td>
-              <td><span class="tag tag-amber">Bekliyor</span></td>
-              <td>02 Nisan 2026</td>
-              <td>02 Temmuz 2026</td>
-              <td><div class="actions"><button class="action-btn" onclick="openViewModal(7)" title="Görüntüle">👁</button><button class="action-btn" onclick="openEditModal(7)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(7)" title="Sil">🗑</button></div></td>
-            </tr>
-            <tr data-id="8">
-              <td><div style="font-weight:600;color:var(--text-primary);">TKF-2026-0147</div></td>
-              <td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,#ec4899,#be185d);">CL</div><div><div style="font-weight:600;">City of Leuven</div><div style="font-size:var(--text-xs);color:var(--text-muted);">bouw@leuven.be</div></div></div></td>
-              <td><span class="tag tag-amber">Renovasyon</span></td>
-              <td style="font-weight:600;color:var(--teal-500);">€1.120.000</td>
-              <td><span class="tag tag-amber">Bekliyor</span></td>
-              <td>25 Mart 2026</td>
-              <td>25 Haziran 2026</td>
-              <td><div class="actions"><button class="action-btn" onclick="openViewModal(8)" title="Görüntüle">👁</button><button class="action-btn" onclick="openEditModal(8)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(8)" title="Sil">🗑</button></div></td>
-            </tr>
-            <tr data-id="9">
-              <td><div style="font-weight:600;color:var(--text-primary);">TKF-2026-0146</div></td>
-              <td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,#06b6d4,#0891b2);">WB</div><div><div style="font-weight:600;">Wallonia Build SA</div><div style="font-size:var(--text-xs);color:var(--text-muted);">contact@wbuild.be</div></div></div></td>
-              <td><span class="tag tag-red">Endüstriyel</span></td>
-              <td style="font-weight:600;color:var(--teal-500);">€890.000</td>
-              <td><span class="tag tag-green">Onaylandı</span></td>
-              <td>18 Mart 2026</td>
-              <td>18 Haziran 2026</td>
-              <td><div class="actions"><button class="action-btn" onclick="openViewModal(9)" title="Görüntüle">👁</button><button class="action-btn" onclick="openEditModal(9)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(9)" title="Sil">🗑</button></div></td>
-            </tr>
-            <tr data-id="10">
-              <td><div style="font-weight:600;color:var(--text-primary);">TKF-2026-0145</div></td>
-              <td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,#84cc16,#65a30d);">FB</div><div><div style="font-weight:600;">Flanders Brick Group</div><div style="font-size:var(--text-xs);color:var(--text-muted);">projects@fbrick.be</div></div></div></td>
-              <td><span class="tag tag-blue">Konut</span></td>
-              <td style="font-weight:600;color:var(--teal-500);">€2.100.000</td>
-              <td><span class="tag tag-amber">Bekliyor</span></td>
-              <td>10 Mart 2026</td>
-              <td>10 Haziran 2026</td>
-              <td><div class="actions"><button class="action-btn" onclick="openViewModal(10)" title="Görüntüle">👁</button><button class="action-btn" onclick="openEditModal(10)" title="Düzenle">✎</button><button class="action-btn" onclick="openDeleteModal(10)" title="Sil">🗑</button></div></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="pagination">
-        <button class="page-btn" disabled>←</button>
-        <button class="page-btn active">1</button>
-        <button class="page-btn">2</button>
-        <button class="page-btn">→</button>
-      </div>
-    </div>
-  </main>
+<aside class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<div class="sidebar-logo" data-i18n="bp">BP</div>
+<div><div data-i18n="buildpro" style="font-weight:700;font-size:var(--text-sm);">BuildPro</div><div data-i18n="inşaat_yenileme" style="font-size:var(--text-xs);color:var(--text-muted);">İnşaat &amp; Yenileme</div></div>
 </div>
+<nav class="sidebar-nav">
+<div class="nav-group">
+<div class="nav-group-header" data-i18n="ana_menü">Ana Menü</div>
+<a class="nav-item" href="buildpro-dashboard.html"><svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><line x1="3" x2="21" y1="9" y2="9"></line><line x1="9" x2="9" y1="21" y2="9"></line></svg>Dashboard</a>
+<a class="nav-item" href="buildpro-projects.html"><svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M2 20h.01"></path><path d="M7 20v-4"></path><path d="M12 20v-8"></path><path d="M17 20V8"></path></svg>Projeler</a>
+<a class="nav-item active" href="buildpro-quotes.html"><svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" x2="8" y1="13" y2="13"></line><line x1="16" x2="8" y1="17" y2="17"></line></svg>Teklifler</a>
+<a class="nav-item" href="buildpro-equipment.html"><svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="14" rx="2" ry="2" width="20" x="2" y="3"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg>Ekipman</a>
+<a class="nav-item" href="buildpro-staff.html"><svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path></svg>Çalışanlar</a>
+<a class="nav-item" href="buildpro-reports.html"><svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg>Raporlar</a>
+</div>
+<div class="nav-group">
+<div class="nav-group-header" data-i18n="ayarlar">Ayarlar</div>
+<a class="nav-item" href="buildpro-profile.html"><svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Firma Profili</a>
+<a class="nav-item" href="login.html"><svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" x2="9" y1="12" y2="12"></line></svg>Çıkış Yap</a>
+</div>
+</nav>
+</aside>
+<main class="main-content">
+<header class="header">
+<div class="header-left">
+<button class="hamburger" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+<h1 data-i18n="teklif_bütçeleme" style="font-size:var(--text-lg);font-weight:700;">Teklif &amp; Bütçeleme</h1>
+</div>
+<div class="header-right">
+<div class="lang-switcher" style="display:flex;gap:4px;margin-right:12px;">
+<button class="lang-btn" data-lang="tr" onclick="switchLang('tr')" style="padding:4px 8px;font-size:12px;border-radius:4px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;">TR</button>
+<button class="lang-btn" data-lang="en" onclick="switchLang('en')" style="padding:4px 8px;font-size:12px;border-radius:4px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;">EN</button>
+<button class="lang-btn" data-lang="nl" onclick="switchLang('nl')" style="padding:4px 8px;font-size:12px;border-radius:4px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;">NL</button>
+</div>
+<style>.lang-btn.active{background:var(--teal-500)!important;color:white!important;border-color:var(--teal-500)!important;font-weight:600;}</style>
 
+<div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,#14b8a6,#0d9488);">BP</div><div><div data-i18n="buildpro_nv" style="font-weight:600;font-size:var(--text-sm);">BuildPro NV</div><div data-i18n="enterprise_plan" style="font-size:var(--text-xs);color:var(--text-muted);">Enterprise Plan</div></div></div>
+</div>
+</header>
+<div class="content">
+<div class="stats-row">
+<div class="stat-card"><div class="stat-value" style="color:var(--info-500);">18</div><div class="stat-label" data-i18n="bekleyen_teklif">Bekleyen Teklif</div></div>
+<div class="stat-card"><div class="stat-value" style="color:var(--success-500);">12</div><div class="stat-label" data-i18n="onaylanan">Onaylanan</div></div>
+<div class="stat-card"><div class="stat-value" data-i18n="_4m" style="color:var(--amber-500);">€8.4M</div><div class="stat-label" data-i18n="bekleyen_değer">Bekleyen Değer</div></div>
+<div class="stat-card"><div class="stat-value" style="color:var(--teal-500);">64%</div><div class="stat-label" data-i18n="kabul_oranı">Kabul Oranı</div></div>
+</div>
+<div class="toolbar">
+<div class="search-box">
+<svg fill="none" height="16" stroke="currentColor" stroke-width="2" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);" viewbox="0 0 24 24" width="16"><circle cx="11" cy="11" r="8"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line></svg>
+<input data-i18n-placeholder="ph_teklif_ara" id="searchInput" placeholder="Teklif ara..." type="text"/>
+</div>
+<div style="display:flex;gap:10px;flex-wrap:wrap;">
+<select id="statusFilter" style="padding:10px 32px 10px 14px;background:var(--bg-card);border:1.5px solid var(--border-color);border-radius:var(--radius-md);color:var(--text-primary);font-size:var(--text-sm);">
+<option data-i18n="tüm_durumlar" value="">Tüm Durumlar</option>
+<option data-i18n="bekliyor" value="Bekliyor">Bekliyor</option>
+<option data-i18n="onaylandı" value="Onaylandı">Onaylandı</option>
+<option data-i18n="reddedildi" value="Reddedildi">Reddedildi</option>
+<option data-i18n="revize" value="Revize">Revize</option>
+</select>
+<button class="btn btn-secondary" data-i18n="rapor" onclick="showToast('PDF raporu indirildi','success')">📄 Rapor</button>
+<button class="btn btn-primary" data-i18n="yeni_teklif" onclick="openModal('addModal')">+ Yeni Teklif</button>
+</div>
+</div>
+<div class="card">
+<table class="table" id="quotesTable">
+<thead><tr><th data-i18n="teklif_no">Teklif No</th><th data-i18n="müşteri">Müşteri</th><th data-i18n="proje_tipi">Proje Tipi</th><th data-i18n="tahmini_bütçe">Tahmini Bütçe</th><th data-i18n="durum">Durum</th><th data-i18n="tarih">Tarih</th><th data-i18n="geçerlilik">Geçerlilik</th><th data-i18n="işlemler">İşlemler</th></tr></thead>
+<tbody>
+<tr data-id="1">
+<td><div data-i18n="tkf-2026-0154" style="font-weight:600;color:var(--text-primary);">TKF-2026-0154</div></td>
+<td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);">VD</div><div><div data-i18n="vlaams_domein" style="font-weight:600;">Vlaams Domein</div><div data-i18n="infovlaamsdomeinbe" style="font-size:var(--text-xs);color:var(--text-muted);">info@vlaamsdomein.be</div></div></div></td>
+<td><span class="tag tag-blue" data-i18n="konut">Konut</span></td>
+<td data-i18n="_450000" style="font-weight:600;color:var(--teal-500);">€2.450.000</td>
+<td><span class="tag tag-amber" data-i18n="bekliyor_2">Bekliyor</span></td>
+<td data-i18n="_2_mayıs_2026">12 Mayıs 2026</td>
+<td data-i18n="_2_ağustos_2026">12 Ağustos 2026</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_görüntüle" data-i18n-attr="title" onclick="openViewModal(1)" title="Görüntüle">👁</button><button class="action-btn" data-i18n="title_düzenle" data-i18n-attr="title" onclick="openEditModal(1)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil" data-i18n-attr="title" onclick="openDeleteModal(1)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="2">
+<td><div data-i18n="tkf-2026-0153" style="font-weight:600;color:var(--text-primary);">TKF-2026-0153</div></td>
+<td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,#14b8a6,#0f766e);">BW</div><div><div data-i18n="brussels_waterworks_nv" style="font-weight:600;">Brussels Waterworks NV</div><div data-i18n="procurementbwworksbe" style="font-size:var(--text-xs);color:var(--text-muted);">procurement@bwworks.be</div></div></div></td>
+<td><span class="tag tag-purple" data-i18n="altyapı">Altyapı</span></td>
+<td data-i18n="_100000" style="font-weight:600;color:var(--teal-500);">€4.100.000</td>
+<td><span class="tag tag-green" data-i18n="onaylandı_2">Onaylandı</span></td>
+<td data-i18n="_5_mayıs_2026">05 Mayıs 2026</td>
+<td data-i18n="_5_ağustos_2026">05 Ağustos 2026</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_görüntüle_2" data-i18n-attr="title" onclick="openViewModal(2)" title="Görüntüle">👁</button><button class="action-btn" data-i18n="title_düzenle_2" data-i18n-attr="title" onclick="openEditModal(2)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_2" data-i18n-attr="title" onclick="openDeleteModal(2)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="3">
+<td><div data-i18n="tkf-2026-0152" style="font-weight:600;color:var(--text-primary);">TKF-2026-0152</div></td>
+<td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,#14b8a6,#0f766e);">LH</div><div><div data-i18n="lemaire_holding_sa" style="font-weight:600;">Lemaire Holding SA</div><div data-i18n="projectslemairebe" style="font-size:var(--text-xs);color:var(--text-muted);">projects@lemaire.be</div></div></div></td>
+<td><span class="tag tag-blue" data-i18n="konut_2">Konut</span></td>
+<td data-i18n="_850000" style="font-weight:600;color:var(--teal-500);">€1.850.000</td>
+<td><span class="tag tag-green" data-i18n="onaylandı_3">Onaylandı</span></td>
+<td data-i18n="_8_nisan_2026">28 Nisan 2026</td>
+<td data-i18n="_8_temmuz_2026">28 Temmuz 2026</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_görüntüle_3" data-i18n-attr="title" onclick="openViewModal(3)" title="Görüntüle">👁</button><button class="action-btn" data-i18n="title_düzenle_3" data-i18n-attr="title" onclick="openEditModal(3)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_3" data-i18n-attr="title" onclick="openDeleteModal(3)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="4">
+<td><div data-i18n="tkf-2026-0151" style="font-weight:600;color:var(--text-primary);">TKF-2026-0151</div></td>
+<td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,#ef4444,#b91c1c);">GB</div><div><div data-i18n="ghent_brewery_co" style="font-weight:600;">Ghent Brewery Co.</div><div data-i18n="buildghentbrewerybe" style="font-size:var(--text-xs);color:var(--text-muted);">build@ghentbrewery.be</div></div></div></td>
+<td><span class="tag tag-amber" data-i18n="renovasyon">Renovasyon</span></td>
+<td data-i18n="_80000" style="font-weight:600;color:var(--teal-500);">€680.000</td>
+<td><span class="tag tag-red" data-i18n="reddedildi_2">Reddedildi</span></td>
+<td data-i18n="_0_nisan_2026">20 Nisan 2026</td>
+<td data-i18n="_0_temmuz_2026">20 Temmuz 2026</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_görüntüle_4" data-i18n-attr="title" onclick="openViewModal(4)" title="Görüntüle">👁</button><button class="action-btn" data-i18n="title_düzenle_4" data-i18n-attr="title" onclick="openEditModal(4)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_4" data-i18n-attr="title" onclick="openDeleteModal(4)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="5">
+<td><div data-i18n="tkf-2026-0150" style="font-weight:600;color:var(--text-primary);">TKF-2026-0150</div></td>
+<td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,#14b8a6,#0d9488);">KP</div><div><div data-i18n="koning_park_bv" style="font-weight:600;">Koning Park BV</div><div data-i18n="parkkoningbrussels" style="font-size:var(--text-xs);color:var(--text-muted);">park@koning.brussels</div></div></div></td>
+<td><span class="tag tag-green" data-i18n="peyzaj">Peyzaj</span></td>
+<td data-i18n="_20000" style="font-weight:600;color:var(--teal-500);">€420.000</td>
+<td><span class="tag tag-amber" data-i18n="revize_2">Revize</span></td>
+<td data-i18n="_5_nisan_2026">15 Nisan 2026</td>
+<td data-i18n="_5_temmuz_2026">15 Temmuz 2026</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_görüntüle_5" data-i18n-attr="title" onclick="openViewModal(5)" title="Görüntüle">👁</button><button class="action-btn" data-i18n="title_düzenle_5" data-i18n-attr="title" onclick="openEditModal(5)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_5" data-i18n-attr="title" onclick="openDeleteModal(5)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="6">
+<td><div data-i18n="tkf-2026-0149" style="font-weight:600;color:var(--text-primary);">TKF-2026-0149</div></td>
+<td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,#6366f1,#4338ca);">AP</div><div><div data-i18n="antwerp_port_authority" style="font-weight:600;">Antwerp Port Authority</div><div data-i18n="infrastructureaportbe" style="font-size:var(--text-xs);color:var(--text-muted);">infrastructure@aport.be</div></div></div></td>
+<td><span class="tag tag-red" data-i18n="endüstriyel">Endüstriyel</span></td>
+<td data-i18n="_750000" style="font-weight:600;color:var(--teal-500);">€3.750.000</td>
+<td><span class="tag tag-green" data-i18n="onaylandı_4">Onaylandı</span></td>
+<td data-i18n="_0_nisan_2026_2">10 Nisan 2026</td>
+<td data-i18n="_0_temmuz_2026_2">10 Temmuz 2026</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_görüntüle_6" data-i18n-attr="title" onclick="openViewModal(6)" title="Görüntüle">👁</button><button class="action-btn" data-i18n="title_düzenle_6" data-i18n-attr="title" onclick="openEditModal(6)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_6" data-i18n-attr="title" onclick="openDeleteModal(6)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="7">
+<td><div data-i18n="tkf-2026-0148" style="font-weight:600;color:var(--text-primary);">TKF-2026-0148</div></td>
+<td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,#10b981,#047857);">EU</div><div><div data-i18n="eu_commission_dg_regio" style="font-weight:600;">EU Commission DG REGIO</div><div data-i18n="procurementeceuropaeu" style="font-size:var(--text-xs);color:var(--text-muted);">procurement@ec.europa.eu</div></div></div></td>
+<td><span class="tag tag-green" data-i18n="ticari">Ticari</span></td>
+<td data-i18n="_200000" style="font-weight:600;color:var(--teal-500);">€5.200.000</td>
+<td><span class="tag tag-amber" data-i18n="bekliyor_3">Bekliyor</span></td>
+<td data-i18n="_2_nisan_2026">02 Nisan 2026</td>
+<td data-i18n="_2_temmuz_2026">02 Temmuz 2026</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_görüntüle_7" data-i18n-attr="title" onclick="openViewModal(7)" title="Görüntüle">👁</button><button class="action-btn" data-i18n="title_düzenle_7" data-i18n-attr="title" onclick="openEditModal(7)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_7" data-i18n-attr="title" onclick="openDeleteModal(7)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="8">
+<td><div data-i18n="tkf-2026-0147" style="font-weight:600;color:var(--text-primary);">TKF-2026-0147</div></td>
+<td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,#ec4899,#be185d);">CL</div><div><div data-i18n="city_of_leuven" style="font-weight:600;">City of Leuven</div><div data-i18n="bouwleuvenbe" style="font-size:var(--text-xs);color:var(--text-muted);">bouw@leuven.be</div></div></div></td>
+<td><span class="tag tag-amber" data-i18n="renovasyon_2">Renovasyon</span></td>
+<td data-i18n="_120000" style="font-weight:600;color:var(--teal-500);">€1.120.000</td>
+<td><span class="tag tag-amber" data-i18n="bekliyor_4">Bekliyor</span></td>
+<td data-i18n="_5_mart_2026">25 Mart 2026</td>
+<td data-i18n="_5_haziran_2026">25 Haziran 2026</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_görüntüle_8" data-i18n-attr="title" onclick="openViewModal(8)" title="Görüntüle">👁</button><button class="action-btn" data-i18n="title_düzenle_8" data-i18n-attr="title" onclick="openEditModal(8)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_8" data-i18n-attr="title" onclick="openDeleteModal(8)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="9">
+<td><div data-i18n="tkf-2026-0146" style="font-weight:600;color:var(--text-primary);">TKF-2026-0146</div></td>
+<td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,#06b6d4,#0891b2);">WB</div><div><div data-i18n="wallonia_build_sa" style="font-weight:600;">Wallonia Build SA</div><div data-i18n="contactwbuildbe" style="font-size:var(--text-xs);color:var(--text-muted);">contact@wbuild.be</div></div></div></td>
+<td><span class="tag tag-red" data-i18n="endüstriyel_2">Endüstriyel</span></td>
+<td data-i18n="_90000" style="font-weight:600;color:var(--teal-500);">€890.000</td>
+<td><span class="tag tag-green" data-i18n="onaylandı_5">Onaylandı</span></td>
+<td data-i18n="_8_mart_2026">18 Mart 2026</td>
+<td data-i18n="_8_haziran_2026">18 Haziran 2026</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_görüntüle_9" data-i18n-attr="title" onclick="openViewModal(9)" title="Görüntüle">👁</button><button class="action-btn" data-i18n="title_düzenle_9" data-i18n-attr="title" onclick="openEditModal(9)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_9" data-i18n-attr="title" onclick="openDeleteModal(9)" title="Sil">🗑</button></div></td>
+</tr>
+<tr data-id="10">
+<td><div data-i18n="tkf-2026-0145" style="font-weight:600;color:var(--text-primary);">TKF-2026-0145</div></td>
+<td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,#84cc16,#65a30d);">FB</div><div><div data-i18n="flanders_brick_group" style="font-weight:600;">Flanders Brick Group</div><div data-i18n="projectsfbrickbe" style="font-size:var(--text-xs);color:var(--text-muted);">projects@fbrick.be</div></div></div></td>
+<td><span class="tag tag-blue" data-i18n="konut_3">Konut</span></td>
+<td data-i18n="_100000_2" style="font-weight:600;color:var(--teal-500);">€2.100.000</td>
+<td><span class="tag tag-amber" data-i18n="bekliyor_5">Bekliyor</span></td>
+<td data-i18n="_0_mart_2026">10 Mart 2026</td>
+<td data-i18n="_0_haziran_2026">10 Haziran 2026</td>
+<td><div class="actions"><button class="action-btn" data-i18n="title_görüntüle_10" data-i18n-attr="title" onclick="openViewModal(10)" title="Görüntüle">👁</button><button class="action-btn" data-i18n="title_düzenle_10" data-i18n-attr="title" onclick="openEditModal(10)" title="Düzenle">✎</button><button class="action-btn" data-i18n="title_sil_10" data-i18n-attr="title" onclick="openDeleteModal(10)" title="Sil">🗑</button></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="pagination">
+<button class="page-btn" disabled="">←</button>
+<button class="page-btn active">1</button>
+<button class="page-btn">2</button>
+<button class="page-btn">→</button>
+</div>
+</div>
+</main>
+</div>
 <!-- Add Quote Modal -->
 <div class="modal-overlay" id="addModal">
-  <div class="modal modal-lg">
-    <div class="modal-header"><div class="modal-title">Yeni Teklif Oluştur</div><button class="modal-close" onclick="closeModal('addModal')">✕</button></div>
-    <div class="modal-body">
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Teklif No</label><input class="form-input" value="TKF-2026-0155" readonly></div>
-        <div class="form-group"><label class="form-label">Tarih</label><input class="form-input" type="date" value="2026-05-15"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Müşteri</label>
-          <select class="form-select"><option>Müşteri Seçin...</option><option>Vlaams Domein</option><option>Brussels Waterworks NV</option><option>Lemaire Holding SA</option><option>Ghent Brewery Co.</option><option>Koning Park BV</option><option>Antwerp Port Authority</option><option>EU Commission DG REGIO</option><option>City of Leuven</option></select>
-        </div>
-        <div class="form-group"><label class="form-label">Proje Tipi</label>
-          <select class="form-select"><option>Konut</option><option>Ticari</option><option>Renovasyon</option><option>Altyapı</option><option>Endüstriyel</option><option>Peyzaj</option></select>
-        </div>
-      </div>
-      <div class="form-group"><label class="form-label">Proje Açıklaması</label><textarea class="form-input" rows="2" placeholder="Teklif kapsamı..."></textarea></div>
-      <h4 style="font-size:var(--text-sm);font-weight:600;margin:16px 0 8px;color:var(--text-primary);">Malzeme ve İşçilik</h4>
-      <div id="materialRows">
-        <div class="material-row">
-          <input class="form-input" placeholder="Kalem adı" value="Beton C30">
-          <input class="form-input" type="number" placeholder="Miktar" value="450">
-          <input class="form-input" type="number" placeholder="Birim fiyat (€)" value="120">
-          <button class="action-btn" onclick="this.parentElement.remove();calcTotal();" title="Kaldır">✕</button>
-        </div>
-        <div class="material-row">
-          <input class="form-input" placeholder="Kalem adı" value="Demir Çelik Ø12">
-          <input class="form-input" type="number" placeholder="Miktar" value="2800">
-          <input class="form-input" type="number" placeholder="Birim fiyat (€)" value="2.8">
-          <button class="action-btn" onclick="this.parentElement.remove();calcTotal();" title="Kaldır">✕</button>
-        </div>
-        <div class="material-row">
-          <input class="form-input" placeholder="Kalem adı" value="Tuğla Duvar İşçiliği">
-          <input class="form-input" type="number" placeholder="Miktar" value="850">
-          <input class="form-input" type="number" placeholder="Birim fiyat (€)" value="45">
-          <button class="action-btn" onclick="this.parentElement.remove();calcTotal();" title="Kaldır">✕</button>
-        </div>
-      </div>
-      <button class="btn btn-secondary" style="margin-top:8px;" onclick="addMaterialRow()">+ Kalem Ekle</button>
-      <div class="quote-total">
-        <span class="quote-total-label">Teklif Toplamı</span>
-        <span class="quote-total-value" id="quoteTotal">€92.340</span>
-      </div>
-      <div class="form-row" style="margin-top:16px;">
-        <div class="form-group"><label class="form-label">Geçerlilik Tarihi</label><input class="form-input" type="date" value="2026-08-15"></div>
-        <div class="form-group"><label class="form-label">KDV Oranı (%)</label><input class="form-input" type="number" value="21"></div>
-      </div>
-      <div class="quote-preview">
-        <div class="quote-preview-header"><div class="quote-preview-title">Teklif Önizleme</div><div class="quote-preview-ref">BuildPro NV — TKF-2026-0155</div></div>
-        <table class="quote-preview-table">
-          <thead><tr><th>Kalem</th><th>Miktar</th><th>Birim Fiyat</th><th style="text-align:right;">Toplam</th></tr></thead>
-          <tbody>
-            <tr><td>Beton C30</td><td>450 m³</td><td>€120</td><td style="text-align:right;font-weight:600;">€54.000</td></tr>
-            <tr><td>Demir Çelik Ø12</td><td>2.800 kg</td><td>€2.80</td><td style="text-align:right;font-weight:600;">€7.840</td></tr>
-            <tr><td>Tuğla Duvar İşçiliği</td><td>850 m²</td><td>€45</td><td style="text-align:right;font-weight:600;">€38.250</td></tr>
-            <tr><td colspan="3" style="text-align:right;font-weight:600;">Ara Toplam</td><td style="text-align:right;font-weight:600;">€100.090</td></tr>
-            <tr><td colspan="3" style="text-align:right;color:var(--text-muted);">KDV %21</td><td style="text-align:right;color:var(--text-muted);">€21.019</td></tr>
-            <tr><td colspan="3" style="text-align:right;font-weight:700;font-size:var(--text-base);">Genel Toplam</td><td style="text-align:right;font-weight:700;color:var(--teal-500);font-size:var(--text-base);">€121.109</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('addModal')">İptal</button><button class="btn btn-primary" onclick="closeModal('addModal');showToast('Teklif oluşturuldu','success')">Kaydet & Gönder</button></div>
-  </div>
+<div class="modal modal-lg">
+<div class="modal-header"><div class="modal-title" data-i18n="yeni_teklif_oluştur">Yeni Teklif Oluştur</div><button class="modal-close" onclick="closeModal('addModal')">✕</button></div>
+<div class="modal-body">
+<div class="form-row">
+<div class="form-group"><label class="form-label" data-i18n="teklif_no_2">Teklif No</label><input class="form-input" readonly="" value="TKF-2026-0155"/></div>
+<div class="form-group"><label class="form-label" data-i18n="tarih_2">Tarih</label><input class="form-input" type="date" value="2026-05-15"/></div>
 </div>
-
+<div class="form-row">
+<div class="form-group"><label class="form-label" data-i18n="müşteri_2">Müşteri</label>
+<select class="form-select"><option data-i18n="müşteri_seçin">Müşteri Seçin...</option><option data-i18n="vlaams_domein_2">Vlaams Domein</option><option data-i18n="brussels_waterworks_nv_2">Brussels Waterworks NV</option><option data-i18n="lemaire_holding_sa_2">Lemaire Holding SA</option><option data-i18n="ghent_brewery_co_2">Ghent Brewery Co.</option><option data-i18n="koning_park_bv_2">Koning Park BV</option><option data-i18n="antwerp_port_authority_2">Antwerp Port Authority</option><option data-i18n="eu_commission_dg_regio_2">EU Commission DG REGIO</option><option data-i18n="city_of_leuven_2">City of Leuven</option></select>
+</div>
+<div class="form-group"><label class="form-label" data-i18n="proje_tipi_2">Proje Tipi</label>
+<select class="form-select"><option data-i18n="konut_4">Konut</option><option data-i18n="ticari_2">Ticari</option><option data-i18n="renovasyon_3">Renovasyon</option><option data-i18n="altyapı_2">Altyapı</option><option data-i18n="endüstriyel_3">Endüstriyel</option><option data-i18n="peyzaj_2">Peyzaj</option></select>
+</div>
+</div>
+<div class="form-group"><label class="form-label" data-i18n="proje_açıklaması">Proje Açıklaması</label><textarea class="form-input" data-i18n-placeholder="ph_teklif_kapsamı" placeholder="Teklif kapsamı..." rows="2"></textarea></div>
+<h4 data-i18n="malzeme_ve_işçilik" style="font-size:var(--text-sm);font-weight:600;margin:16px 0 8px;color:var(--text-primary);">Malzeme ve İşçilik</h4>
+<div id="materialRows">
+<div class="material-row">
+<input class="form-input" data-i18n-placeholder="ph_kalem_adı" placeholder="Kalem adı" value="Beton C30"/>
+<input class="form-input" data-i18n-placeholder="ph_miktar" placeholder="Miktar" type="number" value="450"/>
+<input class="form-input" data-i18n-placeholder="ph_birim_fiyat" placeholder="Birim fiyat (€)" type="number" value="120"/>
+<button class="action-btn" data-i18n="title_kaldır" data-i18n-attr="title" onclick="this.parentElement.remove();calcTotal();" title="Kaldır">✕</button>
+</div>
+<div class="material-row">
+<input class="form-input" data-i18n-placeholder="ph_kalem_adı_2" placeholder="Kalem adı" value="Demir Çelik Ø12"/>
+<input class="form-input" data-i18n-placeholder="ph_miktar_2" placeholder="Miktar" type="number" value="2800"/>
+<input class="form-input" data-i18n-placeholder="ph_birim_fiyat_2" placeholder="Birim fiyat (€)" type="number" value="2.8"/>
+<button class="action-btn" data-i18n="title_kaldır_2" data-i18n-attr="title" onclick="this.parentElement.remove();calcTotal();" title="Kaldır">✕</button>
+</div>
+<div class="material-row">
+<input class="form-input" data-i18n-placeholder="ph_kalem_adı_3" placeholder="Kalem adı" value="Tuğla Duvar İşçiliği"/>
+<input class="form-input" data-i18n-placeholder="ph_miktar_3" placeholder="Miktar" type="number" value="850"/>
+<input class="form-input" data-i18n-placeholder="ph_birim_fiyat_3" placeholder="Birim fiyat (€)" type="number" value="45"/>
+<button class="action-btn" data-i18n="title_kaldır_3" data-i18n-attr="title" onclick="this.parentElement.remove();calcTotal();" title="Kaldır">✕</button>
+</div>
+</div>
+<button class="btn btn-secondary" data-i18n="kalem_ekle" onclick="addMaterialRow()" style="margin-top:8px;">+ Kalem Ekle</button>
+<div class="quote-total">
+<span class="quote-total-label" data-i18n="teklif_toplamı">Teklif Toplamı</span>
+<span class="quote-total-value" data-i18n="_2340" id="quoteTotal">€92.340</span>
+</div>
+<div class="form-row" style="margin-top:16px;">
+<div class="form-group"><label class="form-label" data-i18n="geçerlilik_tarihi">Geçerlilik Tarihi</label><input class="form-input" type="date" value="2026-08-15"/></div>
+<div class="form-group"><label class="form-label" data-i18n="kdv_oranı">KDV Oranı (%)</label><input class="form-input" type="number" value="21"/></div>
+</div>
+<div class="quote-preview">
+<div class="quote-preview-header"><div class="quote-preview-title" data-i18n="teklif_önizleme">Teklif Önizleme</div><div class="quote-preview-ref" data-i18n="buildpro_nv_tkf-2026-0155">BuildPro NV — TKF-2026-0155</div></div>
+<table class="quote-preview-table">
+<thead><tr><th data-i18n="kalem">Kalem</th><th data-i18n="miktar">Miktar</th><th data-i18n="birim_fiyat">Birim Fiyat</th><th data-i18n="toplam" style="text-align:right;">Toplam</th></tr></thead>
+<tbody>
+<tr><td data-i18n="beton_c30">Beton C30</td><td data-i18n="_50_m³">450 m³</td><td data-i18n="_20">€120</td><td data-i18n="_4000" style="text-align:right;font-weight:600;">€54.000</td></tr>
+<tr><td data-i18n="demir_çelik_ø12">Demir Çelik Ø12</td><td data-i18n="_800_kg">2.800 kg</td><td data-i18n="_80">€2.80</td><td data-i18n="_840" style="text-align:right;font-weight:600;">€7.840</td></tr>
+<tr><td data-i18n="tuğla_duvar_işçiliği">Tuğla Duvar İşçiliği</td><td data-i18n="_50_m²">850 m²</td><td>€45</td><td data-i18n="_8250" style="text-align:right;font-weight:600;">€38.250</td></tr>
+<tr><td colspan="3" data-i18n="ara_toplam" style="text-align:right;font-weight:600;">Ara Toplam</td><td data-i18n="_00090" style="text-align:right;font-weight:600;">€100.090</td></tr>
+<tr><td colspan="3" data-i18n="kdv_21" style="text-align:right;color:var(--text-muted);">KDV %21</td><td data-i18n="_1019" style="text-align:right;color:var(--text-muted);">€21.019</td></tr>
+<tr><td colspan="3" data-i18n="genel_toplam" style="text-align:right;font-weight:700;font-size:var(--text-base);">Genel Toplam</td><td data-i18n="_21109" style="text-align:right;font-weight:700;color:var(--teal-500);font-size:var(--text-base);">€121.109</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="modal-footer"><button class="btn btn-secondary" data-i18n="iptal" onclick="closeModal('addModal')">İptal</button><button class="btn btn-primary" data-i18n="kaydet_gönder" onclick="closeModal('addModal');showToast('Teklif oluşturuldu','success')">Kaydet &amp; Gönder</button></div>
+</div>
+</div>
 <!-- Edit Modal -->
 <div class="modal-overlay" id="editModal">
-  <div class="modal">
-    <div class="modal-header"><div class="modal-title">Teklifi Düzenle</div><button class="modal-close" onclick="closeModal('editModal')">✕</button></div>
-    <div class="modal-body">
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Teklif No</label><input class="form-input" value="TKF-2026-0154" readonly></div>
-        <div class="form-group"><label class="form-label">Müşteri</label><input class="form-input" value="Vlaams Domein"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Proje Tipi</label>
-          <select class="form-select"><option selected>Konut</option><option>Ticari</option><option>Renovasyon</option><option>Altyapı</option><option>Endüstriyel</option><option>Peyzaj</option></select>
-        </div>
-        <div class="form-group"><label class="form-label">Tahmini Bütçe (€)</label><input class="form-input" type="number" value="2450000"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Durum</label>
-          <select class="form-select"><option>Bekliyor</option><option>Onaylandı</option><option>Reddedildi</option><option>Revize</option></select>
-        </div>
-        <div class="form-group"><label class="form-label">Geçerlilik Tarihi</label><input class="form-input" type="date" value="2026-08-12"></div>
-      </div>
-      <div class="form-group"><label class="form-label">Teklif Notları</label><textarea class="form-input" rows="3">Konut projesi için detaylı keşif raporu eklendi. Müşteri 3+1 daire tipolojisi istiyor.</textarea></div>
-    </div>
-    <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('editModal')">İptal</button><button class="btn btn-primary" onclick="closeModal('editModal');showToast('Teklif güncellendi','success')">Kaydet</button></div>
-  </div>
+<div class="modal">
+<div class="modal-header"><div class="modal-title" data-i18n="teklifi_düzenle">Teklifi Düzenle</div><button class="modal-close" onclick="closeModal('editModal')">✕</button></div>
+<div class="modal-body">
+<div class="form-row">
+<div class="form-group"><label class="form-label" data-i18n="teklif_no_3">Teklif No</label><input class="form-input" readonly="" value="TKF-2026-0154"/></div>
+<div class="form-group"><label class="form-label" data-i18n="müşteri_3">Müşteri</label><input class="form-input" value="Vlaams Domein"/></div>
 </div>
-
+<div class="form-row">
+<div class="form-group"><label class="form-label" data-i18n="proje_tipi_3">Proje Tipi</label>
+<select class="form-select"><option data-i18n="konut_5" selected="">Konut</option><option data-i18n="ticari_3">Ticari</option><option data-i18n="renovasyon_4">Renovasyon</option><option data-i18n="altyapı_3">Altyapı</option><option data-i18n="endüstriyel_4">Endüstriyel</option><option data-i18n="peyzaj_3">Peyzaj</option></select>
+</div>
+<div class="form-group"><label class="form-label" data-i18n="tahmini_bütçe_2">Tahmini Bütçe (€)</label><input class="form-input" type="number" value="2450000"/></div>
+</div>
+<div class="form-row">
+<div class="form-group"><label class="form-label" data-i18n="durum_2">Durum</label>
+<select class="form-select"><option data-i18n="bekliyor_6">Bekliyor</option><option data-i18n="onaylandı_6">Onaylandı</option><option data-i18n="reddedildi_3">Reddedildi</option><option data-i18n="revize_3">Revize</option></select>
+</div>
+<div class="form-group"><label class="form-label" data-i18n="geçerlilik_tarihi_2">Geçerlilik Tarihi</label><input class="form-input" type="date" value="2026-08-12"/></div>
+</div>
+<div class="form-group"><label class="form-label" data-i18n="teklif_notları">Teklif Notları</label><textarea class="form-input" data-i18n="konut_projesi_için_detaylı_keşif_raporu_eklendi_müşteri_31_d" rows="3">Konut projesi için detaylı keşif raporu eklendi. Müşteri 3+1 daire tipolojisi istiyor.</textarea></div>
+</div>
+<div class="modal-footer"><button class="btn btn-secondary" data-i18n="iptal_2" onclick="closeModal('editModal')">İptal</button><button class="btn btn-primary" data-i18n="kaydet" onclick="closeModal('editModal');showToast('Teklif güncellendi','success')">Kaydet</button></div>
+</div>
+</div>
 <!-- Delete Modal -->
 <div class="modal-overlay" id="deleteModal">
-  <div class="modal" style="max-width:400px;">
-    <div class="modal-header"><div class="modal-title" style="color:var(--error-500);">Teklifi Sil</div><button class="modal-close" onclick="closeModal('deleteModal')">✕</button></div>
-    <div class="modal-body"><p style="font-size:var(--text-sm);color:var(--text-secondary);">Bu teklifi silmek istediğinize emin misiniz? Bu işlem geri alınamaz.</p></div>
-    <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('deleteModal')">İptal</button><button class="btn btn-primary" style="background:var(--error-500);" onclick="closeModal('deleteModal');showToast('Teklif silindi','error')">Sil</button></div>
-  </div>
+<div class="modal" style="max-width:400px;">
+<div class="modal-header"><div class="modal-title" data-i18n="teklifi_sil" style="color:var(--error-500);">Teklifi Sil</div><button class="modal-close" onclick="closeModal('deleteModal')">✕</button></div>
+<div class="modal-body"><p data-i18n="bu_teklifi_silmek_istediğinize_emin_misiniz_bu_işlem_geri_al" style="font-size:var(--text-sm);color:var(--text-secondary);">Bu teklifi silmek istediğinize emin misiniz? Bu işlem geri alınamaz.</p></div>
+<div class="modal-footer"><button class="btn btn-secondary" data-i18n="iptal_3" onclick="closeModal('deleteModal')">İptal</button><button class="btn btn-primary" data-i18n="sil" onclick="closeModal('deleteModal');showToast('Teklif silindi','error')" style="background:var(--error-500);">Sil</button></div>
 </div>
-
+</div>
 <!-- View Modal -->
 <div class="modal-overlay" id="viewModal">
-  <div class="modal modal-lg">
-    <div class="modal-header"><div class="modal-title">Teklif Detayı — TKF-2026-0154</div><button class="modal-close" onclick="closeModal('viewModal')">✕</button></div>
-    <div class="modal-body">
-      <div class="quote-preview">
-        <div class="quote-preview-header">
-          <div><div class="quote-preview-title">Yapım Teklif Belgesi</div><div style="font-size:var(--text-xs);color:var(--text-muted);margin-top:4px;">BuildPro NV — Chaussée de Louvain 500, 1030 Brüksel</div></div>
-          <div style="text-align:right;"><div style="font-size:var(--text-xs);color:var(--text-muted);">Teklif No</div><div style="font-weight:600;">TKF-2026-0154</div><div style="font-size:var(--text-xs);color:var(--text-muted);margin-top:4px;">12 Mayıs 2026</div></div>
-        </div>
-        <div style="margin-bottom:16px;">
-          <div style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;">Müşteri</div>
-          <div style="font-weight:600;">Vlaams Domein</div>
-          <div style="font-size:var(--text-sm);color:var(--text-muted);">Koning Albert II-laan 15, 1210 Brüksel — info@vlaamsdomein.be</div>
-        </div>
-        <table class="quote-preview-table">
-          <thead><tr><th>#  Kalem</th><th>Birim</th><th>Miktar</th><th>Birim Fiyat</th><th style="text-align:right;">Toplam</th></tr></thead>
-          <tbody>
-            <tr><td>1. Temel Kazı ve Hafriyat</td><td>m³</td><td>3.200</td><td>€28</td><td style="text-align:right;font-weight:600;">€89.600</td></tr>
-            <tr><td>2. Betonarme İskelet (C30)</td><td>m³</td><td>1.850</td><td>€125</td><td style="text-align:right;font-weight:600;">€231.250</td></tr>
-            <tr><td>3. Yığma Duvar ve Örgü</td><td>m²</td><td>4.200</td><td>€48</td><td style="text-align:right;font-weight:600;">€201.600</td></tr>
-            <tr><td>4. Çatı Kaplama ve Yalıtım</td><td>m²</td><td>1.600</td><td>€95</td><td style="text-align:right;font-weight:600;">€152.000</td></tr>
-            <tr><td>5. Elektrik Tesisatı</td><td>adet</td><td>48 daire</td><td>€3.200</td><td style="text-align:right;font-weight:600;">€153.600</td></tr>
-            <tr><td>6. Sıhhi Tesisat ve Isıtma</td><td>adet</td><td>48 daire</td><td>€2.800</td><td style="text-align:right;font-weight:600;">€134.400</td></tr>
-            <tr><td>7. Dış Cephe Kaplama</td><td>m²</td><td>3.800</td><td>€185</td><td style="text-align:right;font-weight:600;">€703.000</td></tr>
-            <tr><td>8. İç Mekan Seramik ve Parke</td><td>m²</td><td>2.400</td><td>€72</td><td style="text-align:right;font-weight:600;">€172.800</td></tr>
-            <tr><td>9. Pencere ve Kapı Sistemleri</td><td>adet</td><td>186</td><td>€1.450</td><td style="text-align:right;font-weight:600;">€269.700</td></tr>
-            <tr><td>10. Peyzaj ve Düzenleme</td><td>m²</td><td>2.100</td><td>€85</td><td style="text-align:right;font-weight:600;">€178.500</td></tr>
-            <tr><td colspan="4" style="text-align:right;font-weight:600;">Ara Toplam</td><td style="text-align:right;font-weight:600;">€2.286.450</td></tr>
-            <tr><td colspan="4" style="text-align:right;color:var(--text-muted);">Genel Giderler (%6)</td><td style="text-align:right;color:var(--text-muted);">€137.187</td></tr>
-            <tr><td colspan="4" style="text-align:right;color:var(--text-muted);">Kâr Marjı (%5)</td><td style="text-align:right;color:var(--text-muted);">€121.182</td></tr>
-            <tr><td colspan="4" style="text-align:right;font-weight:700;font-size:var(--text-base);">Genel Toplam (KDV Hariç)</td><td style="text-align:right;font-weight:700;color:var(--teal-500);font-size:var(--text-base);">€2.544.819</td></tr>
-            <tr><td colspan="4" style="text-align:right;color:var(--text-muted);">KDV %21</td><td style="text-align:right;color:var(--text-muted);">€534.412</td></tr>
-            <tr><td colspan="4" style="text-align:right;font-weight:700;font-size:var(--text-lg);">Toplam Teklif Bedeli</td><td style="text-align:right;font-weight:700;color:var(--teal-500);font-size:var(--text-lg);">€3.079.231</td></tr>
-          </tbody>
-        </table>
-        <div style="margin-top:16px;font-size:var(--text-xs);color:var(--text-muted);">
-          <p>Ödeme Şartları: %30 avans, %40 yapım esnasında, %30 teslimatta.</p>
-          <p>Teklif geçerlilik süresi: 90 gün. Fiyatlar malzeme piyasasına göre revize edilebilir.</p>
-        </div>
-      </div>
-    </div>
-    <div class="modal-footer"><button class="btn btn-secondary" onclick="closeModal('viewModal')">Kapat</button><button class="btn btn-primary" onclick="closeModal('viewModal');showToast('Teklif PDF olarak indirildi','success')">PDF İndir</button></div>
-  </div>
+<div class="modal modal-lg">
+<div class="modal-header"><div class="modal-title" data-i18n="teklif_detayı_tkf-2026-0154">Teklif Detayı — TKF-2026-0154</div><button class="modal-close" onclick="closeModal('viewModal')">✕</button></div>
+<div class="modal-body">
+<div class="quote-preview">
+<div class="quote-preview-header">
+<div><div class="quote-preview-title" data-i18n="yapım_teklif_belgesi">Yapım Teklif Belgesi</div><div data-i18n="buildpro_nv_chaussée_de_louvain_500_1030_brüksel" style="font-size:var(--text-xs);color:var(--text-muted);margin-top:4px;">BuildPro NV — Chaussée de Louvain 500, 1030 Brüksel</div></div>
+<div style="text-align:right;"><div data-i18n="teklif_no_4" style="font-size:var(--text-xs);color:var(--text-muted);">Teklif No</div><div data-i18n="tkf-2026-0154_2" style="font-weight:600;">TKF-2026-0154</div><div data-i18n="_2_mayıs_2026_2" style="font-size:var(--text-xs);color:var(--text-muted);margin-top:4px;">12 Mayıs 2026</div></div>
 </div>
-
+<div style="margin-bottom:16px;">
+<div data-i18n="müşteri_4" style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;">Müşteri</div>
+<div data-i18n="vlaams_domein_3" style="font-weight:600;">Vlaams Domein</div>
+<div data-i18n="koning_albert_ii-laan_15_1210_brüksel_infovlaamsdomeinbe" style="font-size:var(--text-sm);color:var(--text-muted);">Koning Albert II-laan 15, 1210 Brüksel — info@vlaamsdomein.be</div>
+</div>
+<table class="quote-preview-table">
+<thead><tr><th data-i18n="kalem_2">#  Kalem</th><th data-i18n="birim">Birim</th><th data-i18n="miktar_2">Miktar</th><th data-i18n="birim_fiyat_2">Birim Fiyat</th><th data-i18n="toplam_2" style="text-align:right;">Toplam</th></tr></thead>
+<tbody>
+<tr><td data-i18n="__temel_kazı_ve_hafriyat">1. Temel Kazı ve Hafriyat</td><td data-i18n="m³">m³</td><td data-i18n="_200">3.200</td><td>€28</td><td data-i18n="_9600" style="text-align:right;font-weight:600;">€89.600</td></tr>
+<tr><td data-i18n="__betonarme_iskelet_c30">2. Betonarme İskelet (C30)</td><td data-i18n="m³_2">m³</td><td data-i18n="_850">1.850</td><td data-i18n="_25">€125</td><td data-i18n="_31250" style="text-align:right;font-weight:600;">€231.250</td></tr>
+<tr><td data-i18n="__yığma_duvar_ve_örgü">3. Yığma Duvar ve Örgü</td><td data-i18n="m²">m²</td><td data-i18n="_200_2">4.200</td><td>€48</td><td data-i18n="_01600" style="text-align:right;font-weight:600;">€201.600</td></tr>
+<tr><td data-i18n="__çatı_kaplama_ve_yalıtım">4. Çatı Kaplama ve Yalıtım</td><td data-i18n="m²_2">m²</td><td data-i18n="_600">1.600</td><td>€95</td><td data-i18n="_52000" style="text-align:right;font-weight:600;">€152.000</td></tr>
+<tr><td data-i18n="__elektrik_tesisatı">5. Elektrik Tesisatı</td><td data-i18n="adet">adet</td><td data-i18n="_8_daire">48 daire</td><td data-i18n="_200_3">€3.200</td><td data-i18n="_53600" style="text-align:right;font-weight:600;">€153.600</td></tr>
+<tr><td data-i18n="__sıhhi_tesisat_ve_isıtma">6. Sıhhi Tesisat ve Isıtma</td><td data-i18n="adet_2">adet</td><td data-i18n="_8_daire_2">48 daire</td><td data-i18n="_800">€2.800</td><td data-i18n="_34400" style="text-align:right;font-weight:600;">€134.400</td></tr>
+<tr><td data-i18n="__dış_cephe_kaplama">7. Dış Cephe Kaplama</td><td data-i18n="m²_3">m²</td><td data-i18n="_800_2">3.800</td><td data-i18n="_85">€185</td><td data-i18n="_03000" style="text-align:right;font-weight:600;">€703.000</td></tr>
+<tr><td data-i18n="__iç_mekan_seramik_ve_parke">8. İç Mekan Seramik ve Parke</td><td data-i18n="m²_4">m²</td><td data-i18n="_400">2.400</td><td>€72</td><td data-i18n="_72800" style="text-align:right;font-weight:600;">€172.800</td></tr>
+<tr><td data-i18n="__pencere_ve_kapı_sistemleri">9. Pencere ve Kapı Sistemleri</td><td data-i18n="adet_3">adet</td><td>186</td><td data-i18n="_450">€1.450</td><td data-i18n="_69700" style="text-align:right;font-weight:600;">€269.700</td></tr>
+<tr><td data-i18n="_0_peyzaj_ve_düzenleme">10. Peyzaj ve Düzenleme</td><td data-i18n="m²_5">m²</td><td data-i18n="_100">2.100</td><td>€85</td><td data-i18n="_78500" style="text-align:right;font-weight:600;">€178.500</td></tr>
+<tr><td colspan="4" data-i18n="ara_toplam_2" style="text-align:right;font-weight:600;">Ara Toplam</td><td data-i18n="_286450" style="text-align:right;font-weight:600;">€2.286.450</td></tr>
+<tr><td colspan="4" data-i18n="genel_giderler_6" style="text-align:right;color:var(--text-muted);">Genel Giderler (%6)</td><td data-i18n="_37187" style="text-align:right;color:var(--text-muted);">€137.187</td></tr>
+<tr><td colspan="4" data-i18n="kâr_marjı_5" style="text-align:right;color:var(--text-muted);">Kâr Marjı (%5)</td><td data-i18n="_21182" style="text-align:right;color:var(--text-muted);">€121.182</td></tr>
+<tr><td colspan="4" data-i18n="genel_toplam_kdv_hariç" style="text-align:right;font-weight:700;font-size:var(--text-base);">Genel Toplam (KDV Hariç)</td><td data-i18n="_544819" style="text-align:right;font-weight:700;color:var(--teal-500);font-size:var(--text-base);">€2.544.819</td></tr>
+<tr><td colspan="4" data-i18n="kdv_21_2" style="text-align:right;color:var(--text-muted);">KDV %21</td><td data-i18n="_34412" style="text-align:right;color:var(--text-muted);">€534.412</td></tr>
+<tr><td colspan="4" data-i18n="toplam_teklif_bedeli" style="text-align:right;font-weight:700;font-size:var(--text-lg);">Toplam Teklif Bedeli</td><td data-i18n="_079231" style="text-align:right;font-weight:700;color:var(--teal-500);font-size:var(--text-lg);">€3.079.231</td></tr>
+</tbody>
+</table>
+<div style="margin-top:16px;font-size:var(--text-xs);color:var(--text-muted);">
+<p data-i18n="ödeme_şartları_30_avans_40_yapım_esnasında_30_teslimatta">Ödeme Şartları: %30 avans, %40 yapım esnasında, %30 teslimatta.</p>
+<p data-i18n="teklif_geçerlilik_süresi_90_gün_fiyatlar_malzeme_piyasasına_">Teklif geçerlilik süresi: 90 gün. Fiyatlar malzeme piyasasına göre revize edilebilir.</p>
+</div>
+</div>
+</div>
+<div class="modal-footer"><button class="btn btn-secondary" data-i18n="kapat" onclick="closeModal('viewModal')">Kapat</button><button class="btn btn-primary" data-i18n="pdf_indir" onclick="closeModal('viewModal');showToast('Teklif PDF olarak indirildi','success')">PDF İndir</button></div>
+</div>
+</div>
 <div class="toast-container" id="toastContainer"></div>
-
 <script>
 function openModal(id){document.getElementById(id).classList.add('active');}
 function closeModal(id){document.getElementById(id).classList.remove('active');}
@@ -424,7 +420,7 @@ function showToast(message,type='info'){
   const t=document.createElement('div');
   t.className='toast toast-'+type;
   const icons={success:'✓',error:'✕',warning:'▲',info:'ℹ'};
-  t.innerHTML='<div class="toast-icon">'+icons[type]+'</div><div class="toast-content"><div class="toast-title">'+(type==='success'?'Başarılı':type==='error'?'Hata':type==='warning'?'Uyarı':'Bilgi')+'</div><div class="toast-message">'+message+'</div></div><button class="toast-close" onclick="this.parentElement.remove()">✕</button><div class="toast-progress"></div>';
+  t.innerHTML='<div class="toast-icon">'+icons[type]+'</div><div class="toast-content"><div class="toast-title">'+(type==='success'?(t['başarılı']||'Success'):type==='error'?(t['hata_oluştu']||'Error'):type==='warning'?(t['uyarı']||'Warning'):(t['bilgi']||'Info'))+'</div><div class="toast-message">'+message+'</div></div><button class="toast-close" onclick="this.parentElement.remove()">✕</button><div class="toast-progress"></div>';
   c.appendChild(t);
   setTimeout(()=>{t.classList.add('exit');setTimeout(()=>t.remove(),300);},4000);
 }
@@ -463,5 +459,969 @@ document.getElementById('statusFilter').addEventListener('change',function(){
 });
 document.querySelectorAll('.modal-overlay').forEach(o=>{o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('active');});});
 </script>
-</body>
+<script>
+const i18n = {
+  "tr": {
+    "buildpro_teklif_bütçeleme": "BuildPro — Teklif & Bütçeleme",
+    "bp": "BP",
+    "buildpro": "BuildPro",
+    "inşaat_yenileme": "İnşaat & Yenileme",
+    "ana_menü": "Ana Menü",
+    "ayarlar": "Ayarlar",
+    "teklif_bütçeleme": "Teklif & Bütçeleme",
+    "buildpro_nv": "BuildPro NV",
+    "enterprise_plan": "Enterprise Plan",
+    "bekleyen_teklif": "Bekleyen Teklif",
+    "onaylanan": "Onaylanan",
+    "_4m": "€8.4M",
+    "bekleyen_değer": "Bekleyen Değer",
+    "kabul_oranı": "Kabul Oranı",
+    "tüm_durumlar": "Tüm Durumlar",
+    "bekliyor": "Bekliyor",
+    "onaylandı": "Onaylandı",
+    "reddedildi": "Reddedildi",
+    "revize": "Revize",
+    "rapor": "📄 Rapor",
+    "yeni_teklif": "+ Yeni Teklif",
+    "teklif_no": "Teklif No",
+    "müşteri": "Müşteri",
+    "proje_tipi": "Proje Tipi",
+    "tahmini_bütçe": "Tahmini Bütçe",
+    "durum": "Durum",
+    "tarih": "Tarih",
+    "geçerlilik": "Geçerlilik",
+    "işlemler": "İşlemler",
+    "tkf-2026-0154": "TKF-2026-0154",
+    "vlaams_domein": "Vlaams Domein",
+    "infovlaamsdomeinbe": "info@vlaamsdomein.be",
+    "konut": "Konut",
+    "_450000": "€2.450.000",
+    "bekliyor_2": "Bekliyor",
+    "_2_mayıs_2026": "12 Mayıs 2026",
+    "_2_ağustos_2026": "12 Ağustos 2026",
+    "tkf-2026-0153": "TKF-2026-0153",
+    "brussels_waterworks_nv": "Brussels Waterworks NV",
+    "procurementbwworksbe": "procurement@bwworks.be",
+    "altyapı": "Altyapı",
+    "_100000": "€4.100.000",
+    "onaylandı_2": "Onaylandı",
+    "_5_mayıs_2026": "05 Mayıs 2026",
+    "_5_ağustos_2026": "05 Ağustos 2026",
+    "tkf-2026-0152": "TKF-2026-0152",
+    "lemaire_holding_sa": "Lemaire Holding SA",
+    "projectslemairebe": "projects@lemaire.be",
+    "konut_2": "Konut",
+    "_850000": "€1.850.000",
+    "onaylandı_3": "Onaylandı",
+    "_8_nisan_2026": "28 Nisan 2026",
+    "_8_temmuz_2026": "28 Temmuz 2026",
+    "tkf-2026-0151": "TKF-2026-0151",
+    "ghent_brewery_co": "Ghent Brewery Co.",
+    "buildghentbrewerybe": "build@ghentbrewery.be",
+    "renovasyon": "Renovasyon",
+    "_80000": "€680.000",
+    "reddedildi_2": "Reddedildi",
+    "_0_nisan_2026": "20 Nisan 2026",
+    "_0_temmuz_2026": "20 Temmuz 2026",
+    "tkf-2026-0150": "TKF-2026-0150",
+    "koning_park_bv": "Koning Park BV",
+    "parkkoningbrussels": "park@koning.brussels",
+    "peyzaj": "Peyzaj",
+    "_20000": "€420.000",
+    "revize_2": "Revize",
+    "_5_nisan_2026": "15 Nisan 2026",
+    "_5_temmuz_2026": "15 Temmuz 2026",
+    "tkf-2026-0149": "TKF-2026-0149",
+    "antwerp_port_authority": "Antwerp Port Authority",
+    "infrastructureaportbe": "infrastructure@aport.be",
+    "endüstriyel": "Endüstriyel",
+    "_750000": "€3.750.000",
+    "onaylandı_4": "Onaylandı",
+    "_0_nisan_2026_2": "10 Nisan 2026",
+    "_0_temmuz_2026_2": "10 Temmuz 2026",
+    "tkf-2026-0148": "TKF-2026-0148",
+    "eu_commission_dg_regio": "EU Commission DG REGIO",
+    "procurementeceuropaeu": "procurement@ec.europa.eu",
+    "ticari": "Ticari",
+    "_200000": "€5.200.000",
+    "bekliyor_3": "Bekliyor",
+    "_2_nisan_2026": "02 Nisan 2026",
+    "_2_temmuz_2026": "02 Temmuz 2026",
+    "tkf-2026-0147": "TKF-2026-0147",
+    "city_of_leuven": "City of Leuven",
+    "bouwleuvenbe": "bouw@leuven.be",
+    "renovasyon_2": "Renovasyon",
+    "_120000": "€1.120.000",
+    "bekliyor_4": "Bekliyor",
+    "_5_mart_2026": "25 Mart 2026",
+    "_5_haziran_2026": "25 Haziran 2026",
+    "tkf-2026-0146": "TKF-2026-0146",
+    "wallonia_build_sa": "Wallonia Build SA",
+    "contactwbuildbe": "contact@wbuild.be",
+    "endüstriyel_2": "Endüstriyel",
+    "_90000": "€890.000",
+    "onaylandı_5": "Onaylandı",
+    "_8_mart_2026": "18 Mart 2026",
+    "_8_haziran_2026": "18 Haziran 2026",
+    "tkf-2026-0145": "TKF-2026-0145",
+    "flanders_brick_group": "Flanders Brick Group",
+    "projectsfbrickbe": "projects@fbrick.be",
+    "konut_3": "Konut",
+    "_100000_2": "€2.100.000",
+    "bekliyor_5": "Bekliyor",
+    "_0_mart_2026": "10 Mart 2026",
+    "_0_haziran_2026": "10 Haziran 2026",
+    "yeni_teklif_oluştur": "Yeni Teklif Oluştur",
+    "teklif_no_2": "Teklif No",
+    "tarih_2": "Tarih",
+    "müşteri_2": "Müşteri",
+    "müşteri_seçin": "Müşteri Seçin...",
+    "vlaams_domein_2": "Vlaams Domein",
+    "brussels_waterworks_nv_2": "Brussels Waterworks NV",
+    "lemaire_holding_sa_2": "Lemaire Holding SA",
+    "ghent_brewery_co_2": "Ghent Brewery Co.",
+    "koning_park_bv_2": "Koning Park BV",
+    "antwerp_port_authority_2": "Antwerp Port Authority",
+    "eu_commission_dg_regio_2": "EU Commission DG REGIO",
+    "city_of_leuven_2": "City of Leuven",
+    "proje_tipi_2": "Proje Tipi",
+    "konut_4": "Konut",
+    "ticari_2": "Ticari",
+    "renovasyon_3": "Renovasyon",
+    "altyapı_2": "Altyapı",
+    "endüstriyel_3": "Endüstriyel",
+    "peyzaj_2": "Peyzaj",
+    "proje_açıklaması": "Proje Açıklaması",
+    "malzeme_ve_işçilik": "Malzeme ve İşçilik",
+    "kalem_ekle": "+ Kalem Ekle",
+    "teklif_toplamı": "Teklif Toplamı",
+    "_2340": "€92.340",
+    "geçerlilik_tarihi": "Geçerlilik Tarihi",
+    "kdv_oranı": "KDV Oranı (%)",
+    "teklif_önizleme": "Teklif Önizleme",
+    "buildpro_nv_tkf-2026-0155": "BuildPro NV — TKF-2026-0155",
+    "kalem": "Kalem",
+    "miktar": "Miktar",
+    "birim_fiyat": "Birim Fiyat",
+    "toplam": "Toplam",
+    "beton_c30": "Beton C30",
+    "_50_m³": "450 m³",
+    "_20": "€120",
+    "_4000": "€54.000",
+    "demir_çelik_ø12": "Demir Çelik Ø12",
+    "_800_kg": "2.800 kg",
+    "_80": "€2.80",
+    "_840": "€7.840",
+    "tuğla_duvar_işçiliği": "Tuğla Duvar İşçiliği",
+    "_50_m²": "850 m²",
+    "_8250": "€38.250",
+    "ara_toplam": "Ara Toplam",
+    "_00090": "€100.090",
+    "kdv_21": "KDV %21",
+    "_1019": "€21.019",
+    "genel_toplam": "Genel Toplam",
+    "_21109": "€121.109",
+    "iptal": "İptal",
+    "kaydet_gönder": "Kaydet & Gönder",
+    "teklifi_düzenle": "Teklifi Düzenle",
+    "teklif_no_3": "Teklif No",
+    "müşteri_3": "Müşteri",
+    "proje_tipi_3": "Proje Tipi",
+    "konut_5": "Konut",
+    "ticari_3": "Ticari",
+    "renovasyon_4": "Renovasyon",
+    "altyapı_3": "Altyapı",
+    "endüstriyel_4": "Endüstriyel",
+    "peyzaj_3": "Peyzaj",
+    "tahmini_bütçe_2": "Tahmini Bütçe (€)",
+    "durum_2": "Durum",
+    "bekliyor_6": "Bekliyor",
+    "onaylandı_6": "Onaylandı",
+    "reddedildi_3": "Reddedildi",
+    "revize_3": "Revize",
+    "geçerlilik_tarihi_2": "Geçerlilik Tarihi",
+    "teklif_notları": "Teklif Notları",
+    "konut_projesi_için_detaylı_keşif_raporu_eklendi_müşteri_31_d": "Konut projesi için detaylı keşif raporu eklendi. Müşteri 3+1 daire tipolojisi istiyor.",
+    "iptal_2": "İptal",
+    "kaydet": "Kaydet",
+    "teklifi_sil": "Teklifi Sil",
+    "bu_teklifi_silmek_istediğinize_emin_misiniz_bu_işlem_geri_al": "Bu teklifi silmek istediğinize emin misiniz? Bu işlem geri alınamaz.",
+    "iptal_3": "İptal",
+    "sil": "Sil",
+    "teklif_detayı_tkf-2026-0154": "Teklif Detayı — TKF-2026-0154",
+    "yapım_teklif_belgesi": "Yapım Teklif Belgesi",
+    "buildpro_nv_chaussée_de_louvain_500_1030_brüksel": "BuildPro NV — Chaussée de Louvain 500, 1030 Brüksel",
+    "teklif_no_4": "Teklif No",
+    "tkf-2026-0154_2": "TKF-2026-0154",
+    "_2_mayıs_2026_2": "12 Mayıs 2026",
+    "müşteri_4": "Müşteri",
+    "vlaams_domein_3": "Vlaams Domein",
+    "koning_albert_ii-laan_15_1210_brüksel_infovlaamsdomeinbe": "Koning Albert II-laan 15, 1210 Brüksel — info@vlaamsdomein.be",
+    "kalem_2": "#  Kalem",
+    "birim": "Birim",
+    "miktar_2": "Miktar",
+    "birim_fiyat_2": "Birim Fiyat",
+    "toplam_2": "Toplam",
+    "__temel_kazı_ve_hafriyat": "1. Temel Kazı ve Hafriyat",
+    "m³": "m³",
+    "_200": "3.200",
+    "_9600": "€89.600",
+    "__betonarme_iskelet_c30": "2. Betonarme İskelet (C30)",
+    "m³_2": "m³",
+    "_850": "1.850",
+    "_25": "€125",
+    "_31250": "€231.250",
+    "__yığma_duvar_ve_örgü": "3. Yığma Duvar ve Örgü",
+    "m²": "m²",
+    "_200_2": "4.200",
+    "_01600": "€201.600",
+    "__çatı_kaplama_ve_yalıtım": "4. Çatı Kaplama ve Yalıtım",
+    "m²_2": "m²",
+    "_600": "1.600",
+    "_52000": "€152.000",
+    "__elektrik_tesisatı": "5. Elektrik Tesisatı",
+    "adet": "adet",
+    "_8_daire": "48 daire",
+    "_200_3": "€3.200",
+    "_53600": "€153.600",
+    "__sıhhi_tesisat_ve_isıtma": "6. Sıhhi Tesisat ve Isıtma",
+    "adet_2": "adet",
+    "_8_daire_2": "48 daire",
+    "_800": "€2.800",
+    "_34400": "€134.400",
+    "__dış_cephe_kaplama": "7. Dış Cephe Kaplama",
+    "m²_3": "m²",
+    "_800_2": "3.800",
+    "_85": "€185",
+    "_03000": "€703.000",
+    "__iç_mekan_seramik_ve_parke": "8. İç Mekan Seramik ve Parke",
+    "m²_4": "m²",
+    "_400": "2.400",
+    "_72800": "€172.800",
+    "__pencere_ve_kapı_sistemleri": "9. Pencere ve Kapı Sistemleri",
+    "adet_3": "adet",
+    "_450": "€1.450",
+    "_69700": "€269.700",
+    "_0_peyzaj_ve_düzenleme": "10. Peyzaj ve Düzenleme",
+    "m²_5": "m²",
+    "_100": "2.100",
+    "_78500": "€178.500",
+    "ara_toplam_2": "Ara Toplam",
+    "_286450": "€2.286.450",
+    "genel_giderler_6": "Genel Giderler (%6)",
+    "_37187": "€137.187",
+    "kâr_marjı_5": "Kâr Marjı (%5)",
+    "_21182": "€121.182",
+    "genel_toplam_kdv_hariç": "Genel Toplam (KDV Hariç)",
+    "_544819": "€2.544.819",
+    "kdv_21_2": "KDV %21",
+    "_34412": "€534.412",
+    "toplam_teklif_bedeli": "Toplam Teklif Bedeli",
+    "_079231": "€3.079.231",
+    "ödeme_şartları_30_avans_40_yapım_esnasında_30_teslimatta": "Ödeme Şartları: %30 avans, %40 yapım esnasında, %30 teslimatta.",
+    "teklif_geçerlilik_süresi_90_gün_fiyatlar_malzeme_piyasasına_": "Teklif geçerlilik süresi: 90 gün. Fiyatlar malzeme piyasasına göre revize edilebilir.",
+    "kapat": "Kapat",
+    "pdf_indir": "PDF İndir",
+    "ph_teklif_ara": "Teklif ara...",
+    "title_görüntüle": "Görüntüle",
+    "title_düzenle": "Düzenle",
+    "title_sil": "Sil",
+    "title_görüntüle_2": "Görüntüle",
+    "title_düzenle_2": "Düzenle",
+    "title_sil_2": "Sil",
+    "title_görüntüle_3": "Görüntüle",
+    "title_düzenle_3": "Düzenle",
+    "title_sil_3": "Sil",
+    "title_görüntüle_4": "Görüntüle",
+    "title_düzenle_4": "Düzenle",
+    "title_sil_4": "Sil",
+    "title_görüntüle_5": "Görüntüle",
+    "title_düzenle_5": "Düzenle",
+    "title_sil_5": "Sil",
+    "title_görüntüle_6": "Görüntüle",
+    "title_düzenle_6": "Düzenle",
+    "title_sil_6": "Sil",
+    "title_görüntüle_7": "Görüntüle",
+    "title_düzenle_7": "Düzenle",
+    "title_sil_7": "Sil",
+    "title_görüntüle_8": "Görüntüle",
+    "title_düzenle_8": "Düzenle",
+    "title_sil_8": "Sil",
+    "title_görüntüle_9": "Görüntüle",
+    "title_düzenle_9": "Düzenle",
+    "title_sil_9": "Sil",
+    "title_görüntüle_10": "Görüntüle",
+    "title_düzenle_10": "Düzenle",
+    "title_sil_10": "Sil",
+    "ph_teklif_kapsamı": "Teklif kapsamı...",
+    "ph_kalem_adı": "Kalem adı",
+    "ph_miktar": "Miktar",
+    "ph_birim_fiyat": "Birim fiyat (€)",
+    "title_kaldır": "Kaldır",
+    "ph_kalem_adı_2": "Kalem adı",
+    "ph_miktar_2": "Miktar",
+    "ph_birim_fiyat_2": "Birim fiyat (€)",
+    "title_kaldır_2": "Kaldır",
+    "ph_kalem_adı_3": "Kalem adı",
+    "ph_miktar_3": "Miktar",
+    "ph_birim_fiyat_3": "Birim fiyat (€)",
+    "title_kaldır_3": "Kaldır"
+  },
+  "en": {
+    "buildpro_teklif_bütçeleme": "BuildPro — Teklif & Bütçeleme",
+    "bp": "BP",
+    "buildpro": "BuildPro",
+    "inşaat_yenileme": "İnşaat & Yenileme",
+    "ana_menü": "Ana Menü",
+    "ayarlar": "Settings",
+    "teklif_bütçeleme": "Teklif & Bütçeleme",
+    "buildpro_nv": "BuildPro NV",
+    "enterprise_plan": "Enterprise Plan",
+    "bekleyen_teklif": "Bekleyen Teklif",
+    "onaylanan": "Onaylanan",
+    "_4m": "€8.4M",
+    "bekleyen_değer": "Bekleyen Değer",
+    "kabul_oranı": "Kabul Oranı",
+    "tüm_durumlar": "All statuses",
+    "bekliyor": "Bekliyor",
+    "onaylandı": "Approved",
+    "reddedildi": "Rejected",
+    "revize": "Revize",
+    "rapor": "📄 Rapor",
+    "yeni_teklif": "+ Yeni Teklif",
+    "teklif_no": "Quote No",
+    "müşteri": "Client",
+    "proje_tipi": "Proje Tipi",
+    "tahmini_bütçe": "Tahmini Bütçe",
+    "durum": "Status",
+    "tarih": "Date",
+    "geçerlilik": "Validity",
+    "işlemler": "Actions",
+    "tkf-2026-0154": "TKF-2026-0154",
+    "vlaams_domein": "Vlaams Domein",
+    "infovlaamsdomeinbe": "info@vlaamsdomein.be",
+    "konut": "Konut",
+    "_450000": "€2.450.000",
+    "bekliyor_2": "Bekliyor",
+    "_2_mayıs_2026": "12 Mayıs 2026",
+    "_2_ağustos_2026": "12 Ağustos 2026",
+    "tkf-2026-0153": "TKF-2026-0153",
+    "brussels_waterworks_nv": "Brussels Waterworks NV",
+    "procurementbwworksbe": "procurement@bwworks.be",
+    "altyapı": "Altyapı",
+    "_100000": "€4.100.000",
+    "onaylandı_2": "Approved",
+    "_5_mayıs_2026": "05 Mayıs 2026",
+    "_5_ağustos_2026": "05 Ağustos 2026",
+    "tkf-2026-0152": "TKF-2026-0152",
+    "lemaire_holding_sa": "Lemaire Holding SA",
+    "projectslemairebe": "projects@lemaire.be",
+    "konut_2": "Konut",
+    "_850000": "€1.850.000",
+    "onaylandı_3": "Approved",
+    "_8_nisan_2026": "28 Nisan 2026",
+    "_8_temmuz_2026": "28 Temmuz 2026",
+    "tkf-2026-0151": "TKF-2026-0151",
+    "ghent_brewery_co": "Ghent Brewery Co.",
+    "buildghentbrewerybe": "build@ghentbrewery.be",
+    "renovasyon": "Renovation",
+    "_80000": "€680.000",
+    "reddedildi_2": "Rejected",
+    "_0_nisan_2026": "20 Nisan 2026",
+    "_0_temmuz_2026": "20 Temmuz 2026",
+    "tkf-2026-0150": "TKF-2026-0150",
+    "koning_park_bv": "Koning Park BV",
+    "parkkoningbrussels": "park@koning.brussels",
+    "peyzaj": "Peyzaj",
+    "_20000": "€420.000",
+    "revize_2": "Revize",
+    "_5_nisan_2026": "15 Nisan 2026",
+    "_5_temmuz_2026": "15 Temmuz 2026",
+    "tkf-2026-0149": "TKF-2026-0149",
+    "antwerp_port_authority": "Antwerp Port Authority",
+    "infrastructureaportbe": "infrastructure@aport.be",
+    "endüstriyel": "Endüstriyel",
+    "_750000": "€3.750.000",
+    "onaylandı_4": "Approved",
+    "_0_nisan_2026_2": "10 Nisan 2026",
+    "_0_temmuz_2026_2": "10 Temmuz 2026",
+    "tkf-2026-0148": "TKF-2026-0148",
+    "eu_commission_dg_regio": "EU Commission DG REGIO",
+    "procurementeceuropaeu": "procurement@ec.europa.eu",
+    "ticari": "Ticari",
+    "_200000": "€5.200.000",
+    "bekliyor_3": "Bekliyor",
+    "_2_nisan_2026": "02 Nisan 2026",
+    "_2_temmuz_2026": "02 Temmuz 2026",
+    "tkf-2026-0147": "TKF-2026-0147",
+    "city_of_leuven": "City of Leuven",
+    "bouwleuvenbe": "bouw@leuven.be",
+    "renovasyon_2": "Renovation",
+    "_120000": "€1.120.000",
+    "bekliyor_4": "Bekliyor",
+    "_5_mart_2026": "25 Mart 2026",
+    "_5_haziran_2026": "25 Haziran 2026",
+    "tkf-2026-0146": "TKF-2026-0146",
+    "wallonia_build_sa": "Wallonia Build SA",
+    "contactwbuildbe": "contact@wbuild.be",
+    "endüstriyel_2": "Endüstriyel",
+    "_90000": "€890.000",
+    "onaylandı_5": "Approved",
+    "_8_mart_2026": "18 Mart 2026",
+    "_8_haziran_2026": "18 Haziran 2026",
+    "tkf-2026-0145": "TKF-2026-0145",
+    "flanders_brick_group": "Flanders Brick Group",
+    "projectsfbrickbe": "projects@fbrick.be",
+    "konut_3": "Konut",
+    "_100000_2": "€2.100.000",
+    "bekliyor_5": "Bekliyor",
+    "_0_mart_2026": "10 Mart 2026",
+    "_0_haziran_2026": "10 Haziran 2026",
+    "yeni_teklif_oluştur": "New Teklif Oluştur",
+    "teklif_no_2": "Quote No",
+    "tarih_2": "Date",
+    "müşteri_2": "Client",
+    "müşteri_seçin": "Müşteri Seçin...",
+    "vlaams_domein_2": "Vlaams Domein",
+    "brussels_waterworks_nv_2": "Brussels Waterworks NV",
+    "lemaire_holding_sa_2": "Lemaire Holding SA",
+    "ghent_brewery_co_2": "Ghent Brewery Co.",
+    "koning_park_bv_2": "Koning Park BV",
+    "antwerp_port_authority_2": "Antwerp Port Authority",
+    "eu_commission_dg_regio_2": "EU Commission DG REGIO",
+    "city_of_leuven_2": "City of Leuven",
+    "proje_tipi_2": "Proje Tipi",
+    "konut_4": "Konut",
+    "ticari_2": "Ticari",
+    "renovasyon_3": "Renovation",
+    "altyapı_2": "Altyapı",
+    "endüstriyel_3": "Endüstriyel",
+    "peyzaj_2": "Peyzaj",
+    "proje_açıklaması": "Proje Açıklaması",
+    "malzeme_ve_işçilik": "Malzeme ve İşçilik",
+    "kalem_ekle": "Add + Kalem",
+    "teklif_toplamı": "Teklif Toplamı",
+    "_2340": "€92.340",
+    "geçerlilik_tarihi": "Validity Date",
+    "kdv_oranı": "KDV Oranı (%)",
+    "teklif_önizleme": "Teklif Önizleme",
+    "buildpro_nv_tkf-2026-0155": "BuildPro NV — TKF-2026-0155",
+    "kalem": "Kalem",
+    "miktar": "Quantity",
+    "birim_fiyat": "Unit Price",
+    "toplam": "Total",
+    "beton_c30": "Beton C30",
+    "_50_m³": "450 m³",
+    "_20": "€120",
+    "_4000": "€54.000",
+    "demir_çelik_ø12": "Demir Çelik Ø12",
+    "_800_kg": "2.800 kg",
+    "_80": "€2.80",
+    "_840": "€7.840",
+    "tuğla_duvar_işçiliği": "Tuğla Duvar İşçiliği",
+    "_50_m²": "850 m²",
+    "_8250": "€38.250",
+    "ara_toplam": "Subtotal",
+    "_00090": "€100.090",
+    "kdv_21": "KDV %21",
+    "_1019": "€21.019",
+    "genel_toplam": "Grand Total",
+    "_21109": "€121.109",
+    "iptal": "Cancel",
+    "kaydet_gönder": "Kaydet & Gönder",
+    "teklifi_düzenle": "Edit Teklifi",
+    "teklif_no_3": "Quote No",
+    "müşteri_3": "Client",
+    "proje_tipi_3": "Proje Tipi",
+    "konut_5": "Konut",
+    "ticari_3": "Ticari",
+    "renovasyon_4": "Renovation",
+    "altyapı_3": "Altyapı",
+    "endüstriyel_4": "Endüstriyel",
+    "peyzaj_3": "Peyzaj",
+    "tahmini_bütçe_2": "Tahmini Bütçe (€)",
+    "durum_2": "Status",
+    "bekliyor_6": "Bekliyor",
+    "onaylandı_6": "Approved",
+    "reddedildi_3": "Rejected",
+    "revize_3": "Revize",
+    "geçerlilik_tarihi_2": "Validity Date",
+    "teklif_notları": "Teklif Notları",
+    "konut_projesi_için_detaylı_keşif_raporu_eklendi_müşteri_31_d": "Konut projesi için detaylı keşif raporu eklendi. Müşteri 3+1 daire tipolojisi istiyor.",
+    "iptal_2": "Cancel",
+    "kaydet": "Save",
+    "teklifi_sil": "Delete Teklifi",
+    "bu_teklifi_silmek_istediğinize_emin_misiniz_bu_işlem_geri_al": "Bu teklifi silmek istediğinize emin misiniz? Bu işlem geri alınamaz.",
+    "iptal_3": "Cancel",
+    "sil": "Delete",
+    "teklif_detayı_tkf-2026-0154": "Teklif Detayı — TKF-2026-0154",
+    "yapım_teklif_belgesi": "Yapım Teklif Belgesi",
+    "buildpro_nv_chaussée_de_louvain_500_1030_brüksel": "BuildPro NV — Chaussée de Louvain 500, 1030 Brüksel",
+    "teklif_no_4": "Quote No",
+    "tkf-2026-0154_2": "TKF-2026-0154",
+    "_2_mayıs_2026_2": "12 Mayıs 2026",
+    "müşteri_4": "Client",
+    "vlaams_domein_3": "Vlaams Domein",
+    "koning_albert_ii-laan_15_1210_brüksel_infovlaamsdomeinbe": "Koning Albert II-laan 15, 1210 Brüksel — info@vlaamsdomein.be",
+    "kalem_2": "#  Kalem",
+    "birim": "Unit",
+    "miktar_2": "Quantity",
+    "birim_fiyat_2": "Unit Price",
+    "toplam_2": "Total",
+    "__temel_kazı_ve_hafriyat": "1. Temel Kazı ve Hafriyat",
+    "m³": "m³",
+    "_200": "3.200",
+    "_9600": "€89.600",
+    "__betonarme_iskelet_c30": "2. Betonarme İskelet (C30)",
+    "m³_2": "m³",
+    "_850": "1.850",
+    "_25": "€125",
+    "_31250": "€231.250",
+    "__yığma_duvar_ve_örgü": "3. Yığma Duvar ve Örgü",
+    "m²": "m²",
+    "_200_2": "4.200",
+    "_01600": "€201.600",
+    "__çatı_kaplama_ve_yalıtım": "4. Çatı Kaplama ve Yalıtım",
+    "m²_2": "m²",
+    "_600": "1.600",
+    "_52000": "€152.000",
+    "__elektrik_tesisatı": "5. Elektrik Tesisatı",
+    "adet": "pcs",
+    "_8_daire": "48 daire",
+    "_200_3": "€3.200",
+    "_53600": "€153.600",
+    "__sıhhi_tesisat_ve_isıtma": "6. Sıhhi Tesisat ve Isıtma",
+    "adet_2": "pcs",
+    "_8_daire_2": "48 daire",
+    "_800": "€2.800",
+    "_34400": "€134.400",
+    "__dış_cephe_kaplama": "7. Dış Cephe Kaplama",
+    "m²_3": "m²",
+    "_800_2": "3.800",
+    "_85": "€185",
+    "_03000": "€703.000",
+    "__iç_mekan_seramik_ve_parke": "8. İç Mekan Seramik ve Parke",
+    "m²_4": "m²",
+    "_400": "2.400",
+    "_72800": "€172.800",
+    "__pencere_ve_kapı_sistemleri": "9. Pencere ve Kapı Sistemleri",
+    "adet_3": "pcs",
+    "_450": "€1.450",
+    "_69700": "€269.700",
+    "_0_peyzaj_ve_düzenleme": "10. Peyzaj ve Düzenleme",
+    "m²_5": "m²",
+    "_100": "2.100",
+    "_78500": "€178.500",
+    "ara_toplam_2": "Subtotal",
+    "_286450": "€2.286.450",
+    "genel_giderler_6": "Genel Giderler (%6)",
+    "_37187": "€137.187",
+    "kâr_marjı_5": "Kâr Marjı (%5)",
+    "_21182": "€121.182",
+    "genel_toplam_kdv_hariç": "Genel Toplam (KDV Hariç)",
+    "_544819": "€2.544.819",
+    "kdv_21_2": "KDV %21",
+    "_34412": "€534.412",
+    "toplam_teklif_bedeli": "Toplam Teklif Bedeli",
+    "_079231": "€3.079.231",
+    "ödeme_şartları_30_avans_40_yapım_esnasında_30_teslimatta": "Ödeme Şartları: %30 avans, %40 yapım esnasında, %30 teslimatta.",
+    "teklif_geçerlilik_süresi_90_gün_fiyatlar_malzeme_piyasasına_": "Teklif geçerlilik süresi: 90 gün. Fiyatlar malzeme piyasasına göre revize edilebilir.",
+    "kapat": "Close",
+    "pdf_indir": "PDF İndir",
+    "ph_teklif_ara": "Teklif ara...",
+    "title_görüntüle": "View",
+    "title_düzenle": "Edit",
+    "title_sil": "Delete",
+    "title_görüntüle_2": "View",
+    "title_düzenle_2": "Edit",
+    "title_sil_2": "Delete",
+    "title_görüntüle_3": "View",
+    "title_düzenle_3": "Edit",
+    "title_sil_3": "Delete",
+    "title_görüntüle_4": "View",
+    "title_düzenle_4": "Edit",
+    "title_sil_4": "Delete",
+    "title_görüntüle_5": "View",
+    "title_düzenle_5": "Edit",
+    "title_sil_5": "Delete",
+    "title_görüntüle_6": "View",
+    "title_düzenle_6": "Edit",
+    "title_sil_6": "Delete",
+    "title_görüntüle_7": "View",
+    "title_düzenle_7": "Edit",
+    "title_sil_7": "Delete",
+    "title_görüntüle_8": "View",
+    "title_düzenle_8": "Edit",
+    "title_sil_8": "Delete",
+    "title_görüntüle_9": "View",
+    "title_düzenle_9": "Edit",
+    "title_sil_9": "Delete",
+    "title_görüntüle_10": "View",
+    "title_düzenle_10": "Edit",
+    "title_sil_10": "Delete",
+    "ph_teklif_kapsamı": "Teklif kapsamı...",
+    "ph_kalem_adı": "Kalem adı",
+    "ph_miktar": "Quantity",
+    "ph_birim_fiyat": "Birim fiyat (€)",
+    "title_kaldır": "Kaldır",
+    "ph_kalem_adı_2": "Kalem adı",
+    "ph_miktar_2": "Quantity",
+    "ph_birim_fiyat_2": "Birim fiyat (€)",
+    "title_kaldır_2": "Kaldır",
+    "ph_kalem_adı_3": "Kalem adı",
+    "ph_miktar_3": "Quantity",
+    "ph_birim_fiyat_3": "Birim fiyat (€)",
+    "title_kaldır_3": "Kaldır"
+  },
+  "nl": {
+    "buildpro_teklif_bütçeleme": "BuildPro — Teklif & Bütçeleme",
+    "bp": "BP",
+    "buildpro": "BuildPro",
+    "inşaat_yenileme": "İnşaat & Yenileme",
+    "ana_menü": "Ana Menü",
+    "ayarlar": "Instellingen",
+    "teklif_bütçeleme": "Teklif & Bütçeleme",
+    "buildpro_nv": "BuildPro NV",
+    "enterprise_plan": "Enterprise Plan",
+    "bekleyen_teklif": "Bekleyen Teklif",
+    "onaylanan": "Onaylanan",
+    "_4m": "€8.4M",
+    "bekleyen_değer": "Bekleyen Değer",
+    "kabul_oranı": "Kabul Oranı",
+    "tüm_durumlar": "Alle statussen",
+    "bekliyor": "Bekliyor",
+    "onaylandı": "Goedgekeurd",
+    "reddedildi": "Afgewezen",
+    "revize": "Revize",
+    "rapor": "📄 Rapor",
+    "yeni_teklif": "+ Yeni Teklif",
+    "teklif_no": "Offertenummer",
+    "müşteri": "Klant",
+    "proje_tipi": "Proje Tipi",
+    "tahmini_bütçe": "Tahmini Bütçe",
+    "durum": "Status",
+    "tarih": "Datum",
+    "geçerlilik": "Geldigheid",
+    "işlemler": "Acties",
+    "tkf-2026-0154": "TKF-2026-0154",
+    "vlaams_domein": "Vlaams Domein",
+    "infovlaamsdomeinbe": "info@vlaamsdomein.be",
+    "konut": "Konut",
+    "_450000": "€2.450.000",
+    "bekliyor_2": "Bekliyor",
+    "_2_mayıs_2026": "12 Mayıs 2026",
+    "_2_ağustos_2026": "12 Ağustos 2026",
+    "tkf-2026-0153": "TKF-2026-0153",
+    "brussels_waterworks_nv": "Brussels Waterworks NV",
+    "procurementbwworksbe": "procurement@bwworks.be",
+    "altyapı": "Altyapı",
+    "_100000": "€4.100.000",
+    "onaylandı_2": "Goedgekeurd",
+    "_5_mayıs_2026": "05 Mayıs 2026",
+    "_5_ağustos_2026": "05 Ağustos 2026",
+    "tkf-2026-0152": "TKF-2026-0152",
+    "lemaire_holding_sa": "Lemaire Holding SA",
+    "projectslemairebe": "projects@lemaire.be",
+    "konut_2": "Konut",
+    "_850000": "€1.850.000",
+    "onaylandı_3": "Goedgekeurd",
+    "_8_nisan_2026": "28 Nisan 2026",
+    "_8_temmuz_2026": "28 Temmuz 2026",
+    "tkf-2026-0151": "TKF-2026-0151",
+    "ghent_brewery_co": "Ghent Brewery Co.",
+    "buildghentbrewerybe": "build@ghentbrewery.be",
+    "renovasyon": "Renovatie",
+    "_80000": "€680.000",
+    "reddedildi_2": "Afgewezen",
+    "_0_nisan_2026": "20 Nisan 2026",
+    "_0_temmuz_2026": "20 Temmuz 2026",
+    "tkf-2026-0150": "TKF-2026-0150",
+    "koning_park_bv": "Koning Park BV",
+    "parkkoningbrussels": "park@koning.brussels",
+    "peyzaj": "Peyzaj",
+    "_20000": "€420.000",
+    "revize_2": "Revize",
+    "_5_nisan_2026": "15 Nisan 2026",
+    "_5_temmuz_2026": "15 Temmuz 2026",
+    "tkf-2026-0149": "TKF-2026-0149",
+    "antwerp_port_authority": "Antwerp Port Authority",
+    "infrastructureaportbe": "infrastructure@aport.be",
+    "endüstriyel": "Endüstriyel",
+    "_750000": "€3.750.000",
+    "onaylandı_4": "Goedgekeurd",
+    "_0_nisan_2026_2": "10 Nisan 2026",
+    "_0_temmuz_2026_2": "10 Temmuz 2026",
+    "tkf-2026-0148": "TKF-2026-0148",
+    "eu_commission_dg_regio": "EU Commission DG REGIO",
+    "procurementeceuropaeu": "procurement@ec.europa.eu",
+    "ticari": "Ticari",
+    "_200000": "€5.200.000",
+    "bekliyor_3": "Bekliyor",
+    "_2_nisan_2026": "02 Nisan 2026",
+    "_2_temmuz_2026": "02 Temmuz 2026",
+    "tkf-2026-0147": "TKF-2026-0147",
+    "city_of_leuven": "City of Leuven",
+    "bouwleuvenbe": "bouw@leuven.be",
+    "renovasyon_2": "Renovatie",
+    "_120000": "€1.120.000",
+    "bekliyor_4": "Bekliyor",
+    "_5_mart_2026": "25 Mart 2026",
+    "_5_haziran_2026": "25 Haziran 2026",
+    "tkf-2026-0146": "TKF-2026-0146",
+    "wallonia_build_sa": "Wallonia Build SA",
+    "contactwbuildbe": "contact@wbuild.be",
+    "endüstriyel_2": "Endüstriyel",
+    "_90000": "€890.000",
+    "onaylandı_5": "Goedgekeurd",
+    "_8_mart_2026": "18 Mart 2026",
+    "_8_haziran_2026": "18 Haziran 2026",
+    "tkf-2026-0145": "TKF-2026-0145",
+    "flanders_brick_group": "Flanders Brick Group",
+    "projectsfbrickbe": "projects@fbrick.be",
+    "konut_3": "Konut",
+    "_100000_2": "€2.100.000",
+    "bekliyor_5": "Bekliyor",
+    "_0_mart_2026": "10 Mart 2026",
+    "_0_haziran_2026": "10 Haziran 2026",
+    "yeni_teklif_oluştur": "Nieuwe Teklif Oluştur",
+    "teklif_no_2": "Offertenummer",
+    "tarih_2": "Datum",
+    "müşteri_2": "Klant",
+    "müşteri_seçin": "Müşteri Seçin...",
+    "vlaams_domein_2": "Vlaams Domein",
+    "brussels_waterworks_nv_2": "Brussels Waterworks NV",
+    "lemaire_holding_sa_2": "Lemaire Holding SA",
+    "ghent_brewery_co_2": "Ghent Brewery Co.",
+    "koning_park_bv_2": "Koning Park BV",
+    "antwerp_port_authority_2": "Antwerp Port Authority",
+    "eu_commission_dg_regio_2": "EU Commission DG REGIO",
+    "city_of_leuven_2": "City of Leuven",
+    "proje_tipi_2": "Proje Tipi",
+    "konut_4": "Konut",
+    "ticari_2": "Ticari",
+    "renovasyon_3": "Renovatie",
+    "altyapı_2": "Altyapı",
+    "endüstriyel_3": "Endüstriyel",
+    "peyzaj_2": "Peyzaj",
+    "proje_açıklaması": "Proje Açıklaması",
+    "malzeme_ve_işçilik": "Malzeme ve İşçilik",
+    "kalem_ekle": "+ Kalem Toevoegen",
+    "teklif_toplamı": "Teklif Toplamı",
+    "_2340": "€92.340",
+    "geçerlilik_tarihi": "Geldigheidsdatum",
+    "kdv_oranı": "KDV Oranı (%)",
+    "teklif_önizleme": "Teklif Önizleme",
+    "buildpro_nv_tkf-2026-0155": "BuildPro NV — TKF-2026-0155",
+    "kalem": "Kalem",
+    "miktar": "Aantal",
+    "birim_fiyat": "Eenheidsprijs",
+    "toplam": "Totaal",
+    "beton_c30": "Beton C30",
+    "_50_m³": "450 m³",
+    "_20": "€120",
+    "_4000": "€54.000",
+    "demir_çelik_ø12": "Demir Çelik Ø12",
+    "_800_kg": "2.800 kg",
+    "_80": "€2.80",
+    "_840": "€7.840",
+    "tuğla_duvar_işçiliği": "Tuğla Duvar İşçiliği",
+    "_50_m²": "850 m²",
+    "_8250": "€38.250",
+    "ara_toplam": "Subtotaal",
+    "_00090": "€100.090",
+    "kdv_21": "KDV %21",
+    "_1019": "€21.019",
+    "genel_toplam": "Totaalbedrag",
+    "_21109": "€121.109",
+    "iptal": "Annuleren",
+    "kaydet_gönder": "Kaydet & Gönder",
+    "teklifi_düzenle": "Teklifi Bewerken",
+    "teklif_no_3": "Offertenummer",
+    "müşteri_3": "Klant",
+    "proje_tipi_3": "Proje Tipi",
+    "konut_5": "Konut",
+    "ticari_3": "Ticari",
+    "renovasyon_4": "Renovatie",
+    "altyapı_3": "Altyapı",
+    "endüstriyel_4": "Endüstriyel",
+    "peyzaj_3": "Peyzaj",
+    "tahmini_bütçe_2": "Tahmini Bütçe (€)",
+    "durum_2": "Status",
+    "bekliyor_6": "Bekliyor",
+    "onaylandı_6": "Goedgekeurd",
+    "reddedildi_3": "Afgewezen",
+    "revize_3": "Revize",
+    "geçerlilik_tarihi_2": "Geldigheidsdatum",
+    "teklif_notları": "Teklif Notları",
+    "konut_projesi_için_detaylı_keşif_raporu_eklendi_müşteri_31_d": "Konut projesi için detaylı keşif raporu eklendi. Müşteri 3+1 daire tipolojisi istiyor.",
+    "iptal_2": "Annuleren",
+    "kaydet": "Opslaan",
+    "teklifi_sil": "Teklifi Verwijderen",
+    "bu_teklifi_silmek_istediğinize_emin_misiniz_bu_işlem_geri_al": "Bu teklifi silmek istediğinize emin misiniz? Bu işlem geri alınamaz.",
+    "iptal_3": "Annuleren",
+    "sil": "Verwijderen",
+    "teklif_detayı_tkf-2026-0154": "Teklif Detayı — TKF-2026-0154",
+    "yapım_teklif_belgesi": "Yapım Teklif Belgesi",
+    "buildpro_nv_chaussée_de_louvain_500_1030_brüksel": "BuildPro NV — Chaussée de Louvain 500, 1030 Brüksel",
+    "teklif_no_4": "Offertenummer",
+    "tkf-2026-0154_2": "TKF-2026-0154",
+    "_2_mayıs_2026_2": "12 Mayıs 2026",
+    "müşteri_4": "Klant",
+    "vlaams_domein_3": "Vlaams Domein",
+    "koning_albert_ii-laan_15_1210_brüksel_infovlaamsdomeinbe": "Koning Albert II-laan 15, 1210 Brüksel — info@vlaamsdomein.be",
+    "kalem_2": "#  Kalem",
+    "birim": "Eenheid",
+    "miktar_2": "Aantal",
+    "birim_fiyat_2": "Eenheidsprijs",
+    "toplam_2": "Totaal",
+    "__temel_kazı_ve_hafriyat": "1. Temel Kazı ve Hafriyat",
+    "m³": "m³",
+    "_200": "3.200",
+    "_9600": "€89.600",
+    "__betonarme_iskelet_c30": "2. Betonarme İskelet (C30)",
+    "m³_2": "m³",
+    "_850": "1.850",
+    "_25": "€125",
+    "_31250": "€231.250",
+    "__yığma_duvar_ve_örgü": "3. Yığma Duvar ve Örgü",
+    "m²": "m²",
+    "_200_2": "4.200",
+    "_01600": "€201.600",
+    "__çatı_kaplama_ve_yalıtım": "4. Çatı Kaplama ve Yalıtım",
+    "m²_2": "m²",
+    "_600": "1.600",
+    "_52000": "€152.000",
+    "__elektrik_tesisatı": "5. Elektrik Tesisatı",
+    "adet": "stuks",
+    "_8_daire": "48 daire",
+    "_200_3": "€3.200",
+    "_53600": "€153.600",
+    "__sıhhi_tesisat_ve_isıtma": "6. Sıhhi Tesisat ve Isıtma",
+    "adet_2": "stuks",
+    "_8_daire_2": "48 daire",
+    "_800": "€2.800",
+    "_34400": "€134.400",
+    "__dış_cephe_kaplama": "7. Dış Cephe Kaplama",
+    "m²_3": "m²",
+    "_800_2": "3.800",
+    "_85": "€185",
+    "_03000": "€703.000",
+    "__iç_mekan_seramik_ve_parke": "8. İç Mekan Seramik ve Parke",
+    "m²_4": "m²",
+    "_400": "2.400",
+    "_72800": "€172.800",
+    "__pencere_ve_kapı_sistemleri": "9. Pencere ve Kapı Sistemleri",
+    "adet_3": "stuks",
+    "_450": "€1.450",
+    "_69700": "€269.700",
+    "_0_peyzaj_ve_düzenleme": "10. Peyzaj ve Düzenleme",
+    "m²_5": "m²",
+    "_100": "2.100",
+    "_78500": "€178.500",
+    "ara_toplam_2": "Subtotaal",
+    "_286450": "€2.286.450",
+    "genel_giderler_6": "Genel Giderler (%6)",
+    "_37187": "€137.187",
+    "kâr_marjı_5": "Kâr Marjı (%5)",
+    "_21182": "€121.182",
+    "genel_toplam_kdv_hariç": "Genel Toplam (KDV Hariç)",
+    "_544819": "€2.544.819",
+    "kdv_21_2": "KDV %21",
+    "_34412": "€534.412",
+    "toplam_teklif_bedeli": "Toplam Teklif Bedeli",
+    "_079231": "€3.079.231",
+    "ödeme_şartları_30_avans_40_yapım_esnasında_30_teslimatta": "Ödeme Şartları: %30 avans, %40 yapım esnasında, %30 teslimatta.",
+    "teklif_geçerlilik_süresi_90_gün_fiyatlar_malzeme_piyasasına_": "Teklif geçerlilik süresi: 90 gün. Fiyatlar malzeme piyasasına göre revize edilebilir.",
+    "kapat": "Sluiten",
+    "pdf_indir": "PDF İndir",
+    "ph_teklif_ara": "Teklif ara...",
+    "title_görüntüle": "Bekijken",
+    "title_düzenle": "Bewerken",
+    "title_sil": "Verwijderen",
+    "title_görüntüle_2": "Bekijken",
+    "title_düzenle_2": "Bewerken",
+    "title_sil_2": "Verwijderen",
+    "title_görüntüle_3": "Bekijken",
+    "title_düzenle_3": "Bewerken",
+    "title_sil_3": "Verwijderen",
+    "title_görüntüle_4": "Bekijken",
+    "title_düzenle_4": "Bewerken",
+    "title_sil_4": "Verwijderen",
+    "title_görüntüle_5": "Bekijken",
+    "title_düzenle_5": "Bewerken",
+    "title_sil_5": "Verwijderen",
+    "title_görüntüle_6": "Bekijken",
+    "title_düzenle_6": "Bewerken",
+    "title_sil_6": "Verwijderen",
+    "title_görüntüle_7": "Bekijken",
+    "title_düzenle_7": "Bewerken",
+    "title_sil_7": "Verwijderen",
+    "title_görüntüle_8": "Bekijken",
+    "title_düzenle_8": "Bewerken",
+    "title_sil_8": "Verwijderen",
+    "title_görüntüle_9": "Bekijken",
+    "title_düzenle_9": "Bewerken",
+    "title_sil_9": "Verwijderen",
+    "title_görüntüle_10": "Bekijken",
+    "title_düzenle_10": "Bewerken",
+    "title_sil_10": "Verwijderen",
+    "ph_teklif_kapsamı": "Teklif kapsamı...",
+    "ph_kalem_adı": "Kalem adı",
+    "ph_miktar": "Aantal",
+    "ph_birim_fiyat": "Birim fiyat (€)",
+    "title_kaldır": "Kaldır",
+    "ph_kalem_adı_2": "Kalem adı",
+    "ph_miktar_2": "Aantal",
+    "ph_birim_fiyat_2": "Birim fiyat (€)",
+    "title_kaldır_2": "Kaldır",
+    "ph_kalem_adı_3": "Kalem adı",
+    "ph_miktar_3": "Aantal",
+    "ph_birim_fiyat_3": "Birim fiyat (€)",
+    "title_kaldır_3": "Kaldır"
+  }
+};
+let currentLang = localStorage.getItem('buildpro_lang') || 'tr';
+document.documentElement.lang = currentLang;
+function switchLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('buildpro_lang', lang);
+  document.documentElement.lang = lang;
+  applyLang();
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+}
+function applyLang() {
+  const t = i18n[currentLang] || i18n['tr'];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) {
+      const attr = el.getAttribute('data-i18n-attr');
+      if (attr) {
+        el.setAttribute(attr, t[key]);
+      } else if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        if (el.type !== 'submit' && el.type !== 'button') {
+          // keep value for inputs unless button
+        }
+        el.value = t[key];
+      } else if (el.tagName === 'OPTION') {
+        el.textContent = t[key];
+      } else {
+        el.textContent = t[key];
+      }
+    }
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key]) el.placeholder = t[key];
+  });
+  const titleEl = document.querySelector('title');
+  if (titleEl) {
+    const key = titleEl.getAttribute('data-i18n');
+    if (key && t[key]) document.title = t[key];
+  }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  applyLang();
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === currentLang));
+});
+</script></body>
 </html>

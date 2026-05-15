@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="tr" data-theme="dark">
+<html data-theme="dark" lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BuildPro — Maliyet Yönetimi</title>
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/dashboard.css">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title data-i18n="buildpro_maliyet_yönetimi">BuildPro — Maliyet Yönetimi</title>
+<link href="css/main.css" rel="stylesheet"/>
+<link href="css/components.css" rel="stylesheet"/>
+<link href="css/dashboard.css" rel="stylesheet"/>
+<style>
     .cost-summary { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--space-4); margin-bottom:var(--space-6); }
     @media (max-width:1024px){ .cost-summary { grid-template-columns:repeat(2,1fr); } }
     @media (max-width:480px){ .cost-summary { grid-template-columns:1fr; } }
@@ -39,563 +39,558 @@
   </style>
 </head>
 <body>
-  <div class="dashboard">
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-brand">
-        <div class="sidebar-brand-icon">BP</div>
-        <span class="sidebar-brand-text">BuildPro</span>
-      </div>
-      <nav class="sidebar-nav">
-        <div class="sidebar-section">
-          <div class="sidebar-section-title">Genel</div>
-          <a class="sidebar-link" href="buildpro-dashboard.html"><span class="icon">📊</span><span class="sidebar-text">Dashboard</span></a>
-          <a class="sidebar-link" href="buildpro-projects.html"><span class="icon">🏗️</span><span class="sidebar-text">Projeler</span></a>
-          <a class="sidebar-link" href="buildpro-staff.html"><span class="icon">👷</span><span class="sidebar-text">Personel</span></a>
-          <a class="sidebar-link" href="buildpro-site.html"><span class="icon">📍</span><span class="sidebar-text">Şantiyeler</span></a>
-        </div>
-        <div class="sidebar-section">
-          <div class="sidebar-section-title">Operasyon</div>
-          <a class="sidebar-link" href="buildpro-calendar.html"><span class="icon">📅</span><span class="sidebar-text">Takvim</span></a>
-          <a class="sidebar-link active" href="buildpro-costs.html"><span class="icon">💶</span><span class="sidebar-text">Maliyetler</span></a>
-          <a class="sidebar-link" href="buildpro-equipment.html"><span class="icon">🚜</span><span class="sidebar-text">Ekipman</span></a>
-        </div>
-        <div class="sidebar-section">
-          <div class="sidebar-section-title">Müşteri</div>
-          <a class="sidebar-link" href="buildpro-clients.html"><span class="icon">🤝</span><span class="sidebar-text">Müşteriler</span></a>
-          <a class="sidebar-link" href="buildpro-quotes.html"><span class="icon">📄</span><span class="sidebar-text">Teklifler</span></a>
-        </div>
-      </nav>
-      <div class="sidebar-footer">
-        <a class="sidebar-link" href="#"><span class="icon">⚙️</span><span class="sidebar-text">Ayarlar</span></a>
-      </div>
-    </aside>
-    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+<div class="dashboard">
+<aside class="sidebar" id="sidebar">
+<div class="sidebar-brand">
+<div class="sidebar-brand-icon">BP</div>
+<span class="sidebar-brand-text" data-i18n="buildpro">BuildPro</span>
+</div>
+<nav class="sidebar-nav">
+<div class="sidebar-section">
+<div class="sidebar-section-title" data-i18n="genel">Genel</div>
+<a class="sidebar-link" href="buildpro-dashboard.html"><span class="icon">📊</span><span class="sidebar-text" data-i18n="dashboard">Dashboard</span></a>
+<a class="sidebar-link" href="buildpro-projects.html"><span class="icon">🏗️</span><span class="sidebar-text" data-i18n="projeler">Projeler</span></a>
+<a class="sidebar-link" href="buildpro-staff.html"><span class="icon">👷</span><span class="sidebar-text" data-i18n="personel">Personel</span></a>
+<a class="sidebar-link" href="buildpro-site.html"><span class="icon">📍</span><span class="sidebar-text" data-i18n="şantiyeler">Şantiyeler</span></a>
+</div>
+<div class="sidebar-section">
+<div class="sidebar-section-title" data-i18n="operasyon">Operasyon</div>
+<a class="sidebar-link" href="buildpro-calendar.html"><span class="icon">📅</span><span class="sidebar-text" data-i18n="takvim">Takvim</span></a>
+<a class="sidebar-link active" href="buildpro-costs.html"><span class="icon">💶</span><span class="sidebar-text" data-i18n="maliyetler">Maliyetler</span></a>
+<a class="sidebar-link" href="buildpro-equipment.html"><span class="icon">🚜</span><span class="sidebar-text" data-i18n="ekipman">Ekipman</span></a>
+</div>
+<div class="sidebar-section">
+<div class="sidebar-section-title" data-i18n="müşteri">Müşteri</div>
+<a class="sidebar-link" href="buildpro-clients.html"><span class="icon">🤝</span><span class="sidebar-text" data-i18n="müşteriler">Müşteriler</span></a>
+<a class="sidebar-link" href="buildpro-quotes.html"><span class="icon">📄</span><span class="sidebar-text" data-i18n="teklifler">Teklifler</span></a>
+</div>
+</nav>
+<div class="sidebar-footer">
+<a class="sidebar-link" href="#"><span class="icon">⚙️</span><span class="sidebar-text" data-i18n="ayarlar">Ayarlar</span></a>
+</div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+<main class="main">
+<header class="header">
+<div class="header-left">
+<button aria-label="Menu" class="header-btn mobile-visible" data-i18n="aria_menu" data-i18n-attr="aria-label" onclick="toggleSidebar()">☰</button>
+<div>
+<div class="header-title" data-i18n="maliyet_yönetimi">Maliyet Yönetimi</div>
+<div class="header-breadcrumb" data-i18n="buildpro_maliyetler">BuildPro / Maliyetler</div>
+</div>
+</div>
+<div class="header-right">
+<div class="lang-switcher" style="display:flex;gap:4px;margin-right:12px;">
+<button class="lang-btn" data-lang="tr" onclick="switchLang('tr')" style="padding:4px 8px;font-size:12px;border-radius:4px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;">TR</button>
+<button class="lang-btn" data-lang="en" onclick="switchLang('en')" style="padding:4px 8px;font-size:12px;border-radius:4px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;">EN</button>
+<button class="lang-btn" data-lang="nl" onclick="switchLang('nl')" style="padding:4px 8px;font-size:12px;border-radius:4px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;">NL</button>
+</div>
+<style>.lang-btn.active{background:var(--teal-500)!important;color:white!important;border-color:var(--teal-500)!important;font-weight:600;}</style>
 
-    <main class="main">
-      <header class="header">
-        <div class="header-left">
-          <button class="header-btn mobile-visible" onclick="toggleSidebar()" aria-label="Menu">☰</button>
-          <div>
-            <div class="header-title">Maliyet Yönetimi</div>
-            <div class="header-breadcrumb">BuildPro / Maliyetler</div>
-          </div>
-        </div>
-        <div class="header-right">
-          <div class="header-search">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-            <input type="text" placeholder="Maliyet ara...">
-          </div>
-          <button class="header-btn" onclick="toggleTheme()" aria-label="Tema">🌓</button>
-          <button class="header-btn" aria-label="Bildirimler">🔔<span class="badge-dot"></span></button>
-          <div class="header-avatar">DY</div>
-        </div>
-      </header>
-
-      <div class="page">
-        <!-- Summary Cards -->
-        <div class="cost-summary">
-          <div class="card stat-card">
-            <div class="stat-icon" style="background:var(--teal-100);color:var(--teal-600);">📋</div>
-            <div class="stat-value">€1.24M</div>
-            <div class="stat-label">Toplam Bütçe</div>
-            <div class="stat-change up">↑ 8% yıllık artış</div>
-          </div>
-          <div class="card stat-card">
-            <div class="stat-icon" style="background:var(--warning-100);color:var(--warning-500);">💸</div>
-            <div class="stat-value">€892K</div>
-            <div class="stat-label">Gerçekleşen Maliyet</div>
-            <div class="stat-change down">↓ %71.9 oran</div>
-          </div>
-          <div class="card stat-card">
-            <div class="stat-icon" style="background:var(--success-100);color:var(--success-500);">📈</div>
-            <div class="stat-value">€348K</div>
-            <div class="stat-label">Kalan Bütçe</div>
-            <div class="stat-change up">↑ %28.1 kalan</div>
-          </div>
-          <div class="card stat-card">
-            <div class="stat-icon" style="background:var(--error-100);color:var(--error-500);">⚠️</div>
-            <div class="stat-value">€47K</div>
-            <div class="stat-label">Bütçe Aşımı Riski</div>
-            <div class="stat-change down">↓ 2 proje</div>
-          </div>
-        </div>
-
-        <!-- Budget vs Actual Rings -->
-        <div class="card" style="margin-bottom:var(--space-6);">
-          <div class="card-header">
-            <div>
-              <div class="card-title">📊 Bütçe vs Gerçekleşen</div>
-              <div class="card-subtitle">Proje bazında karşılaştırma</div>
-            </div>
-          </div>
-          <div class="progress-ring-wrap">
-            <div class="progress-ring">
-              <svg width="120" height="120" viewBox="0 0 120 120">
-                <circle class="progress-ring-bg" cx="60" cy="60" r="52"/>
-                <circle class="progress-ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="81.68"/>
-              </svg>
-              <div class="progress-ring-text">
-                <div class="progress-ring-pct">%75</div>
-                <div class="progress-ring-label">Ofis Yenileme</div>
-              </div>
-            </div>
-            <div class="progress-ring">
-              <svg width="120" height="120" viewBox="0 0 120 120">
-                <circle class="progress-ring-bg" cx="60" cy="60" r="52"/>
-                <circle class="progress-ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="196.04" style="stroke:var(--warning-500);"/>
-              </svg>
-              <div class="progress-ring-text">
-                <div class="progress-ring-pct">%40</div>
-                <div class="progress-ring-label">Anvers Lojistik</div>
-              </div>
-            </div>
-            <div class="progress-ring">
-              <svg width="120" height="120" viewBox="0 0 120 120">
-                <circle class="progress-ring-bg" cx="60" cy="60" r="52"/>
-                <circle class="progress-ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="49.01" style="stroke:var(--error-500);"/>
-              </svg>
-              <div class="progress-ring-text">
-                <div class="progress-ring-pct">%85</div>
-                <div class="progress-ring-label">Gent Konut</div>
-              </div>
-            </div>
-            <div class="progress-ring">
-              <svg width="120" height="120" viewBox="0 0 120 120">
-                <circle class="progress-ring-bg" cx="60" cy="60" r="52"/>
-                <circle class="progress-ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="261.38" style="stroke:var(--info-500);"/>
-              </svg>
-              <div class="progress-ring-text">
-                <div class="progress-ring-pct">%20</div>
-                <div class="progress-ring-label">Liège Otomotiv</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Category Breakdown -->
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-5);margin-bottom:var(--space-6);">
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <div class="card-title">📑 Kategori Dağılımı</div>
-                <div class="card-subtitle">Gerçekleşen maliyetler</div>
-              </div>
-            </div>
-            <div style="padding-top:var(--space-2);">
-              <div class="category-bar">
-                <div class="category-label">Malzeme</div>
-                <div class="category-track"><div class="category-fill" style="width:42%;background:var(--teal-500);"></div></div>
-                <div class="category-value">€375K</div>
-              </div>
-              <div class="category-bar">
-                <div class="category-label">İşçilik</div>
-                <div class="category-track"><div class="category-fill" style="width:31%;background:var(--info-500);"></div></div>
-                <div class="category-value">€276K</div>
-              </div>
-              <div class="category-bar">
-                <div class="category-label">Ekipman</div>
-                <div class="category-track"><div class="category-fill" style="width:15%;background:var(--amber-500);"></div></div>
-                <div class="category-value">€134K</div>
-              </div>
-              <div class="category-bar">
-                <div class="category-label">Taşıma</div>
-                <div class="category-track"><div class="category-fill" style="width:7%;background:var(--warning-500);"></div></div>
-                <div class="category-value">€62K</div>
-              </div>
-              <div class="category-bar">
-                <div class="category-label">İzin/Diğer</div>
-                <div class="category-track"><div class="category-fill" style="width:5%;background:var(--slate-400);"></div></div>
-                <div class="category-value">€45K</div>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <div class="card-title">📈 Trend</div>
-                <div class="card-subtitle">Aylık maliyet akışı</div>
-              </div>
-            </div>
-            <div class="chart-placeholder">Aylık maliyet trend grafiği alanı</div>
-          </div>
-        </div>
-
-        <!-- Page Header -->
-        <div class="page-header">
-          <div>
-            <div class="page-title">Maliyet Kayıtları</div>
-            <div class="page-subtitle">25 kayıt — Son güncelleme: 15.05.2025</div>
-          </div>
-          <div class="page-actions">
-            <button class="btn btn-secondary" onclick="exportCosts()">📥 Dışa Aktar</button>
-            <button class="btn btn-primary" onclick="openModal('addCostModal')">+ Maliyet Ekle</button>
-          </div>
-        </div>
-
-        <!-- Filters -->
-        <div class="filter-bar">
-          <div class="search-input" style="flex:1;max-width:320px;">
-            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-            <input type="text" class="form-input" placeholder="Açıklama veya proje ara..." id="costSearch">
-          </div>
-          <select class="form-select" id="categoryFilter">
-            <option value="">Tüm Kategoriler</option>
-            <option value="Malzeme">Malzeme</option>
-            <option value="İşçilik">İşçilik</option>
-            <option value="Ekipman">Ekipman</option>
-            <option value="Taşıma">Taşıma</option>
-            <option value="İzin">İzin</option>
-            <option value="Diğer">Diğer</option>
-          </select>
-          <select class="form-select" id="projectFilter">
-            <option value="">Tüm Projeler</option>
-            <option value="Ofis Kat 3">Ofis Kat 3 Yenileme</option>
-            <option value="Anvers Lojistik">Anvers Lojistik Merkezi</option>
-            <option value="Gent Konut">Gent Konut Kompleksi</option>
-            <option value="Liège Otomotiv">Liège Otomotiv Tesisleri</option>
-            <option value="Brugge Restorasyon">Brugge Tarihi Restorasyon</option>
-            <option value="Charleroi Fabrika">Charleroi Fabrika Yenileme</option>
-          </select>
-          <input type="date" class="form-input" id="dateFrom" style="width:auto;" placeholder="Başlangıç">
-          <input type="date" class="form-input" id="dateTo" style="width:auto;" placeholder="Bitiş">
-        </div>
-
-        <!-- Table -->
-        <div class="table-wrap">
-          <table class="table" id="costTable">
-            <thead>
-              <tr>
-                <th>Kategori</th>
-                <th>Proje</th>
-                <th>Miktar</th>
-                <th>Tarih</th>
-                <th>Açıklama</th>
-                <th style="width:100px;text-align:right;">Actions</th>
-              </tr>
-            </thead>
-            <tbody id="costTableBody">
-              <tr>
-                <td><span class="badge badge-info">Malzeme</span></td>
-                <td>Ofis Kat 3 Yenileme</td>
-                <td class="amount-cell">€12.450</td>
-                <td>15.05.2025</td>
-                <td>İzocam cam yünü levha 50mm — 120m²</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(1)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(1)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-neutral">İşçilik</span></td>
-                <td>Ofis Kat 3 Yenileme</td>
-                <td class="amount-cell">€8.200</td>
-                <td>14.05.2025</td>
-                <td>Haftalık personel maaş ödemesi — 7 kişi</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(2)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(2)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-warning">Ekipman</span></td>
-                <td>Anvers Lojistik Merkezi</td>
-                <td class="amount-cell">€4.800</td>
-                <td>13.05.2025</td>
-                <td>Liebherr vinç kiralama — 2 hafta</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(3)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(3)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-info">Malzeme</span></td>
-                <td>Gent Konut Kompleksi</td>
-                <td class="amount-cell">€23.600</td>
-                <td>12.05.2025</td>
-                <td>Beton C30/37 — 85m³ + pompa hizmeti</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(4)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(4)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-neutral">Taşıma</span></td>
-                <td>Anvers Lojistik Merkezi</td>
-                <td class="amount-cell">€1.850</td>
-                <td>11.05.2025</td>
-                <td>Ağır malzeme nakliyesi — Anvers → Gent</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(5)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(5)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-error">İzin</span></td>
-                <td>Genel</td>
-                <td class="amount-cell">€3.200</td>
-                <td>10.05.2025</td>
-                <td>Mehmet Kaya yıllık izin ücreti — 14 gün</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(6)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(6)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-info">Malzeme</span></td>
-                <td>Ofis Kat 3 Yenileme</td>
-                <td class="amount-cell">€6.780</td>
-                <td>09.05.2025</td>
-                <td>Kompozit cephe paneli — Alucobond 4mm, 45m²</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(7)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(7)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-neutral">İşçilik</span></td>
-                <td>Liège Otomotiv Tesisleri</td>
-                <td class="amount-cell">€11.500</td>
-                <td>08.05.2025</td>
-                <td>Özel kaynakçı ekibi — 5 gün x 8 kişi</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(8)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(8)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-warning">Ekipman</span></td>
-                <td>Gent Konut Kompleksi</td>
-                <td class="amount-cell">€2.400</td>
-                <td>07.05.2025</td>
-                <td>Bobcat S650 yedek parça + yağ değişimi</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(9)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(9)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-info">Malzeme</span></td>
-                <td>Brugge Tarihi Restorasyon</td>
-                <td class="amount-cell">€9.200</td>
-                <td>06.05.2025</td>
-                <td>Orijinal tuğla — kireç harcı ile, 500 adet</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(10)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(10)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-neutral">Taşıma</span></td>
-                <td>Ofis Kat 3 Yenileme</td>
-                <td class="amount-cell">€890</td>
-                <td>05.05.2025</td>
-                <td>Vinç nakliyesi — depodan şantiyeye</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(11)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(11)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-neutral">İşçilik</span></td>
-                <td>Charleroi Fabrika Yenileme</td>
-                <td class="amount-cell">€7.300</td>
-                <td>04.05.2025</td>
-                <td>Hazırlık ekibi — 4 kişi x 1 hafta</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(12)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(12)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-info">Malzeme</span></td>
-                <td>Anvers Lojistik Merkezi</td>
-                <td class="amount-cell">€31.200</td>
-                <td>03.05.2025</td>
-                <td>Çelik konstrüksiyon H profil — 12 ton</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(13)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(13)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-warning">Ekipman</span></td>
-                <td>Liège Otomotiv Tesisleri</td>
-                <td class="amount-cell">€18.500</td>
-                <td>02.05.2025</td>
-                <td>Aggreko jeneratör kiralama — 500kVA, 1 ay</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(14)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(14)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-info">Malzeme</span></td>
-                <td>Gent Konut Kompleksi</td>
-                <td class="amount-cell">€5.600</td>
-                <td>01.05.2025</td>
-                <td>Seramik fayans — 60x60, 150m² + yapıştırıcı</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(15)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(15)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-neutral">İşçilik</span></td>
-                <td>Ofis Kat 3 Yenileme</td>
-                <td class="amount-cell">€8.200</td>
-                <td>30.04.2025</td>
-                <td>Haftalık personel maaş ödemesi — 7 kişi</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(16)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(16)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-error">İzin</span></td>
-                <td>Genel</td>
-                <td class="amount-cell">€2.100</td>
-                <td>29.04.2025</td>
-                <td>Jan De Vries yıllık izin ücreti — 10 gün</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(17)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(17)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-neutral">Taşıma</span></td>
-                <td>Brugge Tarihi Restorasyon</td>
-                <td class="amount-cell">€1.200</td>
-                <td>28.04.2025</td>
-                <td>Özel tuğla nakliyesi — Brüksel → Brugge</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(18)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(18)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-info">Malzeme</span></td>
-                <td>Liège Otomotiv Tesisleri</td>
-                <td class="amount-cell">€14.800</td>
-                <td>27.04.2025</td>
-                <td>Endüstriyel zemin epoksi — 800m² + uygulama</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(19)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(19)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-warning">Ekipman</span></td>
-                <td>Ofis Kat 3 Yenileme</td>
-                <td class="amount-cell">€1.450</td>
-                <td>26.04.2025</td>
-                <td>Hilti TE 2000 yedek uç seti + servis</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(20)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(20)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-info">Malzeme</span></td>
-                <td>Anvers Lojistik Merkezi</td>
-                <td class="amount-cell">€8.900</td>
-                <td>25.04.2025</td>
-                <td>Yangın yalıtım malzemesi — 300m² Rockwool</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(21)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(21)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-neutral">İşçilik</span></td>
-                <td>Gent Konut Kompleksi</td>
-                <td class="amount-cell">€9.400</td>
-                <td>24.04.2025</td>
-                <td>Haftalık personel maaş ödemesi — 6 kişi</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(22)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(22)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-info">Malzeme</span></td>
-                <td>Ofis Kat 3 Yenileme</td>
-                <td class="amount-cell">€3.200</td>
-                <td>23.04.2025</td>
-                <td>Elektrik tesisat malzemesi — kablo, boru, priz</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(23)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(23)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-warning">Ekipman</span></td>
-                <td>Gent Konut Kompleksi</td>
-                <td class="amount-cell">€3.600</td>
-                <td>22.04.2025</td>
-                <td>Layher iskele sistemi kiralama — 2 hafta uzatma</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(24)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(24)">🗑️</button></td>
-              </tr>
-              <tr>
-                <td><span class="badge badge-error">Diğer</span></td>
-                <td>Genel</td>
-                <td class="amount-cell">€2.800</td>
-                <td>21.04.2025</td>
-                <td>İSG danışmanlık hizmeti — aylık retainer</td>
-                <td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(25)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(25)">🗑️</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </main>
-  </div>
-
-  <!-- Add Cost Modal -->
-  <div class="modal-overlay" id="addCostModal">
-    <div class="modal modal-lg">
-      <div class="modal-header">
-        <div class="modal-title">Yeni Maliyet Ekle</div>
-        <button class="modal-close" onclick="closeModal('addCostModal')">✕</button>
-      </div>
-      <div class="modal-body">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
-          <div class="form-group">
-            <label class="form-label">Kategori</label>
-            <select class="form-select">
-              <option>Malzeme</option>
-              <option>İşçilik</option>
-              <option>Ekipman</option>
-              <option>Taşıma</option>
-              <option>İzin</option>
-              <option>Diğer</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Proje</label>
-            <select class="form-select">
-              <option>Ofis Kat 3 Yenileme</option>
-              <option>Anvers Lojistik Merkezi</option>
-              <option>Gent Konut Kompleksi</option>
-              <option>Liège Otomotiv Tesisleri</option>
-              <option>Brugge Tarihi Restorasyon</option>
-              <option>Charleroi Fabrika Yenileme</option>
-              <option>Genel</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Miktar (€)</label>
-            <input type="number" class="form-input" placeholder="örn: 5000">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Tarih</label>
-            <input type="date" class="form-input">
-          </div>
-        </div>
-        <div class="form-group" style="margin-top:var(--space-4);">
-          <label class="form-label">Açıklama</label>
-          <textarea class="form-textarea" rows="2" placeholder="Maliyet detayları..."></textarea>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Fatura/Ek No (opsiyonel)</label>
-          <input type="text" class="form-input" placeholder="örn: FTR-2025-0042">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" onclick="closeModal('addCostModal')">İptal</button>
-        <button class="btn btn-primary" onclick="closeModal('addCostModal');showToast('Maliyet kaydı eklendi','success')">Kaydet</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Edit Cost Modal -->
-  <div class="modal-overlay" id="editCostModal">
-    <div class="modal modal-lg">
-      <div class="modal-header">
-        <div class="modal-title">Maliyet Düzenle</div>
-        <button class="modal-close" onclick="closeModal('editCostModal')">✕</button>
-      </div>
-      <div class="modal-body">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
-          <div class="form-group">
-            <label class="form-label">Kategori</label>
-            <select class="form-select"><option selected>Malzeme</option><option>İşçilik</option><option>Ekipman</option><option>Taşıma</option><option>İzin</option><option>Diğer</option></select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Proje</label>
-            <select class="form-select"><option selected>Ofis Kat 3 Yenileme</option><option>Anvers Lojistik Merkezi</option><option>Gent Konut Kompleksi</option><option>Liège Otomotiv Tesisleri</option><option>Brugge Tarihi Restorasyon</option><option>Charleroi Fabrika Yenileme</option><option>Genel</option></select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Miktar (€)</label>
-            <input type="number" class="form-input" value="12450">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Tarih</label>
-            <input type="date" class="form-input" value="2025-05-15">
-          </div>
-        </div>
-        <div class="form-group" style="margin-top:var(--space-4);">
-          <label class="form-label">Açıklama</label>
-          <textarea class="form-textarea" rows="2">İzocam cam yünü levha 50mm — 120m²</textarea>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" onclick="closeModal('editCostModal')">İptal</button>
-        <button class="btn btn-primary" onclick="closeModal('editCostModal');showToast('Maliyet kaydı güncellendi','success')">Güncelle</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Delete Modal -->
-  <div class="modal-overlay" id="deleteCostModal">
-    <div class="modal">
-      <div class="modal-header">
-        <div class="modal-title">Maliyet Sil</div>
-        <button class="modal-close" onclick="closeModal('deleteCostModal')">✕</button>
-      </div>
-      <div class="modal-body">
-        <p style="color:var(--text-secondary);"><strong style="color:var(--text-primary);">€12.450 — Malzeme</strong> kaydını silmek istediğinize emin misiniz?</p>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" onclick="closeModal('deleteCostModal')">İptal</button>
-        <button class="btn btn-amber" onclick="closeModal('deleteCostModal');showToast('Maliyet silindi','warning')">Sil</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="toast-container" id="toastContainer"></div>
-
-  <script>
+<div class="header-search">
+<svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+<input data-i18n-placeholder="ph_maliyet_ara" placeholder="Maliyet ara..." type="text"/>
+</div>
+<button aria-label="Tema" class="header-btn" data-i18n="aria_tema" data-i18n-attr="aria-label" onclick="toggleTheme()">🌓</button>
+<button aria-label="Bildirimler" class="header-btn" data-i18n="aria_bildirimler" data-i18n-attr="aria-label">🔔<span class="badge-dot"></span></button>
+<div class="header-avatar">DY</div>
+</div>
+</header>
+<div class="page">
+<!-- Summary Cards -->
+<div class="cost-summary">
+<div class="card stat-card">
+<div class="stat-icon" style="background:var(--teal-100);color:var(--teal-600);">📋</div>
+<div class="stat-value" data-i18n="_24m">€1.24M</div>
+<div class="stat-label" data-i18n="toplam_bütçe">Toplam Bütçe</div>
+<div class="stat-change up" data-i18n="__yıllık_artış">↑ 8% yıllık artış</div>
+</div>
+<div class="card stat-card">
+<div class="stat-icon" style="background:var(--warning-100);color:var(--warning-500);">💸</div>
+<div class="stat-value" data-i18n="_92k">€892K</div>
+<div class="stat-label" data-i18n="gerçekleşen_maliyet">Gerçekleşen Maliyet</div>
+<div class="stat-change down" data-i18n="_19_oran">↓ %71.9 oran</div>
+</div>
+<div class="card stat-card">
+<div class="stat-icon" style="background:var(--success-100);color:var(--success-500);">📈</div>
+<div class="stat-value" data-i18n="_48k">€348K</div>
+<div class="stat-label" data-i18n="kalan_bütçe">Kalan Bütçe</div>
+<div class="stat-change up" data-i18n="_81_kalan">↑ %28.1 kalan</div>
+</div>
+<div class="card stat-card">
+<div class="stat-icon" style="background:var(--error-100);color:var(--error-500);">⚠️</div>
+<div class="stat-value" data-i18n="_7k">€47K</div>
+<div class="stat-label" data-i18n="bütçe_aşımı_riski">Bütçe Aşımı Riski</div>
+<div class="stat-change down" data-i18n="__proje">↓ 2 proje</div>
+</div>
+</div>
+<!-- Budget vs Actual Rings -->
+<div class="card" style="margin-bottom:var(--space-6);">
+<div class="card-header">
+<div>
+<div class="card-title" data-i18n="bütçe_vs_gerçekleşen">📊 Bütçe vs Gerçekleşen</div>
+<div class="card-subtitle" data-i18n="proje_bazında_karşılaştırma">Proje bazında karşılaştırma</div>
+</div>
+</div>
+<div class="progress-ring-wrap">
+<div class="progress-ring">
+<svg height="120" viewbox="0 0 120 120" width="120">
+<circle class="progress-ring-bg" cx="60" cy="60" r="52"></circle>
+<circle class="progress-ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="81.68"></circle>
+</svg>
+<div class="progress-ring-text">
+<div class="progress-ring-pct">%75</div>
+<div class="progress-ring-label" data-i18n="ofis_yenileme">Ofis Yenileme</div>
+</div>
+</div>
+<div class="progress-ring">
+<svg height="120" viewbox="0 0 120 120" width="120">
+<circle class="progress-ring-bg" cx="60" cy="60" r="52"></circle>
+<circle class="progress-ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="196.04" style="stroke:var(--warning-500);"></circle>
+</svg>
+<div class="progress-ring-text">
+<div class="progress-ring-pct">%40</div>
+<div class="progress-ring-label" data-i18n="anvers_lojistik">Anvers Lojistik</div>
+</div>
+</div>
+<div class="progress-ring">
+<svg height="120" viewbox="0 0 120 120" width="120">
+<circle class="progress-ring-bg" cx="60" cy="60" r="52"></circle>
+<circle class="progress-ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="49.01" style="stroke:var(--error-500);"></circle>
+</svg>
+<div class="progress-ring-text">
+<div class="progress-ring-pct">%85</div>
+<div class="progress-ring-label" data-i18n="gent_konut">Gent Konut</div>
+</div>
+</div>
+<div class="progress-ring">
+<svg height="120" viewbox="0 0 120 120" width="120">
+<circle class="progress-ring-bg" cx="60" cy="60" r="52"></circle>
+<circle class="progress-ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="261.38" style="stroke:var(--info-500);"></circle>
+</svg>
+<div class="progress-ring-text">
+<div class="progress-ring-pct">%20</div>
+<div class="progress-ring-label" data-i18n="liège_otomotiv">Liège Otomotiv</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Category Breakdown -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-5);margin-bottom:var(--space-6);">
+<div class="card">
+<div class="card-header">
+<div>
+<div class="card-title" data-i18n="kategori_dağılımı">📑 Kategori Dağılımı</div>
+<div class="card-subtitle" data-i18n="gerçekleşen_maliyetler">Gerçekleşen maliyetler</div>
+</div>
+</div>
+<div style="padding-top:var(--space-2);">
+<div class="category-bar">
+<div class="category-label" data-i18n="malzeme">Malzeme</div>
+<div class="category-track"><div class="category-fill" style="width:42%;background:var(--teal-500);"></div></div>
+<div class="category-value" data-i18n="_75k">€375K</div>
+</div>
+<div class="category-bar">
+<div class="category-label" data-i18n="işçilik">İşçilik</div>
+<div class="category-track"><div class="category-fill" style="width:31%;background:var(--info-500);"></div></div>
+<div class="category-value" data-i18n="_76k">€276K</div>
+</div>
+<div class="category-bar">
+<div class="category-label" data-i18n="ekipman_2">Ekipman</div>
+<div class="category-track"><div class="category-fill" style="width:15%;background:var(--amber-500);"></div></div>
+<div class="category-value" data-i18n="_34k">€134K</div>
+</div>
+<div class="category-bar">
+<div class="category-label" data-i18n="taşıma">Taşıma</div>
+<div class="category-track"><div class="category-fill" style="width:7%;background:var(--warning-500);"></div></div>
+<div class="category-value" data-i18n="_2k">€62K</div>
+</div>
+<div class="category-bar">
+<div class="category-label" data-i18n="izindiğer">İzin/Diğer</div>
+<div class="category-track"><div class="category-fill" style="width:5%;background:var(--slate-400);"></div></div>
+<div class="category-value" data-i18n="_5k">€45K</div>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<div>
+<div class="card-title" data-i18n="trend">📈 Trend</div>
+<div class="card-subtitle" data-i18n="aylık_maliyet_akışı">Aylık maliyet akışı</div>
+</div>
+</div>
+<div class="chart-placeholder" data-i18n="aylık_maliyet_trend_grafiği_alanı">Aylık maliyet trend grafiği alanı</div>
+</div>
+</div>
+<!-- Page Header -->
+<div class="page-header">
+<div>
+<div class="page-title" data-i18n="maliyet_kayıtları">Maliyet Kayıtları</div>
+<div class="page-subtitle" data-i18n="_5_kayıt_son_güncelleme_15052025">25 kayıt — Son güncelleme: 15.05.2025</div>
+</div>
+<div class="page-actions">
+<button class="btn btn-secondary" data-i18n="dışa_aktar" onclick="exportCosts()">📥 Dışa Aktar</button>
+<button class="btn btn-primary" data-i18n="maliyet_ekle" onclick="openModal('addCostModal')">+ Maliyet Ekle</button>
+</div>
+</div>
+<!-- Filters -->
+<div class="filter-bar">
+<div class="search-input" style="flex:1;max-width:320px;">
+<svg class="search-icon" fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+<input class="form-input" data-i18n-placeholder="ph_açıklama_veya_proje_ara" id="costSearch" placeholder="Açıklama veya proje ara..." type="text"/>
+</div>
+<select class="form-select" id="categoryFilter">
+<option data-i18n="tüm_kategoriler" value="">Tüm Kategoriler</option>
+<option data-i18n="malzeme_2" value="Malzeme">Malzeme</option>
+<option data-i18n="işçilik_2" value="İşçilik">İşçilik</option>
+<option data-i18n="ekipman_3" value="Ekipman">Ekipman</option>
+<option data-i18n="taşıma_2" value="Taşıma">Taşıma</option>
+<option data-i18n="izin" value="İzin">İzin</option>
+<option data-i18n="diğer" value="Diğer">Diğer</option>
+</select>
+<select class="form-select" id="projectFilter">
+<option data-i18n="tüm_projeler" value="">Tüm Projeler</option>
+<option data-i18n="ofis_kat_3_yenileme" value="Ofis Kat 3">Ofis Kat 3 Yenileme</option>
+<option data-i18n="anvers_lojistik_merkezi" value="Anvers Lojistik">Anvers Lojistik Merkezi</option>
+<option data-i18n="gent_konut_kompleksi" value="Gent Konut">Gent Konut Kompleksi</option>
+<option data-i18n="liège_otomotiv_tesisleri" value="Liège Otomotiv">Liège Otomotiv Tesisleri</option>
+<option data-i18n="brugge_tarihi_restorasyon" value="Brugge Restorasyon">Brugge Tarihi Restorasyon</option>
+<option data-i18n="charleroi_fabrika_yenileme" value="Charleroi Fabrika">Charleroi Fabrika Yenileme</option>
+</select>
+<input class="form-input" data-i18n-placeholder="ph_başlangıç" id="dateFrom" placeholder="Başlangıç" style="width:auto;" type="date"/>
+<input class="form-input" data-i18n-placeholder="ph_bitiş" id="dateTo" placeholder="Bitiş" style="width:auto;" type="date"/>
+</div>
+<!-- Table -->
+<div class="table-wrap">
+<table class="table" id="costTable">
+<thead>
+<tr>
+<th data-i18n="kategori">Kategori</th>
+<th data-i18n="proje">Proje</th>
+<th data-i18n="miktar">Miktar</th>
+<th data-i18n="tarih">Tarih</th>
+<th data-i18n="açıklama">Açıklama</th>
+<th data-i18n="actions" style="width:100px;text-align:right;">Actions</th>
+</tr>
+</thead>
+<tbody id="costTableBody">
+<tr>
+<td><span class="badge badge-info">Malzeme</span></td>
+<td data-i18n="ofis_kat_3_yenileme_2">Ofis Kat 3 Yenileme</td>
+<td class="amount-cell" data-i18n="_2450">€12.450</td>
+<td data-i18n="_5052025">15.05.2025</td>
+<td data-i18n="izocam_cam_yünü_levha_50mm_120m²">İzocam cam yünü levha 50mm — 120m²</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(1)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(1)">🗑️</button></td>
+</tr>
+<tr>
+<td><span class="badge badge-neutral">İşçilik</span></td>
+<td data-i18n="ofis_kat_3_yenileme_3">Ofis Kat 3 Yenileme</td>
+<td class="amount-cell" data-i18n="_200">€8.200</td>
+<td data-i18n="_4052025">14.05.2025</td>
+<td data-i18n="haftalık_personel_maaş_ödemesi_7_kişi">Haftalık personel maaş ödemesi — 7 kişi</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(2)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(2)">🗑️</button></td>
+</tr>
+<tr>
+<td><span class="badge badge-warning">Ekipman</span></td>
+<td data-i18n="anvers_lojistik_merkezi_2">Anvers Lojistik Merkezi</td>
+<td class="amount-cell" data-i18n="_800">€4.800</td>
+<td data-i18n="_3052025">13.05.2025</td>
+<td data-i18n="liebherr_vinç_kiralama_2_hafta">Liebherr vinç kiralama — 2 hafta</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(3)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(3)">🗑️</button></td>
+</tr>
+<tr>
+<td><span class="badge badge-info">Malzeme</span></td>
+<td data-i18n="gent_konut_kompleksi_2">Gent Konut Kompleksi</td>
+<td class="amount-cell" data-i18n="_3600">€23.600</td>
+<td data-i18n="_2052025">12.05.2025</td>
+<td data-i18n="beton_c3037_85m³_pompa_hizmeti">Beton C30/37 — 85m³ + pompa hizmeti</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(4)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(4)">🗑️</button></td>
+</tr>
+<tr>
+<td><span class="badge badge-neutral">Taşıma</span></td>
+<td data-i18n="anvers_lojistik_merkezi_3">Anvers Lojistik Merkezi</td>
+<td class="amount-cell" data-i18n="_850">€1.850</td>
+<td data-i18n="_1052025">11.05.2025</td>
+<td data-i18n="ağır_malzeme_nakliyesi_anvers_gent">Ağır malzeme nakliyesi — Anvers → Gent</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(5)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(5)">🗑️</button></td>
+</tr>
+<tr>
+<td><span class="badge badge-error">İzin</span></td>
+<td data-i18n="genel_2">Genel</td>
+<td class="amount-cell" data-i18n="_200_2">€3.200</td>
+<td data-i18n="_0052025">10.05.2025</td>
+<td data-i18n="mehmet_kaya_yıllık_izin_ücreti_14_gün">Mehmet Kaya yıllık izin ücreti — 14 gün</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(6)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(6)">🗑️</button></td>
+</tr>
+<tr>
+<td><span class="badge badge-info">Malzeme</span></td>
+<td data-i18n="ofis_kat_3_yenileme_4">Ofis Kat 3 Yenileme</td>
+<td class="amount-cell" data-i18n="_780">€6.780</td>
+<td data-i18n="_9052025">09.05.2025</td>
+<td data-i18n="kompozit_cephe_paneli_alucobond_4mm_45m²">Kompozit cephe paneli — Alucobond 4mm, 45m²</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(7)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(7)">🗑️</button></td>
+</tr>
+<tr>
+<td><span class="badge badge-neutral">İşçilik</span></td>
+<td data-i18n="liège_otomotiv_tesisleri_2">Liège Otomotiv Tesisleri</td>
+<td class="amount-cell" data-i18n="_1500">€11.500</td>
+<td data-i18n="_8052025">08.05.2025</td>
+<td data-i18n="özel_kaynakçı_ekibi_5_gün_x_8_kişi">Özel kaynakçı ekibi — 5 gün x 8 kişi</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(8)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(8)">🗑️</button></td>
+</tr>
+<tr>
+<td><span class="badge badge-warning">Ekipman</span></td>
+<td data-i18n="gent_konut_kompleksi_3">Gent Konut Kompleksi</td>
+<td class="amount-cell" data-i18n="_400">€2.400</td>
+<td data-i18n="_7052025">07.05.2025</td>
+<td data-i18n="bobcat_s650_yedek_parça_yağ_değişimi">Bobcat S650 yedek parça + yağ değişimi</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(9)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(9)">🗑️</button></td>
+</tr>
+<tr>
+<td><span class="badge badge-info">Malzeme</span></td>
+<td data-i18n="brugge_tarihi_restorasyon_2">Brugge Tarihi Restorasyon</td>
+<td class="amount-cell" data-i18n="_200_3">€9.200</td>
+<td data-i18n="_6052025">06.05.2025</td>
+<td data-i18n="orijinal_tuğla_kireç_harcı_ile_500_adet">Orijinal tuğla — kireç harcı ile, 500 adet</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(10)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(10)">🗑️</button></td>
+</tr>
+<tr>
+<td><span class="badge badge-neutral">Taşıma</span></td>
+<td data-i18n="ofis_kat_3_yenileme_5">Ofis Kat 3 Yenileme</td>
+<td class="amount-cell" data-i18n="_90">€890</td>
+<td data-i18n="_5052025_2">05.05.2025</td>
+<td data-i18n="vinç_nakliyesi_depodan_şantiyeye">Vinç nakliyesi — depodan şantiyeye</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(11)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(11)">🗑️</button></td>
+</tr>
+<tr>
+<td><span class="badge badge-neutral">İşçilik</span></td>
+<td data-i18n="charleroi_fabrika_yenileme_2">Charleroi Fabrika Yenileme</td>
+<td class="amount-cell" data-i18n="_300">€7.300</td>
+<td data-i18n="_4052025_2">04.05.2025</td>
+<td data-i18n="hazırlık_ekibi_4_kişi_x_1_hafta">Hazırlık ekibi — 4 kişi x 1 hafta</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(12)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(12)">🗑️</button></td>
+</tr>
+<tr>
+<td><span class="badge badge-info">Malzeme</span></td>
+<td data-i18n="anvers_lojistik_merkezi_4">Anvers Lojistik Merkezi</td>
+<td class="amount-cell" data-i18n="_1200">€31.200</td>
+<td data-i18n="_3052025_2">03.05.2025</td>
+<td data-i18n="çelik_konstrüksiyon_h_profil_12_ton">Çelik konstrüksiyon H profil — 12 ton</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(13)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(13)">🗑️</button></td>
+</tr>
+<tr>
+<td><span class="badge badge-warning">Ekipman</span></td>
+<td data-i18n="liège_otomotiv_tesisleri_3">Liège Otomotiv Tesisleri</td>
+<td class="amount-cell" data-i18n="_8500">€18.500</td>
+<td data-i18n="_2052025_2">02.05.2025</td>
+<td data-i18n="aggreko_jeneratör_kiralama_500kva_1_ay">Aggreko jeneratör kiralama — 500kVA, 1 ay</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(14)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(14)">🗑️</button></td>
+</tr>
+<tr>
+<td><span class="badge badge-info">Malzeme</span></td>
+<td data-i18n="gent_konut_kompleksi_4">Gent Konut Kompleksi</td>
+<td class="amount-cell" data-i18n="_600">€5.600</td>
+<td data-i18n="_1052025_2">01.05.2025</td>
+<td data-i18n="seramik_fayans_60x60_150m²_yapıştırıcı">Seramik fayans — 60x60, 150m² + yapıştırıcı</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(15)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(15)">🗑️</button></td>
+</tr>
+<tr>
+<td><span class="badge badge-neutral">İşçilik</span></td>
+<td data-i18n="ofis_kat_3_yenileme_6">Ofis Kat 3 Yenileme</td>
+<td class="amount-cell" data-i18n="_200_4">€8.200</td>
+<td data-i18n="_0042025">30.04.2025</td>
+<td data-i18n="haftalık_personel_maaş_ödemesi_7_kişi_2">Haftalık personel maaş ödemesi — 7 kişi</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(16)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(16)">🗑️</button></td>
+</tr>
+<tr>
+<td><span class="badge badge-error">İzin</span></td>
+<td data-i18n="genel_3">Genel</td>
+<td class="amount-cell" data-i18n="_100">€2.100</td>
+<td data-i18n="_9042025">29.04.2025</td>
+<td data-i18n="jan_de_vries_yıllık_izin_ücreti_10_gün">Jan De Vries yıllık izin ücreti — 10 gün</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(17)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(17)">🗑️</button></td>
+</tr>
+<tr>
+<td><span class="badge badge-neutral">Taşıma</span></td>
+<td data-i18n="brugge_tarihi_restorasyon_3">Brugge Tarihi Restorasyon</td>
+<td class="amount-cell" data-i18n="_200_5">€1.200</td>
+<td data-i18n="_8042025">28.04.2025</td>
+<td data-i18n="özel_tuğla_nakliyesi_brüksel_brugge">Özel tuğla nakliyesi — Brüksel → Brugge</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(18)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(18)">🗑️</button></td>
+</tr>
+<tr>
+<td><span class="badge badge-info">Malzeme</span></td>
+<td data-i18n="liège_otomotiv_tesisleri_4">Liège Otomotiv Tesisleri</td>
+<td class="amount-cell" data-i18n="_4800">€14.800</td>
+<td data-i18n="_7042025">27.04.2025</td>
+<td data-i18n="endüstriyel_zemin_epoksi_800m²_uygulama">Endüstriyel zemin epoksi — 800m² + uygulama</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(19)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(19)">🗑️</button></td>
+</tr>
+<tr>
+<td><span class="badge badge-warning">Ekipman</span></td>
+<td data-i18n="ofis_kat_3_yenileme_7">Ofis Kat 3 Yenileme</td>
+<td class="amount-cell" data-i18n="_450">€1.450</td>
+<td data-i18n="_6042025">26.04.2025</td>
+<td data-i18n="hilti_te_2000_yedek_uç_seti_servis">Hilti TE 2000 yedek uç seti + servis</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(20)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(20)">🗑️</button></td>
+</tr>
+<tr>
+<td><span class="badge badge-info">Malzeme</span></td>
+<td data-i18n="anvers_lojistik_merkezi_5">Anvers Lojistik Merkezi</td>
+<td class="amount-cell" data-i18n="_900">€8.900</td>
+<td data-i18n="_5042025">25.04.2025</td>
+<td data-i18n="yangın_yalıtım_malzemesi_300m²_rockwool">Yangın yalıtım malzemesi — 300m² Rockwool</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(21)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(21)">🗑️</button></td>
+</tr>
+<tr>
+<td><span class="badge badge-neutral">İşçilik</span></td>
+<td data-i18n="gent_konut_kompleksi_5">Gent Konut Kompleksi</td>
+<td class="amount-cell" data-i18n="_400_2">€9.400</td>
+<td data-i18n="_4042025">24.04.2025</td>
+<td data-i18n="haftalık_personel_maaş_ödemesi_6_kişi">Haftalık personel maaş ödemesi — 6 kişi</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(22)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(22)">🗑️</button></td>
+</tr>
+<tr>
+<td><span class="badge badge-info">Malzeme</span></td>
+<td data-i18n="ofis_kat_3_yenileme_8">Ofis Kat 3 Yenileme</td>
+<td class="amount-cell" data-i18n="_200_6">€3.200</td>
+<td data-i18n="_3042025">23.04.2025</td>
+<td data-i18n="elektrik_tesisat_malzemesi_kablo_boru_priz">Elektrik tesisat malzemesi — kablo, boru, priz</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(23)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(23)">🗑️</button></td>
+</tr>
+<tr>
+<td><span class="badge badge-warning">Ekipman</span></td>
+<td data-i18n="gent_konut_kompleksi_6">Gent Konut Kompleksi</td>
+<td class="amount-cell" data-i18n="_600_2">€3.600</td>
+<td data-i18n="_2042025">22.04.2025</td>
+<td data-i18n="layher_iskele_sistemi_kiralama_2_hafta_uzatma">Layher iskele sistemi kiralama — 2 hafta uzatma</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(24)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(24)">🗑️</button></td>
+</tr>
+<tr>
+<td><span class="badge badge-error">Diğer</span></td>
+<td data-i18n="genel_4">Genel</td>
+<td class="amount-cell" data-i18n="_800_2">€2.800</td>
+<td data-i18n="_1042025">21.04.2025</td>
+<td data-i18n="isg_danışmanlık_hizmeti_aylık_retainer">İSG danışmanlık hizmeti — aylık retainer</td>
+<td style="text-align:right;"><button class="btn btn-icon-sm btn-ghost" onclick="editCost(25)">✏️</button><button class="btn btn-icon-sm btn-ghost" onclick="deleteCost(25)">🗑️</button></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</div>
+<!-- Add Cost Modal -->
+<div class="modal-overlay" id="addCostModal">
+<div class="modal modal-lg">
+<div class="modal-header">
+<div class="modal-title" data-i18n="yeni_maliyet_ekle">Yeni Maliyet Ekle</div>
+<button class="modal-close" onclick="closeModal('addCostModal')">✕</button>
+</div>
+<div class="modal-body">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
+<div class="form-group">
+<label class="form-label" data-i18n="kategori_2">Kategori</label>
+<select class="form-select">
+<option data-i18n="malzeme_3">Malzeme</option>
+<option data-i18n="işçilik_3">İşçilik</option>
+<option data-i18n="ekipman_4">Ekipman</option>
+<option data-i18n="taşıma_3">Taşıma</option>
+<option data-i18n="izin_2">İzin</option>
+<option data-i18n="diğer_2">Diğer</option>
+</select>
+</div>
+<div class="form-group">
+<label class="form-label" data-i18n="proje_2">Proje</label>
+<select class="form-select">
+<option data-i18n="ofis_kat_3_yenileme_9">Ofis Kat 3 Yenileme</option>
+<option data-i18n="anvers_lojistik_merkezi_6">Anvers Lojistik Merkezi</option>
+<option data-i18n="gent_konut_kompleksi_7">Gent Konut Kompleksi</option>
+<option data-i18n="liège_otomotiv_tesisleri_5">Liège Otomotiv Tesisleri</option>
+<option data-i18n="brugge_tarihi_restorasyon_4">Brugge Tarihi Restorasyon</option>
+<option data-i18n="charleroi_fabrika_yenileme_3">Charleroi Fabrika Yenileme</option>
+<option data-i18n="genel_5">Genel</option>
+</select>
+</div>
+<div class="form-group">
+<label class="form-label" data-i18n="miktar_2">Miktar (€)</label>
+<input class="form-input" data-i18n-placeholder="ph_örn_5000" placeholder="örn: 5000" type="number"/>
+</div>
+<div class="form-group">
+<label class="form-label" data-i18n="tarih_2">Tarih</label>
+<input class="form-input" type="date"/>
+</div>
+</div>
+<div class="form-group" style="margin-top:var(--space-4);">
+<label class="form-label" data-i18n="açıklama_2">Açıklama</label>
+<textarea class="form-textarea" data-i18n-placeholder="ph_maliyet_detayları" placeholder="Maliyet detayları..." rows="2"></textarea>
+</div>
+<div class="form-group">
+<label class="form-label" data-i18n="faturaek_no_opsiyonel">Fatura/Ek No (opsiyonel)</label>
+<input class="form-input" data-i18n-placeholder="ph_örn_ftr-2025-0042" placeholder="örn: FTR-2025-0042" type="text"/>
+</div>
+</div>
+<div class="modal-footer">
+<button class="btn btn-secondary" data-i18n="iptal" onclick="closeModal('addCostModal')">İptal</button>
+<button class="btn btn-primary" data-i18n="kaydet" onclick="closeModal('addCostModal');showToast('Maliyet kaydı eklendi','success')">Kaydet</button>
+</div>
+</div>
+</div>
+<!-- Edit Cost Modal -->
+<div class="modal-overlay" id="editCostModal">
+<div class="modal modal-lg">
+<div class="modal-header">
+<div class="modal-title" data-i18n="maliyet_düzenle">Maliyet Düzenle</div>
+<button class="modal-close" onclick="closeModal('editCostModal')">✕</button>
+</div>
+<div class="modal-body">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
+<div class="form-group">
+<label class="form-label" data-i18n="kategori_3">Kategori</label>
+<select class="form-select"><option data-i18n="malzeme_4" selected="">Malzeme</option><option data-i18n="işçilik_4">İşçilik</option><option data-i18n="ekipman_5">Ekipman</option><option data-i18n="taşıma_4">Taşıma</option><option data-i18n="izin_3">İzin</option><option data-i18n="diğer_3">Diğer</option></select>
+</div>
+<div class="form-group">
+<label class="form-label" data-i18n="proje_3">Proje</label>
+<select class="form-select"><option data-i18n="ofis_kat_3_yenileme_10" selected="">Ofis Kat 3 Yenileme</option><option data-i18n="anvers_lojistik_merkezi_7">Anvers Lojistik Merkezi</option><option data-i18n="gent_konut_kompleksi_8">Gent Konut Kompleksi</option><option data-i18n="liège_otomotiv_tesisleri_6">Liège Otomotiv Tesisleri</option><option data-i18n="brugge_tarihi_restorasyon_5">Brugge Tarihi Restorasyon</option><option data-i18n="charleroi_fabrika_yenileme_4">Charleroi Fabrika Yenileme</option><option data-i18n="genel_6">Genel</option></select>
+</div>
+<div class="form-group">
+<label class="form-label" data-i18n="miktar_3">Miktar (€)</label>
+<input class="form-input" type="number" value="12450"/>
+</div>
+<div class="form-group">
+<label class="form-label" data-i18n="tarih_3">Tarih</label>
+<input class="form-input" type="date" value="2025-05-15"/>
+</div>
+</div>
+<div class="form-group" style="margin-top:var(--space-4);">
+<label class="form-label" data-i18n="açıklama_3">Açıklama</label>
+<textarea class="form-textarea" data-i18n="izocam_cam_yünü_levha_50mm_120m²_2" rows="2">İzocam cam yünü levha 50mm — 120m²</textarea>
+</div>
+</div>
+<div class="modal-footer">
+<button class="btn btn-secondary" data-i18n="iptal_2" onclick="closeModal('editCostModal')">İptal</button>
+<button class="btn btn-primary" data-i18n="güncelle" onclick="closeModal('editCostModal');showToast('Maliyet kaydı güncellendi','success')">Güncelle</button>
+</div>
+</div>
+</div>
+<!-- Delete Modal -->
+<div class="modal-overlay" id="deleteCostModal">
+<div class="modal">
+<div class="modal-header">
+<div class="modal-title" data-i18n="maliyet_sil">Maliyet Sil</div>
+<button class="modal-close" onclick="closeModal('deleteCostModal')">✕</button>
+</div>
+<div class="modal-body">
+<p style="color:var(--text-secondary);"><strong data-i18n="_2450_malzeme" style="color:var(--text-primary);">€12.450 — Malzeme</strong> kaydını silmek istediğinize emin misiniz?</p>
+</div>
+<div class="modal-footer">
+<button class="btn btn-secondary" data-i18n="iptal_3" onclick="closeModal('deleteCostModal')">İptal</button>
+<button class="btn btn-amber" data-i18n="sil" onclick="closeModal('deleteCostModal');showToast('Maliyet silindi','warning')">Sil</button>
+</div>
+</div>
+</div>
+<div class="toast-container" id="toastContainer"></div>
+<script>
     function toggleSidebar() {
       document.getElementById('sidebar').classList.toggle('mobile-open');
       document.getElementById('sidebarOverlay').classList.toggle('active');
@@ -615,7 +610,7 @@
       const toast = document.createElement('div');
       toast.className = `toast toast-${type}`;
       const icons = { success:'✅', error:'❌', warning:'⚠️', info:'ℹ️' };
-      toast.innerHTML = `<div class="toast-icon">${icons[type]}</div><div class="toast-content"><div class="toast-title">${type==='success'?'Başarılı':type==='error'?'Hata':type==='warning'?'Uyarı':'Bilgi'}</div><div class="toast-message">${message}</div></div><button class="toast-close" onclick="this.parentElement.remove()">✕</button><div class="toast-progress"></div>`;
+      toast.innerHTML = `<div class="toast-icon">${icons[type]}</div><div class="toast-content"><div class="toast-title">${type==='success'?(t['başarılı']||'Success'):type==='error'?(t['hata_oluştu']||'Error'):type==='warning'?(t['uyarı']||'Warning'):(t['bilgi']||'Info')}</div><div class="toast-message">${message}</div></div><button class="toast-close" onclick="this.parentElement.remove()">✕</button><div class="toast-progress"></div>`;
       container.appendChild(toast);
       setTimeout(() => { toast.classList.add('exit'); setTimeout(()=>toast.remove(),300); }, 4000);
     }
@@ -651,5 +646,753 @@
       });
     }
   </script>
-</body>
+<script>
+const i18n = {
+  "tr": {
+    "buildpro_maliyet_yönetimi": "BuildPro — Maliyet Yönetimi",
+    "buildpro": "BuildPro",
+    "genel": "Genel",
+    "dashboard": "Dashboard",
+    "projeler": "Projeler",
+    "personel": "Personel",
+    "şantiyeler": "Şantiyeler",
+    "operasyon": "Operasyon",
+    "takvim": "Takvim",
+    "maliyetler": "Maliyetler",
+    "ekipman": "Ekipman",
+    "müşteri": "Müşteri",
+    "müşteriler": "Müşteriler",
+    "teklifler": "Teklifler",
+    "ayarlar": "Ayarlar",
+    "maliyet_yönetimi": "Maliyet Yönetimi",
+    "buildpro_maliyetler": "BuildPro / Maliyetler",
+    "_24m": "€1.24M",
+    "toplam_bütçe": "Toplam Bütçe",
+    "__yıllık_artış": "↑ 8% yıllık artış",
+    "_92k": "€892K",
+    "gerçekleşen_maliyet": "Gerçekleşen Maliyet",
+    "_19_oran": "↓ %71.9 oran",
+    "_48k": "€348K",
+    "kalan_bütçe": "Kalan Bütçe",
+    "_81_kalan": "↑ %28.1 kalan",
+    "_7k": "€47K",
+    "bütçe_aşımı_riski": "Bütçe Aşımı Riski",
+    "__proje": "↓ 2 proje",
+    "bütçe_vs_gerçekleşen": "📊 Bütçe vs Gerçekleşen",
+    "proje_bazında_karşılaştırma": "Proje bazında karşılaştırma",
+    "ofis_yenileme": "Ofis Yenileme",
+    "anvers_lojistik": "Anvers Lojistik",
+    "gent_konut": "Gent Konut",
+    "liège_otomotiv": "Liège Otomotiv",
+    "kategori_dağılımı": "📑 Kategori Dağılımı",
+    "gerçekleşen_maliyetler": "Gerçekleşen maliyetler",
+    "malzeme": "Malzeme",
+    "_75k": "€375K",
+    "işçilik": "İşçilik",
+    "_76k": "€276K",
+    "ekipman_2": "Ekipman",
+    "_34k": "€134K",
+    "taşıma": "Taşıma",
+    "_2k": "€62K",
+    "izindiğer": "İzin/Diğer",
+    "_5k": "€45K",
+    "trend": "📈 Trend",
+    "aylık_maliyet_akışı": "Aylık maliyet akışı",
+    "aylık_maliyet_trend_grafiği_alanı": "Aylık maliyet trend grafiği alanı",
+    "maliyet_kayıtları": "Maliyet Kayıtları",
+    "_5_kayıt_son_güncelleme_15052025": "25 kayıt — Son güncelleme: 15.05.2025",
+    "dışa_aktar": "📥 Dışa Aktar",
+    "maliyet_ekle": "+ Maliyet Ekle",
+    "tüm_kategoriler": "Tüm Kategoriler",
+    "malzeme_2": "Malzeme",
+    "işçilik_2": "İşçilik",
+    "ekipman_3": "Ekipman",
+    "taşıma_2": "Taşıma",
+    "izin": "İzin",
+    "diğer": "Diğer",
+    "tüm_projeler": "Tüm Projeler",
+    "ofis_kat_3_yenileme": "Ofis Kat 3 Yenileme",
+    "anvers_lojistik_merkezi": "Anvers Lojistik Merkezi",
+    "gent_konut_kompleksi": "Gent Konut Kompleksi",
+    "liège_otomotiv_tesisleri": "Liège Otomotiv Tesisleri",
+    "brugge_tarihi_restorasyon": "Brugge Tarihi Restorasyon",
+    "charleroi_fabrika_yenileme": "Charleroi Fabrika Yenileme",
+    "kategori": "Kategori",
+    "proje": "Proje",
+    "miktar": "Miktar",
+    "tarih": "Tarih",
+    "açıklama": "Açıklama",
+    "actions": "Actions",
+    "ofis_kat_3_yenileme_2": "Ofis Kat 3 Yenileme",
+    "_2450": "€12.450",
+    "_5052025": "15.05.2025",
+    "izocam_cam_yünü_levha_50mm_120m²": "İzocam cam yünü levha 50mm — 120m²",
+    "ofis_kat_3_yenileme_3": "Ofis Kat 3 Yenileme",
+    "_200": "€8.200",
+    "_4052025": "14.05.2025",
+    "haftalık_personel_maaş_ödemesi_7_kişi": "Haftalık personel maaş ödemesi — 7 kişi",
+    "anvers_lojistik_merkezi_2": "Anvers Lojistik Merkezi",
+    "_800": "€4.800",
+    "_3052025": "13.05.2025",
+    "liebherr_vinç_kiralama_2_hafta": "Liebherr vinç kiralama — 2 hafta",
+    "gent_konut_kompleksi_2": "Gent Konut Kompleksi",
+    "_3600": "€23.600",
+    "_2052025": "12.05.2025",
+    "beton_c3037_85m³_pompa_hizmeti": "Beton C30/37 — 85m³ + pompa hizmeti",
+    "anvers_lojistik_merkezi_3": "Anvers Lojistik Merkezi",
+    "_850": "€1.850",
+    "_1052025": "11.05.2025",
+    "ağır_malzeme_nakliyesi_anvers_gent": "Ağır malzeme nakliyesi — Anvers → Gent",
+    "genel_2": "Genel",
+    "_200_2": "€3.200",
+    "_0052025": "10.05.2025",
+    "mehmet_kaya_yıllık_izin_ücreti_14_gün": "Mehmet Kaya yıllık izin ücreti — 14 gün",
+    "ofis_kat_3_yenileme_4": "Ofis Kat 3 Yenileme",
+    "_780": "€6.780",
+    "_9052025": "09.05.2025",
+    "kompozit_cephe_paneli_alucobond_4mm_45m²": "Kompozit cephe paneli — Alucobond 4mm, 45m²",
+    "liège_otomotiv_tesisleri_2": "Liège Otomotiv Tesisleri",
+    "_1500": "€11.500",
+    "_8052025": "08.05.2025",
+    "özel_kaynakçı_ekibi_5_gün_x_8_kişi": "Özel kaynakçı ekibi — 5 gün x 8 kişi",
+    "gent_konut_kompleksi_3": "Gent Konut Kompleksi",
+    "_400": "€2.400",
+    "_7052025": "07.05.2025",
+    "bobcat_s650_yedek_parça_yağ_değişimi": "Bobcat S650 yedek parça + yağ değişimi",
+    "brugge_tarihi_restorasyon_2": "Brugge Tarihi Restorasyon",
+    "_200_3": "€9.200",
+    "_6052025": "06.05.2025",
+    "orijinal_tuğla_kireç_harcı_ile_500_adet": "Orijinal tuğla — kireç harcı ile, 500 adet",
+    "ofis_kat_3_yenileme_5": "Ofis Kat 3 Yenileme",
+    "_90": "€890",
+    "_5052025_2": "05.05.2025",
+    "vinç_nakliyesi_depodan_şantiyeye": "Vinç nakliyesi — depodan şantiyeye",
+    "charleroi_fabrika_yenileme_2": "Charleroi Fabrika Yenileme",
+    "_300": "€7.300",
+    "_4052025_2": "04.05.2025",
+    "hazırlık_ekibi_4_kişi_x_1_hafta": "Hazırlık ekibi — 4 kişi x 1 hafta",
+    "anvers_lojistik_merkezi_4": "Anvers Lojistik Merkezi",
+    "_1200": "€31.200",
+    "_3052025_2": "03.05.2025",
+    "çelik_konstrüksiyon_h_profil_12_ton": "Çelik konstrüksiyon H profil — 12 ton",
+    "liège_otomotiv_tesisleri_3": "Liège Otomotiv Tesisleri",
+    "_8500": "€18.500",
+    "_2052025_2": "02.05.2025",
+    "aggreko_jeneratör_kiralama_500kva_1_ay": "Aggreko jeneratör kiralama — 500kVA, 1 ay",
+    "gent_konut_kompleksi_4": "Gent Konut Kompleksi",
+    "_600": "€5.600",
+    "_1052025_2": "01.05.2025",
+    "seramik_fayans_60x60_150m²_yapıştırıcı": "Seramik fayans — 60x60, 150m² + yapıştırıcı",
+    "ofis_kat_3_yenileme_6": "Ofis Kat 3 Yenileme",
+    "_200_4": "€8.200",
+    "_0042025": "30.04.2025",
+    "haftalık_personel_maaş_ödemesi_7_kişi_2": "Haftalık personel maaş ödemesi — 7 kişi",
+    "genel_3": "Genel",
+    "_100": "€2.100",
+    "_9042025": "29.04.2025",
+    "jan_de_vries_yıllık_izin_ücreti_10_gün": "Jan De Vries yıllık izin ücreti — 10 gün",
+    "brugge_tarihi_restorasyon_3": "Brugge Tarihi Restorasyon",
+    "_200_5": "€1.200",
+    "_8042025": "28.04.2025",
+    "özel_tuğla_nakliyesi_brüksel_brugge": "Özel tuğla nakliyesi — Brüksel → Brugge",
+    "liège_otomotiv_tesisleri_4": "Liège Otomotiv Tesisleri",
+    "_4800": "€14.800",
+    "_7042025": "27.04.2025",
+    "endüstriyel_zemin_epoksi_800m²_uygulama": "Endüstriyel zemin epoksi — 800m² + uygulama",
+    "ofis_kat_3_yenileme_7": "Ofis Kat 3 Yenileme",
+    "_450": "€1.450",
+    "_6042025": "26.04.2025",
+    "hilti_te_2000_yedek_uç_seti_servis": "Hilti TE 2000 yedek uç seti + servis",
+    "anvers_lojistik_merkezi_5": "Anvers Lojistik Merkezi",
+    "_900": "€8.900",
+    "_5042025": "25.04.2025",
+    "yangın_yalıtım_malzemesi_300m²_rockwool": "Yangın yalıtım malzemesi — 300m² Rockwool",
+    "gent_konut_kompleksi_5": "Gent Konut Kompleksi",
+    "_400_2": "€9.400",
+    "_4042025": "24.04.2025",
+    "haftalık_personel_maaş_ödemesi_6_kişi": "Haftalık personel maaş ödemesi — 6 kişi",
+    "ofis_kat_3_yenileme_8": "Ofis Kat 3 Yenileme",
+    "_200_6": "€3.200",
+    "_3042025": "23.04.2025",
+    "elektrik_tesisat_malzemesi_kablo_boru_priz": "Elektrik tesisat malzemesi — kablo, boru, priz",
+    "gent_konut_kompleksi_6": "Gent Konut Kompleksi",
+    "_600_2": "€3.600",
+    "_2042025": "22.04.2025",
+    "layher_iskele_sistemi_kiralama_2_hafta_uzatma": "Layher iskele sistemi kiralama — 2 hafta uzatma",
+    "genel_4": "Genel",
+    "_800_2": "€2.800",
+    "_1042025": "21.04.2025",
+    "isg_danışmanlık_hizmeti_aylık_retainer": "İSG danışmanlık hizmeti — aylık retainer",
+    "yeni_maliyet_ekle": "Yeni Maliyet Ekle",
+    "kategori_2": "Kategori",
+    "malzeme_3": "Malzeme",
+    "işçilik_3": "İşçilik",
+    "ekipman_4": "Ekipman",
+    "taşıma_3": "Taşıma",
+    "izin_2": "İzin",
+    "diğer_2": "Diğer",
+    "proje_2": "Proje",
+    "ofis_kat_3_yenileme_9": "Ofis Kat 3 Yenileme",
+    "anvers_lojistik_merkezi_6": "Anvers Lojistik Merkezi",
+    "gent_konut_kompleksi_7": "Gent Konut Kompleksi",
+    "liège_otomotiv_tesisleri_5": "Liège Otomotiv Tesisleri",
+    "brugge_tarihi_restorasyon_4": "Brugge Tarihi Restorasyon",
+    "charleroi_fabrika_yenileme_3": "Charleroi Fabrika Yenileme",
+    "genel_5": "Genel",
+    "miktar_2": "Miktar (€)",
+    "tarih_2": "Tarih",
+    "açıklama_2": "Açıklama",
+    "faturaek_no_opsiyonel": "Fatura/Ek No (opsiyonel)",
+    "iptal": "İptal",
+    "kaydet": "Kaydet",
+    "maliyet_düzenle": "Maliyet Düzenle",
+    "kategori_3": "Kategori",
+    "malzeme_4": "Malzeme",
+    "işçilik_4": "İşçilik",
+    "ekipman_5": "Ekipman",
+    "taşıma_4": "Taşıma",
+    "izin_3": "İzin",
+    "diğer_3": "Diğer",
+    "proje_3": "Proje",
+    "ofis_kat_3_yenileme_10": "Ofis Kat 3 Yenileme",
+    "anvers_lojistik_merkezi_7": "Anvers Lojistik Merkezi",
+    "gent_konut_kompleksi_8": "Gent Konut Kompleksi",
+    "liège_otomotiv_tesisleri_6": "Liège Otomotiv Tesisleri",
+    "brugge_tarihi_restorasyon_5": "Brugge Tarihi Restorasyon",
+    "charleroi_fabrika_yenileme_4": "Charleroi Fabrika Yenileme",
+    "genel_6": "Genel",
+    "miktar_3": "Miktar (€)",
+    "tarih_3": "Tarih",
+    "açıklama_3": "Açıklama",
+    "izocam_cam_yünü_levha_50mm_120m²_2": "İzocam cam yünü levha 50mm — 120m²",
+    "iptal_2": "İptal",
+    "güncelle": "Güncelle",
+    "maliyet_sil": "Maliyet Sil",
+    "_2450_malzeme": "€12.450 — Malzeme",
+    "iptal_3": "İptal",
+    "sil": "Sil",
+    "aria_menu": "Menu",
+    "ph_maliyet_ara": "Maliyet ara...",
+    "aria_tema": "Tema",
+    "aria_bildirimler": "Bildirimler",
+    "ph_açıklama_veya_proje_ara": "Açıklama veya proje ara...",
+    "ph_başlangıç": "Başlangıç",
+    "ph_bitiş": "Bitiş",
+    "ph_örn_5000": "örn: 5000",
+    "ph_maliyet_detayları": "Maliyet detayları...",
+    "ph_örn_ftr-2025-0042": "örn: FTR-2025-0042"
+  },
+  "en": {
+    "buildpro_maliyet_yönetimi": "BuildPro — Maliyet Management",
+    "buildpro": "BuildPro",
+    "genel": "General",
+    "dashboard": "Dashboard",
+    "projeler": "Projects",
+    "personel": "Staff",
+    "şantiyeler": "Sites",
+    "operasyon": "Operations",
+    "takvim": "Calendar",
+    "maliyetler": "Costs",
+    "ekipman": "Equipment",
+    "müşteri": "Client",
+    "müşteriler": "Clients",
+    "teklifler": "Quotes",
+    "ayarlar": "Settings",
+    "maliyet_yönetimi": "Cost Management",
+    "buildpro_maliyetler": "BuildPro / Maliyetler",
+    "_24m": "€1.24M",
+    "toplam_bütçe": "Total Budget",
+    "__yıllık_artış": "↑ 8% annual increase",
+    "_92k": "€892K",
+    "gerçekleşen_maliyet": "Actual Cost",
+    "_19_oran": "↓ 71.9% rate",
+    "_48k": "€348K",
+    "kalan_bütçe": "Remaining Budget",
+    "_81_kalan": "↑ 28.1% remaining",
+    "_7k": "€47K",
+    "bütçe_aşımı_riski": "Budget Overrun Risk",
+    "__proje": "↓ 2 projects",
+    "bütçe_vs_gerçekleşen": "📊 Budget vs Actual",
+    "proje_bazında_karşılaştırma": "Project-based comparison",
+    "ofis_yenileme": "Ofis Yenileme",
+    "anvers_lojistik": "Antwerp Logistics",
+    "gent_konut": "Ghent Residential",
+    "liège_otomotiv": "Liège Automotive",
+    "kategori_dağılımı": "📑 Category Distribution",
+    "gerçekleşen_maliyetler": "Actual costs",
+    "malzeme": "Material",
+    "_75k": "€375K",
+    "işçilik": "Labor",
+    "_76k": "€276K",
+    "ekipman_2": "Equipment",
+    "_34k": "€134K",
+    "taşıma": "Transport",
+    "_2k": "€62K",
+    "izindiğer": "Leave/Other",
+    "_5k": "€45K",
+    "trend": "📈 Trend",
+    "aylık_maliyet_akışı": "Monthly cost flow",
+    "aylık_maliyet_trend_grafiği_alanı": "Monthly cost trend chart area",
+    "maliyet_kayıtları": "Cost Records",
+    "_5_kayıt_son_güncelleme_15052025": "25 kayıt — Son güncelleme: 15.05.2025",
+    "dışa_aktar": "📥 Export",
+    "maliyet_ekle": "Add + Maliyet",
+    "tüm_kategoriler": "All Categories",
+    "malzeme_2": "Material",
+    "işçilik_2": "Labor",
+    "ekipman_3": "Equipment",
+    "taşıma_2": "Transport",
+    "izin": "Leave",
+    "diğer": "Other",
+    "tüm_projeler": "All projects",
+    "ofis_kat_3_yenileme": "Office Floor 3 Renovation",
+    "anvers_lojistik_merkezi": "Anvers Lojistik Merkezi",
+    "gent_konut_kompleksi": "Gent Konut Kompleksi",
+    "liège_otomotiv_tesisleri": "Liège Otomotiv Tesisleri",
+    "brugge_tarihi_restorasyon": "Brugge Tarihi Restorasyon",
+    "charleroi_fabrika_yenileme": "Charleroi Fabrika Yenileme",
+    "kategori": "Category",
+    "proje": "Project",
+    "miktar": "Quantity",
+    "tarih": "Date",
+    "açıklama": "Description",
+    "actions": "Actions",
+    "ofis_kat_3_yenileme_2": "Office Floor 3 Renovation",
+    "_2450": "€12.450",
+    "_5052025": "15.05.2025",
+    "izocam_cam_yünü_levha_50mm_120m²": "İzocam cam yünü levha 50mm — 120m²",
+    "ofis_kat_3_yenileme_3": "Office Floor 3 Renovation",
+    "_200": "€8.200",
+    "_4052025": "14.05.2025",
+    "haftalık_personel_maaş_ödemesi_7_kişi": "Haftalık personel maaş ödemesi — 7 kişi",
+    "anvers_lojistik_merkezi_2": "Anvers Lojistik Merkezi",
+    "_800": "€4.800",
+    "_3052025": "13.05.2025",
+    "liebherr_vinç_kiralama_2_hafta": "Liebherr vinç kiralama — 2 hafta",
+    "gent_konut_kompleksi_2": "Gent Konut Kompleksi",
+    "_3600": "€23.600",
+    "_2052025": "12.05.2025",
+    "beton_c3037_85m³_pompa_hizmeti": "Beton C30/37 — 85m³ + pompa hizmeti",
+    "anvers_lojistik_merkezi_3": "Anvers Lojistik Merkezi",
+    "_850": "€1.850",
+    "_1052025": "11.05.2025",
+    "ağır_malzeme_nakliyesi_anvers_gent": "Ağır malzeme nakliyesi — Anvers → Gent",
+    "genel_2": "General",
+    "_200_2": "€3.200",
+    "_0052025": "10.05.2025",
+    "mehmet_kaya_yıllık_izin_ücreti_14_gün": "Mehmet Kaya yıllık izin ücreti — 14 gün",
+    "ofis_kat_3_yenileme_4": "Office Floor 3 Renovation",
+    "_780": "€6.780",
+    "_9052025": "09.05.2025",
+    "kompozit_cephe_paneli_alucobond_4mm_45m²": "Kompozit cephe paneli — Alucobond 4mm, 45m²",
+    "liège_otomotiv_tesisleri_2": "Liège Otomotiv Tesisleri",
+    "_1500": "€11.500",
+    "_8052025": "08.05.2025",
+    "özel_kaynakçı_ekibi_5_gün_x_8_kişi": "Özel kaynakçı ekibi — 5 gün x 8 kişi",
+    "gent_konut_kompleksi_3": "Gent Konut Kompleksi",
+    "_400": "€2.400",
+    "_7052025": "07.05.2025",
+    "bobcat_s650_yedek_parça_yağ_değişimi": "Bobcat S650 yedek parça + yağ değişimi",
+    "brugge_tarihi_restorasyon_2": "Brugge Tarihi Restorasyon",
+    "_200_3": "€9.200",
+    "_6052025": "06.05.2025",
+    "orijinal_tuğla_kireç_harcı_ile_500_adet": "Orijinal tuğla — kireç harcı ile, 500 adet",
+    "ofis_kat_3_yenileme_5": "Office Floor 3 Renovation",
+    "_90": "€890",
+    "_5052025_2": "05.05.2025",
+    "vinç_nakliyesi_depodan_şantiyeye": "Vinç nakliyesi — depodan şantiyeye",
+    "charleroi_fabrika_yenileme_2": "Charleroi Fabrika Yenileme",
+    "_300": "€7.300",
+    "_4052025_2": "04.05.2025",
+    "hazırlık_ekibi_4_kişi_x_1_hafta": "Hazırlık ekibi — 4 kişi x 1 hafta",
+    "anvers_lojistik_merkezi_4": "Anvers Lojistik Merkezi",
+    "_1200": "€31.200",
+    "_3052025_2": "03.05.2025",
+    "çelik_konstrüksiyon_h_profil_12_ton": "Çelik konstrüksiyon H profil — 12 ton",
+    "liège_otomotiv_tesisleri_3": "Liège Otomotiv Tesisleri",
+    "_8500": "€18.500",
+    "_2052025_2": "02.05.2025",
+    "aggreko_jeneratör_kiralama_500kva_1_ay": "Aggreko jeneratör kiralama — 500kVA, 1 ay",
+    "gent_konut_kompleksi_4": "Gent Konut Kompleksi",
+    "_600": "€5.600",
+    "_1052025_2": "01.05.2025",
+    "seramik_fayans_60x60_150m²_yapıştırıcı": "Seramik fayans — 60x60, 150m² + yapıştırıcı",
+    "ofis_kat_3_yenileme_6": "Office Floor 3 Renovation",
+    "_200_4": "€8.200",
+    "_0042025": "30.04.2025",
+    "haftalık_personel_maaş_ödemesi_7_kişi_2": "Haftalık personel maaş ödemesi — 7 kişi",
+    "genel_3": "General",
+    "_100": "€2.100",
+    "_9042025": "29.04.2025",
+    "jan_de_vries_yıllık_izin_ücreti_10_gün": "Jan De Vries yıllık izin ücreti — 10 gün",
+    "brugge_tarihi_restorasyon_3": "Brugge Tarihi Restorasyon",
+    "_200_5": "€1.200",
+    "_8042025": "28.04.2025",
+    "özel_tuğla_nakliyesi_brüksel_brugge": "Özel tuğla nakliyesi — Brüksel → Brugge",
+    "liège_otomotiv_tesisleri_4": "Liège Otomotiv Tesisleri",
+    "_4800": "€14.800",
+    "_7042025": "27.04.2025",
+    "endüstriyel_zemin_epoksi_800m²_uygulama": "Endüstriyel zemin epoksi — 800m² + uygulama",
+    "ofis_kat_3_yenileme_7": "Office Floor 3 Renovation",
+    "_450": "€1.450",
+    "_6042025": "26.04.2025",
+    "hilti_te_2000_yedek_uç_seti_servis": "Hilti TE 2000 yedek uç seti + servis",
+    "anvers_lojistik_merkezi_5": "Anvers Lojistik Merkezi",
+    "_900": "€8.900",
+    "_5042025": "25.04.2025",
+    "yangın_yalıtım_malzemesi_300m²_rockwool": "Yangın yalıtım malzemesi — 300m² Rockwool",
+    "gent_konut_kompleksi_5": "Gent Konut Kompleksi",
+    "_400_2": "€9.400",
+    "_4042025": "24.04.2025",
+    "haftalık_personel_maaş_ödemesi_6_kişi": "Haftalık personel maaş ödemesi — 6 kişi",
+    "ofis_kat_3_yenileme_8": "Office Floor 3 Renovation",
+    "_200_6": "€3.200",
+    "_3042025": "23.04.2025",
+    "elektrik_tesisat_malzemesi_kablo_boru_priz": "Elektrik tesisat malzemesi — kablo, boru, priz",
+    "gent_konut_kompleksi_6": "Gent Konut Kompleksi",
+    "_600_2": "€3.600",
+    "_2042025": "22.04.2025",
+    "layher_iskele_sistemi_kiralama_2_hafta_uzatma": "Layher iskele sistemi kiralama — 2 hafta uzatma",
+    "genel_4": "General",
+    "_800_2": "€2.800",
+    "_1042025": "21.04.2025",
+    "isg_danışmanlık_hizmeti_aylık_retainer": "İSG danışmanlık hizmeti — aylık retainer",
+    "yeni_maliyet_ekle": "New Add Cost",
+    "kategori_2": "Category",
+    "malzeme_3": "Material",
+    "işçilik_3": "Labor",
+    "ekipman_4": "Equipment",
+    "taşıma_3": "Transport",
+    "izin_2": "Leave",
+    "diğer_2": "Other",
+    "proje_2": "Project",
+    "ofis_kat_3_yenileme_9": "Office Floor 3 Renovation",
+    "anvers_lojistik_merkezi_6": "Anvers Lojistik Merkezi",
+    "gent_konut_kompleksi_7": "Gent Konut Kompleksi",
+    "liège_otomotiv_tesisleri_5": "Liège Otomotiv Tesisleri",
+    "brugge_tarihi_restorasyon_4": "Brugge Tarihi Restorasyon",
+    "charleroi_fabrika_yenileme_3": "Charleroi Fabrika Yenileme",
+    "genel_5": "General",
+    "miktar_2": "Amount (€)",
+    "tarih_2": "Date",
+    "açıklama_2": "Description",
+    "faturaek_no_opsiyonel": "Invoice/Ref No (optional)",
+    "iptal": "Cancel",
+    "kaydet": "Save",
+    "maliyet_düzenle": "Edit Cost",
+    "kategori_3": "Category",
+    "malzeme_4": "Material",
+    "işçilik_4": "Labor",
+    "ekipman_5": "Equipment",
+    "taşıma_4": "Transport",
+    "izin_3": "Leave",
+    "diğer_3": "Other",
+    "proje_3": "Project",
+    "ofis_kat_3_yenileme_10": "Office Floor 3 Renovation",
+    "anvers_lojistik_merkezi_7": "Anvers Lojistik Merkezi",
+    "gent_konut_kompleksi_8": "Gent Konut Kompleksi",
+    "liège_otomotiv_tesisleri_6": "Liège Otomotiv Tesisleri",
+    "brugge_tarihi_restorasyon_5": "Brugge Tarihi Restorasyon",
+    "charleroi_fabrika_yenileme_4": "Charleroi Fabrika Yenileme",
+    "genel_6": "General",
+    "miktar_3": "Amount (€)",
+    "tarih_3": "Date",
+    "açıklama_3": "Description",
+    "izocam_cam_yünü_levha_50mm_120m²_2": "İzocam cam yünü levha 50mm — 120m²",
+    "iptal_2": "Cancel",
+    "güncelle": "Update",
+    "maliyet_sil": "Delete Cost",
+    "_2450_malzeme": "€12.450 — Malzeme",
+    "iptal_3": "Cancel",
+    "sil": "Delete",
+    "aria_menu": "Menu",
+    "ph_maliyet_ara": "Search costs...",
+    "aria_tema": "Theme",
+    "aria_bildirimler": "Notifications",
+    "ph_açıklama_veya_proje_ara": "Search description or project...",
+    "ph_başlangıç": "Start",
+    "ph_bitiş": "End",
+    "ph_örn_5000": "e.g. 5000",
+    "ph_maliyet_detayları": "Cost details...",
+    "ph_örn_ftr-2025-0042": "e.g. INV-2025-0042"
+  },
+  "nl": {
+    "buildpro_maliyet_yönetimi": "BuildPro — Maliyet Beheer",
+    "buildpro": "BuildPro",
+    "genel": "Algemeen",
+    "dashboard": "Dashboard",
+    "projeler": "Projecten",
+    "personel": "Personeel",
+    "şantiyeler": "Werven",
+    "operasyon": "Operaties",
+    "takvim": "Kalender",
+    "maliyetler": "Kosten",
+    "ekipman": "Uitrusting",
+    "müşteri": "Klant",
+    "müşteriler": "Klanten",
+    "teklifler": "Offertes",
+    "ayarlar": "Instellingen",
+    "maliyet_yönetimi": "Kost Beheer",
+    "buildpro_maliyetler": "BuildPro / Maliyetler",
+    "_24m": "€1.24M",
+    "toplam_bütçe": "Totaal Budget",
+    "__yıllık_artış": "↑ 8% jaarlijkse stijging",
+    "_92k": "€892K",
+    "gerçekleşen_maliyet": "Werkelijke Kosten",
+    "_19_oran": "↓ 71,9% tarief",
+    "_48k": "€348K",
+    "kalan_bütçe": "Resterend Budget",
+    "_81_kalan": "↑ 28,1% resterend",
+    "_7k": "€47K",
+    "bütçe_aşımı_riski": "Budgetoverschrijdingsrisico",
+    "__proje": "↓ 2 projecten",
+    "bütçe_vs_gerçekleşen": "📊 Budget vs Werkelijk",
+    "proje_bazında_karşılaştırma": "Projectvergelijking",
+    "ofis_yenileme": "Ofis Yenileme",
+    "anvers_lojistik": "Antwerpen Logistiek",
+    "gent_konut": "Gent Woonproject",
+    "liège_otomotiv": "Luik Automotive",
+    "kategori_dağılımı": "📑 Categorieverdeling",
+    "gerçekleşen_maliyetler": "Werkelijke kosten",
+    "malzeme": "Materiaal",
+    "_75k": "€375K",
+    "işçilik": "Arbeid",
+    "_76k": "€276K",
+    "ekipman_2": "Uitrusting",
+    "_34k": "€134K",
+    "taşıma": "Transport",
+    "_2k": "€62K",
+    "izindiğer": "Verlof/Overig",
+    "_5k": "€45K",
+    "trend": "📈 Trend",
+    "aylık_maliyet_akışı": "Maandelijkse kostenstroom",
+    "aylık_maliyet_trend_grafiği_alanı": "Maandelijks kostentrend grafiekgebied",
+    "maliyet_kayıtları": "Kostenrecords",
+    "_5_kayıt_son_güncelleme_15052025": "25 kayıt — Son güncelleme: 15.05.2025",
+    "dışa_aktar": "📥 Exporteren",
+    "maliyet_ekle": "+ Maliyet Toevoegen",
+    "tüm_kategoriler": "Alle Categorieën",
+    "malzeme_2": "Materiaal",
+    "işçilik_2": "Arbeid",
+    "ekipman_3": "Uitrusting",
+    "taşıma_2": "Transport",
+    "izin": "Verlof",
+    "diğer": "Overig",
+    "tüm_projeler": "Alle projecten",
+    "ofis_kat_3_yenileme": "Kantoorverdieping 3 Renovatie",
+    "anvers_lojistik_merkezi": "Anvers Lojistik Merkezi",
+    "gent_konut_kompleksi": "Gent Konut Kompleksi",
+    "liège_otomotiv_tesisleri": "Liège Otomotiv Tesisleri",
+    "brugge_tarihi_restorasyon": "Brugge Tarihi Restorasyon",
+    "charleroi_fabrika_yenileme": "Charleroi Fabrika Yenileme",
+    "kategori": "Categorie",
+    "proje": "Project",
+    "miktar": "Aantal",
+    "tarih": "Datum",
+    "açıklama": "Beschrijving",
+    "actions": "Actions",
+    "ofis_kat_3_yenileme_2": "Kantoorverdieping 3 Renovatie",
+    "_2450": "€12.450",
+    "_5052025": "15.05.2025",
+    "izocam_cam_yünü_levha_50mm_120m²": "İzocam cam yünü levha 50mm — 120m²",
+    "ofis_kat_3_yenileme_3": "Kantoorverdieping 3 Renovatie",
+    "_200": "€8.200",
+    "_4052025": "14.05.2025",
+    "haftalık_personel_maaş_ödemesi_7_kişi": "Haftalık personel maaş ödemesi — 7 kişi",
+    "anvers_lojistik_merkezi_2": "Anvers Lojistik Merkezi",
+    "_800": "€4.800",
+    "_3052025": "13.05.2025",
+    "liebherr_vinç_kiralama_2_hafta": "Liebherr vinç kiralama — 2 hafta",
+    "gent_konut_kompleksi_2": "Gent Konut Kompleksi",
+    "_3600": "€23.600",
+    "_2052025": "12.05.2025",
+    "beton_c3037_85m³_pompa_hizmeti": "Beton C30/37 — 85m³ + pompa hizmeti",
+    "anvers_lojistik_merkezi_3": "Anvers Lojistik Merkezi",
+    "_850": "€1.850",
+    "_1052025": "11.05.2025",
+    "ağır_malzeme_nakliyesi_anvers_gent": "Ağır malzeme nakliyesi — Anvers → Gent",
+    "genel_2": "Algemeen",
+    "_200_2": "€3.200",
+    "_0052025": "10.05.2025",
+    "mehmet_kaya_yıllık_izin_ücreti_14_gün": "Mehmet Kaya yıllık izin ücreti — 14 gün",
+    "ofis_kat_3_yenileme_4": "Kantoorverdieping 3 Renovatie",
+    "_780": "€6.780",
+    "_9052025": "09.05.2025",
+    "kompozit_cephe_paneli_alucobond_4mm_45m²": "Kompozit cephe paneli — Alucobond 4mm, 45m²",
+    "liège_otomotiv_tesisleri_2": "Liège Otomotiv Tesisleri",
+    "_1500": "€11.500",
+    "_8052025": "08.05.2025",
+    "özel_kaynakçı_ekibi_5_gün_x_8_kişi": "Özel kaynakçı ekibi — 5 gün x 8 kişi",
+    "gent_konut_kompleksi_3": "Gent Konut Kompleksi",
+    "_400": "€2.400",
+    "_7052025": "07.05.2025",
+    "bobcat_s650_yedek_parça_yağ_değişimi": "Bobcat S650 yedek parça + yağ değişimi",
+    "brugge_tarihi_restorasyon_2": "Brugge Tarihi Restorasyon",
+    "_200_3": "€9.200",
+    "_6052025": "06.05.2025",
+    "orijinal_tuğla_kireç_harcı_ile_500_adet": "Orijinal tuğla — kireç harcı ile, 500 adet",
+    "ofis_kat_3_yenileme_5": "Kantoorverdieping 3 Renovatie",
+    "_90": "€890",
+    "_5052025_2": "05.05.2025",
+    "vinç_nakliyesi_depodan_şantiyeye": "Vinç nakliyesi — depodan şantiyeye",
+    "charleroi_fabrika_yenileme_2": "Charleroi Fabrika Yenileme",
+    "_300": "€7.300",
+    "_4052025_2": "04.05.2025",
+    "hazırlık_ekibi_4_kişi_x_1_hafta": "Hazırlık ekibi — 4 kişi x 1 hafta",
+    "anvers_lojistik_merkezi_4": "Anvers Lojistik Merkezi",
+    "_1200": "€31.200",
+    "_3052025_2": "03.05.2025",
+    "çelik_konstrüksiyon_h_profil_12_ton": "Çelik konstrüksiyon H profil — 12 ton",
+    "liège_otomotiv_tesisleri_3": "Liège Otomotiv Tesisleri",
+    "_8500": "€18.500",
+    "_2052025_2": "02.05.2025",
+    "aggreko_jeneratör_kiralama_500kva_1_ay": "Aggreko jeneratör kiralama — 500kVA, 1 ay",
+    "gent_konut_kompleksi_4": "Gent Konut Kompleksi",
+    "_600": "€5.600",
+    "_1052025_2": "01.05.2025",
+    "seramik_fayans_60x60_150m²_yapıştırıcı": "Seramik fayans — 60x60, 150m² + yapıştırıcı",
+    "ofis_kat_3_yenileme_6": "Kantoorverdieping 3 Renovatie",
+    "_200_4": "€8.200",
+    "_0042025": "30.04.2025",
+    "haftalık_personel_maaş_ödemesi_7_kişi_2": "Haftalık personel maaş ödemesi — 7 kişi",
+    "genel_3": "Algemeen",
+    "_100": "€2.100",
+    "_9042025": "29.04.2025",
+    "jan_de_vries_yıllık_izin_ücreti_10_gün": "Jan De Vries yıllık izin ücreti — 10 gün",
+    "brugge_tarihi_restorasyon_3": "Brugge Tarihi Restorasyon",
+    "_200_5": "€1.200",
+    "_8042025": "28.04.2025",
+    "özel_tuğla_nakliyesi_brüksel_brugge": "Özel tuğla nakliyesi — Brüksel → Brugge",
+    "liège_otomotiv_tesisleri_4": "Liège Otomotiv Tesisleri",
+    "_4800": "€14.800",
+    "_7042025": "27.04.2025",
+    "endüstriyel_zemin_epoksi_800m²_uygulama": "Endüstriyel zemin epoksi — 800m² + uygulama",
+    "ofis_kat_3_yenileme_7": "Kantoorverdieping 3 Renovatie",
+    "_450": "€1.450",
+    "_6042025": "26.04.2025",
+    "hilti_te_2000_yedek_uç_seti_servis": "Hilti TE 2000 yedek uç seti + servis",
+    "anvers_lojistik_merkezi_5": "Anvers Lojistik Merkezi",
+    "_900": "€8.900",
+    "_5042025": "25.04.2025",
+    "yangın_yalıtım_malzemesi_300m²_rockwool": "Yangın yalıtım malzemesi — 300m² Rockwool",
+    "gent_konut_kompleksi_5": "Gent Konut Kompleksi",
+    "_400_2": "€9.400",
+    "_4042025": "24.04.2025",
+    "haftalık_personel_maaş_ödemesi_6_kişi": "Haftalık personel maaş ödemesi — 6 kişi",
+    "ofis_kat_3_yenileme_8": "Kantoorverdieping 3 Renovatie",
+    "_200_6": "€3.200",
+    "_3042025": "23.04.2025",
+    "elektrik_tesisat_malzemesi_kablo_boru_priz": "Elektrik tesisat malzemesi — kablo, boru, priz",
+    "gent_konut_kompleksi_6": "Gent Konut Kompleksi",
+    "_600_2": "€3.600",
+    "_2042025": "22.04.2025",
+    "layher_iskele_sistemi_kiralama_2_hafta_uzatma": "Layher iskele sistemi kiralama — 2 hafta uzatma",
+    "genel_4": "Algemeen",
+    "_800_2": "€2.800",
+    "_1042025": "21.04.2025",
+    "isg_danışmanlık_hizmeti_aylık_retainer": "İSG danışmanlık hizmeti — aylık retainer",
+    "yeni_maliyet_ekle": "Nieuwe Kost Toevoegen",
+    "kategori_2": "Categorie",
+    "malzeme_3": "Materiaal",
+    "işçilik_3": "Arbeid",
+    "ekipman_4": "Uitrusting",
+    "taşıma_3": "Transport",
+    "izin_2": "Verlof",
+    "diğer_2": "Overig",
+    "proje_2": "Project",
+    "ofis_kat_3_yenileme_9": "Kantoorverdieping 3 Renovatie",
+    "anvers_lojistik_merkezi_6": "Anvers Lojistik Merkezi",
+    "gent_konut_kompleksi_7": "Gent Konut Kompleksi",
+    "liège_otomotiv_tesisleri_5": "Liège Otomotiv Tesisleri",
+    "brugge_tarihi_restorasyon_4": "Brugge Tarihi Restorasyon",
+    "charleroi_fabrika_yenileme_3": "Charleroi Fabrika Yenileme",
+    "genel_5": "Algemeen",
+    "miktar_2": "Bedrag (€)",
+    "tarih_2": "Datum",
+    "açıklama_2": "Beschrijving",
+    "faturaek_no_opsiyonel": "Factuur/Ref Nr (optioneel)",
+    "iptal": "Annuleren",
+    "kaydet": "Opslaan",
+    "maliyet_düzenle": "Kost Bewerken",
+    "kategori_3": "Categorie",
+    "malzeme_4": "Materiaal",
+    "işçilik_4": "Arbeid",
+    "ekipman_5": "Uitrusting",
+    "taşıma_4": "Transport",
+    "izin_3": "Verlof",
+    "diğer_3": "Overig",
+    "proje_3": "Project",
+    "ofis_kat_3_yenileme_10": "Kantoorverdieping 3 Renovatie",
+    "anvers_lojistik_merkezi_7": "Anvers Lojistik Merkezi",
+    "gent_konut_kompleksi_8": "Gent Konut Kompleksi",
+    "liège_otomotiv_tesisleri_6": "Liège Otomotiv Tesisleri",
+    "brugge_tarihi_restorasyon_5": "Brugge Tarihi Restorasyon",
+    "charleroi_fabrika_yenileme_4": "Charleroi Fabrika Yenileme",
+    "genel_6": "Algemeen",
+    "miktar_3": "Bedrag (€)",
+    "tarih_3": "Datum",
+    "açıklama_3": "Beschrijving",
+    "izocam_cam_yünü_levha_50mm_120m²_2": "İzocam cam yünü levha 50mm — 120m²",
+    "iptal_2": "Annuleren",
+    "güncelle": "Bijwerken",
+    "maliyet_sil": "Kost Verwijderen",
+    "_2450_malzeme": "€12.450 — Malzeme",
+    "iptal_3": "Annuleren",
+    "sil": "Verwijderen",
+    "aria_menu": "Menu",
+    "ph_maliyet_ara": "Kosten zoeken...",
+    "aria_tema": "Thema",
+    "aria_bildirimler": "Meldingen",
+    "ph_açıklama_veya_proje_ara": "Zoek beschrijving of project...",
+    "ph_başlangıç": "Start",
+    "ph_bitiş": "Einde",
+    "ph_örn_5000": "bijv. 5000",
+    "ph_maliyet_detayları": "Kostendetails...",
+    "ph_örn_ftr-2025-0042": "bijv. FTR-2025-0042"
+  }
+};
+let currentLang = localStorage.getItem('buildpro_lang') || 'tr';
+document.documentElement.lang = currentLang;
+function switchLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('buildpro_lang', lang);
+  document.documentElement.lang = lang;
+  applyLang();
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+}
+function applyLang() {
+  const t = i18n[currentLang] || i18n['tr'];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) {
+      const attr = el.getAttribute('data-i18n-attr');
+      if (attr) {
+        el.setAttribute(attr, t[key]);
+      } else if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        if (el.type !== 'submit' && el.type !== 'button') {
+          // keep value for inputs unless button
+        }
+        el.value = t[key];
+      } else if (el.tagName === 'OPTION') {
+        el.textContent = t[key];
+      } else {
+        el.textContent = t[key];
+      }
+    }
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key]) el.placeholder = t[key];
+  });
+  const titleEl = document.querySelector('title');
+  if (titleEl) {
+    const key = titleEl.getAttribute('data-i18n');
+    if (key && t[key]) document.title = t[key];
+  }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  applyLang();
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === currentLang));
+});
+</script></body>
 </html>

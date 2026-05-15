@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="tr" data-theme="dark">
+<html data-theme="dark" lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BuildPro — Admin Dashboard</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/components.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title data-i18n="buildpro_admin_dashboard">BuildPro — Admin Dashboard</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="css/main.css" rel="stylesheet"/>
+<link href="css/components.css" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
 /* ── Variables Override ── */
@@ -41,7 +41,7 @@
 
 /* ── Sidebar ── */
 .sidebar {
-  width:280px; background:var(--bg-card); border-right:1px solid var(--border-color);
+  width:260px; background:var(--bg-card); border-right:1px solid var(--border-color);
   display:flex; flex-direction:column; position:fixed; inset:0 auto 0 0; z-index:100;
   transition:transform var(--duration-slow) var(--ease-out);
 }
@@ -126,7 +126,7 @@
 .sidebar-user-info span { font-size:var(--text-xs); color:var(--text-muted); }
 
 /* ── Main ── */
-.main { flex:1; margin-left:280px; display:flex; flex-direction:column; min-height:100vh; transition:margin-left var(--duration-slow); }
+.main { flex:1; margin-left:260px; display:flex; flex-direction:column; min-height:100vh; transition:margin-left var(--duration-slow); }
 .sidebar.collapsed ~ .main { margin-left:0; }
 
 /* ── Header ── */
@@ -194,7 +194,7 @@
 .content { flex:1; padding:var(--space-6); }
 
 /* ── KPI Row ── */
-.kpi-row { display:grid; grid-template-columns:repeat(6,1fr); gap:var(--space-4); margin-bottom:var(--space-6); }
+.kpi-row { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--space-4); margin-bottom:var(--space-6); }
 .kpi-card {
   background:var(--glass-bg); backdrop-filter:blur(16px) saturate(1.4);
   -webkit-backdrop-filter:blur(16px) saturate(1.4);
@@ -466,1031 +466,1010 @@
 </style>
 </head>
 <body>
-
 <!-- Sidebar Overlay (mobile) -->
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
 <div class="dashboard">
-
 <!-- Sidebar -->
 <aside class="sidebar" id="sidebar">
-  <div class="sidebar-header">
-    <div class="sidebar-logo">
-      <div class="logo-icon">BP</div>
-      <div>
-        <h2>BuildPro</h2>
-        <p>BuildPro Demo BV</p>
-      </div>
-    </div>
-    <div class="sector-dropdown" id="sectorDropdown">
-      <button class="sector-dropdown-toggle" onclick="toggleSectorDropdown()">
-        <span class="sector-icon">🏗️</span>
-        <span class="sector-name">İnşaat</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
-      <div class="sector-dropdown-menu">
-        <a class="sector-dropdown-item current" href="#">
-          <span class="sector-item-icon">🏗️</span>
-          <span class="sector-item-name">İnşaat</span>
-          <span class="sector-item-status active">Aktif</span>
-        </a>
-        <a class="sector-dropdown-item" href="../cleanfix-vercel/dashboard.html">
-          <span class="sector-item-icon">🧹</span>
-          <span class="sector-item-name">Temizlik</span>
-          <span class="sector-item-status active">Aktif</span>
-        </a>
-        <a class="sector-dropdown-item" href="#">
-          <span class="sector-item-icon">🚗</span>
-          <span class="sector-item-name">CarWash</span>
-          <span class="sector-item-status active">Aktif</span>
-        </a>
-        <a class="sector-dropdown-item" href="#">
-          <span class="sector-item-icon">✂️</span>
-          <span class="sector-item-name">Berber & Kuaför</span>
-          <span class="sector-item-status planned">Planlanan</span>
-        </a>
-        <a class="sector-dropdown-item" href="#">
-          <span class="sector-item-icon">🍽️</span>
-          <span class="sector-item-name">Restoran</span>
-          <span class="sector-item-status planned">Planlanan</span>
-        </a>
-      </div>
-    </div>
-  </div>
-  <nav class="sidebar-nav">
-    <div class="nav-group">
-      <div class="nav-label">Ana Menü</div>
-      <a class="nav-item active" href="dashboard.html">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+<div class="sidebar-header">
+<div class="sidebar-logo">
+<div class="logo-icon" data-i18n="bp">BP</div>
+<div>
+<h2 data-i18n="buildpro">BuildPro</h2>
+<p data-i18n="buildpro_demo_bv">BuildPro Demo BV</p>
+</div>
+</div>
+<div class="sector-dropdown" id="sectorDropdown">
+<button class="sector-dropdown-toggle" onclick="toggleSectorDropdown()">
+<span class="sector-icon">🏗️</span>
+<span class="sector-name" data-i18n="inşaat">İnşaat</span>
+<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+</button>
+<div class="sector-dropdown-menu">
+<a class="sector-dropdown-item current" href="#">
+<span class="sector-item-icon">🏗️</span>
+<span class="sector-item-name" data-i18n="inşaat_2">İnşaat</span>
+<span class="sector-item-status active" data-i18n="aktif">Aktif</span>
+</a>
+<a class="sector-dropdown-item" href="../cleanfix-vercel/dashboard.html">
+<span class="sector-item-icon">🧹</span>
+<span class="sector-item-name" data-i18n="temizlik">Temizlik</span>
+<span class="sector-item-status active" data-i18n="aktif_2">Aktif</span>
+</a>
+<a class="sector-dropdown-item" href="#">
+<span class="sector-item-icon">🚗</span>
+<span class="sector-item-name" data-i18n="carwash">CarWash</span>
+<span class="sector-item-status active" data-i18n="aktif_3">Aktif</span>
+</a>
+<a class="sector-dropdown-item" href="#">
+<span class="sector-item-icon">✂️</span>
+<span class="sector-item-name" data-i18n="berber_kuaför">Berber &amp; Kuaför</span>
+<span class="sector-item-status planned" data-i18n="planlanan">Planlanan</span>
+</a>
+<a class="sector-dropdown-item" href="#">
+<span class="sector-item-icon">🍽️</span>
+<span class="sector-item-name" data-i18n="restoran">Restoran</span>
+<span class="sector-item-status planned" data-i18n="planlanan_2">Planlanan</span>
+</a>
+</div>
+</div>
+</div>
+<nav class="sidebar-nav">
+<div class="nav-group">
+<div class="nav-label" data-i18n="ana_menü">Ana Menü</div>
+<a class="nav-item active" href="dashboard.html">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><rect height="7" rx="1" width="7" x="3" y="3"></rect><rect height="7" rx="1" width="7" x="14" y="3"></rect><rect height="7" rx="1" width="7" x="14" y="14"></rect><rect height="7" rx="1" width="7" x="3" y="14"></rect></svg>
         Dashboard
       </a>
-      <a class="nav-item" href="#" onclick="showToast('Projeler sayfası yakında','info')">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+<a class="nav-item" href="#" onclick="showToast('Projeler sayfası yakında','info')">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
         Projeler
         <span class="nav-badge">24</span>
-      </a>
-      <a class="nav-item" href="#" onclick="showToast('Teklifler sayfası yakında','info')">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+</a>
+<a class="nav-item" href="#" onclick="showToast('Teklifler sayfası yakında','info')">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 1v22"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
         Teklifler
         <span class="nav-badge">18</span>
-      </a>
-      <a class="nav-item" href="#" onclick="showToast('Şantiye sayfası yakında','info')">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 22h20"/><path d="M6 22V8l12-4v18"/><path d="M6 12h12"/></svg>
+</a>
+<a class="nav-item" href="#" onclick="showToast('Şantiye sayfası yakında','info')">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M2 22h20"></path><path d="M6 22V8l12-4v18"></path><path d="M6 12h12"></path></svg>
         Şantiye
         <span class="nav-badge">8</span>
-      </a>
-      <a class="nav-item" href="#" onclick="showToast('Ekipman sayfası yakında','info')">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+</a>
+<a class="nav-item" href="#" onclick="showToast('Ekipman sayfası yakında','info')">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
         Ekipman
         <span class="nav-badge">42</span>
-      </a>
-      <a class="nav-item" href="#" onclick="showToast('Personel sayfası yakında','info')">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+</a>
+<a class="nav-item" href="#" onclick="showToast('Personel sayfası yakında','info')">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
         Personel
         <span class="nav-badge">56</span>
-      </a>
-      <a class="nav-item" href="#" onclick="showToast('Stok sayfası yakında','info')">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+</a>
+<a class="nav-item" href="#" onclick="showToast('Stok sayfası yakında','info')">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
         Stok
         <span class="nav-badge">128</span>
-      </a>
-    </div>
-    <div class="nav-group">
-      <div class="nav-label">Finans ve Rapor</div>
-      <a class="nav-item" href="#" onclick="showToast('Maliyet sayfası yakında','info')">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+</a>
+</div>
+<div class="nav-group">
+<div class="nav-label" data-i18n="finans_ve_rapor">Finans ve Rapor</div>
+<a class="nav-item" href="#" onclick="showToast('Maliyet sayfası yakında','info')">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><line x1="12" x2="12" y1="1" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
         Maliyet
       </a>
-      <a class="nav-item" href="#" onclick="showToast('Raporlar sayfası yakında','info')">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+<a class="nav-item" href="#" onclick="showToast('Raporlar sayfası yakında','info')">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg>
         Raporlar
       </a>
-    </div>
-    <div class="nav-group">
-      <div class="nav-label">Diğer</div>
-      <a class="nav-item" href="#" onclick="showToast('Takvim sayfası yakında','info')">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+</div>
+<div class="nav-group">
+<div class="nav-label" data-i18n="diğer">Diğer</div>
+<a class="nav-item" href="#" onclick="showToast('Takvim sayfası yakında','info')">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><rect height="18" rx="2" ry="2" width="18" x="3" y="4"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg>
         Takvim
       </a>
-      <a class="nav-item" href="#" onclick="showToast('Müşteriler sayfası yakında','info')">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+<a class="nav-item" href="#" onclick="showToast('Müşteriler sayfası yakında','info')">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
         Müşteriler
         <span class="nav-badge">84</span>
-      </a>
-      <a class="nav-item" href="#" onclick="showToast('Sektörler yönetimi yakında','info')">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M17 21v-4"/><path d="M7 21v-4"/><path d="M12 21v-4"/></svg>
+</a>
+<a class="nav-item" href="#" onclick="showToast('Sektörler yönetimi yakında','info')">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><rect height="14" rx="2" width="20" x="2" y="3"></rect><path d="M17 21v-4"></path><path d="M7 21v-4"></path><path d="M12 21v-4"></path></svg>
         Sektörler
       </a>
-      <a class="nav-item" href="#" onclick="showToast('Ayarlar yakında','info')">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+<a class="nav-item" href="#" onclick="showToast('Ayarlar yakında','info')">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
         Ayarlar
       </a>
-    </div>
-  </nav>
-  <div class="sidebar-footer">
-    <div class="sidebar-user">
-      <div class="avatar avatar-sm">PV</div>
-      <div class="sidebar-user-info">
-        <p>Pieter Van den Berg</p>
-        <span>Proje Müdürü</span>
-      </div>
-    </div>
-  </div>
+</div>
+</nav>
+<div class="sidebar-footer">
+<div class="sidebar-user">
+<div class="avatar avatar-sm">PV</div>
+<div class="sidebar-user-info">
+<p data-i18n="pieter_van_den_berg">Pieter Van den Berg</p>
+<span data-i18n="proje_müdürü">Proje Müdürü</span>
+</div>
+</div>
+</div>
 </aside>
-
 <!-- Main -->
 <div class="main">
+<!-- Header -->
+<header class="header">
+<div class="header-left">
+<button class="menu-btn" data-i18n="title_menü" data-i18n-attr="title" id="menuBtn" title="Menü">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><line x1="3" x2="21" y1="12" y2="12"></line><line x1="3" x2="21" y1="6" y2="6"></line><line x1="3" x2="21" y1="18" y2="18"></line></svg>
+</button>
+<h1 class="page-title" data-i18n="dashboard">Dashboard</h1>
+</div>
+<div class="header-right">
+<div class="lang-switcher" style="display:flex;gap:4px;margin-right:12px;">
+<button class="lang-btn" data-lang="tr" onclick="switchLang('tr')" style="padding:4px 8px;font-size:12px;border-radius:4px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;">TR</button>
+<button class="lang-btn" data-lang="en" onclick="switchLang('en')" style="padding:4px 8px;font-size:12px;border-radius:4px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;">EN</button>
+<button class="lang-btn" data-lang="nl" onclick="switchLang('nl')" style="padding:4px 8px;font-size:12px;border-radius:4px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;">NL</button>
+</div>
+<style>.lang-btn.active{background:var(--teal-500)!important;color:white!important;border-color:var(--teal-500)!important;font-weight:600;}</style>
 
-  <!-- Header -->
-  <header class="header">
-    <div class="header-left">
-      <button class="menu-btn" id="menuBtn" title="Menü">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-      <h1 class="page-title">Dashboard</h1>
-    </div>
-    <div class="header-right">
-      <div class="search-input" style="max-width:240px;" id="headerSearch">
-        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" class="form-input" placeholder="Projeler, teklifler, personel ara..." style="padding-left:36px;font-size:var(--text-sm);">
+<div class="search-input" id="headerSearch" style="max-width:240px;">
+<svg class="search-icon" fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+<input class="form-input" data-i18n-placeholder="ph_projeler_teklifler_personel_ara" placeholder="Projeler, teklifler, personel ara..." style="padding-left:36px;font-size:var(--text-sm);" type="text"/>
+</div>
+<div style="position:relative;">
+<button class="header-btn" data-i18n="title_bildirimler" data-i18n-attr="title" id="notifBtn" title="Bildirimler">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+<span class="badge-count" id="notifBadge">5</span>
+</button>
+<div class="notif-dropdown" id="notifDropdown">
+<div class="notif-dropdown-header">
+<h4 data-i18n="bildirimler">Bildirimler</h4>
+<a data-i18n="tümünü_okundu_işaretle" href="#" onclick="markAllRead();return false;">Tümünü Okundu İşaretle</a>
+</div>
+<div class="notif-dropdown-body" id="notifDropdownBody">
+<div class="notif-dropdown-item unread">
+<div class="notif-dot"></div>
+<div class="notif-content"><p>Gecikme uyarısı: <strong data-i18n="merkez_ofis">Merkez Ofis</strong> projesi 3 gün geride</p><span data-i18n="__dakika_önce">5 dakika önce</span></div>
+</div>
+<div class="notif-dropdown-item unread">
+<div class="notif-dot"></div>
+<div class="notif-content"><p>Yeni teklif: <strong data-i18n="qt-2026-112">#QT-2026-112</strong> €450,000</p><span data-i18n="_2_dakika_önce">12 dakika önce</span></div>
+</div>
+<div class="notif-dropdown-item unread">
+<div class="notif-dot"></div>
+<div class="notif-content"><p>Stok alarmı: <strong data-i18n="beton_c30">Beton C30</strong> 12 m³ kaldı</p><span data-i18n="_2_dakika_önce_2">32 dakika önce</span></div>
+</div>
+<div class="notif-dropdown-item unread">
+<div class="notif-dot"></div>
+<div class="notif-content"><p>Şantiye raporu: <strong data-i18n="rivierpark">Rivierpark</strong> günlük tamamlandı</p><span data-i18n="__saat_önce">1 saat önce</span></div>
+</div>
+<div class="notif-dropdown-item unread">
+<div class="notif-dot"></div>
+<div class="notif-content"><p>Ekipman bakımı: <strong data-i18n="vinç_vc-04">Vinç #VC-04</strong> yarın planlandı</p><span data-i18n="__saat_önce_2">2 saat önce</span></div>
+</div>
+<div class="notif-dropdown-item">
+<div class="notif-dot read"></div>
+<div class="notif-content"><p>Teklif <strong data-i18n="qt-2026-110">#QT-2026-110</strong> onaylandı — €280,000</p><span data-i18n="__saat_önce_3">3 saat önce</span></div>
+</div>
+<div class="notif-dropdown-item">
+<div class="notif-dot read"></div>
+<div class="notif-content"><p>Yeni personel kaydı: <strong data-i18n="jan_de_smet">Jan De Smet</strong></p><span data-i18n="__saat_önce_4">4 saat önce</span></div>
+</div>
+</div>
+</div>
+</div>
+<button class="header-btn" data-i18n="title_tema" data-i18n-attr="title" id="themeToggle" title="Tema">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><circle cx="12" cy="12" r="5"></circle><line x1="12" x2="12" y1="1" y2="3"></line><line x1="12" x2="12" y1="21" y2="23"></line><line x1="4.22" x2="5.64" y1="4.22" y2="5.64"></line><line x1="18.36" x2="19.78" y1="18.36" y2="19.78"></line><line x1="1" x2="3" y1="12" y2="12"></line><line x1="21" x2="23" y1="12" y2="12"></line></svg>
+</button>
+<div class="avatar avatar-sm" style="cursor:pointer;">PV</div>
+</div>
+</header>
+<!-- Content -->
+<main class="content">
+<!-- Quick Actions -->
+<div class="quick-actions-bar">
+<div class="quick-action" onclick="openModal('addProjectModal');showToast('Yeni proje modalı açıldı','success')">
+<span class="icon">📋</span> Yeni Proje
       </div>
-      <div style="position:relative;">
-        <button class="header-btn" id="notifBtn" title="Bildirimler">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-          <span class="badge-count" id="notifBadge">5</span>
-        </button>
-        <div class="notif-dropdown" id="notifDropdown">
-          <div class="notif-dropdown-header">
-            <h4>Bildirimler</h4>
-            <a href="#" onclick="markAllRead();return false;">Tümünü Okundu İşaretle</a>
-          </div>
-          <div class="notif-dropdown-body" id="notifDropdownBody">
-            <div class="notif-dropdown-item unread">
-              <div class="notif-dot"></div>
-              <div class="notif-content"><p>Gecikme uyarısı: <strong>Merkez Ofis</strong> projesi 3 gün geride</p><span>5 dakika önce</span></div>
-            </div>
-            <div class="notif-dropdown-item unread">
-              <div class="notif-dot"></div>
-              <div class="notif-content"><p>Yeni teklif: <strong>#QT-2026-112</strong> €450,000</p><span>12 dakika önce</span></div>
-            </div>
-            <div class="notif-dropdown-item unread">
-              <div class="notif-dot"></div>
-              <div class="notif-content"><p>Stok alarmı: <strong>Beton C30</strong> 12 m³ kaldı</p><span>32 dakika önce</span></div>
-            </div>
-            <div class="notif-dropdown-item unread">
-              <div class="notif-dot"></div>
-              <div class="notif-content"><p>Şantiye raporu: <strong>Rivierpark</strong> günlük tamamlandı</p><span>1 saat önce</span></div>
-            </div>
-            <div class="notif-dropdown-item unread">
-              <div class="notif-dot"></div>
-              <div class="notif-content"><p>Ekipman bakımı: <strong>Vinç #VC-04</strong> yarın planlandı</p><span>2 saat önce</span></div>
-            </div>
-            <div class="notif-dropdown-item">
-              <div class="notif-dot read"></div>
-              <div class="notif-content"><p>Teklif <strong>#QT-2026-110</strong> onaylandı — €280,000</p><span>3 saat önce</span></div>
-            </div>
-            <div class="notif-dropdown-item">
-              <div class="notif-dot read"></div>
-              <div class="notif-content"><p>Yeni personel kaydı: <strong>Jan De Smet</strong></p><span>4 saat önce</span></div>
-            </div>
-          </div>
-        </div>
+<div class="quick-action" onclick="openModal('addQuoteModal');showToast('Yeni teklif modalı açıldı','success')">
+<span class="icon">📄</span> Yeni Teklif
       </div>
-      <button class="header-btn" id="themeToggle" title="Tema">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
-      </button>
-      <div class="avatar avatar-sm" style="cursor:pointer;">PV</div>
-    </div>
-  </header>
-
-  <!-- Content -->
-  <main class="content">
-
-    <!-- Quick Actions -->
-    <div class="quick-actions-bar">
-      <div class="quick-action" onclick="openModal('addProjectModal');showToast('Yeni proje modalı açıldı','success')">
-        <span class="icon">📋</span> Yeni Proje
+<div class="quick-action" onclick="showToast('Personel ekleme sayfası yakında','info')">
+<span class="icon">👷</span> Personel Ekle
       </div>
-      <div class="quick-action" onclick="openModal('addQuoteModal');showToast('Yeni teklif modalı açıldı','success')">
-        <span class="icon">📄</span> Yeni Teklif
+<div class="quick-action" onclick="showToast('Şantiye raporu sayfası yakında','info')">
+<span class="icon">🏗️</span> Şantiye Raporu
       </div>
-      <div class="quick-action" onclick="showToast('Personel ekleme sayfası yakında','info')">
-        <span class="icon">👷</span> Personel Ekle
+<div class="quick-action" onclick="showToast('Maliyet girişi sayfası yakında','info')">
+<span class="icon">💰</span> Maliyet Girişi
       </div>
-      <div class="quick-action" onclick="showToast('Şantiye raporu sayfası yakında','info')">
-        <span class="icon">🏗️</span> Şantiye Raporu
+<div class="quick-action" onclick="showToast('Ekipman rezervasyonu sayfası yakında','info')">
+<span class="icon">⚙️</span> Ekipman Rezervasyonu
       </div>
-      <div class="quick-action" onclick="showToast('Maliyet girişi sayfası yakında','info')">
-        <span class="icon">💰</span> Maliyet Girişi
-      </div>
-      <div class="quick-action" onclick="showToast('Ekipman rezervasyonu sayfası yakında','info')">
-        <span class="icon">⚙️</span> Ekipman Rezervasyonu
-      </div>
-    </div>
-
-    <!-- KPI Cards Row -->
-    <div class="kpi-row">
-      <div class="kpi-card reveal">
-        <div class="kpi-top">
-          <div class="kpi-icon" style="background:rgba(20,184,166,0.1);color:var(--teal-500);">📋</div>
-          <div class="kpi-trend up">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+</div>
+<!-- KPI Cards Row -->
+<div class="kpi-row">
+<div class="kpi-card reveal">
+<div class="kpi-top">
+<div class="kpi-icon" style="background:rgba(20,184,166,0.1);color:var(--teal-500);">📋</div>
+<div class="kpi-trend up">
+<svg fill="none" height="12" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" width="12"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline></svg>
             +4
           </div>
-        </div>
-        <div class="kpi-value" data-target="24" data-suffix="">0</div>
-        <div class="kpi-label">Aktif Projeler</div>
-        <div class="kpi-sparkline">
-          <svg viewBox="0 0 200 50" preserveAspectRatio="none">
-            <polyline fill="none" stroke="var(--teal-500)" stroke-width="2" points="0,45 28,38 56,42 84,28 112,22 140,18 168,12 196,8"/>
-            <polygon fill="var(--teal-500)" opacity="0.15" points="0,45 28,38 56,42 84,28 112,22 140,18 168,12 196,8 196,50 0,50"/>
-          </svg>
-        </div>
-      </div>
-      <div class="kpi-card reveal reveal-delay-1">
-        <div class="kpi-top">
-          <div class="kpi-icon" style="background:rgba(59,130,246,0.1);color:var(--info-500);">📄</div>
-          <div class="kpi-trend up">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+</div>
+<div class="kpi-value" data-suffix="" data-target="24">0</div>
+<div class="kpi-label" data-i18n="aktif_projeler">Aktif Projeler</div>
+<div class="kpi-sparkline">
+<svg preserveaspectratio="none" viewbox="0 0 200 50">
+<polyline fill="none" points="0,45 28,38 56,42 84,28 112,22 140,18 168,12 196,8" stroke="var(--teal-500)" stroke-width="2"></polyline>
+<polygon fill="var(--teal-500)" opacity="0.15" points="0,45 28,38 56,42 84,28 112,22 140,18 168,12 196,8 196,50 0,50"></polygon>
+</svg>
+</div>
+</div>
+<div class="kpi-card reveal reveal-delay-1">
+<div class="kpi-top">
+<div class="kpi-icon" style="background:rgba(59,130,246,0.1);color:var(--info-500);">📄</div>
+<div class="kpi-trend up">
+<svg fill="none" height="12" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" width="12"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline></svg>
             +2
           </div>
-        </div>
-        <div class="kpi-value" data-target="18" data-suffix="">0</div>
-        <div class="kpi-label">Açık Teklifler</div>
-        <div class="kpi-sparkline">
-          <svg viewBox="0 0 200 50" preserveAspectRatio="none">
-            <polyline fill="none" stroke="var(--info-500)" stroke-width="2" points="0,40 28,35 56,38 84,30 112,28 140,24 168,20 196,15"/>
-            <polygon fill="var(--info-500)" opacity="0.15" points="0,40 28,35 56,38 84,30 112,28 140,24 168,20 196,15 196,50 0,50"/>
-          </svg>
-        </div>
-      </div>
-      <div class="kpi-card reveal reveal-delay-2">
-        <div class="kpi-top">
-          <div class="kpi-icon" style="background:rgba(245,158,11,0.1);color:var(--amber-500);">🏗️</div>
-          <div class="kpi-trend up">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+</div>
+<div class="kpi-value" data-suffix="" data-target="18">0</div>
+<div class="kpi-label" data-i18n="açık_teklifler">Açık Teklifler</div>
+<div class="kpi-sparkline">
+<svg preserveaspectratio="none" viewbox="0 0 200 50">
+<polyline fill="none" points="0,40 28,35 56,38 84,30 112,28 140,24 168,20 196,15" stroke="var(--info-500)" stroke-width="2"></polyline>
+<polygon fill="var(--info-500)" opacity="0.15" points="0,40 28,35 56,38 84,30 112,28 140,24 168,20 196,15 196,50 0,50"></polygon>
+</svg>
+</div>
+</div>
+<div class="kpi-card reveal reveal-delay-2">
+<div class="kpi-top">
+<div class="kpi-icon" style="background:rgba(245,158,11,0.1);color:var(--amber-500);">🏗️</div>
+<div class="kpi-trend up">
+<svg fill="none" height="12" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" width="12"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline></svg>
             +1
           </div>
-        </div>
-        <div class="kpi-value" data-target="8" data-suffix="">0</div>
-        <div class="kpi-label">Şantiye Sayısı</div>
-        <div class="kpi-sparkline">
-          <svg viewBox="0 0 200 50" preserveAspectRatio="none">
-            <polyline fill="none" stroke="var(--amber-500)" stroke-width="2" points="0,42 28,36 56,40 84,30 112,26 140,28 168,18 196,14"/>
-            <polygon fill="var(--amber-500)" opacity="0.15" points="0,42 28,36 56,40 84,30 112,26 140,28 168,18 196,14 196,50 0,50"/>
-          </svg>
-        </div>
-      </div>
-      <div class="kpi-card reveal reveal-delay-3">
-        <div class="kpi-top">
-          <div class="kpi-icon" style="background:rgba(16,185,129,0.1);color:var(--success-500);">€</div>
-          <div class="kpi-trend up">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+</div>
+<div class="kpi-value" data-suffix="" data-target="8">0</div>
+<div class="kpi-label" data-i18n="şantiye_sayısı">Şantiye Sayısı</div>
+<div class="kpi-sparkline">
+<svg preserveaspectratio="none" viewbox="0 0 200 50">
+<polyline fill="none" points="0,42 28,36 56,40 84,30 112,26 140,28 168,18 196,14" stroke="var(--amber-500)" stroke-width="2"></polyline>
+<polygon fill="var(--amber-500)" opacity="0.15" points="0,42 28,36 56,40 84,30 112,26 140,28 168,18 196,14 196,50 0,50"></polygon>
+</svg>
+</div>
+</div>
+<div class="kpi-card reveal reveal-delay-3">
+<div class="kpi-top">
+<div class="kpi-icon" style="background:rgba(16,185,129,0.1);color:var(--success-500);">€</div>
+<div class="kpi-trend up">
+<svg fill="none" height="12" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" width="12"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline></svg>
             +8%
           </div>
-        </div>
-        <div class="kpi-value" data-target="1420000" data-prefix="€">€0</div>
-        <div class="kpi-label">Aylık Maliyet</div>
-        <div class="kpi-sparkline">
-          <svg viewBox="0 0 200 50" preserveAspectRatio="none">
-            <polyline fill="none" stroke="var(--success-500)" stroke-width="2" points="0,42 28,36 56,40 84,30 112,26 140,28 168,18 196,14"/>
-            <polygon fill="var(--success-500)" opacity="0.15" points="0,42 28,36 56,40 84,30 112,26 140,28 168,18 196,14 196,50 0,50"/>
-          </svg>
-        </div>
-      </div>
-      <div class="kpi-card reveal reveal-delay-4">
-        <div class="kpi-top">
-          <div class="kpi-icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6;">✓</div>
-          <div class="kpi-trend up">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+</div>
+<div class="kpi-value" data-prefix="€" data-target="1420000">€0</div>
+<div class="kpi-label" data-i18n="aylık_maliyet">Aylık Maliyet</div>
+<div class="kpi-sparkline">
+<svg preserveaspectratio="none" viewbox="0 0 200 50">
+<polyline fill="none" points="0,42 28,36 56,40 84,30 112,26 140,28 168,18 196,14" stroke="var(--success-500)" stroke-width="2"></polyline>
+<polygon fill="var(--success-500)" opacity="0.15" points="0,42 28,36 56,40 84,30 112,26 140,28 168,18 196,14 196,50 0,50"></polygon>
+</svg>
+</div>
+</div>
+<div class="kpi-card reveal reveal-delay-4">
+<div class="kpi-top">
+<div class="kpi-icon" style="background:rgba(139,92,246,0.1);color:#14b8a6;">✓</div>
+<div class="kpi-trend up">
+<svg fill="none" height="12" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" width="12"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline></svg>
             +6
           </div>
-        </div>
-        <div class="kpi-value" data-target="156" data-suffix="">0</div>
-        <div class="kpi-label">Tamamlanan İşler</div>
-        <div class="kpi-sparkline">
-          <svg viewBox="0 0 200 50" preserveAspectRatio="none">
-            <polyline fill="none" stroke="#8b5cf6" stroke-width="2" points="0,45 28,42 56,40 84,35 112,30 140,25 168,20 196,15"/>
-            <polygon fill="#8b5cf6" opacity="0.15" points="0,45 28,42 56,40 84,35 112,30 140,25 168,20 196,15 196,50 0,50"/>
-          </svg>
-        </div>
-      </div>
-      <div class="kpi-card reveal reveal-delay-5">
-        <div class="kpi-top">
-          <div class="kpi-icon" style="background:rgba(244,63,94,0.1);color:var(--error-500);">⏳</div>
-          <div class="kpi-trend down">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/></svg>
+</div>
+<div class="kpi-value" data-suffix="" data-target="156">0</div>
+<div class="kpi-label" data-i18n="tamamlanan_işler">Tamamlanan İşler</div>
+<div class="kpi-sparkline">
+<svg preserveaspectratio="none" viewbox="0 0 200 50">
+<polyline fill="none" points="0,45 28,42 56,40 84,35 112,30 140,25 168,20 196,15" stroke="#14b8a6" stroke-width="2"></polyline>
+<polygon fill="#14b8a6" opacity="0.15" points="0,45 28,42 56,40 84,35 112,30 140,25 168,20 196,15 196,50 0,50"></polygon>
+</svg>
+</div>
+</div>
+<div class="kpi-card reveal reveal-delay-5">
+<div class="kpi-top">
+<div class="kpi-icon" style="background:rgba(244,63,94,0.1);color:var(--error-500);">⏳</div>
+<div class="kpi-trend down">
+<svg fill="none" height="12" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" width="12"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline></svg>
             -2
           </div>
-        </div>
-        <div class="kpi-value" data-target="12" data-suffix="">0</div>
-        <div class="kpi-label">Bekleyen Onay</div>
-        <div class="kpi-sparkline">
-          <svg viewBox="0 0 200 50" preserveAspectRatio="none">
-            <polyline fill="none" stroke="var(--error-500)" stroke-width="2" points="0,35 28,38 56,36 84,40 112,38 140,42 168,40 196,44"/>
-            <polygon fill="var(--error-500)" opacity="0.15" points="0,35 28,38 56,36 84,40 112,38 140,42 168,40 196,44 196,50 0,50"/>
-          </svg>
-        </div>
-      </div>
-    </div>
-
-    <!-- Sector Toggle Panel -->
-    <div class="sector-toggle-panel reveal">
-      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:var(--space-3);">
-        <div class="card-title">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal-500)" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M17 21v-4"/><path d="M7 21v-4"/><path d="M12 21v-4"/></svg>
+</div>
+<div class="kpi-value" data-suffix="" data-target="12">0</div>
+<div class="kpi-label" data-i18n="bekleyen_onay">Bekleyen Onay</div>
+<div class="kpi-sparkline">
+<svg preserveaspectratio="none" viewbox="0 0 200 50">
+<polyline fill="none" points="0,35 28,38 56,36 84,40 112,38 140,42 168,40 196,44" stroke="var(--error-500)" stroke-width="2"></polyline>
+<polygon fill="var(--error-500)" opacity="0.15" points="0,35 28,38 56,36 84,40 112,38 140,42 168,40 196,44 196,50 0,50"></polygon>
+</svg>
+</div>
+</div>
+</div>
+<!-- Sector Toggle Panel -->
+<div class="sector-toggle-panel reveal">
+<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:var(--space-3);">
+<div class="card-title">
+<svg fill="none" height="18" stroke="var(--teal-500)" stroke-width="2" viewbox="0 0 24 24" width="18"><rect height="14" rx="2" width="20" x="2" y="3"></rect><path d="M17 21v-4"></path><path d="M7 21v-4"></path><path d="M12 21v-4"></path></svg>
           Aktif Sektörler
         </div>
-        <span style="font-size:var(--text-xs); color:var(--text-muted);">6 / 6 aktif</span>
-      </div>
-      <div class="sector-toggle-grid">
-        <div class="sector-toggle-item">
-          <div class="st-info">
-            <span class="st-icon">🏠</span>
-            <div>
-              <div class="st-name">Konut İnşaatı</div>
-              <div class="st-desc">7 proje aktif</div>
-            </div>
-          </div>
-          <label class="toggle">
-            <input type="checkbox" checked onchange="toggleSector(this, 'Konut İnşaatı')">
-            <span class="toggle-track"></span>
-          </label>
-        </div>
-        <div class="sector-toggle-item">
-          <div class="st-info">
-            <span class="st-icon">🏢</span>
-            <div>
-              <div class="st-name">Ticari İnşaat</div>
-              <div class="st-desc">5 proje aktif</div>
-            </div>
-          </div>
-          <label class="toggle">
-            <input type="checkbox" checked onchange="toggleSector(this, 'Ticari İnşaat')">
-            <span class="toggle-track"></span>
-          </label>
-        </div>
-        <div class="sector-toggle-item">
-          <div class="st-info">
-            <span class="st-icon">🏛️</span>
-            <div>
-              <div class="st-name">Renovasyon</div>
-              <div class="st-desc">4 proje aktif</div>
-            </div>
-          </div>
-          <label class="toggle">
-            <input type="checkbox" checked onchange="toggleSector(this, 'Renovasyon')">
-            <span class="toggle-track"></span>
-          </label>
-        </div>
-        <div class="sector-toggle-item">
-          <div class="st-info">
-            <span class="st-icon">🌉</span>
-            <div>
-              <div class="st-name">Altyapı & İmar</div>
-              <div class="st-desc">3 proje aktif</div>
-            </div>
-          </div>
-          <label class="toggle">
-            <input type="checkbox" checked onchange="toggleSector(this, 'Altyapı')">
-            <span class="toggle-track"></span>
-          </label>
-        </div>
-        <div class="sector-toggle-item">
-          <div class="st-info">
-            <span class="st-icon">🏭</span>
-            <div>
-              <div class="st-name">Endüstriyel Tesis</div>
-              <div class="st-desc">3 proje aktif</div>
-            </div>
-          </div>
-          <label class="toggle">
-            <input type="checkbox" checked onchange="toggleSector(this, 'Endüstriyel')">
-            <span class="toggle-track"></span>
-          </label>
-        </div>
-        <div class="sector-toggle-item">
-          <div class="st-info">
-            <span class="st-icon">🌳</span>
-            <div>
-              <div class="st-name">Peyzaj & Dış Mekan</div>
-              <div class="st-desc">2 proje aktif</div>
-            </div>
-          </div>
-          <label class="toggle">
-            <input type="checkbox" checked onchange="toggleSector(this, 'Peyzaj')">
-            <span class="toggle-track"></span>
-          </label>
-        </div>
-      </div>
-    </div>
-
-    <!-- Dashboard Grid -->
-    <div class="dash-grid">
-
-      <!-- Budget Chart (Chart.js) -->
-      <div class="glass-card span-2 reveal">
-        <div class="card-header">
-          <div class="card-title">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal-500)" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+<span data-i18n="__6_aktif" style="font-size:var(--text-xs); color:var(--text-muted);">6 / 6 aktif</span>
+</div>
+<div class="sector-toggle-grid">
+<div class="sector-toggle-item">
+<div class="st-info">
+<span class="st-icon">🏠</span>
+<div>
+<div class="st-name" data-i18n="konut_inşaatı">Konut İnşaatı</div>
+<div class="st-desc" data-i18n="__proje_aktif">7 proje aktif</div>
+</div>
+</div>
+<label class="toggle">
+<input checked="" onchange="toggleSector(this, 'Konut İnşaatı')" type="checkbox"/>
+<span class="toggle-track"></span>
+</label>
+</div>
+<div class="sector-toggle-item">
+<div class="st-info">
+<span class="st-icon">🏢</span>
+<div>
+<div class="st-name" data-i18n="ticari_inşaat">Ticari İnşaat</div>
+<div class="st-desc" data-i18n="__proje_aktif_2">5 proje aktif</div>
+</div>
+</div>
+<label class="toggle">
+<input checked="" onchange="toggleSector(this, 'Ticari İnşaat')" type="checkbox"/>
+<span class="toggle-track"></span>
+</label>
+</div>
+<div class="sector-toggle-item">
+<div class="st-info">
+<span class="st-icon">🏛️</span>
+<div>
+<div class="st-name" data-i18n="renovasyon">Renovasyon</div>
+<div class="st-desc" data-i18n="__proje_aktif_3">4 proje aktif</div>
+</div>
+</div>
+<label class="toggle">
+<input checked="" onchange="toggleSector(this, 'Renovasyon')" type="checkbox"/>
+<span class="toggle-track"></span>
+</label>
+</div>
+<div class="sector-toggle-item">
+<div class="st-info">
+<span class="st-icon">🌉</span>
+<div>
+<div class="st-name" data-i18n="altyapı_imar">Altyapı &amp; İmar</div>
+<div class="st-desc" data-i18n="__proje_aktif_4">3 proje aktif</div>
+</div>
+</div>
+<label class="toggle">
+<input checked="" onchange="toggleSector(this, 'Altyapı')" type="checkbox"/>
+<span class="toggle-track"></span>
+</label>
+</div>
+<div class="sector-toggle-item">
+<div class="st-info">
+<span class="st-icon">🏭</span>
+<div>
+<div class="st-name" data-i18n="endüstriyel_tesis">Endüstriyel Tesis</div>
+<div class="st-desc" data-i18n="__proje_aktif_5">3 proje aktif</div>
+</div>
+</div>
+<label class="toggle">
+<input checked="" onchange="toggleSector(this, 'Endüstriyel')" type="checkbox"/>
+<span class="toggle-track"></span>
+</label>
+</div>
+<div class="sector-toggle-item">
+<div class="st-info">
+<span class="st-icon">🌳</span>
+<div>
+<div class="st-name" data-i18n="peyzaj_dış_mekan">Peyzaj &amp; Dış Mekan</div>
+<div class="st-desc" data-i18n="__proje_aktif_6">2 proje aktif</div>
+</div>
+</div>
+<label class="toggle">
+<input checked="" onchange="toggleSector(this, 'Peyzaj')" type="checkbox"/>
+<span class="toggle-track"></span>
+</label>
+</div>
+</div>
+</div>
+<!-- Dashboard Grid -->
+<div class="dash-grid">
+<!-- Budget Chart (Chart.js) -->
+<div class="glass-card span-2 reveal">
+<div class="card-header">
+<div class="card-title">
+<svg fill="none" height="18" stroke="var(--teal-500)" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 20V10"></path><path d="M18 20V4"></path><path d="M6 20v-4"></path></svg>
             Bütçe Analizi
           </div>
-          <div style="display:flex;gap:4px;background:var(--bg-secondary);padding:3px;border-radius:var(--radius-md);">
-            <button class="chart-toggle-btn active" data-period="monthly" style="padding:5px 14px;border-radius:var(--radius-sm);border:none;background:var(--bg-card);font-size:11px;font-weight:700;color:var(--teal-500);cursor:pointer;box-shadow:var(--shadow-sm);">Aylık</button>
-            <button class="chart-toggle-btn" data-period="quarterly" style="padding:5px 14px;border-radius:var(--radius-sm);border:none;background:none;font-size:11px;font-weight:700;color:var(--text-muted);cursor:pointer;">Çeyreklik</button>
-          </div>
-        </div>
-        <div class="chart-container">
-          <canvas id="budgetChart"></canvas>
-        </div>
-      </div>
-
-      <!-- Calendar Widget -->
-      <div class="glass-card calendar-widget reveal reveal-delay-1">
-        <div class="cal-header">
-          <span class="cal-month">Mayıs 2026</span>
-          <div class="cal-nav">
-            <button class="cal-nav-btn">‹</button>
-            <button class="cal-nav-btn">›</button>
-          </div>
-        </div>
-        <div class="cal-grid">
-          <div class="cal-weekday">Pt</div><div class="cal-weekday">Sa</div><div class="cal-weekday">Ça</div>
-          <div class="cal-weekday">Pe</div><div class="cal-weekday">Cu</div><div class="cal-weekday">Ct</div><div class="cal-weekday">Pa</div>
-          <div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div>
-          <div class="cal-day">1</div><div class="cal-day has-event">2</div><div class="cal-day has-event">3</div><div class="cal-day">4</div>
-          <div class="cal-day has-event">5</div><div class="cal-day">6</div><div class="cal-day has-event">7</div><div class="cal-day">8</div>
-          <div class="cal-day has-event">9</div><div class="cal-day">10</div><div class="cal-day has-event">11</div><div class="cal-day today">12</div>
-          <div class="cal-day has-event">13</div><div class="cal-day">14</div><div class="cal-day has-event">15</div><div class="cal-day">16</div>
-          <div class="cal-day has-event">17</div><div class="cal-day">18</div><div class="cal-day has-event">19</div><div class="cal-day">20</div>
-          <div class="cal-day">21</div><div class="cal-day has-event">22</div><div class="cal-day">23</div><div class="cal-day has-event">24</div>
-          <div class="cal-day">25</div><div class="cal-day has-event">26</div><div class="cal-day">27</div><div class="cal-day has-event">28</div>
-          <div class="cal-day">29</div><div class="cal-day has-event">30</div><div class="cal-day">31</div><div class="cal-day empty"></div>
-        </div>
-      </div>
-
-      <!-- Project Progress Bar Chart -->
-      <div class="glass-card reveal">
-        <div class="card-header">
-          <div class="card-title">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber-500)" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+<div style="display:flex;gap:4px;background:var(--bg-secondary);padding:3px;border-radius:var(--radius-md);">
+<button class="chart-toggle-btn active" data-i18n="aylık" data-period="monthly" style="padding:5px 14px;border-radius:var(--radius-sm);border:none;background:var(--bg-card);font-size:11px;font-weight:700;color:var(--teal-500);cursor:pointer;box-shadow:var(--shadow-sm);">Aylık</button>
+<button class="chart-toggle-btn" data-i18n="çeyreklik" data-period="quarterly" style="padding:5px 14px;border-radius:var(--radius-sm);border:none;background:none;font-size:11px;font-weight:700;color:var(--text-muted);cursor:pointer;">Çeyreklik</button>
+</div>
+</div>
+<div class="chart-container">
+<canvas id="budgetChart"></canvas>
+</div>
+</div>
+<!-- Calendar Widget -->
+<div class="glass-card calendar-widget reveal reveal-delay-1">
+<div class="cal-header">
+<span class="cal-month" data-i18n="mayıs_2026">Mayıs 2026</span>
+<div class="cal-nav">
+<button class="cal-nav-btn">‹</button>
+<button class="cal-nav-btn">›</button>
+</div>
+</div>
+<div class="cal-grid">
+<div class="cal-weekday" data-i18n="pt">Pt</div><div class="cal-weekday" data-i18n="sa">Sa</div><div class="cal-weekday" data-i18n="ça">Ça</div>
+<div class="cal-weekday" data-i18n="pe">Pe</div><div class="cal-weekday" data-i18n="cu">Cu</div><div class="cal-weekday" data-i18n="ct">Ct</div><div class="cal-weekday" data-i18n="pa">Pa</div>
+<div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div>
+<div class="cal-day">1</div><div class="cal-day has-event">2</div><div class="cal-day has-event">3</div><div class="cal-day">4</div>
+<div class="cal-day has-event">5</div><div class="cal-day">6</div><div class="cal-day has-event">7</div><div class="cal-day">8</div>
+<div class="cal-day has-event">9</div><div class="cal-day">10</div><div class="cal-day has-event">11</div><div class="cal-day today">12</div>
+<div class="cal-day has-event">13</div><div class="cal-day">14</div><div class="cal-day has-event">15</div><div class="cal-day">16</div>
+<div class="cal-day has-event">17</div><div class="cal-day">18</div><div class="cal-day has-event">19</div><div class="cal-day">20</div>
+<div class="cal-day">21</div><div class="cal-day has-event">22</div><div class="cal-day">23</div><div class="cal-day has-event">24</div>
+<div class="cal-day">25</div><div class="cal-day has-event">26</div><div class="cal-day">27</div><div class="cal-day has-event">28</div>
+<div class="cal-day">29</div><div class="cal-day has-event">30</div><div class="cal-day">31</div><div class="cal-day empty"></div>
+</div>
+</div>
+<!-- Project Progress Bar Chart -->
+<div class="glass-card reveal">
+<div class="card-header">
+<div class="card-title">
+<svg fill="none" height="18" stroke="var(--amber-500)" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
             Sektör Dağılımı (Bütçe)
           </div>
-        </div>
-        <div class="chart-container-sm">
-          <canvas id="sectorChart"></canvas>
-        </div>
-      </div>
-
-      <!-- Sector Progress Doughnut -->
-      <div class="glass-card reveal reveal-delay-1">
-        <div class="card-header">
-          <div class="card-title">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--info-500)" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+</div>
+<div class="chart-container-sm">
+<canvas id="sectorChart"></canvas>
+</div>
+</div>
+<!-- Sector Progress Doughnut -->
+<div class="glass-card reveal reveal-delay-1">
+<div class="card-header">
+<div class="card-title">
+<svg fill="none" height="18" stroke="var(--info-500)" stroke-width="2" viewbox="0 0 24 24" width="18"><rect height="18" rx="2" ry="2" width="18" x="3" y="4"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg>
             Proje Durumu
           </div>
-        </div>
-        <div class="chart-container-sm">
-          <canvas id="statusChart"></canvas>
-        </div>
-      </div>
-
-      <!-- Today's Schedule -->
-      <div class="glass-card reveal reveal-delay-2">
-        <div class="card-header">
-          <div class="card-title">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal-500)" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+</div>
+<div class="chart-container-sm">
+<canvas id="statusChart"></canvas>
+</div>
+</div>
+<!-- Today's Schedule -->
+<div class="glass-card reveal reveal-delay-2">
+<div class="card-header">
+<div class="card-title">
+<svg fill="none" height="18" stroke="var(--teal-500)" stroke-width="2" viewbox="0 0 24 24" width="18"><rect height="18" rx="2" ry="2" width="18" x="3" y="4"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg>
             Bugünkü Şantiye Programı
           </div>
-          <span class="badge badge-success" style="font-size:11px;">15 May 2026</span>
-        </div>
-        <div class="card-body" style="padding-top:var(--space-3);">
-          <div class="schedule-list">
-            <div class="schedule-item">
-              <div class="schedule-time">07:00</div>
-              <div class="schedule-dot completed"></div>
-              <div class="schedule-info">
-                <div class="schedule-customer">Rivierpark Konutları</div>
-                <div class="schedule-service">Blok A temel betonu</div>
-              </div>
-              <span class="schedule-status completed">Tamamlandı</span>
-            </div>
-            <div class="schedule-item">
-              <div class="schedule-time">08:30</div>
-              <div class="schedule-dot completed"></div>
-              <div class="schedule-info">
-                <div class="schedule-customer">Merkez Ofis Kulesi</div>
-                <div class="schedule-service">12. kat döşeme kalıbı</div>
-              </div>
-              <span class="schedule-status completed">Tamamlandı</span>
-            </div>
-            <div class="schedule-item">
-              <div class="schedule-time">10:00</div>
-              <div class="schedule-dot in-progress"></div>
-              <div class="schedule-info">
-                <div class="schedule-customer">Grand Hotel Restore</div>
-                <div class="schedule-service">Cephe temizliği ve izolasyon</div>
-              </div>
-              <span class="schedule-status in-progress">Devam Ediyor</span>
-            </div>
-            <div class="schedule-item">
-              <div class="schedule-time">13:00</div>
-              <div class="schedule-dot pending"></div>
-              <div class="schedule-info">
-                <div class="schedule-customer">Nordik Fabrika Genişleme</div>
-                <div class="schedule-service">Çelik konstrüksiyon montajı</div>
-              </div>
-              <span class="schedule-status pending">Bekliyor</span>
-            </div>
-            <div class="schedule-item">
-              <div class="schedule-time">14:30</div>
-              <div class="schedule-dot pending"></div>
-              <div class="schedule-info">
-                <div class="schedule-customer">Liman Yolu Altyapı</div>
-                <div class="schedule-service">Kanalizasyon hattı kazısı</div>
-              </div>
-              <span class="schedule-status pending">Bekliyor</span>
-            </div>
-            <div class="schedule-item">
-              <div class="schedule-time">16:00</div>
-              <div class="schedule-dot pending"></div>
-              <div class="schedule-info">
-                <div class="schedule-customer">Botanik Park</div>
-                <div class="schedule-service">Fidan dikimi ve sulama</div>
-              </div>
-              <span class="schedule-status pending">Bekliyor</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Active Projects Table -->
-      <div class="glass-card span-2 reveal">
-        <div class="card-header">
-          <div class="card-title">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal-500)" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+<span class="badge badge-success" style="font-size:11px;">15 May 2026</span>
+</div>
+<div class="card-body" style="padding-top:var(--space-3);">
+<div class="schedule-list">
+<div class="schedule-item">
+<div class="schedule-time" data-i18n="_700">07:00</div>
+<div class="schedule-dot completed"></div>
+<div class="schedule-info">
+<div class="schedule-customer" data-i18n="rivierpark_konutları">Rivierpark Konutları</div>
+<div class="schedule-service" data-i18n="blok_a_temel_betonu">Blok A temel betonu</div>
+</div>
+<span class="schedule-status completed" data-i18n="tamamlandı">Tamamlandı</span>
+</div>
+<div class="schedule-item">
+<div class="schedule-time" data-i18n="_830">08:30</div>
+<div class="schedule-dot completed"></div>
+<div class="schedule-info">
+<div class="schedule-customer" data-i18n="merkez_ofis_kulesi">Merkez Ofis Kulesi</div>
+<div class="schedule-service" data-i18n="_2_kat_döşeme_kalıbı">12. kat döşeme kalıbı</div>
+</div>
+<span class="schedule-status completed" data-i18n="tamamlandı_2">Tamamlandı</span>
+</div>
+<div class="schedule-item">
+<div class="schedule-time" data-i18n="_000">10:00</div>
+<div class="schedule-dot in-progress"></div>
+<div class="schedule-info">
+<div class="schedule-customer" data-i18n="grand_hotel_restore">Grand Hotel Restore</div>
+<div class="schedule-service" data-i18n="cephe_temizliği_ve_izolasyon">Cephe temizliği ve izolasyon</div>
+</div>
+<span class="schedule-status in-progress" data-i18n="devam_ediyor">Devam Ediyor</span>
+</div>
+<div class="schedule-item">
+<div class="schedule-time" data-i18n="_300">13:00</div>
+<div class="schedule-dot pending"></div>
+<div class="schedule-info">
+<div class="schedule-customer" data-i18n="nordik_fabrika_genişleme">Nordik Fabrika Genişleme</div>
+<div class="schedule-service" data-i18n="çelik_konstrüksiyon_montajı">Çelik konstrüksiyon montajı</div>
+</div>
+<span class="schedule-status pending" data-i18n="bekliyor">Bekliyor</span>
+</div>
+<div class="schedule-item">
+<div class="schedule-time" data-i18n="_430">14:30</div>
+<div class="schedule-dot pending"></div>
+<div class="schedule-info">
+<div class="schedule-customer" data-i18n="liman_yolu_altyapı">Liman Yolu Altyapı</div>
+<div class="schedule-service" data-i18n="kanalizasyon_hattı_kazısı">Kanalizasyon hattı kazısı</div>
+</div>
+<span class="schedule-status pending" data-i18n="bekliyor_2">Bekliyor</span>
+</div>
+<div class="schedule-item">
+<div class="schedule-time" data-i18n="_600">16:00</div>
+<div class="schedule-dot pending"></div>
+<div class="schedule-info">
+<div class="schedule-customer" data-i18n="botanik_park">Botanik Park</div>
+<div class="schedule-service" data-i18n="fidan_dikimi_ve_sulama">Fidan dikimi ve sulama</div>
+</div>
+<span class="schedule-status pending" data-i18n="bekliyor_3">Bekliyor</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Active Projects Table -->
+<div class="glass-card span-2 reveal">
+<div class="card-header">
+<div class="card-title">
+<svg fill="none" height="18" stroke="var(--teal-500)" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
             Aktif Projeler
           </div>
-          <div style="display:flex;gap:8px;">
-            <button class="btn btn-sm btn-secondary" onclick="openModal('addProjectModal')">+ Yeni</button>
-            <a href="#" style="font-size:var(--text-sm);color:var(--teal-500);font-weight:500;" onclick="showToast('Tüm projeler sayfası yakında','info');return false;">Tümünü Gör →</a>
-          </div>
-        </div>
-        <div class="table-wrap">
-          <table class="table table-compact" id="projectsTable">
-            <thead>
-              <tr>
-                <th>Proje Adı</th>
-                <th>Şantiye</th>
-                <th>Sektör</th>
-                <th>Durum (%)</th>
-                <th>Başlangıç</th>
-                <th>Bitiş</th>
-                <th>Bütçe</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Rivierpark Konutları</strong></td>
-                <td>Antwerpen-Noord</td>
-                <td><span class="badge badge-info">Konut</span></td>
-                <td>
-                  <div style="display:flex;align-items:center;gap:8px;">
-                    <div class="progress-bar" style="flex:1;min-width:60px;"><div class="progress-bar-fill" style="width:78%;"></div></div>
-                    <span style="font-size:11px;font-weight:700;min-width:28px;">78%</span>
-                  </div>
-                </td>
-                <td>15 Oca 2025</td>
-                <td>30 Haz 2026</td>
-                <td>€2.4M</td>
-                <td>
-                  <div style="display:flex;gap:4px;">
-                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('viewProjectModal','Rivierpark Konutları')" title="Görüntüle">👁</button>
-                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('editProjectModal','Rivierpark Konutları')" title="Düzenle">✎</button>
-                    <button class="btn btn-icon-sm btn-ghost" onclick="showToast('Rivierpark Konutları silindi','error')" title="Sil">🗑</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td><strong>Merkez Ofis Kulesi</strong></td>
-                <td>Brüksel-Midi</td>
-                <td><span class="badge badge-info">Ticari</span></td>
-                <td>
-                  <div style="display:flex;align-items:center;gap:8px;">
-                    <div class="progress-bar" style="flex:1;min-width:60px;"><div class="progress-bar-fill" style="width:45%;"></div></div>
-                    <span style="font-size:11px;font-weight:700;min-width:28px;">45%</span>
-                  </div>
-                </td>
-                <td>03 Mar 2025</td>
-                <td>15 Ara 2026</td>
-                <td>€5.8M</td>
-                <td>
-                  <div style="display:flex;gap:4px;">
-                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('viewProjectModal','Merkez Ofis Kulesi')" title="Görüntüle">👁</button>
-                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('editProjectModal','Merkez Ofis Kulesi')" title="Düzenle">✎</button>
-                    <button class="btn btn-icon-sm btn-ghost" onclick="showToast('Merkez Ofis Kulesi silindi','error')" title="Sil">🗑</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td><strong>Grand Hotel Restore</strong></td>
-                <td>Brugge-Merkez</td>
-                <td><span class="badge badge-warning">Renovasyon</span></td>
-                <td>
-                  <div style="display:flex;align-items:center;gap:8px;">
-                    <div class="progress-bar" style="flex:1;min-width:60px;"><div class="progress-bar-fill" style="width:62%;"></div></div>
-                    <span style="font-size:11px;font-weight:700;min-width:28px;">62%</span>
-                  </div>
-                </td>
-                <td>20 Eyl 2024</td>
-                <td>30 Eyl 2026</td>
-                <td>€1.2M</td>
-                <td>
-                  <div style="display:flex;gap:4px;">
-                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('viewProjectModal','Grand Hotel Restore')" title="Görüntüle">👁</button>
-                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('editProjectModal','Grand Hotel Restore')" title="Düzenle">✎</button>
-                    <button class="btn btn-icon-sm btn-ghost" onclick="showToast('Grand Hotel Restore silindi','error')" title="Sil">🗑</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td><strong>Liman Yolu Altyapı</strong></td>
-                <td>Gent-Liman</td>
-                <td><span class="badge badge-success">Altyapı</span></td>
-                <td>
-                  <div style="display:flex;align-items:center;gap:8px;">
-                    <div class="progress-bar" style="flex:1;min-width:60px;"><div class="progress-bar-fill" style="width:35%;"></div></div>
-                    <span style="font-size:11px;font-weight:700;min-width:28px;">35%</span>
-                  </div>
-                </td>
-                <td>10 Nis 2025</td>
-                <td>30 May 2027</td>
-                <td>€3.1M</td>
-                <td>
-                  <div style="display:flex;gap:4px;">
-                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('viewProjectModal','Liman Yolu Altyapı')" title="Görüntüle">👁</button>
-                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('editProjectModal','Liman Yolu Altyapı')" title="Düzenle">✎</button>
-                    <button class="btn btn-icon-sm btn-ghost" onclick="showToast('Liman Yolu Altyapı silindi','error')" title="Sil">🗑</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td><strong>Nordik Fabrika Genişleme</strong></td>
-                <td>Leuven-Teknopark</td>
-                <td><span class="badge badge-error">Endüstriyel</span></td>
-                <td>
-                  <div style="display:flex;align-items:center;gap:8px;">
-                    <div class="progress-bar" style="flex:1;min-width:60px;"><div class="progress-bar-fill" style="width:55%;"></div></div>
-                    <span style="font-size:11px;font-weight:700;min-width:28px;">55%</span>
-                  </div>
-                </td>
-                <td>05 Oca 2025</td>
-                <td>20 Ağu 2026</td>
-                <td>€4.5M</td>
-                <td>
-                  <div style="display:flex;gap:4px;">
-                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('viewProjectModal','Nordik Fabrika Genişleme')" title="Görüntüle">👁</button>
-                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('editProjectModal','Nordik Fabrika Genişleme')" title="Düzenle">✎</button>
-                    <button class="btn btn-icon-sm btn-ghost" onclick="showToast('Nordik Fabrika Genişleme silindi','error')" title="Sil">🗑</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td><strong>Botanik Park</strong></td>
-                <td>Liège-Outremeuse</td>
-                <td><span class="badge badge-neutral">Peyzaj</span></td>
-                <td>
-                  <div style="display:flex;align-items:center;gap:8px;">
-                    <div class="progress-bar" style="flex:1;min-width:60px;"><div class="progress-bar-fill" style="width:90%;"></div></div>
-                    <span style="font-size:11px;font-weight:700;min-width:28px;">90%</span>
-                  </div>
-                </td>
-                <td>01 Mar 2025</td>
-                <td>15 Haz 2026</td>
-                <td>€890K</td>
-                <td>
-                  <div style="display:flex;gap:4px;">
-                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('viewProjectModal','Botanik Park')" title="Görüntüle">👁</button>
-                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('editProjectModal','Botanik Park')" title="Düzenle">✎</button>
-                    <button class="btn btn-icon-sm btn-ghost" onclick="showToast('Botanik Park silindi','error')" title="Sil">🗑</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td><strong>Zilverpark Villa Sitesi</strong></td>
-                <td>Knokke-Heist</td>
-                <td><span class="badge badge-info">Konut</span></td>
-                <td>
-                  <div style="display:flex;align-items:center;gap:8px;">
-                    <div class="progress-bar" style="flex:1;min-width:60px;"><div class="progress-bar-fill" style="width:22%;"></div></div>
-                    <span style="font-size:11px;font-weight:700;min-width:28px;">22%</span>
-                  </div>
-                </td>
-                <td>01 Nis 2025</td>
-                <td>31 Mar 2027</td>
-                <td>€1.8M</td>
-                <td>
-                  <div style="display:flex;gap:4px;">
-                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('viewProjectModal','Zilverpark Villa Sitesi')" title="Görüntüle">👁</button>
-                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('editProjectModal','Zilverpark Villa Sitesi')" title="Düzenle">✎</button>
-                    <button class="btn btn-icon-sm btn-ghost" onclick="showToast('Zilverpark Villa Sitesi silindi','error')" title="Sil">🗑</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td><strong>Avrupa Komisyonu Ek Bina</strong></td>
-                <td>Brüksel-Etropl</td>
-                <td><span class="badge badge-info">Ticari</span></td>
-                <td>
-                  <div style="display:flex;align-items:center;gap:8px;">
-                    <div class="progress-bar" style="flex:1;min-width:60px;"><div class="progress-bar-fill" style="width:12%;"></div></div>
-                    <span style="font-size:11px;font-weight:700;min-width:28px;">12%</span>
-                  </div>
-                </td>
-                <td>01 May 2025</td>
-                <td>30 Eyl 2027</td>
-                <td>€8.2M</td>
-                <td>
-                  <div style="display:flex;gap:4px;">
-                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('viewProjectModal','Avrupa Komisyonu Ek Bina')" title="Görüntüle">👁</button>
-                    <button class="btn btn-icon-sm btn-ghost" onclick="openModal('editProjectModal','Avrupa Komisyonu Ek Bina')" title="Düzenle">✎</button>
-                    <button class="btn btn-icon-sm btn-ghost" onclick="showToast('Avrupa Komisyonu Ek Bina silindi','error')" title="Sil">🗑</button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Top Materials -->
-      <div class="glass-card reveal">
-        <div class="card-header">
-          <div class="card-title">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber-500)" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+<div style="display:flex;gap:8px;">
+<button class="btn btn-sm btn-secondary" data-i18n="yeni" onclick="openModal('addProjectModal')">+ Yeni</button>
+<a data-i18n="tümünü_gör" href="#" onclick="showToast('Tüm projeler sayfası yakında','info');return false;" style="font-size:var(--text-sm);color:var(--teal-500);font-weight:500;">Tümünü Gör →</a>
+</div>
+</div>
+<div class="table-wrap">
+<table class="table table-compact" id="projectsTable">
+<thead>
+<tr>
+<th data-i18n="proje_adı">Proje Adı</th>
+<th data-i18n="şantiye">Şantiye</th>
+<th data-i18n="sektör">Sektör</th>
+<th data-i18n="durum">Durum (%)</th>
+<th data-i18n="başlangıç">Başlangıç</th>
+<th data-i18n="bitiş">Bitiş</th>
+<th data-i18n="bütçe">Bütçe</th>
+<th data-i18n="actions">Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong data-i18n="rivierpark_konutları_2">Rivierpark Konutları</strong></td>
+<td data-i18n="antwerpen-noord">Antwerpen-Noord</td>
+<td><span class="badge badge-info">Konut</span></td>
+<td>
+<div style="display:flex;align-items:center;gap:8px;">
+<div class="progress-bar" style="flex:1;min-width:60px;"><div class="progress-bar-fill" style="width:78%;"></div></div>
+<span style="font-size:11px;font-weight:700;min-width:28px;">78%</span>
+</div>
+</td>
+<td data-i18n="_5_oca_2025">15 Oca 2025</td>
+<td data-i18n="_0_haz_2026">30 Haz 2026</td>
+<td data-i18n="_4m">€2.4M</td>
+<td>
+<div style="display:flex;gap:4px;">
+<button class="btn btn-icon-sm btn-ghost" data-i18n="title_görüntüle" data-i18n-attr="title" onclick="openModal('viewProjectModal','Rivierpark Konutları')" title="Görüntüle">👁</button>
+<button class="btn btn-icon-sm btn-ghost" data-i18n="title_düzenle" data-i18n-attr="title" onclick="openModal('editProjectModal','Rivierpark Konutları')" title="Düzenle">✎</button>
+<button class="btn btn-icon-sm btn-ghost" data-i18n="title_sil" data-i18n-attr="title" onclick="showToast('Rivierpark Konutları silindi','error')" title="Sil">🗑</button>
+</div>
+</td>
+</tr>
+<tr>
+<td><strong data-i18n="merkez_ofis_kulesi_2">Merkez Ofis Kulesi</strong></td>
+<td data-i18n="brüksel-midi">Brüksel-Midi</td>
+<td><span class="badge badge-info">Ticari</span></td>
+<td>
+<div style="display:flex;align-items:center;gap:8px;">
+<div class="progress-bar" style="flex:1;min-width:60px;"><div class="progress-bar-fill" style="width:45%;"></div></div>
+<span style="font-size:11px;font-weight:700;min-width:28px;">45%</span>
+</div>
+</td>
+<td data-i18n="_3_mar_2025">03 Mar 2025</td>
+<td data-i18n="_5_ara_2026">15 Ara 2026</td>
+<td data-i18n="_8m">€5.8M</td>
+<td>
+<div style="display:flex;gap:4px;">
+<button class="btn btn-icon-sm btn-ghost" data-i18n="title_görüntüle_2" data-i18n-attr="title" onclick="openModal('viewProjectModal','Merkez Ofis Kulesi')" title="Görüntüle">👁</button>
+<button class="btn btn-icon-sm btn-ghost" data-i18n="title_düzenle_2" data-i18n-attr="title" onclick="openModal('editProjectModal','Merkez Ofis Kulesi')" title="Düzenle">✎</button>
+<button class="btn btn-icon-sm btn-ghost" data-i18n="title_sil_2" data-i18n-attr="title" onclick="showToast('Merkez Ofis Kulesi silindi','error')" title="Sil">🗑</button>
+</div>
+</td>
+</tr>
+<tr>
+<td><strong data-i18n="grand_hotel_restore_2">Grand Hotel Restore</strong></td>
+<td data-i18n="brugge-merkez">Brugge-Merkez</td>
+<td><span class="badge badge-warning">Renovasyon</span></td>
+<td>
+<div style="display:flex;align-items:center;gap:8px;">
+<div class="progress-bar" style="flex:1;min-width:60px;"><div class="progress-bar-fill" style="width:62%;"></div></div>
+<span style="font-size:11px;font-weight:700;min-width:28px;">62%</span>
+</div>
+</td>
+<td data-i18n="_0_eyl_2024">20 Eyl 2024</td>
+<td data-i18n="_0_eyl_2026">30 Eyl 2026</td>
+<td data-i18n="_2m">€1.2M</td>
+<td>
+<div style="display:flex;gap:4px;">
+<button class="btn btn-icon-sm btn-ghost" data-i18n="title_görüntüle_3" data-i18n-attr="title" onclick="openModal('viewProjectModal','Grand Hotel Restore')" title="Görüntüle">👁</button>
+<button class="btn btn-icon-sm btn-ghost" data-i18n="title_düzenle_3" data-i18n-attr="title" onclick="openModal('editProjectModal','Grand Hotel Restore')" title="Düzenle">✎</button>
+<button class="btn btn-icon-sm btn-ghost" data-i18n="title_sil_3" data-i18n-attr="title" onclick="showToast('Grand Hotel Restore silindi','error')" title="Sil">🗑</button>
+</div>
+</td>
+</tr>
+<tr>
+<td><strong data-i18n="liman_yolu_altyapı_2">Liman Yolu Altyapı</strong></td>
+<td data-i18n="gent-liman">Gent-Liman</td>
+<td><span class="badge badge-success">Altyapı</span></td>
+<td>
+<div style="display:flex;align-items:center;gap:8px;">
+<div class="progress-bar" style="flex:1;min-width:60px;"><div class="progress-bar-fill" style="width:35%;"></div></div>
+<span style="font-size:11px;font-weight:700;min-width:28px;">35%</span>
+</div>
+</td>
+<td data-i18n="_0_nis_2025">10 Nis 2025</td>
+<td data-i18n="_0_may_2027">30 May 2027</td>
+<td data-i18n="_1m">€3.1M</td>
+<td>
+<div style="display:flex;gap:4px;">
+<button class="btn btn-icon-sm btn-ghost" data-i18n="title_görüntüle_4" data-i18n-attr="title" onclick="openModal('viewProjectModal','Liman Yolu Altyapı')" title="Görüntüle">👁</button>
+<button class="btn btn-icon-sm btn-ghost" data-i18n="title_düzenle_4" data-i18n-attr="title" onclick="openModal('editProjectModal','Liman Yolu Altyapı')" title="Düzenle">✎</button>
+<button class="btn btn-icon-sm btn-ghost" data-i18n="title_sil_4" data-i18n-attr="title" onclick="showToast('Liman Yolu Altyapı silindi','error')" title="Sil">🗑</button>
+</div>
+</td>
+</tr>
+<tr>
+<td><strong data-i18n="nordik_fabrika_genişleme_2">Nordik Fabrika Genişleme</strong></td>
+<td data-i18n="leuven-teknopark">Leuven-Teknopark</td>
+<td><span class="badge badge-error">Endüstriyel</span></td>
+<td>
+<div style="display:flex;align-items:center;gap:8px;">
+<div class="progress-bar" style="flex:1;min-width:60px;"><div class="progress-bar-fill" style="width:55%;"></div></div>
+<span style="font-size:11px;font-weight:700;min-width:28px;">55%</span>
+</div>
+</td>
+<td data-i18n="_5_oca_2025_2">05 Oca 2025</td>
+<td data-i18n="_0_ağu_2026">20 Ağu 2026</td>
+<td data-i18n="_5m">€4.5M</td>
+<td>
+<div style="display:flex;gap:4px;">
+<button class="btn btn-icon-sm btn-ghost" data-i18n="title_görüntüle_5" data-i18n-attr="title" onclick="openModal('viewProjectModal','Nordik Fabrika Genişleme')" title="Görüntüle">👁</button>
+<button class="btn btn-icon-sm btn-ghost" data-i18n="title_düzenle_5" data-i18n-attr="title" onclick="openModal('editProjectModal','Nordik Fabrika Genişleme')" title="Düzenle">✎</button>
+<button class="btn btn-icon-sm btn-ghost" data-i18n="title_sil_5" data-i18n-attr="title" onclick="showToast('Nordik Fabrika Genişleme silindi','error')" title="Sil">🗑</button>
+</div>
+</td>
+</tr>
+<tr>
+<td><strong data-i18n="botanik_park_2">Botanik Park</strong></td>
+<td data-i18n="liège-outremeuse">Liège-Outremeuse</td>
+<td><span class="badge badge-neutral">Peyzaj</span></td>
+<td>
+<div style="display:flex;align-items:center;gap:8px;">
+<div class="progress-bar" style="flex:1;min-width:60px;"><div class="progress-bar-fill" style="width:90%;"></div></div>
+<span style="font-size:11px;font-weight:700;min-width:28px;">90%</span>
+</div>
+</td>
+<td data-i18n="_1_mar_2025">01 Mar 2025</td>
+<td data-i18n="_5_haz_2026">15 Haz 2026</td>
+<td data-i18n="_90k">€890K</td>
+<td>
+<div style="display:flex;gap:4px;">
+<button class="btn btn-icon-sm btn-ghost" data-i18n="title_görüntüle_6" data-i18n-attr="title" onclick="openModal('viewProjectModal','Botanik Park')" title="Görüntüle">👁</button>
+<button class="btn btn-icon-sm btn-ghost" data-i18n="title_düzenle_6" data-i18n-attr="title" onclick="openModal('editProjectModal','Botanik Park')" title="Düzenle">✎</button>
+<button class="btn btn-icon-sm btn-ghost" data-i18n="title_sil_6" data-i18n-attr="title" onclick="showToast('Botanik Park silindi','error')" title="Sil">🗑</button>
+</div>
+</td>
+</tr>
+<tr>
+<td><strong data-i18n="zilverpark_villa_sitesi">Zilverpark Villa Sitesi</strong></td>
+<td data-i18n="knokke-heist">Knokke-Heist</td>
+<td><span class="badge badge-info">Konut</span></td>
+<td>
+<div style="display:flex;align-items:center;gap:8px;">
+<div class="progress-bar" style="flex:1;min-width:60px;"><div class="progress-bar-fill" style="width:22%;"></div></div>
+<span style="font-size:11px;font-weight:700;min-width:28px;">22%</span>
+</div>
+</td>
+<td data-i18n="_1_nis_2025">01 Nis 2025</td>
+<td data-i18n="_1_mar_2027">31 Mar 2027</td>
+<td data-i18n="_8m_2">€1.8M</td>
+<td>
+<div style="display:flex;gap:4px;">
+<button class="btn btn-icon-sm btn-ghost" data-i18n="title_görüntüle_7" data-i18n-attr="title" onclick="openModal('viewProjectModal','Zilverpark Villa Sitesi')" title="Görüntüle">👁</button>
+<button class="btn btn-icon-sm btn-ghost" data-i18n="title_düzenle_7" data-i18n-attr="title" onclick="openModal('editProjectModal','Zilverpark Villa Sitesi')" title="Düzenle">✎</button>
+<button class="btn btn-icon-sm btn-ghost" data-i18n="title_sil_7" data-i18n-attr="title" onclick="showToast('Zilverpark Villa Sitesi silindi','error')" title="Sil">🗑</button>
+</div>
+</td>
+</tr>
+<tr>
+<td><strong data-i18n="avrupa_komisyonu_ek_bina">Avrupa Komisyonu Ek Bina</strong></td>
+<td data-i18n="brüksel-etropl">Brüksel-Etropl</td>
+<td><span class="badge badge-info">Ticari</span></td>
+<td>
+<div style="display:flex;align-items:center;gap:8px;">
+<div class="progress-bar" style="flex:1;min-width:60px;"><div class="progress-bar-fill" style="width:12%;"></div></div>
+<span style="font-size:11px;font-weight:700;min-width:28px;">12%</span>
+</div>
+</td>
+<td data-i18n="_1_may_2025">01 May 2025</td>
+<td data-i18n="_0_eyl_2027">30 Eyl 2027</td>
+<td data-i18n="_2m_2">€8.2M</td>
+<td>
+<div style="display:flex;gap:4px;">
+<button class="btn btn-icon-sm btn-ghost" data-i18n="title_görüntüle_8" data-i18n-attr="title" onclick="openModal('viewProjectModal','Avrupa Komisyonu Ek Bina')" title="Görüntüle">👁</button>
+<button class="btn btn-icon-sm btn-ghost" data-i18n="title_düzenle_8" data-i18n-attr="title" onclick="openModal('editProjectModal','Avrupa Komisyonu Ek Bina')" title="Düzenle">✎</button>
+<button class="btn btn-icon-sm btn-ghost" data-i18n="title_sil_8" data-i18n-attr="title" onclick="showToast('Avrupa Komisyonu Ek Bina silindi','error')" title="Sil">🗑</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Top Materials -->
+<div class="glass-card reveal">
+<div class="card-header">
+<div class="card-title">
+<svg fill="none" height="18" stroke="var(--amber-500)" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
             En Çok Kullanılan Malzemeler
           </div>
-        </div>
-        <div class="card-body" style="display:flex;flex-direction:column;gap:var(--space-3);">
-          <div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:13px;font-weight:600;">Beton C30</span><span style="font-size:13px;color:var(--teal-500);font-weight:700;">€420K</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:92%;"></div></div></div>
-          <div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:13px;font-weight:600;">Demir Çelik (B500B)</span><span style="font-size:13px;color:var(--teal-500);font-weight:700;">€380K</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:84%;"></div></div></div>
-          <div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:13px;font-weight:600;">Tuğla (Poroton)</span><span style="font-size:13px;color:var(--teal-500);font-weight:700;">€210K</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:46%;"></div></div></div>
-          <div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:13px;font-weight:600;">Alüminyum Cephe</span><span style="font-size:13px;color:var(--teal-500);font-weight:700;">€195K</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:43%;"></div></div></div>
-          <div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:13px;font-weight:600;">Yalıtım (EPS)</span><span style="font-size:13px;color:var(--teal-500);font-weight:700;">€145K</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:32%;"></div></div></div>
-        </div>
-      </div>
-
-      <!-- Recent Activities -->
-      <div class="glass-card reveal reveal-delay-1">
-        <div class="card-header">
-          <div class="card-title">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--info-500)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+</div>
+<div class="card-body" style="display:flex;flex-direction:column;gap:var(--space-3);">
+<div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span data-i18n="beton_c30_2" style="font-size:13px;font-weight:600;">Beton C30</span><span data-i18n="_20k" style="font-size:13px;color:var(--teal-500);font-weight:700;">€420K</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:92%;"></div></div></div>
+<div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span data-i18n="demir_çelik_b500b" style="font-size:13px;font-weight:600;">Demir Çelik (B500B)</span><span data-i18n="_80k" style="font-size:13px;color:var(--teal-500);font-weight:700;">€380K</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:84%;"></div></div></div>
+<div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span data-i18n="tuğla_poroton" style="font-size:13px;font-weight:600;">Tuğla (Poroton)</span><span data-i18n="_10k" style="font-size:13px;color:var(--teal-500);font-weight:700;">€210K</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:46%;"></div></div></div>
+<div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span data-i18n="alüminyum_cephe" style="font-size:13px;font-weight:600;">Alüminyum Cephe</span><span data-i18n="_95k" style="font-size:13px;color:var(--teal-500);font-weight:700;">€195K</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:43%;"></div></div></div>
+<div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span data-i18n="yalıtım_eps" style="font-size:13px;font-weight:600;">Yalıtım (EPS)</span><span data-i18n="_45k" style="font-size:13px;color:var(--teal-500);font-weight:700;">€145K</span></div><div class="progress-bar"><div class="progress-bar-fill" style="width:32%;"></div></div></div>
+</div>
+</div>
+<!-- Recent Activities -->
+<div class="glass-card reveal reveal-delay-1">
+<div class="card-header">
+<div class="card-title">
+<svg fill="none" height="18" stroke="var(--info-500)" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
             Son Aktiviteler
           </div>
-          <span style="width:8px;height:8px;border-radius:50%;background:var(--success-500);animation:pulse-dot 2s ease-in-out infinite;"></span>
-        </div>
-        <div class="card-body" style="padding-top:0;">
-          <div class="activity-list">
-            <div class="activity-item">
-              <div class="activity-avatar" style="background:linear-gradient(135deg,#14b8a6,#0d9488);">PV</div>
-              <div class="activity-content">
-                <div class="activity-text"><strong>Pieter V.</strong> proje durumunu güncelledi — <strong>Rivierpark Konutları</strong> %78</div>
-                <div class="activity-time">8 dakika önce</div>
-              </div>
-            </div>
-            <div class="activity-item">
-              <div class="activity-avatar" style="background:linear-gradient(135deg,#f59e0b,#d97706);">JD</div>
-              <div class="activity-content">
-                <div class="activity-text"><strong>Jan D.</strong> yeni teklif oluşturdu — <strong>#QT-2026-112</strong> €450,000</div>
-                <div class="activity-time">25 dakika önce</div>
-              </div>
-            </div>
-            <div class="activity-item">
-              <div class="activity-avatar" style="background:linear-gradient(135deg,#3b82f6,#2563eb);">LS</div>
-              <div class="activity-content">
-                <div class="activity-text"><strong>Lisa S.</strong> stok girişi yaptı — Beton C30 (+24 m³)</div>
-                <div class="activity-time">42 dakika önce</div>
-              </div>
-            </div>
-            <div class="activity-item">
-              <div class="activity-avatar" style="background:linear-gradient(135deg,#8b5cf6,#6d28d9);">MK</div>
-              <div class="activity-content">
-                <div class="activity-text"><strong>Marc K.</strong> şantiye raporu gönderdi — <strong>Merkez Ofis Kulesi</strong></div>
-                <div class="activity-time">1 saat önce</div>
-              </div>
-            </div>
-            <div class="activity-item">
-              <div class="activity-avatar" style="background:linear-gradient(135deg,#f43f5e,#e11d48);">AD</div>
-              <div class="activity-content">
-                <div class="activity-text"><strong>Anna D.</strong> personel ataması yaptı — Vinç operatörü</div>
-                <div class="activity-time">2 saat önce</div>
-              </div>
-            </div>
-            <div class="activity-item">
-              <div class="activity-avatar" style="background:linear-gradient(135deg,#10b981,#059669);">TB</div>
-              <div class="activity-content">
-                <div class="activity-text"><strong>Tom B.</strong> ekipman bakımı tamamlandı — <strong>Vinç #VC-03</strong></div>
-                <div class="activity-time">3 saat önce</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Notifications Inline -->
-      <div class="glass-card reveal reveal-delay-2">
-        <div class="card-header">
-          <div class="card-title">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--info-500)" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+<span style="width:8px;height:8px;border-radius:50%;background:var(--success-500);animation:pulse-dot 2s ease-in-out infinite;"></span>
+</div>
+<div class="card-body" style="padding-top:0;">
+<div class="activity-list">
+<div class="activity-item">
+<div class="activity-avatar" data-i18n="pv" style="background:linear-gradient(135deg,#14b8a6,#0d9488);">PV</div>
+<div class="activity-content">
+<div class="activity-text"><strong data-i18n="pieter_v">Pieter V.</strong> proje durumunu güncelledi — <strong data-i18n="rivierpark_konutları_3">Rivierpark Konutları</strong> %78</div>
+<div class="activity-time" data-i18n="__dakika_önce_2">8 dakika önce</div>
+</div>
+</div>
+<div class="activity-item">
+<div class="activity-avatar" data-i18n="jd" style="background:linear-gradient(135deg,#14b8a6,#0f766e);">JD</div>
+<div class="activity-content">
+<div class="activity-text"><strong data-i18n="jan_d">Jan D.</strong> yeni teklif oluşturdu — <strong data-i18n="qt-2026-112_2">#QT-2026-112</strong> €450,000</div>
+<div class="activity-time" data-i18n="_5_dakika_önce">25 dakika önce</div>
+</div>
+</div>
+<div class="activity-item">
+<div class="activity-avatar" data-i18n="ls" style="background:linear-gradient(135deg,#3b82f6,#2563eb);">LS</div>
+<div class="activity-content">
+<div class="activity-text"><strong data-i18n="lisa_s">Lisa S.</strong> stok girişi yaptı — Beton C30 (+24 m³)</div>
+<div class="activity-time" data-i18n="_2_dakika_önce_3">42 dakika önce</div>
+</div>
+</div>
+<div class="activity-item">
+<div class="activity-avatar" data-i18n="mk" style="background:linear-gradient(135deg,#14b8a6,#0f766e);">MK</div>
+<div class="activity-content">
+<div class="activity-text"><strong data-i18n="marc_k">Marc K.</strong> şantiye raporu gönderdi — <strong data-i18n="merkez_ofis_kulesi_3">Merkez Ofis Kulesi</strong></div>
+<div class="activity-time" data-i18n="__saat_önce_5">1 saat önce</div>
+</div>
+</div>
+<div class="activity-item">
+<div class="activity-avatar" data-i18n="ad" style="background:linear-gradient(135deg,#f43f5e,#e11d48);">AD</div>
+<div class="activity-content">
+<div class="activity-text"><strong data-i18n="anna_d">Anna D.</strong> personel ataması yaptı — Vinç operatörü</div>
+<div class="activity-time" data-i18n="__saat_önce_6">2 saat önce</div>
+</div>
+</div>
+<div class="activity-item">
+<div class="activity-avatar" data-i18n="tb" style="background:linear-gradient(135deg,#10b981,#059669);">TB</div>
+<div class="activity-content">
+<div class="activity-text"><strong data-i18n="tom_b">Tom B.</strong> ekipman bakımı tamamlandı — <strong data-i18n="vinç_vc-03">Vinç #VC-03</strong></div>
+<div class="activity-time" data-i18n="__saat_önce_7">3 saat önce</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Notifications Inline -->
+<div class="glass-card reveal reveal-delay-2">
+<div class="card-header">
+<div class="card-title">
+<svg fill="none" height="18" stroke="var(--info-500)" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
             Bildirimler
           </div>
-          <span class="badge badge-error">5 yeni</span>
-        </div>
-        <div class="card-body notif-panel-body" style="padding-top:var(--space-3);">
-          <div class="notif-item">
-            <div class="notif-icon" style="background:rgba(244,63,94,0.1);color:var(--error-500);">⚠️</div>
-            <div class="notif-content"><p>Gecikme uyarısı: <strong>Merkez Ofis</strong> 3 gün geride</p><span>5 dk önce</span></div>
-          </div>
-          <div class="notif-item">
-            <div class="notif-icon" style="background:rgba(20,184,166,0.1);color:var(--teal-500);">📄</div>
-            <div class="notif-content"><p>Yeni teklif: <strong>#QT-2026-112</strong> €450,000</p><span>12 dk önce</span></div>
-          </div>
-          <div class="notif-item">
-            <div class="notif-icon" style="background:rgba(249,115,22,0.1);color:var(--warning-500);">📦</div>
-            <div class="notif-content"><p>Stok alarmı: <strong>Beton C30</strong> 12 m³ kaldı</p><span>32 dk önce</span></div>
-          </div>
-          <div class="notif-item">
-            <div class="notif-icon" style="background:rgba(16,185,129,0.1);color:var(--success-500);">✓</div>
-            <div class="notif-content"><p>Şantiye raporu: <strong>Rivierpark</strong> günlük tamamlandı</p><span>1 saat önce</span></div>
-          </div>
-          <div class="notif-item">
-            <div class="notif-icon" style="background:rgba(59,130,246,0.1);color:var(--info-500);">⚙️</div>
-            <div class="notif-content"><p>Ekipman bakımı: <strong>Vinç #VC-04</strong> yarın planlandı</p><span>2 saat önce</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Weather Widget (Antwerp) -->
-      <div class="glass-card reveal reveal-delay-1">
-        <div class="card-header">
-          <div class="card-title">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber-500)" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+<span class="badge badge-error">5 yeni</span>
+</div>
+<div class="card-body notif-panel-body" style="padding-top:var(--space-3);">
+<div class="notif-item">
+<div class="notif-icon" style="background:rgba(244,63,94,0.1);color:var(--error-500);">⚠️</div>
+<div class="notif-content"><p>Gecikme uyarısı: <strong data-i18n="merkez_ofis_2">Merkez Ofis</strong> 3 gün geride</p><span data-i18n="__dk_önce">5 dk önce</span></div>
+</div>
+<div class="notif-item">
+<div class="notif-icon" style="background:rgba(20,184,166,0.1);color:var(--teal-500);">📄</div>
+<div class="notif-content"><p>Yeni teklif: <strong data-i18n="qt-2026-112_3">#QT-2026-112</strong> €450,000</p><span data-i18n="_2_dk_önce">12 dk önce</span></div>
+</div>
+<div class="notif-item">
+<div class="notif-icon" style="background:rgba(249,115,22,0.1);color:var(--warning-500);">📦</div>
+<div class="notif-content"><p>Stok alarmı: <strong data-i18n="beton_c30_3">Beton C30</strong> 12 m³ kaldı</p><span data-i18n="_2_dk_önce_2">32 dk önce</span></div>
+</div>
+<div class="notif-item">
+<div class="notif-icon" style="background:rgba(16,185,129,0.1);color:var(--success-500);">✓</div>
+<div class="notif-content"><p>Şantiye raporu: <strong data-i18n="rivierpark_2">Rivierpark</strong> günlük tamamlandı</p><span data-i18n="__saat_önce_8">1 saat önce</span></div>
+</div>
+<div class="notif-item">
+<div class="notif-icon" style="background:rgba(59,130,246,0.1);color:var(--info-500);">⚙️</div>
+<div class="notif-content"><p>Ekipman bakımı: <strong data-i18n="vinç_vc-04_2">Vinç #VC-04</strong> yarın planlandı</p><span data-i18n="__saat_önce_9">2 saat önce</span></div>
+</div>
+</div>
+</div>
+<!-- Weather Widget (Antwerp) -->
+<div class="glass-card reveal reveal-delay-1">
+<div class="card-header">
+<div class="card-title">
+<svg fill="none" height="18" stroke="var(--amber-500)" stroke-width="2" viewbox="0 0 24 24" width="18"><circle cx="12" cy="12" r="5"></circle><line x1="12" x2="12" y1="1" y2="3"></line><line x1="12" x2="12" y1="21" y2="23"></line><line x1="4.22" x2="5.64" y1="4.22" y2="5.64"></line><line x1="18.36" x2="19.78" y1="18.36" y2="19.78"></line><line x1="1" x2="3" y1="12" y2="12"></line><line x1="21" x2="23" y1="12" y2="12"></line></svg>
             Hava Durumu
           </div>
-          <span style="font-size:var(--text-xs);color:var(--teal-500);font-weight:600;">📍 Antwerp, BE</span>
-        </div>
-        <div class="card-body">
-          <div style="display:flex;align-items:center;justify-content:space-between;">
-            <div style="display:flex;align-items:center;gap:var(--space-4);">
-              <div style="font-size:48px;line-height:1;filter:drop-shadow(0 4px 8px rgba(20,184,166,0.2));">🌤️</div>
-              <div>
-                <div style="font-size:40px;font-weight:800;letter-spacing:-0.04em;line-height:1;">18°</div>
-                <div style="font-size:13px;color:var(--text-muted);margin-top:4px;">Parçalı Bulutlu · İnşaat için uygun</div>
-              </div>
-            </div>
-            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-3);">
-              <div style="text-align:center;padding:var(--space-2) var(--space-3);background:var(--bg-secondary);border-radius:var(--radius-md);">
-                <div style="font-size:14px;font-weight:700;">62%</div><div style="font-size:11px;color:var(--text-muted);">Nem</div>
-              </div>
-              <div style="text-align:center;padding:var(--space-2) var(--space-3);background:var(--bg-secondary);border-radius:var(--radius-md);">
-                <div style="font-size:14px;font-weight:700;">14 km/s</div><div style="font-size:11px;color:var(--text-muted);">Rüzgar</div>
-              </div>
-              <div style="text-align:center;padding:var(--space-2) var(--space-3);background:var(--bg-secondary);border-radius:var(--radius-md);">
-                <div style="font-size:14px;font-weight:700;">21°</div><div style="font-size:11px;color:var(--text-muted);">Yüksek</div>
-              </div>
-              <div style="text-align:center;padding:var(--space-2) var(--space-3);background:var(--bg-secondary);border-radius:var(--radius-md);">
-                <div style="font-size:14px;font-weight:700;">12°</div><div style="font-size:11px;color:var(--text-muted);">Düşük</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-  </main>
+<span data-i18n="antwerp_be" style="font-size:var(--text-xs);color:var(--teal-500);font-weight:600;">📍 Antwerp, BE</span>
+</div>
+<div class="card-body">
+<div style="display:flex;align-items:center;justify-content:space-between;">
+<div style="display:flex;align-items:center;gap:var(--space-4);">
+<div style="font-size:48px;line-height:1;filter:drop-shadow(0 4px 8px rgba(20,184,166,0.2));">🌤️</div>
+<div>
+<div style="font-size:40px;font-weight:800;letter-spacing:-0.04em;line-height:1;">18°</div>
+<div data-i18n="parçalı_bulutlu_inşaat_için_uygun" style="font-size:13px;color:var(--text-muted);margin-top:4px;">Parçalı Bulutlu · İnşaat için uygun</div>
 </div>
 </div>
-
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-3);">
+<div style="text-align:center;padding:var(--space-2) var(--space-3);background:var(--bg-secondary);border-radius:var(--radius-md);">
+<div style="font-size:14px;font-weight:700;">62%</div><div data-i18n="nem" style="font-size:11px;color:var(--text-muted);">Nem</div>
+</div>
+<div style="text-align:center;padding:var(--space-2) var(--space-3);background:var(--bg-secondary);border-radius:var(--radius-md);">
+<div data-i18n="_4_kms" style="font-size:14px;font-weight:700;">14 km/s</div><div data-i18n="rüzgar" style="font-size:11px;color:var(--text-muted);">Rüzgar</div>
+</div>
+<div style="text-align:center;padding:var(--space-2) var(--space-3);background:var(--bg-secondary);border-radius:var(--radius-md);">
+<div style="font-size:14px;font-weight:700;">21°</div><div data-i18n="yüksek" style="font-size:11px;color:var(--text-muted);">Yüksek</div>
+</div>
+<div style="text-align:center;padding:var(--space-2) var(--space-3);background:var(--bg-secondary);border-radius:var(--radius-md);">
+<div style="font-size:14px;font-weight:700;">12°</div><div data-i18n="düşük" style="font-size:11px;color:var(--text-muted);">Düşük</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
 <!-- ── MODALS ── -->
-
 <!-- Add Project Modal -->
 <div class="modal-overlay" id="addProjectModal">
-  <div class="modal modal-lg">
-    <div class="modal-header">
-      <div class="modal-title">Yeni Proje Ekle</div>
-      <button class="modal-close" onclick="closeModal('addProjectModal')">✕</button>
-    </div>
-    <div class="modal-body">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
-        <div class="form-group"><label class="form-label">Proje Adı</label><input type="text" class="form-input" placeholder="Örn: Yeni Konut Projesi"></div>
-        <div class="form-group"><label class="form-label">Şantiye Lokasyonu</label><input type="text" class="form-input" placeholder="Örn: Brüksel-Midi"></div>
-        <div class="form-group"><label class="form-label">Sektör</label><select class="form-select"><option>Konut İnşaatı</option><option>Ticari İnşaat</option><option>Renovasyon & Restore</option><option>Altyapı & İmar</option><option>Endüstriyel Tesis</option><option>Peyzaj & Dış Mekan</option></select></div>
-        <div class="form-group"><label class="form-label">Bütçe (€)</label><input type="text" class="form-input" placeholder="Örn: 2500000"></div>
-        <div class="form-group"><label class="form-label">Başlangıç Tarihi</label><input type="date" class="form-input"></div>
-        <div class="form-group"><label class="form-label">Bitiş Tarihi</label><input type="date" class="form-input"></div>
-      </div>
-      <div class="form-group" style="margin-top:var(--space-4);"><label class="form-label">Proje Açıklaması</label><textarea class="form-textarea" rows="3" placeholder="Proje detayları, özel notlar..."></textarea></div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-secondary" onclick="closeModal('addProjectModal')">İptal</button>
-      <button class="btn btn-primary" onclick="closeModal('addProjectModal');showToast('Yeni proje başarıyla eklendi','success')">Kaydet</button>
-    </div>
-  </div>
+<div class="modal modal-lg">
+<div class="modal-header">
+<div class="modal-title" data-i18n="yeni_proje_ekle">Yeni Proje Ekle</div>
+<button class="modal-close" onclick="closeModal('addProjectModal')">✕</button>
 </div>
-
+<div class="modal-body">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
+<div class="form-group"><label class="form-label" data-i18n="proje_adı_2">Proje Adı</label><input class="form-input" data-i18n-placeholder="ph_örn_yeni_konut_projesi" placeholder="Örn: Yeni Konut Projesi" type="text"/></div>
+<div class="form-group"><label class="form-label" data-i18n="şantiye_lokasyonu">Şantiye Lokasyonu</label><input class="form-input" data-i18n-placeholder="ph_örn_brüksel-midi" placeholder="Örn: Brüksel-Midi" type="text"/></div>
+<div class="form-group"><label class="form-label" data-i18n="sektör_2">Sektör</label><select class="form-select"><option data-i18n="konut_inşaatı_2">Konut İnşaatı</option><option data-i18n="ticari_inşaat_2">Ticari İnşaat</option><option data-i18n="renovasyon_restore">Renovasyon &amp; Restore</option><option data-i18n="altyapı_imar_2">Altyapı &amp; İmar</option><option data-i18n="endüstriyel_tesis_2">Endüstriyel Tesis</option><option data-i18n="peyzaj_dış_mekan_2">Peyzaj &amp; Dış Mekan</option></select></div>
+<div class="form-group"><label class="form-label" data-i18n="bütçe_2">Bütçe (€)</label><input class="form-input" data-i18n-placeholder="ph_örn_2500000" placeholder="Örn: 2500000" type="text"/></div>
+<div class="form-group"><label class="form-label" data-i18n="başlangıç_tarihi">Başlangıç Tarihi</label><input class="form-input" type="date"/></div>
+<div class="form-group"><label class="form-label" data-i18n="bitiş_tarihi">Bitiş Tarihi</label><input class="form-input" type="date"/></div>
+</div>
+<div class="form-group" style="margin-top:var(--space-4);"><label class="form-label" data-i18n="proje_açıklaması">Proje Açıklaması</label><textarea class="form-textarea" data-i18n-placeholder="ph_proje_detayları_özel_notlar" placeholder="Proje detayları, özel notlar..." rows="3"></textarea></div>
+</div>
+<div class="modal-footer">
+<button class="btn btn-secondary" data-i18n="iptal" onclick="closeModal('addProjectModal')">İptal</button>
+<button class="btn btn-primary" data-i18n="kaydet" onclick="closeModal('addProjectModal');showToast('Yeni proje başarıyla eklendi','success')">Kaydet</button>
+</div>
+</div>
+</div>
 <!-- Edit Project Modal -->
 <div class="modal-overlay" id="editProjectModal">
-  <div class="modal modal-lg">
-    <div class="modal-header">
-      <div class="modal-title" id="editProjectTitle">Projeyi Düzenle</div>
-      <button class="modal-close" onclick="closeModal('editProjectModal')">✕</button>
-    </div>
-    <div class="modal-body">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
-        <div class="form-group"><label class="form-label">Proje Adı</label><input type="text" class="form-input" value="Rivierpark Konutları"></div>
-        <div class="form-group"><label class="form-label">Şantiye Lokasyonu</label><input type="text" class="form-input" value="Antwerpen-Noord"></div>
-        <div class="form-group"><label class="form-label">Sektör</label><select class="form-select"><option selected>Konut İnşaatı</option><option>Ticari İnşaat</option><option>Renovasyon & Restore</option><option>Altyapı & İmar</option><option>Endüstriyel Tesis</option><option>Peyzaj & Dış Mekan</option></select></div>
-        <div class="form-group"><label class="form-label">Bütçe (€)</label><input type="text" class="form-input" value="2400000"></div>
-        <div class="form-group"><label class="form-label">İlerleme (%)</label><input type="number" class="form-input" value="78" min="0" max="100"></div>
-        <div class="form-group"><label class="form-label">Durum</label><select class="form-select"><option selected>Devam Ediyor</option><option>Bekliyor</option><option>Tamamlandı</option><option>İptal</option></select></div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-secondary" onclick="closeModal('editProjectModal')">İptal</button>
-      <button class="btn btn-primary" onclick="closeModal('editProjectModal');showToast('Proje başarıyla güncellendi','success')">Güncelle</button>
-    </div>
-  </div>
+<div class="modal modal-lg">
+<div class="modal-header">
+<div class="modal-title" data-i18n="projeyi_düzenle" id="editProjectTitle">Projeyi Düzenle</div>
+<button class="modal-close" onclick="closeModal('editProjectModal')">✕</button>
 </div>
-
+<div class="modal-body">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
+<div class="form-group"><label class="form-label" data-i18n="proje_adı_3">Proje Adı</label><input class="form-input" type="text" value="Rivierpark Konutları"/></div>
+<div class="form-group"><label class="form-label" data-i18n="şantiye_lokasyonu_2">Şantiye Lokasyonu</label><input class="form-input" type="text" value="Antwerpen-Noord"/></div>
+<div class="form-group"><label class="form-label" data-i18n="sektör_3">Sektör</label><select class="form-select"><option data-i18n="konut_inşaatı_3" selected="">Konut İnşaatı</option><option data-i18n="ticari_inşaat_3">Ticari İnşaat</option><option data-i18n="renovasyon_restore_2">Renovasyon &amp; Restore</option><option data-i18n="altyapı_imar_3">Altyapı &amp; İmar</option><option data-i18n="endüstriyel_tesis_3">Endüstriyel Tesis</option><option data-i18n="peyzaj_dış_mekan_3">Peyzaj &amp; Dış Mekan</option></select></div>
+<div class="form-group"><label class="form-label" data-i18n="bütçe_3">Bütçe (€)</label><input class="form-input" type="text" value="2400000"/></div>
+<div class="form-group"><label class="form-label" data-i18n="ilerleme">İlerleme (%)</label><input class="form-input" max="100" min="0" type="number" value="78"/></div>
+<div class="form-group"><label class="form-label" data-i18n="durum_2">Durum</label><select class="form-select"><option data-i18n="devam_ediyor_2" selected="">Devam Ediyor</option><option data-i18n="bekliyor_4">Bekliyor</option><option data-i18n="tamamlandı_3">Tamamlandı</option><option data-i18n="iptal_2">İptal</option></select></div>
+</div>
+</div>
+<div class="modal-footer">
+<button class="btn btn-secondary" data-i18n="iptal_3" onclick="closeModal('editProjectModal')">İptal</button>
+<button class="btn btn-primary" data-i18n="güncelle" onclick="closeModal('editProjectModal');showToast('Proje başarıyla güncellendi','success')">Güncelle</button>
+</div>
+</div>
+</div>
 <!-- View Project Modal -->
 <div class="modal-overlay" id="viewProjectModal">
-  <div class="modal modal-lg">
-    <div class="modal-header">
-      <div class="modal-title" id="viewProjectTitle">Proje Detayları</div>
-      <button class="modal-close" onclick="closeModal('viewProjectModal')">✕</button>
-    </div>
-    <div class="modal-body">
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);margin-bottom:var(--space-4);">
-        <div style="background:var(--bg-secondary);padding:var(--space-4);border-radius:var(--radius-md);">
-          <div style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;">Bütçe</div>
-          <div style="font-size:var(--text-lg);font-weight:700;">€2,400,000</div>
-        </div>
-        <div style="background:var(--bg-secondary);padding:var(--space-4);border-radius:var(--radius-md);">
-          <div style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;">Harcanan</div>
-          <div style="font-size:var(--text-lg);font-weight:700;color:var(--teal-500);">€1,872,000</div>
-        </div>
-        <div style="background:var(--bg-secondary);padding:var(--space-4);border-radius:var(--radius-md);">
-          <div style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;">Kalan</div>
-          <div style="font-size:var(--text-lg);font-weight:700;color:var(--amber-500);">€528,000</div>
-        </div>
-      </div>
-      <div style="margin-bottom:var(--space-4);">
-        <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:var(--text-sm);font-weight:600;">İlerleme</span><span style="font-size:var(--text-sm);font-weight:700;">78%</span></div>
-        <div class="progress-bar" style="height:8px;"><div class="progress-bar-fill" style="width:78%;"></div></div>
-      </div>
-      <div class="table-wrap">
-        <table class="table table-compact">
-          <thead><tr><th>Personel</th><th>Görev</th><th>Saat</th><th>Durum</th></tr></thead>
-          <tbody>
-            <tr><td><strong>Jan De Smet</strong></td><td>Kalıp Ustası</td><td>240h</td><td><span class="badge badge-success">Aktif</span></td></tr>
-            <tr><td><strong>Lisa Vermeulen</strong></td><td>Proje Mühendisi</td><td>180h</td><td><span class="badge badge-success">Aktif</span></td></tr>
-            <tr><td><strong>Marc Dubois</strong></td><td>Vinç Operatörü</td><td>120h</td><td><span class="badge badge-warning">İzin</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-secondary" onclick="closeModal('viewProjectModal')">Kapat</button>
-      <button class="btn btn-primary" onclick="closeModal('viewProjectModal');openModal('editProjectModal')">Düzenle</button>
-    </div>
-  </div>
+<div class="modal modal-lg">
+<div class="modal-header">
+<div class="modal-title" data-i18n="proje_detayları" id="viewProjectTitle">Proje Detayları</div>
+<button class="modal-close" onclick="closeModal('viewProjectModal')">✕</button>
 </div>
-
+<div class="modal-body">
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);margin-bottom:var(--space-4);">
+<div style="background:var(--bg-secondary);padding:var(--space-4);border-radius:var(--radius-md);">
+<div data-i18n="bütçe_4" style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;">Bütçe</div>
+<div data-i18n="_400000" style="font-size:var(--text-lg);font-weight:700;">€2,400,000</div>
+</div>
+<div style="background:var(--bg-secondary);padding:var(--space-4);border-radius:var(--radius-md);">
+<div data-i18n="harcanan" style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;">Harcanan</div>
+<div data-i18n="_872000" style="font-size:var(--text-lg);font-weight:700;color:var(--teal-500);">€1,872,000</div>
+</div>
+<div style="background:var(--bg-secondary);padding:var(--space-4);border-radius:var(--radius-md);">
+<div data-i18n="kalan" style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;">Kalan</div>
+<div data-i18n="_28000" style="font-size:var(--text-lg);font-weight:700;color:var(--amber-500);">€528,000</div>
+</div>
+</div>
+<div style="margin-bottom:var(--space-4);">
+<div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span data-i18n="ilerleme_2" style="font-size:var(--text-sm);font-weight:600;">İlerleme</span><span style="font-size:var(--text-sm);font-weight:700;">78%</span></div>
+<div class="progress-bar" style="height:8px;"><div class="progress-bar-fill" style="width:78%;"></div></div>
+</div>
+<div class="table-wrap">
+<table class="table table-compact">
+<thead><tr><th data-i18n="personel">Personel</th><th data-i18n="görev">Görev</th><th data-i18n="saat">Saat</th><th data-i18n="durum_3">Durum</th></tr></thead>
+<tbody>
+<tr><td><strong data-i18n="jan_de_smet_2">Jan De Smet</strong></td><td data-i18n="kalıp_ustası">Kalıp Ustası</td><td data-i18n="_40h">240h</td><td><span class="badge badge-success">Aktif</span></td></tr>
+<tr><td><strong data-i18n="lisa_vermeulen">Lisa Vermeulen</strong></td><td data-i18n="proje_mühendisi">Proje Mühendisi</td><td data-i18n="_80h">180h</td><td><span class="badge badge-success">Aktif</span></td></tr>
+<tr><td><strong data-i18n="marc_dubois">Marc Dubois</strong></td><td data-i18n="vinç_operatörü">Vinç Operatörü</td><td data-i18n="_20h">120h</td><td><span class="badge badge-warning">İzin</span></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="modal-footer">
+<button class="btn btn-secondary" data-i18n="kapat" onclick="closeModal('viewProjectModal')">Kapat</button>
+<button class="btn btn-primary" data-i18n="düzenle" onclick="closeModal('viewProjectModal');openModal('editProjectModal')">Düzenle</button>
+</div>
+</div>
+</div>
 <!-- Add Quote Modal -->
 <div class="modal-overlay" id="addQuoteModal">
-  <div class="modal">
-    <div class="modal-header">
-      <div class="modal-title">Yeni Teklif Oluştur</div>
-      <button class="modal-close" onclick="closeModal('addQuoteModal')">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="form-group"><label class="form-label">Müşteri</label><input type="text" class="form-input" placeholder="Müşteri adı"></div>
-      <div class="form-group"><label class="form-label">Proje Adı</label><input type="text" class="form-input" placeholder="Teklif konusu"></div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
-        <div class="form-group"><label class="form-label">Tutar (€)</label><input type="text" class="form-input" placeholder="0.00"></div>
-        <div class="form-group"><label class="form-label">Geçerlilik (gün)</label><input type="number" class="form-input" value="30"></div>
-      </div>
-      <div class="form-group"><label class="form-label">Açıklama</label><textarea class="form-textarea" rows="3" placeholder="Teklif detayları, kapsam, hariç tutulanlar..."></textarea></div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-secondary" onclick="closeModal('addQuoteModal')">İptal</button>
-      <button class="btn btn-primary" onclick="closeModal('addQuoteModal');showToast('Teklif başarıyla oluşturuldu','success')">Oluştur</button>
-    </div>
-  </div>
+<div class="modal">
+<div class="modal-header">
+<div class="modal-title" data-i18n="yeni_teklif_oluştur">Yeni Teklif Oluştur</div>
+<button class="modal-close" onclick="closeModal('addQuoteModal')">✕</button>
 </div>
-
+<div class="modal-body">
+<div class="form-group"><label class="form-label" data-i18n="müşteri">Müşteri</label><input class="form-input" data-i18n-placeholder="ph_müşteri_adı" placeholder="Müşteri adı" type="text"/></div>
+<div class="form-group"><label class="form-label" data-i18n="proje_adı_4">Proje Adı</label><input class="form-input" data-i18n-placeholder="ph_teklif_konusu" placeholder="Teklif konusu" type="text"/></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
+<div class="form-group"><label class="form-label" data-i18n="tutar">Tutar (€)</label><input class="form-input" data-i18n-placeholder="ph__00" placeholder="0.00" type="text"/></div>
+<div class="form-group"><label class="form-label" data-i18n="geçerlilik_gün">Geçerlilik (gün)</label><input class="form-input" type="number" value="30"/></div>
+</div>
+<div class="form-group"><label class="form-label" data-i18n="açıklama">Açıklama</label><textarea class="form-textarea" data-i18n-placeholder="ph_teklif_detayları_kapsam_hariç_tutulanlar" placeholder="Teklif detayları, kapsam, hariç tutulanlar..." rows="3"></textarea></div>
+</div>
+<div class="modal-footer">
+<button class="btn btn-secondary" data-i18n="iptal_4" onclick="closeModal('addQuoteModal')">İptal</button>
+<button class="btn btn-primary" data-i18n="oluştur" onclick="closeModal('addQuoteModal');showToast('Teklif başarıyla oluşturuldu','success')">Oluştur</button>
+</div>
+</div>
+</div>
 <script>
 /* ── Sidebar Toggle ── */
 const sidebar=document.getElementById('sidebar');
@@ -1537,7 +1516,7 @@ function showToast(msg,type='success',dur=3000){
   const t=document.createElement('div');
   const colors={success:'var(--success-500)',error:'var(--error-500)',warning:'var(--warning-500)',info:'var(--info-500)'};
   const icons={success:'✓',error:'✕',warning:'!',info:'ℹ'};
-  const titles={success:'Başarılı',error:'Hata',warning:'Uyarı',info:'Bilgi'};
+  const titles={success:(t['başarılı']||'Success'),error:(t['hata_oluştu']||'Error'),warning:(t['uyarı']||'Warning'),info:(t['bilgi']||'Info')};
   t.style.cssText=`pointer-events:all;background:var(--bg-card);border:1px solid ${colors[type]};border-radius:12px;padding:14px 18px;display:flex;align-items:flex-start;gap:12px;box-shadow:var(--shadow-lg);animation:toastIn 0.3s ease-out;position:relative;overflow:hidden;`;
   t.innerHTML=`<span style="flex-shrink:0;margin-top:2px;width:20px;height:20px;border-radius:50%;background:${colors[type]};color:white;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">${icons[type]}</span><div style="flex:1;"><div style="font-weight:600;font-size:var(--text-sm);">${titles[type]}</div><div style="font-size:var(--text-sm);color:var(--text-muted);margin-top:2px;">${msg}</div></div><span style="flex-shrink:0;color:var(--text-muted);cursor:pointer;font-size:14px;" onclick="this.parentElement.remove()">✕</span><div style="position:absolute;bottom:0;left:0;height:2px;background:${colors[type]};animation:progressBar 4s linear forwards;width:100%;"></div>`;
   c.appendChild(t);
@@ -1604,10 +1583,10 @@ function toggleSector(checkbox, name){
 /* ── Chart.js Config ── */
 const chartColors={
   teal:'#14b8a6',tealLight:'rgba(20,184,166,0.15)',
-  amber:'#f59e0b',amberLight:'rgba(245,158,11,0.15)',
+  amber:'#14b8a6',amberLight:'rgba(245,158,11,0.15)',
   blue:'#3b82f6',blueLight:'rgba(59,130,246,0.15)',
   rose:'#f43f5e',roseLight:'rgba(244,63,94,0.15)',
-  purple:'#8b5cf6',purpleLight:'rgba(139,92,246,0.15)',
+  purple:'#14b8a6',purpleLight:'rgba(139,92,246,0.15)',
   emerald:'#10b981',emeraldLight:'rgba(16,185,129,0.15)',
   slate:'#64748b'
 };
@@ -1753,12 +1732,935 @@ document.addEventListener('DOMContentLoaded',()=>{
   setTimeout(animateCounters,400);
 });
 </script>
-
 <style>
 @keyframes toastIn{from{opacity:0;transform:translateY(-20px) scale(0.95);}to{opacity:1;transform:translateY(0) scale(1);}}
 @keyframes toastOut{from{opacity:1;transform:translateY(0) scale(1);}to{opacity:0;transform:translateY(-20px) scale(0.95);}}
 @keyframes progressBar{from{width:100%;}to{width:0;}}
 </style>
-
-</body>
+<script>
+const i18n = {
+  "tr": {
+    "buildpro_admin_dashboard": "BuildPro — Admin Dashboard",
+    "bp": "BP",
+    "buildpro": "BuildPro",
+    "buildpro_demo_bv": "BuildPro Demo BV",
+    "inşaat": "İnşaat",
+    "inşaat_2": "İnşaat",
+    "aktif": "Aktif",
+    "temizlik": "Temizlik",
+    "aktif_2": "Aktif",
+    "carwash": "CarWash",
+    "aktif_3": "Aktif",
+    "berber_kuaför": "Berber & Kuaför",
+    "planlanan": "Planlanan",
+    "restoran": "Restoran",
+    "planlanan_2": "Planlanan",
+    "ana_menü": "Ana Menü",
+    "finans_ve_rapor": "Finans ve Rapor",
+    "diğer": "Diğer",
+    "pieter_van_den_berg": "Pieter Van den Berg",
+    "proje_müdürü": "Proje Müdürü",
+    "dashboard": "Dashboard",
+    "bildirimler": "Bildirimler",
+    "tümünü_okundu_işaretle": "Tümünü Okundu İşaretle",
+    "merkez_ofis": "Merkez Ofis",
+    "__dakika_önce": "5 dakika önce",
+    "qt-2026-112": "#QT-2026-112",
+    "_2_dakika_önce": "12 dakika önce",
+    "beton_c30": "Beton C30",
+    "_2_dakika_önce_2": "32 dakika önce",
+    "rivierpark": "Rivierpark",
+    "__saat_önce": "1 saat önce",
+    "vinç_vc-04": "Vinç #VC-04",
+    "__saat_önce_2": "2 saat önce",
+    "qt-2026-110": "#QT-2026-110",
+    "__saat_önce_3": "3 saat önce",
+    "jan_de_smet": "Jan De Smet",
+    "__saat_önce_4": "4 saat önce",
+    "aktif_projeler": "Aktif Projeler",
+    "açık_teklifler": "Açık Teklifler",
+    "şantiye_sayısı": "Şantiye Sayısı",
+    "aylık_maliyet": "Aylık Maliyet",
+    "tamamlanan_işler": "Tamamlanan İşler",
+    "bekleyen_onay": "Bekleyen Onay",
+    "__6_aktif": "6 / 6 aktif",
+    "konut_inşaatı": "Konut İnşaatı",
+    "__proje_aktif": "7 proje aktif",
+    "ticari_inşaat": "Ticari İnşaat",
+    "__proje_aktif_2": "5 proje aktif",
+    "renovasyon": "Renovasyon",
+    "__proje_aktif_3": "4 proje aktif",
+    "altyapı_imar": "Altyapı & İmar",
+    "__proje_aktif_4": "3 proje aktif",
+    "endüstriyel_tesis": "Endüstriyel Tesis",
+    "__proje_aktif_5": "3 proje aktif",
+    "peyzaj_dış_mekan": "Peyzaj & Dış Mekan",
+    "__proje_aktif_6": "2 proje aktif",
+    "aylık": "Aylık",
+    "çeyreklik": "Çeyreklik",
+    "mayıs_2026": "Mayıs 2026",
+    "pt": "Pt",
+    "sa": "Sa",
+    "ça": "Ça",
+    "pe": "Pe",
+    "cu": "Cu",
+    "ct": "Ct",
+    "pa": "Pa",
+    "_700": "07:00",
+    "rivierpark_konutları": "Rivierpark Konutları",
+    "blok_a_temel_betonu": "Blok A temel betonu",
+    "tamamlandı": "Tamamlandı",
+    "_830": "08:30",
+    "merkez_ofis_kulesi": "Merkez Ofis Kulesi",
+    "_2_kat_döşeme_kalıbı": "12. kat döşeme kalıbı",
+    "tamamlandı_2": "Tamamlandı",
+    "_000": "10:00",
+    "grand_hotel_restore": "Grand Hotel Restore",
+    "cephe_temizliği_ve_izolasyon": "Cephe temizliği ve izolasyon",
+    "devam_ediyor": "Devam Ediyor",
+    "_300": "13:00",
+    "nordik_fabrika_genişleme": "Nordik Fabrika Genişleme",
+    "çelik_konstrüksiyon_montajı": "Çelik konstrüksiyon montajı",
+    "bekliyor": "Bekliyor",
+    "_430": "14:30",
+    "liman_yolu_altyapı": "Liman Yolu Altyapı",
+    "kanalizasyon_hattı_kazısı": "Kanalizasyon hattı kazısı",
+    "bekliyor_2": "Bekliyor",
+    "_600": "16:00",
+    "botanik_park": "Botanik Park",
+    "fidan_dikimi_ve_sulama": "Fidan dikimi ve sulama",
+    "bekliyor_3": "Bekliyor",
+    "yeni": "+ Yeni",
+    "tümünü_gör": "Tümünü Gör →",
+    "proje_adı": "Proje Adı",
+    "şantiye": "Şantiye",
+    "sektör": "Sektör",
+    "durum": "Durum (%)",
+    "başlangıç": "Başlangıç",
+    "bitiş": "Bitiş",
+    "bütçe": "Bütçe",
+    "actions": "Actions",
+    "rivierpark_konutları_2": "Rivierpark Konutları",
+    "antwerpen-noord": "Antwerpen-Noord",
+    "_5_oca_2025": "15 Oca 2025",
+    "_0_haz_2026": "30 Haz 2026",
+    "_4m": "€2.4M",
+    "merkez_ofis_kulesi_2": "Merkez Ofis Kulesi",
+    "brüksel-midi": "Brüksel-Midi",
+    "_3_mar_2025": "03 Mar 2025",
+    "_5_ara_2026": "15 Ara 2026",
+    "_8m": "€5.8M",
+    "grand_hotel_restore_2": "Grand Hotel Restore",
+    "brugge-merkez": "Brugge-Merkez",
+    "_0_eyl_2024": "20 Eyl 2024",
+    "_0_eyl_2026": "30 Eyl 2026",
+    "_2m": "€1.2M",
+    "liman_yolu_altyapı_2": "Liman Yolu Altyapı",
+    "gent-liman": "Gent-Liman",
+    "_0_nis_2025": "10 Nis 2025",
+    "_0_may_2027": "30 May 2027",
+    "_1m": "€3.1M",
+    "nordik_fabrika_genişleme_2": "Nordik Fabrika Genişleme",
+    "leuven-teknopark": "Leuven-Teknopark",
+    "_5_oca_2025_2": "05 Oca 2025",
+    "_0_ağu_2026": "20 Ağu 2026",
+    "_5m": "€4.5M",
+    "botanik_park_2": "Botanik Park",
+    "liège-outremeuse": "Liège-Outremeuse",
+    "_1_mar_2025": "01 Mar 2025",
+    "_5_haz_2026": "15 Haz 2026",
+    "_90k": "€890K",
+    "zilverpark_villa_sitesi": "Zilverpark Villa Sitesi",
+    "knokke-heist": "Knokke-Heist",
+    "_1_nis_2025": "01 Nis 2025",
+    "_1_mar_2027": "31 Mar 2027",
+    "_8m_2": "€1.8M",
+    "avrupa_komisyonu_ek_bina": "Avrupa Komisyonu Ek Bina",
+    "brüksel-etropl": "Brüksel-Etropl",
+    "_1_may_2025": "01 May 2025",
+    "_0_eyl_2027": "30 Eyl 2027",
+    "_2m_2": "€8.2M",
+    "beton_c30_2": "Beton C30",
+    "_20k": "€420K",
+    "demir_çelik_b500b": "Demir Çelik (B500B)",
+    "_80k": "€380K",
+    "tuğla_poroton": "Tuğla (Poroton)",
+    "_10k": "€210K",
+    "alüminyum_cephe": "Alüminyum Cephe",
+    "_95k": "€195K",
+    "yalıtım_eps": "Yalıtım (EPS)",
+    "_45k": "€145K",
+    "pv": "PV",
+    "pieter_v": "Pieter V.",
+    "rivierpark_konutları_3": "Rivierpark Konutları",
+    "__dakika_önce_2": "8 dakika önce",
+    "jd": "JD",
+    "jan_d": "Jan D.",
+    "qt-2026-112_2": "#QT-2026-112",
+    "_5_dakika_önce": "25 dakika önce",
+    "ls": "LS",
+    "lisa_s": "Lisa S.",
+    "_2_dakika_önce_3": "42 dakika önce",
+    "mk": "MK",
+    "marc_k": "Marc K.",
+    "merkez_ofis_kulesi_3": "Merkez Ofis Kulesi",
+    "__saat_önce_5": "1 saat önce",
+    "ad": "AD",
+    "anna_d": "Anna D.",
+    "__saat_önce_6": "2 saat önce",
+    "tb": "TB",
+    "tom_b": "Tom B.",
+    "vinç_vc-03": "Vinç #VC-03",
+    "__saat_önce_7": "3 saat önce",
+    "merkez_ofis_2": "Merkez Ofis",
+    "__dk_önce": "5 dk önce",
+    "qt-2026-112_3": "#QT-2026-112",
+    "_2_dk_önce": "12 dk önce",
+    "beton_c30_3": "Beton C30",
+    "_2_dk_önce_2": "32 dk önce",
+    "rivierpark_2": "Rivierpark",
+    "__saat_önce_8": "1 saat önce",
+    "vinç_vc-04_2": "Vinç #VC-04",
+    "__saat_önce_9": "2 saat önce",
+    "antwerp_be": "📍 Antwerp, BE",
+    "parçalı_bulutlu_inşaat_için_uygun": "Parçalı Bulutlu · İnşaat için uygun",
+    "nem": "Nem",
+    "_4_kms": "14 km/s",
+    "rüzgar": "Rüzgar",
+    "yüksek": "Yüksek",
+    "düşük": "Düşük",
+    "yeni_proje_ekle": "Yeni Proje Ekle",
+    "proje_adı_2": "Proje Adı",
+    "şantiye_lokasyonu": "Şantiye Lokasyonu",
+    "sektör_2": "Sektör",
+    "konut_inşaatı_2": "Konut İnşaatı",
+    "ticari_inşaat_2": "Ticari İnşaat",
+    "renovasyon_restore": "Renovasyon & Restore",
+    "altyapı_imar_2": "Altyapı & İmar",
+    "endüstriyel_tesis_2": "Endüstriyel Tesis",
+    "peyzaj_dış_mekan_2": "Peyzaj & Dış Mekan",
+    "bütçe_2": "Bütçe (€)",
+    "başlangıç_tarihi": "Başlangıç Tarihi",
+    "bitiş_tarihi": "Bitiş Tarihi",
+    "proje_açıklaması": "Proje Açıklaması",
+    "iptal": "İptal",
+    "kaydet": "Kaydet",
+    "projeyi_düzenle": "Projeyi Düzenle",
+    "proje_adı_3": "Proje Adı",
+    "şantiye_lokasyonu_2": "Şantiye Lokasyonu",
+    "sektör_3": "Sektör",
+    "konut_inşaatı_3": "Konut İnşaatı",
+    "ticari_inşaat_3": "Ticari İnşaat",
+    "renovasyon_restore_2": "Renovasyon & Restore",
+    "altyapı_imar_3": "Altyapı & İmar",
+    "endüstriyel_tesis_3": "Endüstriyel Tesis",
+    "peyzaj_dış_mekan_3": "Peyzaj & Dış Mekan",
+    "bütçe_3": "Bütçe (€)",
+    "ilerleme": "İlerleme (%)",
+    "durum_2": "Durum",
+    "devam_ediyor_2": "Devam Ediyor",
+    "bekliyor_4": "Bekliyor",
+    "tamamlandı_3": "Tamamlandı",
+    "iptal_2": "İptal",
+    "iptal_3": "İptal",
+    "güncelle": "Güncelle",
+    "proje_detayları": "Proje Detayları",
+    "bütçe_4": "Bütçe",
+    "_400000": "€2,400,000",
+    "harcanan": "Harcanan",
+    "_872000": "€1,872,000",
+    "kalan": "Kalan",
+    "_28000": "€528,000",
+    "ilerleme_2": "İlerleme",
+    "personel": "Personel",
+    "görev": "Görev",
+    "saat": "Saat",
+    "durum_3": "Durum",
+    "jan_de_smet_2": "Jan De Smet",
+    "kalıp_ustası": "Kalıp Ustası",
+    "_40h": "240h",
+    "lisa_vermeulen": "Lisa Vermeulen",
+    "proje_mühendisi": "Proje Mühendisi",
+    "_80h": "180h",
+    "marc_dubois": "Marc Dubois",
+    "vinç_operatörü": "Vinç Operatörü",
+    "_20h": "120h",
+    "kapat": "Kapat",
+    "düzenle": "Düzenle",
+    "yeni_teklif_oluştur": "Yeni Teklif Oluştur",
+    "müşteri": "Müşteri",
+    "proje_adı_4": "Proje Adı",
+    "tutar": "Tutar (€)",
+    "geçerlilik_gün": "Geçerlilik (gün)",
+    "açıklama": "Açıklama",
+    "iptal_4": "İptal",
+    "oluştur": "Oluştur",
+    "title_menü": "Menü",
+    "ph_projeler_teklifler_personel_ara": "Projeler, teklifler, personel ara...",
+    "title_bildirimler": "Bildirimler",
+    "title_tema": "Tema",
+    "title_görüntüle": "Görüntüle",
+    "title_düzenle": "Düzenle",
+    "title_sil": "Sil",
+    "title_görüntüle_2": "Görüntüle",
+    "title_düzenle_2": "Düzenle",
+    "title_sil_2": "Sil",
+    "title_görüntüle_3": "Görüntüle",
+    "title_düzenle_3": "Düzenle",
+    "title_sil_3": "Sil",
+    "title_görüntüle_4": "Görüntüle",
+    "title_düzenle_4": "Düzenle",
+    "title_sil_4": "Sil",
+    "title_görüntüle_5": "Görüntüle",
+    "title_düzenle_5": "Düzenle",
+    "title_sil_5": "Sil",
+    "title_görüntüle_6": "Görüntüle",
+    "title_düzenle_6": "Düzenle",
+    "title_sil_6": "Sil",
+    "title_görüntüle_7": "Görüntüle",
+    "title_düzenle_7": "Düzenle",
+    "title_sil_7": "Sil",
+    "title_görüntüle_8": "Görüntüle",
+    "title_düzenle_8": "Düzenle",
+    "title_sil_8": "Sil",
+    "ph_örn_yeni_konut_projesi": "Örn: Yeni Konut Projesi",
+    "ph_örn_brüksel-midi": "Örn: Brüksel-Midi",
+    "ph_örn_2500000": "Örn: 2500000",
+    "ph_proje_detayları_özel_notlar": "Proje detayları, özel notlar...",
+    "ph_müşteri_adı": "Müşteri adı",
+    "ph_teklif_konusu": "Teklif konusu",
+    "ph__00": "0.00",
+    "ph_teklif_detayları_kapsam_hariç_tutulanlar": "Teklif detayları, kapsam, hariç tutulanlar..."
+  },
+  "en": {
+    "buildpro_admin_dashboard": "BuildPro — Admin Dashboard",
+    "bp": "BP",
+    "buildpro": "BuildPro",
+    "buildpro_demo_bv": "BuildPro Demo BV",
+    "inşaat": "Construction",
+    "inşaat_2": "Construction",
+    "aktif": "Active",
+    "temizlik": "Temizlik",
+    "aktif_2": "Active",
+    "carwash": "CarWash",
+    "aktif_3": "Active",
+    "berber_kuaför": "Berber & Kuaför",
+    "planlanan": "Planlanan",
+    "restoran": "Restoran",
+    "planlanan_2": "Planlanan",
+    "ana_menü": "Ana Menü",
+    "finans_ve_rapor": "Finans ve Rapor",
+    "diğer": "Other",
+    "pieter_van_den_berg": "Pieter Van den Berg",
+    "proje_müdürü": "Project Manager",
+    "dashboard": "Dashboard",
+    "bildirimler": "Notifications",
+    "tümünü_okundu_işaretle": "Mark All as Read",
+    "merkez_ofis": "Merkez Ofis",
+    "__dakika_önce": "5 dakika önce",
+    "qt-2026-112": "#QT-2026-112",
+    "_2_dakika_önce": "12 dakika önce",
+    "beton_c30": "Beton C30",
+    "_2_dakika_önce_2": "32 dakika önce",
+    "rivierpark": "Rivierpark",
+    "__saat_önce": "1 saat önce",
+    "vinç_vc-04": "Vinç #VC-04",
+    "__saat_önce_2": "2 saat önce",
+    "qt-2026-110": "#QT-2026-110",
+    "__saat_önce_3": "3 saat önce",
+    "jan_de_smet": "Jan De Smet",
+    "__saat_önce_4": "4 saat önce",
+    "aktif_projeler": "Aktif Projeler",
+    "açık_teklifler": "Açık Teklifler",
+    "şantiye_sayısı": "Şantiye Sayısı",
+    "aylık_maliyet": "Aylık Maliyet",
+    "tamamlanan_işler": "Tamamlanan İşler",
+    "bekleyen_onay": "Bekleyen Onay",
+    "__6_aktif": "6 / 6 aktif",
+    "konut_inşaatı": "Konut İnşaatı",
+    "__proje_aktif": "7 proje aktif",
+    "ticari_inşaat": "Ticari İnşaat",
+    "__proje_aktif_2": "5 proje aktif",
+    "renovasyon": "Renovation",
+    "__proje_aktif_3": "4 proje aktif",
+    "altyapı_imar": "Altyapı & İmar",
+    "__proje_aktif_4": "3 proje aktif",
+    "endüstriyel_tesis": "Endüstriyel Tesis",
+    "__proje_aktif_5": "3 proje aktif",
+    "peyzaj_dış_mekan": "Peyzaj & Dış Mekan",
+    "__proje_aktif_6": "2 proje aktif",
+    "aylık": "Monthly",
+    "çeyreklik": "Çeyreklik",
+    "mayıs_2026": "Mayıs 2026",
+    "pt": "Pt",
+    "sa": "hr",
+    "ça": "Ça",
+    "pe": "Pe",
+    "cu": "Cu",
+    "ct": "Ct",
+    "pa": "Pa",
+    "_700": "07:00",
+    "rivierpark_konutları": "Rivierpark Konutları",
+    "blok_a_temel_betonu": "Blok A temel betonu",
+    "tamamlandı": "Completed",
+    "_830": "08:30",
+    "merkez_ofis_kulesi": "Merkez Ofis Kulesi",
+    "_2_kat_döşeme_kalıbı": "12. kat döşeme kalıbı",
+    "tamamlandı_2": "Completed",
+    "_000": "10:00",
+    "grand_hotel_restore": "Grand Hotel Restore",
+    "cephe_temizliği_ve_izolasyon": "Cephe temizliği ve izolasyon",
+    "devam_ediyor": "In Progress",
+    "_300": "13:00",
+    "nordik_fabrika_genişleme": "Nordik Fabrika Genişleme",
+    "çelik_konstrüksiyon_montajı": "Çelik konstrüksiyon montajı",
+    "bekliyor": "Bekliyor",
+    "_430": "14:30",
+    "liman_yolu_altyapı": "Liman Yolu Altyapı",
+    "kanalizasyon_hattı_kazısı": "Kanalizasyon hattı kazısı",
+    "bekliyor_2": "Bekliyor",
+    "_600": "16:00",
+    "botanik_park": "Botanik Park",
+    "fidan_dikimi_ve_sulama": "Fidan dikimi ve sulama",
+    "bekliyor_3": "Bekliyor",
+    "yeni": "+ Yeni",
+    "tümünü_gör": "Tümünü Gör →",
+    "proje_adı": "Project Name",
+    "şantiye": "Site",
+    "sektör": "Sector",
+    "durum": "Durum (%)",
+    "başlangıç": "Start",
+    "bitiş": "End",
+    "bütçe": "Budget",
+    "actions": "Actions",
+    "rivierpark_konutları_2": "Rivierpark Konutları",
+    "antwerpen-noord": "Antwerpen-Noord",
+    "_5_oca_2025": "15 Oca 2025",
+    "_0_haz_2026": "30 Haz 2026",
+    "_4m": "€2.4M",
+    "merkez_ofis_kulesi_2": "Merkez Ofis Kulesi",
+    "brüksel-midi": "Brüksel-Midi",
+    "_3_mar_2025": "03 Mar 2025",
+    "_5_ara_2026": "15 Ara 2026",
+    "_8m": "€5.8M",
+    "grand_hotel_restore_2": "Grand Hotel Restore",
+    "brugge-merkez": "Brugge-Merkez",
+    "_0_eyl_2024": "20 Eyl 2024",
+    "_0_eyl_2026": "30 Eyl 2026",
+    "_2m": "€1.2M",
+    "liman_yolu_altyapı_2": "Liman Yolu Altyapı",
+    "gent-liman": "Gent-Liman",
+    "_0_nis_2025": "10 Nis 2025",
+    "_0_may_2027": "30 May 2027",
+    "_1m": "€3.1M",
+    "nordik_fabrika_genişleme_2": "Nordik Fabrika Genişleme",
+    "leuven-teknopark": "Leuven-Teknopark",
+    "_5_oca_2025_2": "05 Oca 2025",
+    "_0_ağu_2026": "20 Ağu 2026",
+    "_5m": "€4.5M",
+    "botanik_park_2": "Botanik Park",
+    "liège-outremeuse": "Liège-Outremeuse",
+    "_1_mar_2025": "01 Mar 2025",
+    "_5_haz_2026": "15 Haz 2026",
+    "_90k": "€890K",
+    "zilverpark_villa_sitesi": "Zilverpark Villa Sitesi",
+    "knokke-heist": "Knokke-Heist",
+    "_1_nis_2025": "01 Nis 2025",
+    "_1_mar_2027": "31 Mar 2027",
+    "_8m_2": "€1.8M",
+    "avrupa_komisyonu_ek_bina": "Avrupa Komisyonu Ek Bina",
+    "brüksel-etropl": "Brüksel-Etropl",
+    "_1_may_2025": "01 May 2025",
+    "_0_eyl_2027": "30 Eyl 2027",
+    "_2m_2": "€8.2M",
+    "beton_c30_2": "Beton C30",
+    "_20k": "€420K",
+    "demir_çelik_b500b": "Demir Çelik (B500B)",
+    "_80k": "€380K",
+    "tuğla_poroton": "Tuğla (Poroton)",
+    "_10k": "€210K",
+    "alüminyum_cephe": "Alüminyum Cephe",
+    "_95k": "€195K",
+    "yalıtım_eps": "Yalıtım (EPS)",
+    "_45k": "€145K",
+    "pv": "PV",
+    "pieter_v": "Pieter V.",
+    "rivierpark_konutları_3": "Rivierpark Konutları",
+    "__dakika_önce_2": "8 dakika önce",
+    "jd": "JD",
+    "jan_d": "Jan D.",
+    "qt-2026-112_2": "#QT-2026-112",
+    "_5_dakika_önce": "25 dakika önce",
+    "ls": "LS",
+    "lisa_s": "Lisa S.",
+    "_2_dakika_önce_3": "42 dakika önce",
+    "mk": "MK",
+    "marc_k": "Marc K.",
+    "merkez_ofis_kulesi_3": "Merkez Ofis Kulesi",
+    "__saat_önce_5": "1 saat önce",
+    "ad": "Name",
+    "anna_d": "Anna D.",
+    "__saat_önce_6": "2 saat önce",
+    "tb": "TB",
+    "tom_b": "Tom B.",
+    "vinç_vc-03": "Vinç #VC-03",
+    "__saat_önce_7": "3 saat önce",
+    "merkez_ofis_2": "Merkez Ofis",
+    "__dk_önce": "5 dk önce",
+    "qt-2026-112_3": "#QT-2026-112",
+    "_2_dk_önce": "12 dk önce",
+    "beton_c30_3": "Beton C30",
+    "_2_dk_önce_2": "32 dk önce",
+    "rivierpark_2": "Rivierpark",
+    "__saat_önce_8": "1 saat önce",
+    "vinç_vc-04_2": "Vinç #VC-04",
+    "__saat_önce_9": "2 saat önce",
+    "antwerp_be": "📍 Antwerp, BE",
+    "parçalı_bulutlu_inşaat_için_uygun": "Parçalı Bulutlu · İnşaat için uygun",
+    "nem": "Nem",
+    "_4_kms": "14 km/s",
+    "rüzgar": "Rüzgar",
+    "yüksek": "High",
+    "düşük": "Low",
+    "yeni_proje_ekle": "Add New Project",
+    "proje_adı_2": "Project Name",
+    "şantiye_lokasyonu": "Şantiye Lokasyonu",
+    "sektör_2": "Sector",
+    "konut_inşaatı_2": "Konut İnşaatı",
+    "ticari_inşaat_2": "Ticari İnşaat",
+    "renovasyon_restore": "Renovasyon & Restore",
+    "altyapı_imar_2": "Altyapı & İmar",
+    "endüstriyel_tesis_2": "Endüstriyel Tesis",
+    "peyzaj_dış_mekan_2": "Peyzaj & Dış Mekan",
+    "bütçe_2": "Bütçe (€)",
+    "başlangıç_tarihi": "Start Date",
+    "bitiş_tarihi": "End Date",
+    "proje_açıklaması": "Proje Açıklaması",
+    "iptal": "Cancel",
+    "kaydet": "Save",
+    "projeyi_düzenle": "Edit Projeyi",
+    "proje_adı_3": "Project Name",
+    "şantiye_lokasyonu_2": "Şantiye Lokasyonu",
+    "sektör_3": "Sector",
+    "konut_inşaatı_3": "Konut İnşaatı",
+    "ticari_inşaat_3": "Ticari İnşaat",
+    "renovasyon_restore_2": "Renovasyon & Restore",
+    "altyapı_imar_3": "Altyapı & İmar",
+    "endüstriyel_tesis_3": "Endüstriyel Tesis",
+    "peyzaj_dış_mekan_3": "Peyzaj & Dış Mekan",
+    "bütçe_3": "Bütçe (€)",
+    "ilerleme": "İlerleme (%)",
+    "durum_2": "Status",
+    "devam_ediyor_2": "In Progress",
+    "bekliyor_4": "Bekliyor",
+    "tamamlandı_3": "Completed",
+    "iptal_2": "Cancel",
+    "iptal_3": "Cancel",
+    "güncelle": "Update",
+    "proje_detayları": "Project Details",
+    "bütçe_4": "Budget",
+    "_400000": "€2,400,000",
+    "harcanan": "Harcanan",
+    "_872000": "€1,872,000",
+    "kalan": "Remaining",
+    "_28000": "€528,000",
+    "ilerleme_2": "Progress",
+    "personel": "Staff",
+    "görev": "Task",
+    "saat": "Hours",
+    "durum_3": "Status",
+    "jan_de_smet_2": "Jan De Smet",
+    "kalıp_ustası": "Kalıp Ustası",
+    "_40h": "240h",
+    "lisa_vermeulen": "Lisa Vermeulen",
+    "proje_mühendisi": "Proje Mühendisi",
+    "_80h": "180h",
+    "marc_dubois": "Marc Dubois",
+    "vinç_operatörü": "Vinç Operatörü",
+    "_20h": "120h",
+    "kapat": "Close",
+    "düzenle": "Edit",
+    "yeni_teklif_oluştur": "New Teklif Oluştur",
+    "müşteri": "Client",
+    "proje_adı_4": "Project Name",
+    "tutar": "Tutar (€)",
+    "geçerlilik_gün": "Geçerlilik (gün)",
+    "açıklama": "Description",
+    "iptal_4": "Cancel",
+    "oluştur": "Create",
+    "title_menü": "Menü",
+    "ph_projeler_teklifler_personel_ara": "Projeler, teklifler, personel ara...",
+    "title_bildirimler": "Notifications",
+    "title_tema": "Theme",
+    "title_görüntüle": "View",
+    "title_düzenle": "Edit",
+    "title_sil": "Delete",
+    "title_görüntüle_2": "View",
+    "title_düzenle_2": "Edit",
+    "title_sil_2": "Delete",
+    "title_görüntüle_3": "View",
+    "title_düzenle_3": "Edit",
+    "title_sil_3": "Delete",
+    "title_görüntüle_4": "View",
+    "title_düzenle_4": "Edit",
+    "title_sil_4": "Delete",
+    "title_görüntüle_5": "View",
+    "title_düzenle_5": "Edit",
+    "title_sil_5": "Delete",
+    "title_görüntüle_6": "View",
+    "title_düzenle_6": "Edit",
+    "title_sil_6": "Delete",
+    "title_görüntüle_7": "View",
+    "title_düzenle_7": "Edit",
+    "title_sil_7": "Delete",
+    "title_görüntüle_8": "View",
+    "title_düzenle_8": "Edit",
+    "title_sil_8": "Delete",
+    "ph_örn_yeni_konut_projesi": "Örn: Yeni Konut Projesi",
+    "ph_örn_brüksel-midi": "Örn: Brüksel-Midi",
+    "ph_örn_2500000": "Örn: 2500000",
+    "ph_proje_detayları_özel_notlar": "Proje detayları, özel notlar...",
+    "ph_müşteri_adı": "Müşteri adı",
+    "ph_teklif_konusu": "Teklif konusu",
+    "ph__00": "0.00",
+    "ph_teklif_detayları_kapsam_hariç_tutulanlar": "Teklif detayları, kapsam, hariç tutulanlar..."
+  },
+  "nl": {
+    "buildpro_admin_dashboard": "BuildPro — Admin Dashboard",
+    "bp": "BP",
+    "buildpro": "BuildPro",
+    "buildpro_demo_bv": "BuildPro Demo BV",
+    "inşaat": "Bouw",
+    "inşaat_2": "Bouw",
+    "aktif": "Actief",
+    "temizlik": "Temizlik",
+    "aktif_2": "Actief",
+    "carwash": "CarWash",
+    "aktif_3": "Actief",
+    "berber_kuaför": "Berber & Kuaför",
+    "planlanan": "Planlanan",
+    "restoran": "Restoran",
+    "planlanan_2": "Planlanan",
+    "ana_menü": "Ana Menü",
+    "finans_ve_rapor": "Finans ve Rapor",
+    "diğer": "Overig",
+    "pieter_van_den_berg": "Pieter Van den Berg",
+    "proje_müdürü": "Projectmanager",
+    "dashboard": "Dashboard",
+    "bildirimler": "Meldingen",
+    "tümünü_okundu_işaretle": "Alles als gelezen markeren",
+    "merkez_ofis": "Merkez Ofis",
+    "__dakika_önce": "5 dakika önce",
+    "qt-2026-112": "#QT-2026-112",
+    "_2_dakika_önce": "12 dakika önce",
+    "beton_c30": "Beton C30",
+    "_2_dakika_önce_2": "32 dakika önce",
+    "rivierpark": "Rivierpark",
+    "__saat_önce": "1 saat önce",
+    "vinç_vc-04": "Vinç #VC-04",
+    "__saat_önce_2": "2 saat önce",
+    "qt-2026-110": "#QT-2026-110",
+    "__saat_önce_3": "3 saat önce",
+    "jan_de_smet": "Jan De Smet",
+    "__saat_önce_4": "4 saat önce",
+    "aktif_projeler": "Aktif Projeler",
+    "açık_teklifler": "Açık Teklifler",
+    "şantiye_sayısı": "Şantiye Sayısı",
+    "aylık_maliyet": "Aylık Maliyet",
+    "tamamlanan_işler": "Tamamlanan İşler",
+    "bekleyen_onay": "Bekleyen Onay",
+    "__6_aktif": "6 / 6 aktif",
+    "konut_inşaatı": "Konut İnşaatı",
+    "__proje_aktif": "7 proje aktif",
+    "ticari_inşaat": "Ticari İnşaat",
+    "__proje_aktif_2": "5 proje aktif",
+    "renovasyon": "Renovatie",
+    "__proje_aktif_3": "4 proje aktif",
+    "altyapı_imar": "Altyapı & İmar",
+    "__proje_aktif_4": "3 proje aktif",
+    "endüstriyel_tesis": "Endüstriyel Tesis",
+    "__proje_aktif_5": "3 proje aktif",
+    "peyzaj_dış_mekan": "Peyzaj & Dış Mekan",
+    "__proje_aktif_6": "2 proje aktif",
+    "aylık": "Maandelijks",
+    "çeyreklik": "Çeyreklik",
+    "mayıs_2026": "Mayıs 2026",
+    "pt": "Pt",
+    "sa": "uur",
+    "ça": "Ça",
+    "pe": "Pe",
+    "cu": "Cu",
+    "ct": "Ct",
+    "pa": "Pa",
+    "_700": "07:00",
+    "rivierpark_konutları": "Rivierpark Konutları",
+    "blok_a_temel_betonu": "Blok A temel betonu",
+    "tamamlandı": "Voltooid",
+    "_830": "08:30",
+    "merkez_ofis_kulesi": "Merkez Ofis Kulesi",
+    "_2_kat_döşeme_kalıbı": "12. kat döşeme kalıbı",
+    "tamamlandı_2": "Voltooid",
+    "_000": "10:00",
+    "grand_hotel_restore": "Grand Hotel Restore",
+    "cephe_temizliği_ve_izolasyon": "Cephe temizliği ve izolasyon",
+    "devam_ediyor": "In uitvoering",
+    "_300": "13:00",
+    "nordik_fabrika_genişleme": "Nordik Fabrika Genişleme",
+    "çelik_konstrüksiyon_montajı": "Çelik konstrüksiyon montajı",
+    "bekliyor": "Bekliyor",
+    "_430": "14:30",
+    "liman_yolu_altyapı": "Liman Yolu Altyapı",
+    "kanalizasyon_hattı_kazısı": "Kanalizasyon hattı kazısı",
+    "bekliyor_2": "Bekliyor",
+    "_600": "16:00",
+    "botanik_park": "Botanik Park",
+    "fidan_dikimi_ve_sulama": "Fidan dikimi ve sulama",
+    "bekliyor_3": "Bekliyor",
+    "yeni": "+ Yeni",
+    "tümünü_gör": "Tümünü Gör →",
+    "proje_adı": "Projectnaam",
+    "şantiye": "Werf",
+    "sektör": "Sector",
+    "durum": "Durum (%)",
+    "başlangıç": "Start",
+    "bitiş": "Einde",
+    "bütçe": "Budget",
+    "actions": "Actions",
+    "rivierpark_konutları_2": "Rivierpark Konutları",
+    "antwerpen-noord": "Antwerpen-Noord",
+    "_5_oca_2025": "15 Oca 2025",
+    "_0_haz_2026": "30 Haz 2026",
+    "_4m": "€2.4M",
+    "merkez_ofis_kulesi_2": "Merkez Ofis Kulesi",
+    "brüksel-midi": "Brüksel-Midi",
+    "_3_mar_2025": "03 Mar 2025",
+    "_5_ara_2026": "15 Ara 2026",
+    "_8m": "€5.8M",
+    "grand_hotel_restore_2": "Grand Hotel Restore",
+    "brugge-merkez": "Brugge-Merkez",
+    "_0_eyl_2024": "20 Eyl 2024",
+    "_0_eyl_2026": "30 Eyl 2026",
+    "_2m": "€1.2M",
+    "liman_yolu_altyapı_2": "Liman Yolu Altyapı",
+    "gent-liman": "Gent-Liman",
+    "_0_nis_2025": "10 Nis 2025",
+    "_0_may_2027": "30 May 2027",
+    "_1m": "€3.1M",
+    "nordik_fabrika_genişleme_2": "Nordik Fabrika Genişleme",
+    "leuven-teknopark": "Leuven-Teknopark",
+    "_5_oca_2025_2": "05 Oca 2025",
+    "_0_ağu_2026": "20 Ağu 2026",
+    "_5m": "€4.5M",
+    "botanik_park_2": "Botanik Park",
+    "liège-outremeuse": "Liège-Outremeuse",
+    "_1_mar_2025": "01 Mar 2025",
+    "_5_haz_2026": "15 Haz 2026",
+    "_90k": "€890K",
+    "zilverpark_villa_sitesi": "Zilverpark Villa Sitesi",
+    "knokke-heist": "Knokke-Heist",
+    "_1_nis_2025": "01 Nis 2025",
+    "_1_mar_2027": "31 Mar 2027",
+    "_8m_2": "€1.8M",
+    "avrupa_komisyonu_ek_bina": "Avrupa Komisyonu Ek Bina",
+    "brüksel-etropl": "Brüksel-Etropl",
+    "_1_may_2025": "01 May 2025",
+    "_0_eyl_2027": "30 Eyl 2027",
+    "_2m_2": "€8.2M",
+    "beton_c30_2": "Beton C30",
+    "_20k": "€420K",
+    "demir_çelik_b500b": "Demir Çelik (B500B)",
+    "_80k": "€380K",
+    "tuğla_poroton": "Tuğla (Poroton)",
+    "_10k": "€210K",
+    "alüminyum_cephe": "Alüminyum Cephe",
+    "_95k": "€195K",
+    "yalıtım_eps": "Yalıtım (EPS)",
+    "_45k": "€145K",
+    "pv": "PV",
+    "pieter_v": "Pieter V.",
+    "rivierpark_konutları_3": "Rivierpark Konutları",
+    "__dakika_önce_2": "8 dakika önce",
+    "jd": "JD",
+    "jan_d": "Jan D.",
+    "qt-2026-112_2": "#QT-2026-112",
+    "_5_dakika_önce": "25 dakika önce",
+    "ls": "LS",
+    "lisa_s": "Lisa S.",
+    "_2_dakika_önce_3": "42 dakika önce",
+    "mk": "MK",
+    "marc_k": "Marc K.",
+    "merkez_ofis_kulesi_3": "Merkez Ofis Kulesi",
+    "__saat_önce_5": "1 saat önce",
+    "ad": "Naam",
+    "anna_d": "Anna D.",
+    "__saat_önce_6": "2 saat önce",
+    "tb": "TB",
+    "tom_b": "Tom B.",
+    "vinç_vc-03": "Vinç #VC-03",
+    "__saat_önce_7": "3 saat önce",
+    "merkez_ofis_2": "Merkez Ofis",
+    "__dk_önce": "5 dk önce",
+    "qt-2026-112_3": "#QT-2026-112",
+    "_2_dk_önce": "12 dk önce",
+    "beton_c30_3": "Beton C30",
+    "_2_dk_önce_2": "32 dk önce",
+    "rivierpark_2": "Rivierpark",
+    "__saat_önce_8": "1 saat önce",
+    "vinç_vc-04_2": "Vinç #VC-04",
+    "__saat_önce_9": "2 saat önce",
+    "antwerp_be": "📍 Antwerp, BE",
+    "parçalı_bulutlu_inşaat_için_uygun": "Parçalı Bulutlu · İnşaat için uygun",
+    "nem": "Nem",
+    "_4_kms": "14 km/s",
+    "rüzgar": "Rüzgar",
+    "yüksek": "Hoog",
+    "düşük": "Laag",
+    "yeni_proje_ekle": "Nieuw Project Toevoegen",
+    "proje_adı_2": "Projectnaam",
+    "şantiye_lokasyonu": "Şantiye Lokasyonu",
+    "sektör_2": "Sector",
+    "konut_inşaatı_2": "Konut İnşaatı",
+    "ticari_inşaat_2": "Ticari İnşaat",
+    "renovasyon_restore": "Renovasyon & Restore",
+    "altyapı_imar_2": "Altyapı & İmar",
+    "endüstriyel_tesis_2": "Endüstriyel Tesis",
+    "peyzaj_dış_mekan_2": "Peyzaj & Dış Mekan",
+    "bütçe_2": "Bütçe (€)",
+    "başlangıç_tarihi": "Startdatum",
+    "bitiş_tarihi": "Einddatum",
+    "proje_açıklaması": "Proje Açıklaması",
+    "iptal": "Annuleren",
+    "kaydet": "Opslaan",
+    "projeyi_düzenle": "Projeyi Bewerken",
+    "proje_adı_3": "Projectnaam",
+    "şantiye_lokasyonu_2": "Şantiye Lokasyonu",
+    "sektör_3": "Sector",
+    "konut_inşaatı_3": "Konut İnşaatı",
+    "ticari_inşaat_3": "Ticari İnşaat",
+    "renovasyon_restore_2": "Renovasyon & Restore",
+    "altyapı_imar_3": "Altyapı & İmar",
+    "endüstriyel_tesis_3": "Endüstriyel Tesis",
+    "peyzaj_dış_mekan_3": "Peyzaj & Dış Mekan",
+    "bütçe_3": "Bütçe (€)",
+    "ilerleme": "İlerleme (%)",
+    "durum_2": "Status",
+    "devam_ediyor_2": "In uitvoering",
+    "bekliyor_4": "Bekliyor",
+    "tamamlandı_3": "Voltooid",
+    "iptal_2": "Annuleren",
+    "iptal_3": "Annuleren",
+    "güncelle": "Bijwerken",
+    "proje_detayları": "Projectdetails",
+    "bütçe_4": "Budget",
+    "_400000": "€2,400,000",
+    "harcanan": "Harcanan",
+    "_872000": "€1,872,000",
+    "kalan": "Resterend",
+    "_28000": "€528,000",
+    "ilerleme_2": "Voortgang",
+    "personel": "Personeel",
+    "görev": "Taak",
+    "saat": "Uren",
+    "durum_3": "Status",
+    "jan_de_smet_2": "Jan De Smet",
+    "kalıp_ustası": "Kalıp Ustası",
+    "_40h": "240h",
+    "lisa_vermeulen": "Lisa Vermeulen",
+    "proje_mühendisi": "Proje Mühendisi",
+    "_80h": "180h",
+    "marc_dubois": "Marc Dubois",
+    "vinç_operatörü": "Vinç Operatörü",
+    "_20h": "120h",
+    "kapat": "Sluiten",
+    "düzenle": "Bewerken",
+    "yeni_teklif_oluştur": "Nieuwe Teklif Oluştur",
+    "müşteri": "Klant",
+    "proje_adı_4": "Projectnaam",
+    "tutar": "Tutar (€)",
+    "geçerlilik_gün": "Geçerlilik (gün)",
+    "açıklama": "Beschrijving",
+    "iptal_4": "Annuleren",
+    "oluştur": "Aanmaken",
+    "title_menü": "Menü",
+    "ph_projeler_teklifler_personel_ara": "Projeler, teklifler, personel ara...",
+    "title_bildirimler": "Meldingen",
+    "title_tema": "Thema",
+    "title_görüntüle": "Bekijken",
+    "title_düzenle": "Bewerken",
+    "title_sil": "Verwijderen",
+    "title_görüntüle_2": "Bekijken",
+    "title_düzenle_2": "Bewerken",
+    "title_sil_2": "Verwijderen",
+    "title_görüntüle_3": "Bekijken",
+    "title_düzenle_3": "Bewerken",
+    "title_sil_3": "Verwijderen",
+    "title_görüntüle_4": "Bekijken",
+    "title_düzenle_4": "Bewerken",
+    "title_sil_4": "Verwijderen",
+    "title_görüntüle_5": "Bekijken",
+    "title_düzenle_5": "Bewerken",
+    "title_sil_5": "Verwijderen",
+    "title_görüntüle_6": "Bekijken",
+    "title_düzenle_6": "Bewerken",
+    "title_sil_6": "Verwijderen",
+    "title_görüntüle_7": "Bekijken",
+    "title_düzenle_7": "Bewerken",
+    "title_sil_7": "Verwijderen",
+    "title_görüntüle_8": "Bekijken",
+    "title_düzenle_8": "Bewerken",
+    "title_sil_8": "Verwijderen",
+    "ph_örn_yeni_konut_projesi": "Örn: Yeni Konut Projesi",
+    "ph_örn_brüksel-midi": "Örn: Brüksel-Midi",
+    "ph_örn_2500000": "Örn: 2500000",
+    "ph_proje_detayları_özel_notlar": "Proje detayları, özel notlar...",
+    "ph_müşteri_adı": "Müşteri adı",
+    "ph_teklif_konusu": "Teklif konusu",
+    "ph__00": "0.00",
+    "ph_teklif_detayları_kapsam_hariç_tutulanlar": "Teklif detayları, kapsam, hariç tutulanlar..."
+  }
+};
+let currentLang = localStorage.getItem('buildpro_lang') || 'tr';
+document.documentElement.lang = currentLang;
+function switchLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('buildpro_lang', lang);
+  document.documentElement.lang = lang;
+  applyLang();
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+}
+function applyLang() {
+  const t = i18n[currentLang] || i18n['tr'];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) {
+      const attr = el.getAttribute('data-i18n-attr');
+      if (attr) {
+        el.setAttribute(attr, t[key]);
+      } else if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        if (el.type !== 'submit' && el.type !== 'button') {
+          // keep value for inputs unless button
+        }
+        el.value = t[key];
+      } else if (el.tagName === 'OPTION') {
+        el.textContent = t[key];
+      } else {
+        el.textContent = t[key];
+      }
+    }
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key]) el.placeholder = t[key];
+  });
+  const titleEl = document.querySelector('title');
+  if (titleEl) {
+    const key = titleEl.getAttribute('data-i18n');
+    if (key && t[key]) document.title = t[key];
+  }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  applyLang();
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === currentLang));
+});
+</script></body>
 </html>
