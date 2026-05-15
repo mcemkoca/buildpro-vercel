@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="css/main.css" rel="stylesheet"/>
 <link href="css/components.css" rel="stylesheet"/>
+<link href="css/dashboard.css" rel="stylesheet"/>
 <style>
 .dashboard{display:flex;min-height:100vh;background:var(--bg-primary);}
 .sidebar{width:260px;height:100vh;background:var(--bg-card);border-right:1px solid var(--border-color);display:flex;flex-direction:column;position:fixed;left:0;top:0;z-index:100;}
@@ -85,26 +86,39 @@
 <body>
 <div class="dashboard">
 <aside class="sidebar" id="sidebar">
-<div class="sidebar-header">
-<div class="sidebar-logo" data-i18n="bp">BP</div>
-<div><div data-i18n="buildpro" style="font-weight:700;font-size:var(--text-sm);">BuildPro</div><div data-i18n="inşaat_yenileme" style="font-size:var(--text-xs);color:var(--text-muted);">İnşaat &amp; Yenileme</div></div>
-</div>
-<nav class="sidebar-nav">
-<div class="nav-group">
-<div class="nav-group-header" data-i18n="ana_menü">Ana Menü</div>
-<a class="nav-item" href="buildpro-dashboard.html"><svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><line x1="3" x2="21" y1="9" y2="9"></line><line x1="9" x2="9" y1="21" y2="9"></line></svg>Dashboard</a>
-<a class="nav-item" href="buildpro-projects.html"><svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M2 20h.01"></path><path d="M7 20v-4"></path><path d="M12 20v-8"></path><path d="M17 20V8"></path></svg>Projeler</a>
-<a class="nav-item active" href="buildpro-quotes.html"><svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" x2="8" y1="13" y2="13"></line><line x1="16" x2="8" y1="17" y2="17"></line></svg>Teklifler</a>
-<a class="nav-item" href="buildpro-equipment.html"><svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="14" rx="2" ry="2" width="20" x="2" y="3"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg>Ekipman</a>
-<a class="nav-item" href="buildpro-staff.html"><svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path></svg>Çalışanlar</a>
-<a class="nav-item" href="buildpro-reports.html"><svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg>Raporlar</a>
-</div>
-<div class="nav-group">
-<div class="nav-group-header" data-i18n="ayarlar">Ayarlar</div>
-<a class="nav-item" href="buildpro-profile.html"><svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Firma Profili</a>
-<a class="nav-item" href="login.html"><svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" x2="9" y1="12" y2="12"></line></svg>Çıkış Yap</a>
-</div>
-</nav>
+  <div class="sidebar-brand">
+    <div class="sidebar-brand-icon">BP</div>
+    <span class="sidebar-brand-text" data-i18n="buildpro">BuildPro</span>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="sidebar-section">
+      <div class="sidebar-section-title" data-i18n="ana_menü">Ana Menü</div>
+      <a class="sidebar-link " href="dashboard.html"><span class="icon">📊</span><span class="sidebar-text" data-i18n="dashboard">Dashboard</span></a>
+      <a class="sidebar-link " href="buildpro-projects.html"><span class="icon">🏗️</span><span class="sidebar-text" data-i18n="projeler">Projeler</span></a>
+      <a class="sidebar-link active" href="buildpro-quotes.html"><span class="icon">📄</span><span class="sidebar-text" data-i18n="teklifler">Teklifler</span></a>
+      <a class="sidebar-link " href="buildpro-site.html"><span class="icon">📍</span><span class="sidebar-text" data-i18n="şantiye">Şantiye</span></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title" data-i18n="operasyon">Operasyon</div>
+      <a class="sidebar-link " href="buildpro-equipment.html"><span class="icon">🚜</span><span class="sidebar-text" data-i18n="ekipman">Ekipman</span></a>
+      <a class="sidebar-link " href="buildpro-staff.html"><span class="icon">👷</span><span class="sidebar-text" data-i18n="personel">Personel</span></a>
+      <a class="sidebar-link " href="buildpro-calendar.html"><span class="icon">📅</span><span class="sidebar-text" data-i18n="takvim">Takvim</span></a>
+      <a class="sidebar-link " href="buildpro-costs.html"><span class="icon">💶</span><span class="sidebar-text" data-i18n="maliyetler">Maliyetler</span></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title" data-i18n="diğer">Diğer</div>
+      <a class="sidebar-link" href="../cleanfix-vercel/dashboard.html"><span class="icon">🧹</span><span class="sidebar-text" data-i18n="cleanfix_dashboard">CleanFix Dashboard</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="sidebar-user" style="display:flex;align-items:center;gap:12px;padding:8px 12px;">
+      <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--teal-500),var(--teal-700));display:flex;align-items:center;justify-content:center;font-weight:600;color:white;font-size:12px;">PV</div>
+      <div>
+        <p style="font-size:13px;font-weight:600;color:var(--text-primary);margin:0;">Pieter Van den Berg</p>
+        <span style="font-size:11px;color:var(--text-muted);">Proje Müdürü</span>
+      </div>
+    </div>
+  </div>
 </aside>
 <main class="main-content">
 <header class="header">

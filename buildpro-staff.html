@@ -29,33 +29,39 @@
 <div class="dashboard">
 <!-- Sidebar -->
 <aside class="sidebar" id="sidebar">
-<div class="sidebar-brand">
-<div class="sidebar-brand-icon">BP</div>
-<span class="sidebar-brand-text" data-i18n="buildpro">BuildPro</span>
-</div>
-<nav class="sidebar-nav">
-<div class="sidebar-section">
-<div class="sidebar-section-title" data-i18n="genel">Genel</div>
-<a class="sidebar-link" href="buildpro-dashboard.html"><span class="icon">📊</span><span class="sidebar-text" data-i18n="dashboard">Dashboard</span></a>
-<a class="sidebar-link" href="buildpro-projects.html"><span class="icon">🏗️</span><span class="sidebar-text" data-i18n="projeler">Projeler</span></a>
-<a class="sidebar-link active" href="buildpro-staff.html"><span class="icon">👷</span><span class="sidebar-text" data-i18n="personel">Personel</span></a>
-<a class="sidebar-link" href="buildpro-site.html"><span class="icon">📍</span><span class="sidebar-text" data-i18n="şantiyeler">Şantiyeler</span></a>
-</div>
-<div class="sidebar-section">
-<div class="sidebar-section-title" data-i18n="operasyon">Operasyon</div>
-<a class="sidebar-link" href="buildpro-calendar.html"><span class="icon">📅</span><span class="sidebar-text" data-i18n="takvim">Takvim</span></a>
-<a class="sidebar-link" href="buildpro-costs.html"><span class="icon">💶</span><span class="sidebar-text" data-i18n="maliyetler">Maliyetler</span></a>
-<a class="sidebar-link" href="buildpro-equipment.html"><span class="icon">🚜</span><span class="sidebar-text" data-i18n="ekipman">Ekipman</span></a>
-</div>
-<div class="sidebar-section">
-<div class="sidebar-section-title" data-i18n="müşteri">Müşteri</div>
-<a class="sidebar-link" href="buildpro-clients.html"><span class="icon">🤝</span><span class="sidebar-text" data-i18n="müşteriler">Müşteriler</span></a>
-<a class="sidebar-link" href="buildpro-quotes.html"><span class="icon">📄</span><span class="sidebar-text" data-i18n="teklifler">Teklifler</span></a>
-</div>
-</nav>
-<div class="sidebar-footer">
-<a class="sidebar-link" href="#"><span class="icon">⚙️</span><span class="sidebar-text" data-i18n="ayarlar">Ayarlar</span></a>
-</div>
+  <div class="sidebar-brand">
+    <div class="sidebar-brand-icon">BP</div>
+    <span class="sidebar-brand-text" data-i18n="buildpro">BuildPro</span>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="sidebar-section">
+      <div class="sidebar-section-title" data-i18n="ana_menü">Ana Menü</div>
+      <a class="sidebar-link " href="dashboard.html"><span class="icon">📊</span><span class="sidebar-text" data-i18n="dashboard">Dashboard</span></a>
+      <a class="sidebar-link " href="buildpro-projects.html"><span class="icon">🏗️</span><span class="sidebar-text" data-i18n="projeler">Projeler</span></a>
+      <a class="sidebar-link " href="buildpro-quotes.html"><span class="icon">📄</span><span class="sidebar-text" data-i18n="teklifler">Teklifler</span></a>
+      <a class="sidebar-link " href="buildpro-site.html"><span class="icon">📍</span><span class="sidebar-text" data-i18n="şantiye">Şantiye</span></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title" data-i18n="operasyon">Operasyon</div>
+      <a class="sidebar-link " href="buildpro-equipment.html"><span class="icon">🚜</span><span class="sidebar-text" data-i18n="ekipman">Ekipman</span></a>
+      <a class="sidebar-link active" href="buildpro-staff.html"><span class="icon">👷</span><span class="sidebar-text" data-i18n="personel">Personel</span></a>
+      <a class="sidebar-link " href="buildpro-calendar.html"><span class="icon">📅</span><span class="sidebar-text" data-i18n="takvim">Takvim</span></a>
+      <a class="sidebar-link " href="buildpro-costs.html"><span class="icon">💶</span><span class="sidebar-text" data-i18n="maliyetler">Maliyetler</span></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title" data-i18n="diğer">Diğer</div>
+      <a class="sidebar-link" href="../cleanfix-vercel/dashboard.html"><span class="icon">🧹</span><span class="sidebar-text" data-i18n="cleanfix_dashboard">CleanFix Dashboard</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="sidebar-user" style="display:flex;align-items:center;gap:12px;padding:8px 12px;">
+      <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--teal-500),var(--teal-700));display:flex;align-items:center;justify-content:center;font-weight:600;color:white;font-size:12px;">PV</div>
+      <div>
+        <p style="font-size:13px;font-weight:600;color:var(--text-primary);margin:0;">Pieter Van den Berg</p>
+        <span style="font-size:11px;color:var(--text-muted);">Proje Müdürü</span>
+      </div>
+    </div>
+  </div>
 </aside>
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 <!-- Main -->
