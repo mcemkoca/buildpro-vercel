@@ -3027,6 +3027,17 @@ function toggleChartPeriod(period) {
     window.statusChart.update();
   }
 }
+
+/* ===== MODULE AUTH CHECK ===== */
+function checkModuleAuth() {
+  const token = localStorage.getItem('kobipro_auth_token');
+  if (!token && !window.location.pathname.includes('login.html') && !window.location.pathname.includes('index.html')) {
+    window.location.href = 'login.html?redirect=' + encodeURIComponent(window.location.pathname);
+  }
+}
+
+// Module auth check on load
+checkModuleAuth();
 </script>
 </body>
 </html>
