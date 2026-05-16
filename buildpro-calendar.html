@@ -382,8 +382,26 @@
     function closeModal(id) { document.getElementById(id).classList.remove('active'); }
     // Close modal on Escape key
     document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ document.querySelectorAll('.modal-overlay.active').forEach(m=>m.classList.remove('active')); } });
-    // Form validation
-    document.querySelectorAll('form').forEach(form=>{ form.addEventListener('submit',e=>{ let valid=true; form.querySelectorAll('input:not([type="hidden"]), textarea, select').forEach(f=>{ if(!f.value.trim()){ valid=false; f.style.borderColor='var(--error-500)'; }else{ f.style.borderColor=''; } }); const em=form.querySelector('input[type="email"]'); if(em&&em.value&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value)){ valid=false; em.style.borderColor='var(--error-500)'; showToast('Geçerli e-posta giriniz','error'); } if(!valid){ e.preventDefault(); showToast('Lütfen zorunlu alanları doldurunuz','error'); } }); });
+    // Modal input validation
+    function validateModalInputs(modalId){
+      const modal=document.getElementById(modalId); if(!modal) return true;
+      let valid=true;
+      const inputs=modal.querySelectorAll('.modal-body input:not([type="hidden"]), .modal-body textarea, .modal-body select');
+      inputs.forEach(f=>{ if(!f.value.trim() && f.placeholder && !f.type.includes('date')){ valid=false; f.style.borderColor='var(--error-500)'; f.style.boxShadow='0 0 0 1px var(--error-500)'; }else{ f.style.borderColor=''; f.style.boxShadow=''; } });
+      const email=modal.querySelector('input[type="email"]');
+      if(email&&email.value&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)){ valid=false; email.style.borderColor='var(--error-500)'; email.style.boxShadow='0 0 0 1px var(--error-500)'; showToast('Geçerli e-posta adresi giriniz','error'); }
+      if(!valid) showToast('Lütfen zorunlu alanları doldurunuz','error'); return valid;
+    }
+    // Attach validation to modal save buttons
+    setTimeout(()=>{
+      document.querySelectorAll('.modal-footer .btn-primary').forEach(btn=>{
+        const onclick=btn.getAttribute('onclick');
+        if(onclick && onclick.includes('closeModal')){
+          btn.setAttribute('onclick','if(!validateModalInputs(this.closest(\'.modal-overlay\').id))return false;'+onclick);
+        }
+      });
+    },100);
+
 
 
     function setView(view) {

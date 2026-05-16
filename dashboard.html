@@ -713,7 +713,7 @@
             +1
           </div>
 </div>
-<div class="kpi-value" data-suffix="" data-target="8">0</div>
+<div class="kpi-value" data-suffix="" data-target="12">0</div>
 <div class="kpi-label" data-i18n="şantiye_sayısı">Şantiye Sayısı</div>
 <div class="kpi-sparkline">
 <svg preserveaspectratio="none" viewbox="0 0 200 50">
@@ -1679,35 +1679,36 @@ document.addEventListener('keydown',e=>{
     document.querySelectorAll('.modal-overlay.active').forEach(m=>m.classList.remove('active'));
   }
 });
-// Form validation helper
-function validateForm(form){
+// Modal input validation
+function validateModalInputs(modalId){
+  const modal=document.getElementById(modalId);
+  if(!modal) return true;
   let valid=true;
-  const required=form.querySelectorAll('[required], input:not([type="hidden"])');
-  required.forEach(field=>{
-    if(!field.value.trim()){
-      valid=false;
-      field.style.borderColor='var(--error-500)';
+  const inputs=modal.querySelectorAll('.modal-body input:not([type="hidden"]), .modal-body textarea, .modal-body select');
+  inputs.forEach(f=>{
+    if(!f.value.trim() && f.placeholder && !f.type.includes('date')){
+      valid=false; f.style.borderColor='var(--error-500)'; f.style.boxShadow='0 0 0 1px var(--error-500)';
     }else{
-      field.style.borderColor='';
+      f.style.borderColor=''; f.style.boxShadow='';
     }
   });
-  const email=form.querySelector('input[type="email"]');
+  const email=modal.querySelector('input[type="email"]');
   if(email&&email.value&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)){
-    valid=false;
-    email.style.borderColor='var(--error-500)';
+    valid=false; email.style.borderColor='var(--error-500)'; email.style.boxShadow='0 0 0 1px var(--error-500)';
     showToast('Geçerli e-posta adresi giriniz','error');
   }
+  if(!valid) showToast('Lütfen zorunlu alanları doldurunuz','error');
   return valid;
 }
-// Attach validation to all forms
-document.querySelectorAll('form').forEach(form=>{
-  form.addEventListener('submit',e=>{
-    if(!validateForm(form)){
-      e.preventDefault();
-      showToast('Lütfen zorunlu alanları doldurunuz','error');
+// Attach validation to modal save buttons (delay to ensure DOM ready)
+setTimeout(()=>{
+  document.querySelectorAll('.modal-footer .btn-primary').forEach(btn=>{
+    const onclick=btn.getAttribute('onclick');
+    if(onclick && onclick.includes('closeModal')){
+      btn.setAttribute('onclick','if(!validateModalInputs(this.closest(\'.modal-overlay\').id))return false;'+onclick);
     }
   });
-});
+},100);
 
 
 /* ── Sector Toggle ── */
