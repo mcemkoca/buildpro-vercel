@@ -1201,5 +1201,15 @@ document.addEventListener('DOMContentLoaded', () => {
   applyLang();
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === currentLang));
 });
-</script></body>
+</script>
+<script>
+window.onerror = function(msg, url, line) {
+  console.error('BuildPro Error:', msg, 'at', url, ': ', line);
+  return false;
+};
+window.addEventListener('unhandledrejection', function(e) {
+  console.error('Unhandled Promise:', e.reason);
+});
+</script>
+</body>
 </html>

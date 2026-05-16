@@ -610,6 +610,11 @@
     function editCost(id) { openModal('editCostModal'); }
     function deleteCost(id) { openModal('deleteCostModal'); }
     function exportCosts() { showToast('Maliyet raporu dışa aktarıldı','info'); }
+    // Close modal on Escape key
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ document.querySelectorAll('.modal-overlay.active').forEach(m=>m.classList.remove('active')); } });
+    // Form validation
+    document.querySelectorAll('form').forEach(form=>{ form.addEventListener('submit',e=>{ let valid=true; form.querySelectorAll('input:not([type="hidden"]), textarea, select').forEach(f=>{ if(!f.value.trim()){ valid=false; f.style.borderColor='var(--error-500)'; }else{ f.style.borderColor=''; } }); const em=form.querySelector('input[type="email"]'); if(em&&em.value&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value)){ valid=false; em.style.borderColor='var(--error-500)'; showToast('Geçerli e-posta giriniz','error'); } if(!valid){ e.preventDefault(); showToast('Lütfen zorunlu alanları doldurunuz','error'); } }); });
+
 
     function showToast(message, type='info') {
       const container = document.getElementById('toastContainer');
@@ -1400,5 +1405,15 @@ document.addEventListener('DOMContentLoaded', () => {
   applyLang();
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === currentLang));
 });
-</script></body>
+</script>
+<script>
+window.onerror = function(msg, url, line) {
+  console.error('BuildPro Error:', msg, 'at', url, ': ', line);
+  return false;
+};
+window.addEventListener('unhandledrejection', function(e) {
+  console.error('Unhandled Promise:', e.reason);
+});
+</script>
+</body>
 </html>
