@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BuildPro — Giriş</title>
+<style>
+body { margin:0; display:flex; align-items:center; justify-content:center; min-height:100vh; background:#0f172a; color:#e2e8f0; font-family:system-ui,-apple-system,sans-serif; }
+.redirect-card { text-align:center; padding:2rem; max-width:320px; }
+.redirect-card h1 { font-size:1.5rem; margin-bottom:0.5rem; }
+.redirect-card p { color:#94a3b8; font-size:0.875rem; margin-bottom:1.5rem; }
+.spinner { width:40px; height:40px; border:3px solid rgba(255,255,255,0.1); border-top-color:#f59e0b; border-radius:50%; animation:spin 1s linear infinite; margin:0 auto; }
+@keyframes spin { to { transform:rotate(360deg); } }
+</style>
+</head>
+<body>
+<div class="redirect-card">
+  <h1>BuildPro</h1>
+  <p>Ortak giriş sistemi kullanılıyor, yönlendiriliyorsunuz...</p>
+  <div class="spinner"></div>
+</div>
+<script>
+  setTimeout(function(){
+    window.location.href = 'https://mcemkoca.github.io/cleanfix-vercel/login.html?redirect=buildpro';
+  }, 1500);
+</script>
+</body>
+</html>

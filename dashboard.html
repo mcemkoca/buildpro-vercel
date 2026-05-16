@@ -47,12 +47,7 @@
 }
 .sidebar.collapsed { transform:translateX(-100%); }
 .sidebar-header { padding:var(--space-5); border-bottom:1px solid var(--border-color); }
-.sidebar-logo { display:flex; align-items:center; gap:var(--space-3); }
-.sidebar-logo .logo-icon {
-  width:40px; height:40px; background:linear-gradient(135deg,var(--teal-500),var(--teal-700));
-  border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center;
-  font-size:16px; font-weight:700; color:var(--text-primary);
-}
+
 .sidebar-logo h2 { font-size:18px; font-weight:800; letter-spacing:-0.02em; line-height:1.2; }
 .sidebar-logo p { font-size:12px; color:var(--text-secondary); font-weight:500; margin-top:2px; }
 .sidebar-logo { display:flex; align-items:flex-start; gap:var(--space-3); }
@@ -62,7 +57,6 @@
   font-size:26px; font-weight:700; color:white; flex-shrink:0;
   box-shadow: 0 2px 8px var(--teal-glow);
 }
-.sidebar-header { padding:var(--space-5); border-bottom:1px solid var(--border-color); }
 
 /* ── Sector Dropdown ── */
 .sector-dropdown { margin-top: var(--space-3); position: relative; }
@@ -474,6 +468,16 @@
 </style>
 </head>
 <body>
+<script>
+(function(){
+  var token = localStorage.getItem('kobipro_auth_token');
+  var path = window.location.pathname;
+  var isLoginPage = path.includes('login') || path.includes('index');
+  if(!token && !isLoginPage){
+    window.location.href = 'login.html';
+  }
+})();
+</script>
 <!-- Sidebar Overlay (mobile) -->
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 <div class="dashboard">
@@ -573,6 +577,11 @@
         CleanFix Dashboard
       </a>
 </div>
+  <div class="nav-group">
+    <div class="nav-label">Modüller</div>
+    <a class="nav-item" href="https://mcemkoca.github.io/cleanfix-vercel/dashboard.html">CleanFix Ana Panel</a>
+    <a class="nav-item" href="https://mcemkoca.github.io/barberpro-vercel/dashboard.html">BarberPro</a>
+  </div>
 </nav>
 <div class="sidebar-footer">
 <div class="sidebar-user">
@@ -582,6 +591,7 @@
 <span data-i18n="proje_müdürü">Proje Müdürü</span>
 </div>
 </div>
+<button onclick="localStorage.removeItem('kobipro_auth_token');localStorage.removeItem('kobipro_user');window.location.href='login.html';" style="margin-top:10px;width:100%;padding:8px;border:1px solid var(--border-color);border-radius:6px;background:transparent;color:var(--text-muted);font-size:0.75rem;cursor:pointer;">Çıkış Yap</button>
 </div>
 </aside>
 <!-- Main -->
