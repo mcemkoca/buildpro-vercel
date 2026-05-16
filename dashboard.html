@@ -51,7 +51,7 @@
 .sidebar-logo .logo-icon {
   width:40px; height:40px; background:linear-gradient(135deg,var(--teal-500),var(--teal-700));
   border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center;
-  font-size:16px; font-weight:700; color:white;
+  font-size:16px; font-weight:700; color:var(--text-primary);
 }
 .sidebar-logo h2 { font-size:var(--text-base); font-weight:700; letter-spacing:-0.02em; }
 .sidebar-logo p { font-size:var(--text-xs); color:var(--text-muted); }
@@ -117,7 +117,7 @@
   margin-left:auto; background:var(--bg-tertiary); color:var(--text-secondary);
   font-size:var(--text-xs); font-weight:600; padding:2px 8px; border-radius:9999px;
 }
-.nav-item.active .nav-badge { background:var(--teal-500); color:white; }
+.nav-item.active .nav-badge { background:var(--teal-500); color:var(--text-primary); }
 
 .sidebar-footer { padding:var(--space-4); border-top:1px solid var(--border-color); }
 .sidebar-user { display:flex; align-items:center; gap:var(--space-3); }
@@ -159,7 +159,7 @@
 }
 .header-btn .badge-count {
   position:absolute; top:-4px; right:-4px; min-width:18px; height:18px;
-  background:var(--error-500); color:white; font-size:10px; font-weight:700;
+  background:var(--error-500); color:var(--text-primary); font-size:10px; font-weight:700;
   border-radius:9999px; display:flex; align-items:center; justify-content:center;
   border:2px solid var(--bg-card); padding:0 4px;
 }
@@ -279,7 +279,7 @@
   transition:all var(--duration-fast); cursor:pointer;
 }
 .quick-action:hover {
-  background:var(--teal-500); color:white;
+  background:var(--teal-500); color:var(--text-primary);
   transform:translateY(-2px); box-shadow:0 4px 12px var(--teal-glow);
 }
 .quick-action .icon { font-size:var(--text-lg); }
@@ -295,7 +295,7 @@
 .activity-avatar {
   width:32px; height:32px; border-radius:50%; flex-shrink:0;
   display:flex; align-items:center; justify-content:center;
-  font-size:12px; font-weight:700; color:white;
+  font-size:12px; font-weight:700; color:var(--text-primary);
 }
 .activity-content { flex:1; }
 .activity-text {
@@ -418,7 +418,7 @@
 }
 .cal-day:hover { background:var(--bg-secondary); }
 .cal-day.today {
-  background:var(--teal-500); color:white; font-weight:700;
+  background:var(--teal-500); color:var(--text-primary); font-weight:700;
   box-shadow:0 2px 8px rgba(20,184,166,0.3);
 }
 .cal-day.has-event::after {
@@ -592,7 +592,7 @@
 <button class="lang-btn" data-lang="en" onclick="switchLang('en')" style="padding:4px 8px;font-size:12px;border-radius:4px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;">EN</button>
 <button class="lang-btn" data-lang="nl" onclick="switchLang('nl')" style="padding:4px 8px;font-size:12px;border-radius:4px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;">NL</button>
 </div>
-<style>.lang-btn.active{background:var(--teal-500)!important;color:white!important;border-color:var(--teal-500)!important;font-weight:600;}</style>
+<style>.lang-btn.active{background:var(--teal-500)!important;color:var(--text-primary)!important;border-color:var(--teal-500)!important;font-weight:600;}</style>
 
 <div class="search-input" id="headerSearch" style="max-width:240px;">
 <svg class="search-icon" fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
@@ -741,7 +741,7 @@
 </div>
 <div class="kpi-card reveal reveal-delay-4">
 <div class="kpi-top">
-<div class="kpi-icon" style="background:rgba(139,92,246,0.1);color:#14b8a6;">✓</div>
+<div class="kpi-icon" style="background:rgba(139,92,246,0.1);color:var(--teal-500);">✓</div>
 <div class="kpi-trend up">
 <svg fill="none" height="12" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" width="12"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline></svg>
             +6
@@ -751,8 +751,8 @@
 <div class="kpi-label" data-i18n="tamamlanan_işler">Tamamlanan İşler</div>
 <div class="kpi-sparkline">
 <svg preserveaspectratio="none" viewbox="0 0 200 50">
-<polyline fill="none" points="0,45 28,42 56,40 84,35 112,30 140,25 168,20 196,15" stroke="#14b8a6" stroke-width="2"></polyline>
-<polygon fill="#14b8a6" opacity="0.15" points="0,45 28,42 56,40 84,35 112,30 140,25 168,20 196,15 196,50 0,50"></polygon>
+<polyline fill="none" points="0,45 28,42 56,40 84,35 112,30 140,25 168,20 196,15" stroke="var(--teal-500)" stroke-width="2"></polyline>
+<polygon fill="var(--teal-500)" opacity="0.15" points="0,45 28,42 56,40 84,35 112,30 140,25 168,20 196,15 196,50 0,50"></polygon>
 </svg>
 </div>
 </div>
@@ -874,8 +874,8 @@
             Bütçe Analizi
           </div>
 <div style="display:flex;gap:4px;background:var(--bg-secondary);padding:3px;border-radius:var(--radius-md);">
-<button class="chart-toggle-btn active" data-i18n="aylık" data-period="monthly" style="padding:5px 14px;border-radius:var(--radius-sm);border:none;background:var(--bg-card);font-size:11px;font-weight:700;color:var(--teal-500);cursor:pointer;box-shadow:var(--shadow-sm);">Aylık</button>
-<button class="chart-toggle-btn" data-i18n="çeyreklik" data-period="quarterly" style="padding:5px 14px;border-radius:var(--radius-sm);border:none;background:none;font-size:11px;font-weight:700;color:var(--text-muted);cursor:pointer;">Çeyreklik</button>
+<button class="chart-toggle-btn active" data-i18n="aylık" data-period="monthly" onclick="toggleChartPeriod('monthly')" style="padding:5px 14px;border-radius:var(--radius-sm);border:none;background:var(--bg-card);font-size:11px;font-weight:700;color:var(--teal-500);cursor:pointer;box-shadow:var(--shadow-sm);">Aylık</button>
+<button class="chart-toggle-btn" data-i18n="çeyreklik" data-period="quarterly" onclick="toggleChartPeriod('quarterly')" style="padding:5px 14px;border-radius:var(--radius-sm);border:none;background:none;font-size:11px;font-weight:700;color:var(--text-muted);cursor:pointer;">Çeyreklik</button>
 </div>
 </div>
 <div class="chart-container">
@@ -883,26 +883,23 @@
 </div>
 </div>
 <!-- Calendar Widget -->
-<div class="glass-card calendar-widget reveal reveal-delay-1">
+<div class="glass-card calendar-widget reveal reveal-delay-1" id="calendarWidget">
 <div class="cal-header">
-<span class="cal-month" data-i18n="mayıs_2026">Mayıs 2026</span>
+<span class="cal-month" id="calMonthLabel" data-i18n="mayıs_2026">Mayıs 2026</span>
 <div class="cal-nav">
-<button class="cal-nav-btn">‹</button>
-<button class="cal-nav-btn">›</button>
+<button class="cal-nav-btn" onclick="changeMonth(-1)" title="Önceki ay">‹</button>
+<button class="cal-nav-btn" onclick="changeMonth(1)" title="Sonraki ay">›</button>
 </div>
 </div>
-<div class="cal-grid">
-<div class="cal-weekday" data-i18n="pt">Pt</div><div class="cal-weekday" data-i18n="sa">Sa</div><div class="cal-weekday" data-i18n="ça">Ça</div>
-<div class="cal-weekday" data-i18n="pe">Pe</div><div class="cal-weekday" data-i18n="cu">Cu</div><div class="cal-weekday" data-i18n="ct">Ct</div><div class="cal-weekday" data-i18n="pa">Pa</div>
-<div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div>
-<div class="cal-day">1</div><div class="cal-day has-event">2</div><div class="cal-day has-event">3</div><div class="cal-day">4</div>
-<div class="cal-day has-event">5</div><div class="cal-day">6</div><div class="cal-day has-event">7</div><div class="cal-day">8</div>
-<div class="cal-day has-event">9</div><div class="cal-day">10</div><div class="cal-day has-event">11</div><div class="cal-day today">12</div>
-<div class="cal-day has-event">13</div><div class="cal-day">14</div><div class="cal-day has-event">15</div><div class="cal-day">16</div>
-<div class="cal-day has-event">17</div><div class="cal-day">18</div><div class="cal-day has-event">19</div><div class="cal-day">20</div>
-<div class="cal-day">21</div><div class="cal-day has-event">22</div><div class="cal-day">23</div><div class="cal-day has-event">24</div>
-<div class="cal-day">25</div><div class="cal-day has-event">26</div><div class="cal-day">27</div><div class="cal-day has-event">28</div>
-<div class="cal-day">29</div><div class="cal-day has-event">30</div><div class="cal-day">31</div><div class="cal-day empty"></div>
+<div class="cal-grid" id="calGrid">
+<!-- JS ile doldurulacak -->
+</div>
+<div class="cal-events-panel" id="calEventsPanel" style="display:none;border-top:1px solid var(--border-color);padding:var(--space-3) var(--space-4);">
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-2);">
+<span class="cal-events-date" id="calEventsDate" style="font-size:var(--text-sm);font-weight:700;color:var(--teal-500);"></span>
+<button class="btn btn-icon-sm btn-ghost" onclick="closeCalEvents()" style="font-size:16px;">✕</button>
+</div>
+<div class="cal-events-list" id="calEventsList" style="display:flex;flex-direction:column;gap:6px;"></div>
 </div>
 </div>
 <!-- Project Progress Bar Chart -->
@@ -940,7 +937,7 @@
 </div>
 <div class="card-body" style="padding-top:var(--space-3);">
 <div class="schedule-list">
-<div class="schedule-item">
+<div class="schedule-item" onclick="showScheduleDetail('Rivierpark Konutları','Blok A temel betonu','07:00','Tamamlandı','Antwerpen-Noord')">
 <div class="schedule-time" data-i18n="_700">07:00</div>
 <div class="schedule-dot completed"></div>
 <div class="schedule-info">
@@ -949,7 +946,7 @@
 </div>
 <span class="schedule-status completed" data-i18n="tamamlandı">Tamamlandı</span>
 </div>
-<div class="schedule-item">
+<div class="schedule-item" onclick="showScheduleDetail('Merkez Ofis Kulesi','12. kat döşeme kalıbı','08:30','Tamamlandı','Brussel-Zuid')">
 <div class="schedule-time" data-i18n="_830">08:30</div>
 <div class="schedule-dot completed"></div>
 <div class="schedule-info">
@@ -958,7 +955,7 @@
 </div>
 <span class="schedule-status completed" data-i18n="tamamlandı_2">Tamamlandı</span>
 </div>
-<div class="schedule-item">
+<div class="schedule-item" onclick="showScheduleDetail('Grand Hotel Restore','Cephe temizliği ve izolasyon','10:00','Devam Ediyor','Gent-Centrum')">
 <div class="schedule-time" data-i18n="_000">10:00</div>
 <div class="schedule-dot in-progress"></div>
 <div class="schedule-info">
@@ -967,7 +964,7 @@
 </div>
 <span class="schedule-status in-progress" data-i18n="devam_ediyor">Devam Ediyor</span>
 </div>
-<div class="schedule-item">
+<div class="schedule-item" onclick="showScheduleDetail('Nordik Fabrika Genişleme','Çelik konstrüksiyon montajı','13:00','Bekliyor','Leuven-Industrie')">
 <div class="schedule-time" data-i18n="_300">13:00</div>
 <div class="schedule-dot pending"></div>
 <div class="schedule-info">
@@ -976,7 +973,7 @@
 </div>
 <span class="schedule-status pending" data-i18n="bekliyor">Bekliyor</span>
 </div>
-<div class="schedule-item">
+<div class="schedule-item" onclick="showScheduleDetail('Liman Yolu Altyapı','Kanalizasyon hattı kazısı','14:30','Bekliyor','Oostende-Haven')">
 <div class="schedule-time" data-i18n="_430">14:30</div>
 <div class="schedule-dot pending"></div>
 <div class="schedule-info">
@@ -985,7 +982,7 @@
 </div>
 <span class="schedule-status pending" data-i18n="bekliyor_2">Bekliyor</span>
 </div>
-<div class="schedule-item">
+<div class="schedule-item" onclick="showScheduleDetail('Botanik Park','Fidan dikimi ve sulama','16:00','Bekliyor','Hasselt-Groen')">
 <div class="schedule-time" data-i18n="_600">16:00</div>
 <div class="schedule-dot pending"></div>
 <div class="schedule-info">
@@ -1345,14 +1342,14 @@
 <div class="card-body" style="padding-top:0;">
 <div class="activity-list">
 <div class="activity-item">
-<div class="activity-avatar" data-i18n="pv" style="background:linear-gradient(135deg,#14b8a6,#0d9488);">PV</div>
+<div class="activity-avatar" data-i18n="pv" style="background:linear-gradient(135deg,var(--teal-500),var(--teal-600));">PV</div>
 <div class="activity-content">
 <div class="activity-text"><strong data-i18n="pieter_v">Pieter V.</strong> proje durumunu güncelledi — <strong data-i18n="rivierpark_konutları_3">Rivierpark Konutları</strong> %78</div>
 <div class="activity-time" data-i18n="__dakika_önce_2">8 dakika önce</div>
 </div>
 </div>
 <div class="activity-item">
-<div class="activity-avatar" data-i18n="jd" style="background:linear-gradient(135deg,#14b8a6,#0f766e);">JD</div>
+<div class="activity-avatar" data-i18n="jd" style="background:linear-gradient(135deg,var(--teal-500),var(--teal-700));">JD</div>
 <div class="activity-content">
 <div class="activity-text"><strong data-i18n="jan_d">Jan D.</strong> yeni teklif oluşturdu — <strong data-i18n="qt-2026-112_2">#QT-2026-112</strong> €450,000</div>
 <div class="activity-time" data-i18n="_5_dakika_önce">25 dakika önce</div>
@@ -1366,7 +1363,7 @@
 </div>
 </div>
 <div class="activity-item">
-<div class="activity-avatar" data-i18n="mk" style="background:linear-gradient(135deg,#14b8a6,#0f766e);">MK</div>
+<div class="activity-avatar" data-i18n="mk" style="background:linear-gradient(135deg,var(--teal-500),var(--teal-700));">MK</div>
 <div class="activity-content">
 <div class="activity-text"><strong data-i18n="marc_k">Marc K.</strong> şantiye raporu gönderdi — <strong data-i18n="merkez_ofis_kulesi_3">Merkez Ofis Kulesi</strong></div>
 <div class="activity-time" data-i18n="__saat_önce_5">1 saat önce</div>
@@ -1621,7 +1618,7 @@ function showToast(msg,type='success',dur=3000){
   const icons={success:'✓',error:'✕',warning:'!',info:'ℹ'};
   const titles={success:(t['başarılı']||'Success'),error:(t['hata_oluştu']||'Error'),warning:(t['uyarı']||'Warning'),info:(t['bilgi']||'Info')};
   t.style.cssText=`pointer-events:all;background:var(--bg-card);border:1px solid ${colors[type]};border-radius:12px;padding:14px 18px;display:flex;align-items:flex-start;gap:12px;box-shadow:var(--shadow-lg);animation:toastIn 0.3s ease-out;position:relative;overflow:hidden;`;
-  t.innerHTML=`<span style="flex-shrink:0;margin-top:2px;width:20px;height:20px;border-radius:50%;background:${colors[type]};color:white;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">${icons[type]}</span><div style="flex:1;"><div style="font-weight:600;font-size:var(--text-sm);">${titles[type]}</div><div style="font-size:var(--text-sm);color:var(--text-muted);margin-top:2px;">${msg}</div></div><span style="flex-shrink:0;color:var(--text-muted);cursor:pointer;font-size:14px;" onclick="this.parentElement.remove()">✕</span><div style="position:absolute;bottom:0;left:0;height:2px;background:${colors[type]};animation:progressBar 4s linear forwards;width:100%;"></div>`;
+  t.innerHTML=`<span style="flex-shrink:0;margin-top:2px;width:20px;height:20px;border-radius:50%;background:${colors[type]};color:var(--text-primary);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">${icons[type]}</span><div style="flex:1;"><div style="font-weight:600;font-size:var(--text-sm);">${titles[type]}</div><div style="font-size:var(--text-sm);color:var(--text-muted);margin-top:2px;">${msg}</div></div><span style="flex-shrink:0;color:var(--text-muted);cursor:pointer;font-size:14px;" onclick="this.parentElement.remove()">✕</span><div style="position:absolute;bottom:0;left:0;height:2px;background:${colors[type]};animation:progressBar 4s linear forwards;width:100%;"></div>`;
   c.appendChild(t);
   setTimeout(()=>{t.style.animation='toastOut 0.3s ease-in forwards';setTimeout(()=>t.remove(),300);},dur);
 }
@@ -1723,10 +1720,10 @@ function toggleSector(checkbox, name){
 /* ── Chart.js Config ── */
 const chartColors={
   teal:'#14b8a6',tealLight:'rgba(20,184,166,0.15)',
-  amber:'#14b8a6',amberLight:'rgba(245,158,11,0.15)',
+  amber:'#f59e0b',amberLight:'rgba(245,158,11,0.15)',
   blue:'#3b82f6',blueLight:'rgba(59,130,246,0.15)',
   rose:'#f43f5e',roseLight:'rgba(244,63,94,0.15)',
-  purple:'#14b8a6',purpleLight:'rgba(139,92,246,0.15)',
+  purple:'#8b5cf6',purpleLight:'rgba(139,92,246,0.15)',
   emerald:'#10b981',emeraldLight:'rgba(16,185,129,0.15)',
   slate:'#64748b'
 };
@@ -1736,6 +1733,7 @@ const chartGrid={color:'rgba(148,163,184,0.06)',drawBorder:false};
 const chartTicks={color:'rgba(148,163,184,0.5)',font:chartFont};
 
 Chart.defaults.color=chartTicks.color;
+Chart.defaults.borderColor=chartGrid.color;
 Chart.defaults.font=chartFont;
 
 /* Budget Line Chart */
@@ -2811,6 +2809,206 @@ window.onerror = function(msg, url, line) {
 window.addEventListener('unhandledrejection', function(e) {
   console.error('Unhandled Promise:', e.reason);
 });
+
+/* ===== MODULAR CALENDAR WIDGET ===== */
+const calendarEvents = [
+  {date:'2026-05-02', time:'08:00', title:'Rivierpark temel betonu', site:'Antwerpen-Noord', color:'var(--teal-500)', status:'completed', statusLabel:'Tamamlandı'},
+  {date:'2026-05-03', time:'09:30', title:'Ofis kulesi kalıp montajı', site:'Brussel-Zuid', color:'var(--teal-500)', status:'completed', statusLabel:'Tamamlandı'},
+  {date:'2026-05-05', time:'07:00', title:'Grand Hotel cephe izolasyonu', site:'Gent-Centrum', color:'var(--warning-500)', status:'pending', statusLabel:'Bekliyor'},
+  {date:'2026-05-07', time:'10:00', title:'Nordik Fabrika çelik montajı', site:'Leuven-Industrie', color:'var(--warning-500)', status:'pending', statusLabel:'Bekliyor'},
+  {date:'2026-05-09', time:'13:00', title:'Liman yolu kazısı', site:'Oostende-Haven', color:'var(--warning-500)', status:'pending', statusLabel:'Bekliyor'},
+  {date:'2026-05-11', time:'08:00', title:'Botanik Park fidan dikimi', site:'Hasselt-Groen', color:'var(--warning-500)', status:'pending', statusLabel:'Bekliyor'},
+  {date:'2026-05-13', time:'14:00', title:'Vinç bakımı #VC-04', site:'Depo', color:'var(--info-500)', status:'in-progress', statusLabel:'Devam Ediyor'},
+  {date:'2026-05-15', time:'07:00', title:'Rivierpark Blok B betonu', site:'Antwerpen-Noord', color:'var(--teal-500)', status:'completed', statusLabel:'Tamamlandı'},
+  {date:'2026-05-17', time:'09:00', title:'Ticari plaza döşeme', site:'Brussel-Noord', color:'var(--warning-500)', status:'pending', statusLabel:'Bekliyor'},
+  {date:'2026-05-19', time:'11:00', title:'Renovasyon elektrik tesisatı', site:'Antwerpen-Zuid', color:'var(--warning-500)', status:'pending', statusLabel:'Bekliyor'},
+  {date:'2026-05-22', time:'08:00', title:'Altyapı kanalizasyon testi', site:'Leuven-West', color:'var(--teal-500)', status:'completed', statusLabel:'Tamamlandı'},
+  {date:'2026-05-24', time:'10:00', title:'Endüstriyel çatı montajı', site:'Gent-Port', color:'var(--warning-500)', status:'pending', statusLabel:'Bekliyor'},
+  {date:'2026-05-26', time:'07:00', title:'Peyzaj sulama sistemi', site:'Brugge-Centrum', color:'var(--teal-500)', status:'completed', statusLabel:'Tamamlandı'},
+  {date:'2026-05-28', time:'14:00', title:'Ofis kulesi 15. kat döşeme', site:'Brussel-Zuid', color:'var(--warning-500)', status:'pending', statusLabel:'Bekliyor'},
+  {date:'2026-05-30', time:'09:00', title:'Konut blok C duvar örme', site:'Antwerpen-Noord', color:'var(--teal-500)', status:'completed', statusLabel:'Tamamlandı'}
+];
+
+let calCurrentDate = new Date();
+
+function generateCalendar(year, month) {
+  const grid = document.getElementById('calGrid');
+  const label = document.getElementById('calMonthLabel');
+  if (!grid || !label) return;
+
+  const lang = localStorage.getItem('buildpro_lang') || 'tr';
+  const monthNames = lang === 'en'
+    ? ['January','February','March','April','May','June','July','August','September','October','November','December']
+    : lang === 'nl'
+    ? ['Januari','Februari','Maart','April','Mei','Juni','Juli','Augustus','September','Oktober','November','December']
+    : ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+  const weekdays = lang === 'en' ? ['Mo','Tu','We','Th','Fr','Sa','Su']
+    : lang === 'nl' ? ['Ma','Di','Wo','Do','Vr','Za','Zo']
+    : ['Pt','Sa','Ça','Pe','Cu','Ct','Pa'];
+
+  label.textContent = monthNames[month] + ' ' + year;
+
+  grid.innerHTML = '';
+  weekdays.forEach(d => {
+    const wd = document.createElement('div');
+    wd.className = 'cal-weekday';
+    wd.textContent = d;
+    grid.appendChild(wd);
+  });
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const startOffset = firstDay === 0 ? 6 : firstDay - 1;
+
+  for (let i = 0; i < startOffset; i++) {
+    const empty = document.createElement('div');
+    empty.className = 'cal-day empty';
+    grid.appendChild(empty);
+  }
+
+  const today = new Date();
+  const isCurrentMonth = today.getFullYear() === year && today.getMonth() === month;
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const cell = document.createElement('div');
+    cell.className = 'cal-day';
+    cell.textContent = d;
+    cell.dataset.day = d;
+
+    if (isCurrentMonth && d === today.getDate()) {
+      cell.classList.add('today');
+    }
+
+    const dayEvents = calendarEvents.filter(e => {
+      const ed = new Date(e.date);
+      return ed.getFullYear() === year && ed.getMonth() === month && ed.getDate() === d;
+    });
+    if (dayEvents.length > 0) {
+      cell.classList.add('has-event');
+      cell.title = dayEvents.map(e => e.title).join(', ');
+    }
+
+    cell.onclick = () => selectDay(year, month, d, dayEvents);
+    grid.appendChild(cell);
+  }
+}
+
+function selectDay(year, month, day, events) {
+  document.querySelectorAll('.cal-day').forEach(c => c.classList.remove('selected'));
+  const cell = document.querySelector('.cal-day[data-day="' + day + '"]');
+  if (cell) cell.classList.add('selected');
+
+  const panel = document.getElementById('calEventsPanel');
+  const dateLabel = document.getElementById('calEventsDate');
+  const list = document.getElementById('calEventsList');
+  if (!panel || !dateLabel || !list) return;
+
+  const lang = localStorage.getItem('buildpro_lang') || 'tr';
+  const monthShort = lang === 'en' ? ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+    : lang === 'nl' ? ['Jan','Feb','Mrt','Apr','Mei','Jun','Jul','Aug','Sep','Okt','Nov','Dec']
+    : ['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara'];
+  dateLabel.textContent = day + ' ' + monthShort[month] + ' ' + year;
+
+  list.innerHTML = '';
+  if (events.length === 0) {
+    const noEv = document.createElement('div');
+    noEv.style.cssText = 'font-size:12px;color:var(--text-muted);padding:8px 0;';
+    noEv.textContent = lang === 'en' ? 'No events for this day' : lang === 'nl' ? 'Geen evenementen voor deze dag' : 'Bu gün için etkinlik yok';
+    list.appendChild(noEv);
+  } else {
+    events.forEach(ev => {
+      const item = document.createElement('div');
+      item.className = 'cal-event-item';
+      item.style.cssText = 'display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:var(--radius-sm);background:var(--bg-secondary);cursor:pointer;transition:background 0.15s;';
+      item.innerHTML = '<span style="width:6px;height:6px;border-radius:50%;background:' + ev.color + ';flex-shrink:0;"></span>' +
+        '<div style="flex:1;min-width:0;"><div style="font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + ev.title + '</div>' +
+        '<div style="font-size:11px;color:var(--text-muted);">' + ev.time + ' — ' + ev.site + '</div></div>' +
+        '<span style="font-size:10px;padding:2px 8px;border-radius:9999px;background:' + ev.color.replace('var(--','rgba(').replace(')','').replace('teal-500','20,184,166,0.15').replace('warning-500','245,158,11,0.15').replace('info-500','59,130,246,0.15') + ';color:' + ev.color + ';flex-shrink:0;">' + ev.statusLabel + '</span>';
+      item.onmouseenter = () => item.style.background = 'var(--bg-tertiary)';
+      item.onmouseleave = () => item.style.background = 'var(--bg-secondary)';
+      item.onclick = () => showToast(ev.title + ' — ' + ev.site + ' (' + ev.time + ')', 'info');
+      list.appendChild(item);
+    });
+  }
+  panel.style.display = 'block';
+}
+
+function closeCalEvents() {
+  const panel = document.getElementById('calEventsPanel');
+  if (panel) panel.style.display = 'none';
+  document.querySelectorAll('.cal-day').forEach(c => c.classList.remove('selected'));
+}
+
+function changeMonth(delta) {
+  calCurrentDate.setMonth(calCurrentDate.getMonth() + delta);
+  generateCalendar(calCurrentDate.getFullYear(), calCurrentDate.getMonth());
+  closeCalEvents();
+}
+
+// CSS injection for selected state
+const calStyle = document.createElement('style');
+calStyle.textContent = `
+  .cal-day.selected { background: rgba(20,184,166,0.2) !important; box-shadow: inset 0 0 0 2px var(--teal-500); }
+  .cal-events-panel { animation: calSlideDown 0.25s ease; }
+  @keyframes calSlideDown { from { opacity:0; transform: translateY(-8px); } to { opacity:1; transform: translateY(0); } }
+`;
+document.head.appendChild(calStyle);
+
+// Initialize calendar after DOM ready
+document.addEventListener('DOMContentLoaded', function() {
+  generateCalendar(calCurrentDate.getFullYear(), calCurrentDate.getMonth());
+});
+
+/* ===== SCHEDULE WIDGET INTERACTIVITY ===== */
+function showScheduleDetail(customer, service, time, status, site) {
+  const lang = localStorage.getItem('buildpro_lang') || 'tr';
+  const statusMap = {
+    'Tamamlandı': {en:'Completed', nl:'Voltooid'},
+    'Devam Ediyor': {en:'In Progress', nl:'In uitvoering'},
+    'Bekliyor': {en:'Pending', nl:'Bekliyor'}
+  };
+  const st = statusMap[status] || {};
+  const statusLabel = lang === 'en' ? st.en || status : lang === 'nl' ? st.nl || status : status;
+  showToast('📍 ' + customer + ' — ' + service + '\n⏰ ' + time + ' | ' + statusLabel + ' | ' + site, 'info');
+}
+
+/* ===== CHART PERIOD TOGGLE ===== */
+const chartDataMonthly = {
+  budget: {labels:['Oca','Şub','Mar','Nis','May','Haz'], data:[420000,380000,510000,480000,550000,600000]},
+  sector: {labels:['Konut','Ticari','Renovasyon','Altyapı','Endüstriyel','Peyzaj'], data:[2.4,1.8,1.2,0.9,0.8,0.5]},
+  status: {labels:['Devam Eden','Tamamlanan','Bekleyen','İptal'], data:[14,8,5,1]}
+};
+const chartDataQuarterly = {
+  budget: {labels:['Q1 2026','Q2 2026','Q3 2026','Q4 2026'], data:[1310000,1630000,1850000,2100000]},
+  sector: {labels:['Konut','Ticari','Renovasyon','Altyapı','Endüstriyel','Peyzaj'], data:[7.2,5.4,3.6,2.7,2.4,1.5]},
+  status: {labels:['Devam Eden','Tamamlanan','Bekleyen','İptal'], data:[42,24,15,3]}
+};
+
+function toggleChartPeriod(period) {
+  document.querySelectorAll('.chart-toggle-btn').forEach(btn => {
+    const isActive = btn.dataset.period === period;
+    btn.classList.toggle('active', isActive);
+    btn.style.background = isActive ? 'var(--bg-card)' : 'none';
+    btn.style.color = isActive ? 'var(--teal-500)' : 'var(--text-muted)';
+    btn.style.boxShadow = isActive ? 'var(--shadow-sm)' : 'none';
+  });
+
+  const data = period === 'quarterly' ? chartDataQuarterly : chartDataMonthly;
+
+  if (window.budgetChart) {
+    window.budgetChart.data.labels = data.budget.labels;
+    window.budgetChart.data.datasets[0].data = data.budget.data;
+    window.budgetChart.update();
+  }
+  if (window.sectorChart) {
+    window.sectorChart.data.datasets[0].data = data.sector.data;
+    window.sectorChart.update();
+  }
+  if (window.statusChart) {
+    window.statusChart.data.datasets[0].data = data.status.data;
+    window.statusChart.update();
+  }
+}
 </script>
 </body>
 </html>

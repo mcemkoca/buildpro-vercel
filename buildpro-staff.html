@@ -10,7 +10,7 @@
 <style>
     .cert-tags { display:flex; flex-wrap:wrap; gap:4px; }
     .cert-tag { font-size:10px; padding:2px 8px; border-radius:9999px; background:var(--bg-tertiary); color:var(--text-secondary); border:1px solid var(--border-color); }
-    .staff-avatar { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:var(--text-xs); font-weight:600; color:white; flex-shrink:0; }
+    .staff-avatar { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:var(--text-xs); font-weight:600; color:var(--text-primary); flex-shrink:0; }
     .filter-bar { display:flex; gap:var(--space-3); flex-wrap:wrap; margin-bottom:var(--space-4); }
     .filter-bar .form-select { width:auto; min-width:160px; }
     .salary-cell { font-variant-numeric:tabular-nums; font-weight:600; }
@@ -55,7 +55,7 @@
   </nav>
   <div class="sidebar-footer">
     <div class="sidebar-user" style="display:flex;align-items:center;gap:12px;padding:8px 12px;">
-      <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--teal-500),var(--teal-700));display:flex;align-items:center;justify-content:center;font-weight:600;color:white;font-size:12px;">PV</div>
+      <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--teal-500),var(--teal-700));display:flex;align-items:center;justify-content:center;font-weight:600;color:var(--text-primary);font-size:12px;">PV</div>
       <div>
         <p style="font-size:13px;font-weight:600;color:var(--text-primary);margin:0;">Pieter Van den Berg</p>
         <span style="font-size:11px;color:var(--text-muted);">Proje Müdürü</span>
@@ -81,7 +81,7 @@
 <button class="lang-btn" data-lang="en" onclick="switchLang('en')" style="padding:4px 8px;font-size:12px;border-radius:4px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;">EN</button>
 <button class="lang-btn" data-lang="nl" onclick="switchLang('nl')" style="padding:4px 8px;font-size:12px;border-radius:4px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;">NL</button>
 </div>
-<style>.lang-btn.active{background:var(--teal-500)!important;color:white!important;border-color:var(--teal-500)!important;font-weight:600;}</style>
+<style>.lang-btn.active{background:var(--teal-500)!important;color:var(--text-primary)!important;border-color:var(--teal-500)!important;font-weight:600;}</style>
 
 <div class="header-search">
 <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>

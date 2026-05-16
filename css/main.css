@@ -426,6 +426,118 @@ ul, ol { list-style:none; }
   html { scroll-behavior:auto; }
 }
 
+/* ── Touch-friendly buttons ── */
+.btn, .action-btn, .header-btn, .menu-btn, .cal-nav-btn, .page-btn, .modal-close, .lang-btn {
+  min-height: 44px; min-width: 44px;
+}
+.btn-sm, .btn-icon-sm { min-height: 36px; min-width: 36px; }
+
+/* ── Mobile font-size guard ── */
+@media (max-width:768px){
+  body, .form-input, .form-select, .form-textarea, .table td, .table th,
+  .nav-item, .sidebar-link, .activity-text, .schedule-info,
+  .card-title, .page-title, .section-title {
+    font-size: max(var(--text-sm), 14px) !important;
+  }
+  .text-xs, .cal-event, .cert-tag, .schedule-time, .kpi-label,
+  .notif-content span, .legend-item, .cal-day-num {
+    font-size: max(var(--text-xs), 12px) !important;
+  }
+}
+@media (max-width:375px){
+  body, .form-input, .form-select, .form-textarea, .table td, .table th,
+  .nav-item, .sidebar-link, .activity-text, .schedule-info,
+  .card-title, .page-title, .section-title {
+    font-size: max(var(--text-sm), 14px) !important;
+  }
+}
+
+/* ── Comprehensive Mobile Breakpoints ── */
+@media (max-width:1024px){
+  .sidebar { transform:translateX(-100%); }
+  .sidebar.mobile-open { transform:translateX(0); }
+  .sidebar-collapsed.sidebar { transform:translateX(-100%); }
+  .main { margin-left:0; }
+  .main-expanded { margin-left:0; }
+  .hamburger { display:flex !important; }
+  .header-search { display:none; }
+  .widget-grid-4 { grid-template-columns:repeat(2,1fr); }
+  .widget-grid-3 { grid-template-columns:repeat(2,1fr); }
+  .kpi-row { grid-template-columns:repeat(2,1fr); }
+  .dash-grid { grid-template-columns:1fr; }
+  .dash-grid .card.span-2, .dash-grid .card.span-3 { grid-column:span 1; }
+  .sector-toggle-grid { grid-template-columns:repeat(2,1fr); }
+  .cost-summary { grid-template-columns:repeat(2,1fr); }
+  .summary-cards { grid-template-columns:repeat(2,1fr); }
+  .table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .table { min-width:640px; }
+}
+@media (max-width:768px){
+  .page { padding:var(--space-4); }
+  .page-header { flex-direction:column; }
+  .page-actions { width:100%; }
+  .page-actions .btn { flex:1; }
+  .header { padding:0 var(--space-4); }
+  .header-title { font-size:var(--text-base); }
+  .widget-grid-4, .widget-grid-3, .widget-grid-2 { grid-template-columns:1fr; }
+  .kpi-row { grid-template-columns:1fr; }
+  .sector-toggle-grid { grid-template-columns:1fr; }
+  .cost-summary { grid-template-columns:1fr; }
+  .summary-cards { grid-template-columns:1fr; }
+  .modal, .modal-lg, .modal-xl { max-width:calc(100% - var(--space-6)); margin:0 var(--space-3); }
+  .chart-container, .chart-container-sm { height:200px; }
+  .notifications-panel { width:100%; }
+  .notif-dropdown { width:calc(100vw - var(--space-8)); right:0; }
+  .lang-switcher { display:none !important; }
+}
+@media (max-width:480px){
+  .header-right .header-btn:not(.mobile-visible) { display:none; }
+  .widget-grid { grid-template-columns:1fr; }
+  .card { padding:var(--space-4); }
+  .stat-card .stat-value { font-size:var(--text-2xl); }
+  .sidebar { width:260px; }
+  .hero { padding:80px 16px 40px; }
+  .hero h1 { font-size:clamp(1.75rem,8vw,2.5rem); }
+  .hero p { font-size:var(--text-base); }
+  .modal-body .grid-2 { grid-template-columns:1fr; }
+  .filter-bar { flex-direction:column; }
+  .filter-bar .form-select { width:100%; }
+}
+@media (max-width:375px){
+  .sidebar { width:240px; }
+  .hero { padding:60px 12px 32px; }
+  .hero h1 { font-size:1.75rem; }
+  .kpi-card { padding:var(--space-4); }
+  .kpi-value { font-size:var(--text-xl); }
+  .content { padding:var(--space-3); }
+  .page { padding:var(--space-3); }
+  .btn { padding:8px 14px; font-size:var(--text-sm); }
+  .card { padding:var(--space-4); }
+  .table td, .table th { padding:var(--space-2) var(--space-3); }
+}
+
+/* ── Card view for tables on very small screens ── */
+@media (max-width:480px){
+  .table-mobile-cards thead { display:none; }
+  .table-mobile-cards tbody tr {
+    display:block; margin-bottom:var(--space-3);
+    background:var(--bg-card); border:1px solid var(--border-color);
+    border-radius:var(--radius-lg); padding:var(--space-4);
+  }
+  .table-mobile-cards tbody td {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:var(--space-2) 0; border-bottom:1px solid var(--border-color);
+    font-size:var(--text-sm);
+  }
+  .table-mobile-cards tbody td:last-child { border-bottom:none; }
+  .table-mobile-cards tbody td::before {
+    content:attr(data-label); font-weight:600; color:var(--text-muted); font-size:var(--text-xs);
+  }
+}
+
+/* ── Ensure no horizontal scroll on body ── */
+body { overflow-x:hidden; }
+
 /* ── Print ── */
 @media print {
   .no-print { display:none!important; }
