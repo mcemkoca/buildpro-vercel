@@ -3,6 +3,11 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#f59e0b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="BuildPro">
 <title data-i18n="sayfa_bulunamadı">BuildPro — Sayfa Bulunamadı</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
@@ -159,5 +164,6 @@ window.addEventListener('unhandledrejection', function(e) {
   console.error('Unhandled Promise:', e.reason);
 });
 </script>
+<script src="js/pwa.js"></script>
 </body>
 </html>

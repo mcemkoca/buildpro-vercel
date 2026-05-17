@@ -3,6 +3,11 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#f59e0b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="BuildPro">
 <title data-i18n="buildpro_teklif_bütçeleme">BuildPro — Teklif &amp; Bütçeleme</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="css/main.css" rel="stylesheet"/>
@@ -141,6 +146,7 @@
 
 <div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="background:linear-gradient(135deg,var(--teal-500),var(--teal-600));">BP</div><div><div data-i18n="buildpro_nv" style="font-weight:600;font-size:var(--text-sm);">BuildPro NV</div><div data-i18n="enterprise_plan" style="font-size:var(--text-xs);color:var(--text-muted);">Enterprise Plan</div></div></div>
 </div>
+<button class="header-btn" onclick="localStorage.removeItem('kobipro_auth_token');localStorage.removeItem('kobipro_user');window.location.href='login.html';" title="Çıkış" style="margin-left:4px;font-size:18px;">🚪</button>
 </header>
 <div class="content">
 <div class="stats-row">
@@ -164,6 +170,7 @@
 </select>
 <button class="btn btn-secondary" data-i18n="rapor" onclick="showToast('PDF raporu indirildi','success')">📄 Rapor</button>
 <button class="btn btn-primary" data-i18n="yeni_teklif" onclick="openModal('addModal')">+ Yeni Teklif</button>
+<div data-export-table="quotesTable" data-export-filename="buildpro_teklifler" data-export-title="BuildPro Teklifler" style="display:flex;align-items:center;gap:6px;margin-left:8px;"></div>
 </div>
 </div>
 <div class="card">
@@ -1476,6 +1483,20 @@ window.onerror = function(msg, url, line) {
 window.addEventListener('unhandledrejection', function(e) {
   console.error('Unhandled Promise:', e.reason);
 });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="js/export.js"></script>
+<script src="js/pwa.js"></script>
+<script>
+function checkAuth(){
+  const token = localStorage.getItem('kobipro_auth_token');
+  if (!token && !window.location.pathname.includes('login.html') && !window.location.pathname.includes('index.html')) {
+    window.location.href = 'login.html?redirect=' + encodeURIComponent(window.location.pathname);
+  }
+}
+checkAuth();
 </script>
 </body>
 </html>

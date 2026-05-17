@@ -3,6 +3,11 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#f59e0b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="BuildPro">
 <title data-i18n="buildpro_şantiye_yönetimi">BuildPro — Şantiye Yönetimi</title>
 <link href="css/main.css" rel="stylesheet"/>
 <link href="css/components.css" rel="stylesheet"/>
@@ -170,6 +175,7 @@
 <button aria-label="Bildirimler" class="header-btn" data-i18n="aria_bildirimler" data-i18n-attr="aria-label">🔔<span class="badge-dot"></span></button>
 <div class="header-avatar">DY</div>
 </div>
+<button class="header-btn" onclick="localStorage.removeItem('kobipro_auth_token');localStorage.removeItem('kobipro_user');window.location.href='login.html';" title="Çıkış" style="margin-left:4px;font-size:18px;">🚪</button>
 </header>
 <div class="page">
 <div class="page-header">
@@ -1324,6 +1330,16 @@ window.onerror = function(msg, url, line) {
 window.addEventListener('unhandledrejection', function(e) {
   console.error('Unhandled Promise:', e.reason);
 });
+</script>
+<script src="js/pwa.js"></script>
+<script>
+function checkAuth(){
+  const token = localStorage.getItem('kobipro_auth_token');
+  if (!token && !window.location.pathname.includes('login.html') && !window.location.pathname.includes('index.html')) {
+    window.location.href = 'login.html?redirect=' + encodeURIComponent(window.location.pathname);
+  }
+}
+checkAuth();
 </script>
 </body>
 </html>

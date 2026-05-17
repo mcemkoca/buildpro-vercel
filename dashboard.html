@@ -3,6 +3,11 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#f59e0b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="BuildPro">
 <title data-i18n="buildpro_admin_dashboard">BuildPro — Admin Dashboard</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
@@ -663,6 +668,7 @@
 </button>
 <div class="avatar avatar-sm" style="cursor:pointer;">PV</div>
 </div>
+<button class="header-btn" onclick="localStorage.removeItem('kobipro_auth_token');localStorage.removeItem('kobipro_user');window.location.href='login.html';" title="Çıkış" style="margin-left:4px;font-size:18px;">🚪</button>
 </header>
 <!-- Content -->
 <main class="content">
@@ -1023,6 +1029,7 @@
 <button class="btn btn-sm btn-secondary" data-i18n="yeni" onclick="openModal('addProjectModal')">+ Yeni</button>
 <a data-i18n="tümünü_gör" href="#" onclick="showToast('Tüm projeler sayfası yakında','info');return false;" style="font-size:var(--text-sm);color:var(--teal-500);font-weight:500;">Tümünü Gör →</a>
 </div>
+<div data-export-table="projectsTable" data-export-filename="buildpro_projeler" data-export-title="BuildPro Dashboard Projeler" style="display:flex;align-items:center;gap:6px;margin-left:8px;"></div>
 </div>
 <div class="table-wrap">
 <table class="table table-compact" id="projectsTable">
@@ -3038,6 +3045,20 @@ function checkModuleAuth() {
 
 // Module auth check on load
 checkModuleAuth();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="js/export.js"></script>
+<script src="js/pwa.js"></script>
+<script>
+function checkAuth(){
+  const token = localStorage.getItem('kobipro_auth_token');
+  if (!token && !window.location.pathname.includes('login.html') && !window.location.pathname.includes('index.html')) {
+    window.location.href = 'login.html?redirect=' + encodeURIComponent(window.location.pathname);
+  }
+}
+checkAuth();
 </script>
 </body>
 </html>
