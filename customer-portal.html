@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html data-theme="dark" lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="manifest.json" rel="manifest"/>
+<meta content="#f59e0b" name="theme-color"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="BuildPro" name="apple-mobile-web-app-title"/>
+<title data-i18n="customer_portal_title">BuildPro — Müşteri Portalı</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="css/main.css" rel="stylesheet"/>
+<link href="css/components.css" rel="stylesheet"/>
+<style>
+/* ── Variables Override ── */
+:root, [data-theme="dark"] {
+  --glass-bg: rgba(15, 23, 42, 0.60);
+  --glass-border: rgba(148, 163, 184, 0.08);
+  --glass-highlight: rgba(255, 255, 255, 0.03);
+  --amber-glow: rgba(245, 158, 11, 0.15);
+  --card-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.2);
+  --card-shadow-hover: 0 2px 6px rgba(0,0,0,0.4), 0 16px 48px rgba(0,0,0,0.3);
+}
+
+/* ── Scroll Reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+.reveal-delay-5 { transition-delay: 0.40s; }
+
+/* ── Layout ── */
+.dashboard { display:flex; min-height:100vh; }
+
+/* ── Sidebar ── */
+.sidebar {
+  width:260px; background:var(--bg-card); border-right:1px solid var(--border-color);
+  display:flex; flex-direction:column; position:fixed; inset:0 auto 0 0; z-index:100;
+  transition:transform var(--duration-slow) var(--ease-out);
+}
+.sidebar.collapsed { transform:translateX(-100%); }
+.sidebar-header { padding:var(--space-5); border-bottom:1px solid var(--border-color); }
+
+.sidebar-logo h2 { font-size:18px; font-weight:800; letter-spacing:-0.02em; line-height:1.2; }
+.sidebar-logo p { font-size:12px; color:var(--text-secondary); font-weight:500; margin-top:2px; }
+.sidebar-logo { display:flex; align-items:flex-start; gap:var(--space-3); }
+.sidebar-logo .logo-icon {
+  width:48px; height:48px; background:linear-gradient(135deg,var(--amber-500),var(--amber-600));
+  border-radius:var(--radius-lg); display:flex; align-items:center; justify-content:center;
+  font-size:26px; font-weight:700; color:white; flex-shrink:0;
+  box-shadow: 0 2px 8px var(--amber-glow);
+}
+
+.sidebar-nav { flex:1; overflow-y:auto; padding:var(--space-3); }
+.nav-group { margin-bottom:var(--space-4); }
+.nav-label {
+  font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em;
+  color:var(--text-muted); padding:0 var(--space-3) var(--space-2);
+}
+.nav-item {
+  display:flex; align-items:center; gap:var(--space-3); padding:10px var(--space-3);
+  border-radius:var(--radius-md); cursor:pointer; transition:all var(--duration-fast);
+  color:var(--text-secondary); font-size:var(--text-sm); font-weight:500; margin-bottom:2px;
+  text-decoration:none;
+}
+.nav-item:hover { background:var(--bg-secondary); color:var(--text-primary); }
+.nav-item.active {
+  background:rgba(245,158,11,0.1); color:var(--amber-500);
+  box-shadow: inset 0 0 0 1px rgba(245,158,11,0.15);
+}
+.nav-item svg { flex-shrink:0; }
+.nav-badge {
+  margin-left:auto; background:var(--bg-tertiary); color:var(--text-secondary);
+  font-size:var(--text-xs); font-weight:600; padding:2px 8px; border-radius:9999px;
+}
+.nav-item.active .nav-badge { background:var(--amber-500); color:var(--text-primary); }
+
+.sidebar-footer { padding:var(--space-4); border-top:1px solid var(--border-color); }
+.sidebar-user { display:flex; align-items:center; gap:var(--space-3); }
+.sidebar-user-info { flex:1; }
+.sidebar-user-info p { font-size:var(--text-sm); font-weight:600; }
+.sidebar-user-info span { font-size:var(--text-xs); color:var(--text-muted); }
+
+/* ── Main ── */
+.main { flex:1; margin-left:260px; display:flex; flex-direction:column; min-height:100vh; transition:margin-left var(--duration-slow); }
+.sidebar.collapsed ~ .main { margin-left:0; }
+
+/* ── Header ── */
+.header {
+  height:64px; background:var(--bg-card); border-bottom:1px solid var(--border-color);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 var(--space-6); position:sticky; top:0; z-index:50;
+  backdrop-filter: blur(12px);
+  background: rgba(15, 23, 42, 0.85);
+}
+.header-left { display:flex; align-items:center; gap:var(--space-4); }
+.menu-btn {
+  width:36px; height:36px; border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center;
+  background:var(--bg-secondary); border:1px solid var(--border-color); color:var(--text-secondary);
+  cursor:pointer; transition:all var(--duration-fast);
+}
+.menu-btn:hover { color:var(--amber-500); border-color:var(--amber-500); }
+.page-title { font-size:20px; font-weight:800; letter-spacing:-0.03em; }
+.header-right { display:flex; align-items:center; gap:var(--space-3); }
+.header-btn {
+  width:38px; height:38px; border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center;
+  background:var(--bg-secondary); border:1px solid var(--border-color); color:var(--text-secondary);
+  cursor:pointer; transition:all var(--duration-fast); position:relative;
+}
+.header-btn:hover { color:var(--amber-500); border-color:var(--amber-500); transform: translateY(-1px); }
+.header-btn .badge-count {
+  position:absolute; top:-4px; right:-4px; min-width:18px; height:18px;
+  background:var(--error-500); color:var(--text-primary); font-size:10px; font-weight:700;
+  border-radius:9999px; display:flex; align-items:center; justify-content:center;
+  border:2px solid var(--bg-card); padding:0 4px;
+}
+
+/* ── Content ── */
+.content { flex:1; padding:var(--space-6); }
+
+/* ── KPI Row ── */
+.kpi-row { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--space-4); margin-bottom:var(--space-6); }
+.kpi-card {
+  background:var(--glass-bg); backdrop-filter:blur(16px) saturate(1.4);
+  -webkit-backdrop-filter:blur(16px) saturate(1.4);
+  border:1px solid var(--glass-border); border-radius:var(--radius-lg);
+  box-shadow:var(--card-shadow), inset 0 1px 0 var(--glass-highlight);
+  padding:var(--space-5); position:relative; overflow:hidden;
+  transition:transform 0.3s ease, box-shadow 0.3s ease;
+}
+.kpi-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg, var(--amber-500), var(--amber-600));
+  opacity:0.7;
+}
+.kpi-card:hover {
+  transform:translateY(-3px);
+  box-shadow:var(--card-shadow-hover), inset 0 1px 0 var(--glass-highlight);
+}
+.kpi-card .kpi-top {
+  display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:var(--space-3);
+}
+.kpi-card .kpi-icon {
+  width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+  font-size:20px; background:rgba(245,158,11,0.1);
+}
+.kpi-card .kpi-trend {
+  display:flex; align-items:center; gap:4px; font-size:12px; font-weight:700;
+  padding:3px 8px; border-radius:9999px;
+}
+.kpi-trend.up { color:#10b981; background:rgba(16,185,129,0.1); }
+.kpi-trend.down { color:#f43f5e; background:rgba(244,63,94,0.1); }
+.kpi-card .kpi-value {
+  font-size:24px; font-weight:800; letter-spacing:-0.03em; margin-bottom:4px;
+}
+.kpi-card .kpi-label {
+  font-size:12px; color:var(--text-muted); font-weight:500;
+}
+
+/* ── Section Cards ── */
+.section-card {
+  background:var(--glass-bg); backdrop-filter:blur(16px) saturate(1.4);
+  -webkit-backdrop-filter:blur(16px) saturate(1.4);
+  border:1px solid var(--glass-border); border-radius:var(--radius-lg);
+  box-shadow:var(--card-shadow), inset 0 1px 0 var(--glass-highlight);
+  overflow:hidden; margin-bottom:var(--space-6);
+  transition:transform 0.3s ease, box-shadow 0.3s ease;
+}
+.section-card:hover {
+  transform:translateY(-2px);
+  box-shadow:var(--card-shadow-hover), inset 0 1px 0 var(--glass-highlight);
+}
+.card-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:var(--space-4) var(--space-5); border-bottom:1px solid var(--border-color);
+}
+.card-title {
+  display:flex; align-items:center; gap:var(--space-2);
+  font-size:var(--text-sm); font-weight:700; letter-spacing:-0.01em;
+}
+.card-body { padding:var(--space-4) var(--space-5); }
+.card-header-actions { display:flex; align-items:center; gap:var(--space-3); }
+
+/* ── Table overrides ── */
+.table-wrap { overflow-x:auto; border-radius:var(--radius-lg); border:1px solid var(--border-color); -webkit-overflow-scrolling:touch; }
+.table-wrap .table { min-width:640px; }
+.table { width:100%; border-collapse:collapse; font-size:var(--text-sm); }
+.table thead th {
+  background:var(--bg-secondary);
+  padding:var(--space-3) var(--space-4);
+  text-align:left; font-weight:600; font-size:var(--text-xs);
+  text-transform:uppercase; letter-spacing:0.05em;
+  color:var(--text-muted); white-space:nowrap;
+  position:sticky; top:0; z-index:5;
+}
+.table tbody tr { border-bottom:1px solid var(--border-color); transition:background var(--duration-fast); }
+.table tbody tr:last-child { border-bottom:none; }
+.table tbody tr:hover { background:var(--bg-secondary); }
+.table tbody td { padding:var(--space-3) var(--space-4); color:var(--text-primary); vertical-align:middle; }
+
+/* ── Timeline ── */
+.timeline { display:flex; flex-direction:column; gap:var(--space-3); }
+.timeline-item { display:flex; gap:var(--space-3); position:relative; padding-left:28px; }
+.timeline-item::before {
+  content:''; position:absolute; left:8px; top:8px; bottom:-20px; width:2px;
+  background:var(--border-color);
+}
+.timeline-item:last-child::before { display:none; }
+.timeline-item::after {
+  content:''; position:absolute; left:4px; top:6px; width:10px; height:10px;
+  border-radius:50%; background:var(--amber-500); border:2px solid var(--bg-card);
+}
+.timeline-item.completed::after { background:var(--success-500); }
+.timeline-item.pending::after { background:var(--text-muted); }
+.timeline-date { font-size:11px; font-weight:600; color:var(--text-muted); min-width:100px; }
+.timeline-content { flex:1; }
+.timeline-title { font-size:var(--text-sm); font-weight:600; color:var(--text-primary); }
+.timeline-desc { font-size:12px; color:var(--text-muted); margin-top:2px; }
+
+/* ── Message list ── */
+.message-list { display:flex; flex-direction:column; gap:var(--space-3); max-height:360px; overflow-y:auto; }
+.message-item {
+  display:flex; gap:var(--space-3); padding:var(--space-3) var(--space-4);
+  border-radius:var(--radius-md); transition:background 0.15s;
+  border:1px solid var(--border-color);
+}
+.message-item:hover { background:var(--bg-secondary); }
+.message-avatar {
+  width:36px; height:36px; border-radius:50%; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700;
+  color:var(--text-primary); background:var(--bg-tertiary);
+}
+.message-content { flex:1; }
+.message-sender { font-size:var(--text-sm); font-weight:600; }
+.message-text { font-size:13px; color:var(--text-secondary); line-height:1.5; margin-top:2px; }
+.message-time { font-size:11px; color:var(--text-muted); margin-top:4px; }
+.message-item.unread { border-left:3px solid var(--amber-500); }
+
+/* ── Footer ── */
+.page-footer {
+  margin-top:var(--space-8);
+  padding:var(--space-6) var(--space-5);
+  border-top:1px solid var(--border-color);
+  display:flex; align-items:center; justify-content:space-between;
+  flex-wrap:wrap; gap:var(--space-4);
+}
+.page-footer .footer-brand { display:flex; align-items:center; gap:var(--space-3); }
+.page-footer .footer-brand .logo-icon {
+  width:36px; height:36px; background:linear-gradient(135deg,var(--amber-500),var(--amber-600));
+  border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center;
+  font-size:18px; font-weight:700; color:white;
+}
+.page-footer .footer-brand h3 { font-size:14px; font-weight:700; }
+.page-footer .footer-brand p { font-size:12px; color:var(--text-muted); }
+.page-footer .footer-links { display:flex; gap:var(--space-4); }
+.page-footer .footer-links a {
+  display:flex; align-items:center; gap:var(--space-2);
+  font-size:var(--text-sm); color:var(--text-secondary); text-decoration:none;
+  padding:var(--space-2) var(--space-3); border-radius:var(--radius-md);
+  border:1px solid var(--border-color); transition:all var(--duration-fast);
+}
+.page-footer .footer-links a:hover { border-color:var(--amber-500); color:var(--amber-500); background:rgba(245,158,11,0.05); }
+.page-footer .footer-copy { font-size:12px; color:var(--text-muted); }
+
+/* ── Modal overrides ── */
+.modal-overlay { z-index:1000; }
+.toast-container { z-index:2000; }
+
+/* ── Animations ── */
+@keyframes pulse-dot {
+  0%,100% { opacity:1; transform:scale(1); }
+  50% { opacity:0.5; transform:scale(1.3); }
+}
+@keyframes toastIn { from{opacity:0;transform:translateY(-20px) scale(0.95);}to{opacity:1;transform:translateY(0) scale(1);} }
+@keyframes toastOut { from{opacity:1;transform:translateY(0) scale(1);}to{opacity:0;transform:translateY(-20px) scale(0.95);} }
+
+/* ── Mobile ── */
+@media (max-width:1280px) {
+  .kpi-row { grid-template-columns:repeat(2,1fr); }
+}
+@media (max-width:1024px) {
+  .sidebar { transform:translateX(-100%); }
+  .sidebar.open { transform:translateX(0); }
+  .main { margin-left:0; }
+  .kpi-row { grid-template-columns:repeat(2,1fr); }
+  .page-footer { flex-direction:column; align-items:flex-start; }
+}
+@media (max-width:640px) {
+  .kpi-row { grid-template-columns:1fr; }
+  .content { padding:var(--space-4); }
+}
+
+/* ── Overlay ── */
+.sidebar-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:99; opacity:0; visibility:hidden; transition:all var(--duration-normal); }
+.sidebar-overlay.active { opacity:1; visibility:visible; }
+</style>
+</head>
+<body>
+<script>
+(function(){
+  var token = localStorage.getItem('kobipro_auth_token');
+  var path = window.location.pathname;
+  var isLoginPage = path.includes('login') || path.includes('index');
+  if(!token && !isLoginPage){
+    window.location.href = 'login.html?redirect=customer-portal';
+  }
+})();
+</script>
+<!-- Sidebar Overlay (mobile) -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="dashboard">
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<div class="sidebar-logo">
+<div class="logo-icon">BP</div>
+<div>
+<h2 data-i18n="buildpro">BuildPro</h2>
+<p data-i18n="müşteri_portalı">Müşteri Portalı</p>
+</div>
+</div>
+</div>
+<nav class="sidebar-nav">
+<div class="nav-group">
+<div class="nav-label" data-i18n="ana_menü">Ana Menü</div>
+<a class="nav-item active" href="customer-portal.html">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><rect height="7" rx="1" width="7" x="3" y="3"></rect><rect height="7" rx="1" width="7" x="14" y="3"></rect><rect height="7" rx="1" width="7" x="14" y="14"></rect><rect height="7" rx="1" width="7" x="3" y="14"></rect></svg>
+<span data-i18n="genel_bakış">Genel Bakış</span>
+</a>
+<a class="nav-item" href="#projelerim">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+<span data-i18n="projelerim">Projelerim</span>
+<span class="nav-badge">4</span>
+</a>
+<a class="nav-item" href="#sözleşmeler">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" x2="8" y1="13" y2="13"></line><line x1="16" x2="8" y1="17" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+<span data-i18n="sözleşmelerim">Sözleşmelerim</span>
+<span class="nav-badge">3</span>
+</a>
+<a class="nav-item" href="#ödemeler">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><line x1="12" x2="12" y1="1" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+<span data-i18n="ödemelerim">Ödemelerim</span>
+<span class="nav-badge">5</span>
+</a>
+<a class="nav-item" href="#randevular">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><rect height="18" rx="2" ry="2" width="18" x="3" y="4"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg>
+<span data-i18n="randevularım">Randevularım</span>
+<span class="nav-badge">2</span>
+</a>
+</div>
+<div class="nav-group">
+<div class="nav-label" data-i18n="iletişim">İletişim</div>
+<a class="nav-item" href="#mesajlar">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+<span data-i18n="mesajlarım">Mesajlarım</span>
+<span class="nav-badge">7</span>
+</a>
+<a class="nav-item" href="#destek">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" x2="12.01" y1="17" y2="17"></line></svg>
+<span data-i18n="destek">Destek</span>
+</a>
+</div>
+<div class="nav-group">
+<div class="nav-label" data-i18n="diğer_modüller">Diğer Modüller</div>
+<a class="nav-item" href="../cleanfix-vercel/dashboard.html">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M2 7l10-5 10 5-10 5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+<span data-i18n="cleanfix">CleanFix</span>
+</a>
+<a class="nav-item" href="../barberpro-vercel/dashboard.html">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" x2="8.12" y1="4" y2="15.88"></line><line x1="14.47" x2="20" y1="14.48" y2="20"></line><line x1="8.12" x2="12" y1="8.12" y2="12"></line></svg>
+<span data-i18n="barberpro">BarberPro</span>
+</a>
+</div>
+</nav>
+<div class="sidebar-footer">
+<div class="sidebar-user">
+<div class="avatar avatar-sm">MW</div>
+<div class="sidebar-user-info">
+<p data-i18n="marc_wouters">Marc Wouters</p>
+<span data-i18n="müşteri">Müşteri</span>
+</div>
+</div>
+<button onclick="localStorage.removeItem('kobipro_auth_token');localStorage.removeItem('kobipro_user');window.location.href='login.html';" style="margin-top:10px;width:100%;padding:8px;border:1px solid var(--border-color);border-radius:6px;background:transparent;color:var(--text-muted);font-size:0.75rem;cursor:pointer;" data-i18n="çıkış_yap">Çıkış Yap</button>
+</div>
+</aside>
+<!-- Main -->
+<div class="main">
+<!-- Header -->
+<header class="header">
+<div class="header-left">
+<button class="menu-btn" data-i18n="title_menü" data-i18n-attr="title" id="menuBtn" title="Menü">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><line x1="3" x2="21" y1="12" y2="12"></line><line x1="3" x2="21" y1="6" y2="6"></line><line x1="3" x2="21" y1="18" y2="18"></line></svg>
+</button>
+<h1 class="page-title" data-i18n="müşteri_portalı">Müşteri Portalı</h1>
+</div>
+<div class="header-right">
+<div class="lang-switcher" style="display:flex;gap:4px;margin-right:12px;">
+<button class="lang-btn" data-lang="tr" onclick="switchLang('tr')" style="padding:4px 8px;font-size:12px;border-radius:4px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;">TR</button>
+<button class="lang-btn" data-lang="en" onclick="switchLang('en')" style="padding:4px 8px;font-size:12px;border-radius:4px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all 0.2s;">EN</button>
+</div>
+<style>.lang-btn.active{background:var(--amber-500)!important;color:var(--text-primary)!important;border-color:var(--amber-500)!important;font-weight:600;}</style>
+
+<div class="search-input" id="headerSearch" style="max-width:240px;">
+<svg class="search-icon" fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+<input class="form-input" data-i18n-placeholder="ph_projeler_ara" placeholder="Projeler, sözleşmeler ara..." style="padding-left:36px;font-size:var(--text-sm);" type="text"/>
+</div>
+<div style="position:relative;">
+<button class="header-btn" data-i18n="title_bildirimler" data-i18n-attr="title" id="notifBtn" title="Bildirimler">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+<span class="badge-count" id="notifBadge">3</span>
+</button>
+<div class="notif-dropdown" id="notifDropdown">
+<div class="notif-dropdown-header">
+<h4 data-i18n="bildirimler">Bildirimler</h4>
+<a data-i18n="tümünü_okundu_işaretle" href="#" onclick="markAllRead();return false;">Tümünü Okundu İşaretle</a>
+</div>
+<div class="notif-dropdown-body" id="notifDropdownBody">
+<div class="notif-dropdown-item unread">
+<div class="notif-dot"></div>
+<div class="notif-content"><p><strong data-i18n="rivierpark_villa">Rivierpark Villa</strong> projesi için yeni fotoğraf raporu yüklendi</p><span data-i18n="_5_dakika_önce">5 dakika önce</span></div>
+</div>
+<div class="notif-dropdown-item unread">
+<div class="notif-dot"></div>
+<div class="notif-content"><p><strong data-i18n="fatura_düzenlendi">Fatura düzenlendi:</strong> #INV-2026-089 — €12.450</p><span data-i18n="_2_saat_önce">2 saat önce</span></div>
+</div>
+<div class="notif-dropdown-item unread">
+<div class="notif-dot"></div>
+<div class="notif-content"><p><strong data-i18n="randevu_onayı">Randevu onayı:</strong> Şantiye gezisi — 20 Mayıs 14:00</p><span data-i18n="_4_saat_önce">4 saat önce</span></div>
+</div>
+<div class="notif-dropdown-item">
+<div class="notif-dot read"></div>
+<div class="notif-content"><p><strong data-i18n="sözleşme_güncellendi">Sözleşme güncellendi:</strong> Ek protokol #2 imzalandı</p><span data-i18n="_1_gün_önce">1 gün önce</span></div>
+</div>
+<div class="notif-dropdown-item">
+<div class="notif-dot read"></div>
+<div class="notif-content"><p><strong data-i18n="ödeme_alındı">Ödeme alındı:</strong> #PAY-2026-045 — €28.000</p><span data-i18n="_3_gün_önce">3 gün önce</span></div>
+</div>
+</div>
+</div>
+</div>
+<button class="header-btn" data-i18n="title_tema" data-i18n-attr="title" id="themeToggle" title="Tema">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><circle cx="12" cy="12" r="5"></circle><line x1="12" x2="12" y1="1" y2="3"></line><line x1="12" x2="12" y1="21" y2="23"></line><line x1="4.22" x2="5.64" y1="4.22" y2="5.64"></line><line x1="18.36" x2="19.78" y1="18.36" y2="19.78"></line><line x1="1" x2="3" y1="12" y2="12"></line><line x1="21" x2="23" y1="12" y2="12"></line></svg>
+</button>
+<div class="avatar avatar-sm" style="cursor:pointer;">MW</div>
+<button class="header-btn" onclick="localStorage.removeItem('kobipro_auth_token');localStorage.removeItem('kobipro_user');window.location.href='login.html';" style="margin-left:4px;font-size:18px;" title="Çıkış">🚪</button>
+</div>
+</header>
+<!-- Content -->
+<main class="content">
+<!-- Welcome Banner -->
+<div class="section-card reveal" style="margin-bottom:var(--space-6);">
+<div style="padding:var(--space-5) var(--space-6); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:var(--space-4);">
+<div>
+<h2 style="font-size:var(--text-xl); font-weight:700; margin-bottom:4px;" data-i18n="hoşgeldiniz_marc">Hoşgeldiniz, Marc Wouters</h2>
+<p style="font-size:var(--text-sm); color:var(--text-muted);" data-i18n="portal_desc">Tüm projelerinizi, sözleşmelerinizi, ödemelerinizi ve iletişim geçmişinizi tek bir ekrandan yönetin.</p>
+</div>
+<div style="display:flex; gap:var(--space-3);">
+<button class="btn btn-primary" onclick="showToast('Yeni destek talebi oluşturuldu','success')" data-i18n="destek_talebi">Destek Talebi</button>
+<button class="btn btn-secondary" onclick="showToast('Randevu sayfası yakında','info')" data-i18n="randevu_al">Randevu Al</button>
+</div>
+</div>
+</div>
+
+<!-- KPI Row -->
+<div class="kpi-row">
+<div class="kpi-card reveal">
+<div class="kpi-top">
+<div class="kpi-icon" style="background:rgba(245,158,11,0.1);color:var(--amber-500);">🏗️</div>
+<div class="kpi-trend up"><span>↑</span> 12%</div>
+</div>
+<div class="kpi-value" data-i18n="_4_aktif_proje">4</div>
+<div class="kpi-label" data-i18n="aktif_proje">Aktif Proje</div>
+</div>
+<div class="kpi-card reveal reveal-delay-1">
+<div class="kpi-top">
+<div class="kpi-icon" style="background:rgba(16,185,129,0.1);color:var(--success-500);">✅</div>
+<div class="kpi-trend up"><span>↑</span> 8%</div>
+</div>
+<div class="kpi-value" data-i18n="_2_tamamlanan">2</div>
+<div class="kpi-label" data-i18n="tamamlanan_proje">Tamamlanan Proje</div>
+</div>
+<div class="kpi-card reveal reveal-delay-2">
+<div class="kpi-top">
+<div class="kpi-icon" style="background:rgba(59,130,246,0.1);color:var(--info-500);">€</div>
+<div class="kpi-trend down"><span>↓</span> 3%</div>
+</div>
+<div class="kpi-value" data-i18n="_847500">€847.500</div>
+<div class="kpi-label" data-i18n="toplam_sözleşme">Toplam Sözleşme</div>
+</div>
+<div class="kpi-card reveal reveal-delay-3">
+<div class="kpi-top">
+<div class="kpi-icon" style="background:rgba(244,63,94,0.1);color:var(--error-500);">⚠️</div>
+<div class="kpi-trend up"><span>↑</span> €12.450</div>
+</div>
+<div class="kpi-value" data-i18n="_12450">€12.450</div>
+<div class="kpi-label" data-i18n="bekleyen_ödeme">Bekleyen Ödeme</div>
+</div>
+</div>
+
+<!-- Projects Section -->
+<div class="section-card reveal" id="projelerim">
+<div class="card-header">
+<div class="card-title">
+<span>🏗️</span>
+<span data-i18n="projelerim">Projelerim</span>
+</div>
+<div class="card-header-actions">
+<div data-export-table="projectsTable" data-export-filename="marc_wouters_projeler" data-export-title="Marc Wouters — Projeler" style="display:flex;align-items:center;gap:6px;"></div>
+</div>
+</div>
+<div class="card-body" style="padding:0;">
+<div class="table-wrap">
+<table class="table" id="projectsTable">
+<thead>
+<tr>
+<th data-i18n="referans">Referans</th>
+<th data-i18n="proje_adı">Proje Adı</th>
+<th data-i18n="lokasyon">Lokasyon</th>
+<th data-i18n="başlangıç">Başlangıç</th>
+<th data-i18n="bitiş">Bitiş</th>
+<th data-i18n="bütçe">Bütçe</th>
+<th data-i18n="ilerleme">İlerleme</th>
+<th data-i18n="durum">Durum</th>
+</tr>
+</thead>
+<tbody>
+<tr onclick="openModal('projectModal1')">
+<td><span style="font-family:var(--font-mono);font-size:12px;">PRJ-2025-042</span></td>
+<td><strong data-i18n="lemaire_konutları">Lemaire Konutları — Villa Renovasyonu</strong></td>
+<td><span style="font-size:12px;">📍 Brugge</span></td>
+<td>15 Eyl 2025</td>
+<td>30 Haz 2026</td>
+<td><strong>€285.000</strong></td>
+<td>
+<div style="display:flex;align-items:center;gap:8px;">
+<div class="progress-bar" style="width:80px;height:6px;"><div class="progress-bar-fill" style="width:78%;"></div></div>
+<span style="font-size:12px;font-weight:600;">78%</span>
+</div>
+</td>
+<td><span class="badge badge-info" data-i18n="devam_ediyor">Devam Ediyor</span></td>
+</tr>
+<tr onclick="openModal('projectModal2')">
+<td><span style="font-family:var(--font-mono);font-size:12px;">PRJ-2025-088</span></td>
+<td><strong data-i18n="rivierpark_villa_2">Rivierpark Villa — Bahçe Düzenlemesi</strong></td>
+<td><span style="font-size:12px;">📍 Antwerpen</span></td>
+<td>03 Oca 2026</td>
+<td>15 May 2026</td>
+<td><strong>€45.000</strong></td>
+<td>
+<div style="display:flex;align-items:center;gap:8px;">
+<div class="progress-bar" style="width:80px;height:6px;"><div class="progress-bar-fill" style="width:92%;"></div></div>
+<span style="font-size:12px;font-weight:600;">92%</span>
+</div>
+</td>
+<td><span class="badge badge-warning" data-i18n="son_aşama">Son Aşama</span></td>
+</tr>
+<tr onclick="openModal('projectModal3')">
+<td><span style="font-family:var(--font-mono);font-size:12px;">PRJ-2026-003</span></td>
+<td><strong data-i18n="merkez_ofis_yenileme">Merkez Ofis Yenileme — İç Mimari</strong></td>
+<td><span style="font-size:12px;">📍 Gent</span></td>
+<td>10 Şub 2026</td>
+<td>20 Ağu 2026</td>
+<td><strong>€420.000</strong></td>
+<td>
+<div style="display:flex;align-items:center;gap:8px;">
+<div class="progress-bar" style="width:80px;height:6px;"><div class="progress-bar-fill" style="width:45%;"></div></div>
+<span style="font-size:12px;font-weight:600;">45%</span>
+</div>
+</td>
+<td><span class="badge badge-info" data-i18n="devam_ediyor_2">Devam Ediyor</span></td>
+</tr>
+<tr onclick="openModal('projectModal4')">
+<td><span style="font-family:var(--font-mono);font-size:12px;">PRJ-2026-015</span></td>
+<td><strong data-i18n="garaj_kat_eklemesi">Garaj &amp; Kat Eklemesi</strong></td>
+<td><span style="font-size:12px;">📍 Leuven</span></td>
+<td>01 Mar 2026</td>
+<td>15 Eyl 2026</td>
+<td><strong>€97.500</strong></td>
+<td>
+<div style="display:flex;align-items:center;gap:8px;">
+<div class="progress-bar" style="width:80px;height:6px;"><div class="progress-bar-fill" style="width:30%;"></div></div>
+<span style="font-size:12px;font-weight:600;">30%</span>
+</div>
+</td>
+<td><span class="badge badge-info" data-i18n="devam_ediyor_3">Devam Ediyor</span></td>
+</tr>
+<tr onclick="openModal('projectModal5')">
+<td><span style="font-family:var(--font-mono);font-size:12px;">PRJ-2024-156</span></td>
+<td><strong data-i18n="bahçe_duvarı_çit_sistemleri">Bahçe Duvarı &amp; Çit Sistemleri</strong></td>
+<td><span style="font-size:12px;">📍 Brugge</span></td>
+<td>20 May 2024</td>
+<td>10 Ağu 2024</td>
+<td><strong>€18.500</strong></td>
+<td>
+<div style="display:flex;align-items:center;gap:8px;">
+<div class="progress-bar" style="width:80px;height:6px;"><div class="progress-bar-fill" style="width:100%;"></div></div>
+<span style="font-size:12px;font-weight:600;">100%</span>
+</div>
+</td>
+<td><span class="badge badge-success" data-i18n="tamamlandı">Tamamlandı</span></td>
+</tr>
+<tr onclick="openModal('projectModal6')">
+<td><span style="font-family:var(--font-mono);font-size:12px;">PRJ-2024-201</span></td>
+<td><strong data-i18n="teras_kapama_cam_sistemleri">Teras Kapama &amp; Cam Sistemleri</strong></td>
+<td><span style="font-size:12px;">📍 Brugge</span></td>
+<td>15 Eyl 2024</td>
+<td>20 Ara 2024</td>
+<td><strong>€32.000</strong></td>
+<td>
+<div style="display:flex;align-items:center;gap:8px;">
+<div class="progress-bar" style="width:80px;height:6px;"><div class="progress-bar-fill" style="width:100%;"></div></div>
+<span style="font-size:12px;font-weight:600;">100%</span>
+</div>
+</td>
+<td><span class="badge badge-success" data-i18n="tamamlandı_2">Tamamlandı</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<!-- Contracts & Payments Split -->
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-5); margin-bottom:var(--space-6);">
+<!-- Contracts -->
+<div class="section-card reveal" id="sözleşmeler">
+<div class="card-header">
+<div class="card-title">
+<span>📄</span>
+<span data-i18n="sözleşmelerim">Sözleşmelerim</span>
+</div>
+<div class="card-header-actions">
+<div data-export-table="contractsTable" data-export-filename="marc_wouters_sözleşmeler" data-export-title="Marc Wouters — Sözleşmeler" style="display:flex;align-items:center;gap:6px;"></div>
+</div>
+</div>
+<div class="card-body" style="padding:0;">
+<div class="table-wrap">
+<table class="table" id="contractsTable">
+<thead>
+<tr>
+<th data-i18n="sözleşme_no">Sözleşme No</th>
+<th data-i18n="proje">Proje</th>
+<th data-i18n="tarih">Tarih</th>
+<th data-i18n="tutar">Tutar</th>
+<th data-i18n="durum_2">Durum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span style="font-family:var(--font-mono);font-size:12px;">CNT-2025-042-A</span></td>
+<td data-i18n="lemaire_konutları_2">Lemaire Konutları</td>
+<td>10 Eyl 2025</td>
+<td><strong>€285.000</strong></td>
+<td><span class="badge badge-success" data-i18n="imzalandı">İmzalandı</span></td>
+</tr>
+<tr>
+<td><span style="font-family:var(--font-mono);font-size:12px;">CNT-2025-088-A</span></td>
+<td data-i18n="rivierpark_villa_3">Rivierpark Villa</td>
+<td>28 Ara 2025</td>
+<td><strong>€45.000</strong></td>
+<td><span class="badge badge-success" data-i18n="imzalandı_2">İmzalandı</span></td>
+</tr>
+<tr>
+<td><span style="font-family:var(--font-mono);font-size:12px;">CNT-2026-003-A</span></td>
+<td data-i18n="merkez_ofis_yenileme_2">Merkez Ofis Yenileme</td>
+<td>05 Şub 2026</td>
+<td><strong>€420.000</strong></td>
+<td><span class="badge badge-success" data-i18n="imzalandı_3">İmzalandı</span></td>
+</tr>
+<tr>
+<td><span style="font-family:var(--font-mono);font-size:12px;">CNT-2026-015-A</span></td>
+<td data-i18n="garaj_kat_eklemesi_2">Garaj &amp; Kat Eklemesi</td>
+<td>22 Şub 2026</td>
+<td><strong>€97.500</strong></td>
+<td><span class="badge badge-info" data-i18n="onay_bekliyor">Onay Bekliyor</span></td>
+</tr>
+<tr>
+<td><span style="font-family:var(--font-mono);font-size:12px;">CNT-2026-003-B</span></td>
+<td data-i18n="ek_protokol_2">Ek Protokol #2 — Ofis</td>
+<td>15 Nis 2026</td>
+<td><strong>€28.000</strong></td>
+<td><span class="badge badge-warning" data-i18n="taslak">Taslak</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<!-- Payments -->
+<div class="section-card reveal" id="ödemeler">
+<div class="card-header">
+<div class="card-title">
+<span>💶</span>
+<span data-i18n="ödemelerim">Ödemelerim</span>
+</div>
+<div class="card-header-actions">
+<div data-export-table="paymentsTable" data-export-filename="marc_wouters_ödemeler" data-export-title="Marc Wouters — Ödemeler" style="display:flex;align-items:center;gap:6px;"></div>
+</div>
+</div>
+<div class="card-body" style="padding:0;">
+<div class="table-wrap">
+<table class="table" id="paymentsTable">
+<thead>
+<tr>
+<th data-i18n="fatura_no">Fatura No</th>
+<th data-i18n="proje_2">Proje</th>
+<th data-i18n="vade">Vade</th>
+<th data-i18n="tutar_2">Tutar</th>
+<th data-i18n="ödeme_durumu">Durum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span style="font-family:var(--font-mono);font-size:12px;">INV-2025-156</span></td>
+<td data-i18n="lemaire_konutları_3">Lemaire Konutları</td>
+<td>15 Eki 2025</td>
+<td><strong>€85.500</strong></td>
+<td><span class="badge badge-success" data-i18n="ödendi">Ödendi</span></td>
+</tr>
+<tr>
+<td><span style="font-family:var(--font-mono);font-size:12px;">INV-2025-157</span></td>
+<td data-i18n="lemaire_konutları_4">Lemaire Konutları</td>
+<td>15 Oca 2026</td>
+<td><strong>€85.500</strong></td>
+<td><span class="badge badge-success" data-i18n="ödendi_2">Ödendi</span></td>
+</tr>
+<tr>
+<td><span style="font-family:var(--font-mono);font-size:12px;">INV-2026-089</span></td>
+<td data-i18n="rivierpark_villa_4">Rivierpark Villa</td>
+<td>15 Nis 2026</td>
+<td><strong>€22.500</strong></td>
+<td><span class="badge badge-success" data-i18n="ödendi_3">Ödendi</span></td>
+</tr>
+<tr>
+<td><span style="font-family:var(--font-mono);font-size:12px;">INV-2026-112</span></td>
+<td data-i18n="merkez_ofis_yenileme_3">Merkez Ofis Yenileme</td>
+<td>15 May 2026</td>
+<td><strong>€126.000</strong></td>
+<td><span class="badge badge-success" data-i18n="ödendi_4">Ödendi</span></td>
+</tr>
+<tr>
+<td><span style="font-family:var(--font-mono);font-size:12px;">INV-2026-134</span></td>
+<td data-i18n="merkez_ofis_yenileme_4">Merkez Ofis Yenileme</td>
+<td>15 Ağu 2026</td>
+<td><strong>€126.000</strong></td>
+<td><span class="badge badge-warning" data-i18n="bekliyor">Bekliyor</span></td>
+</tr>
+<tr>
+<td><span style="font-family:var(--font-mono);font-size:12px;">INV-2026-145</span></td>
+<td data-i18n="garaj_kat_eklemesi_3">Garaj &amp; Kat Eklemesi</td>
+<td>15 Haz 2026</td>
+<td><strong>€48.750</strong></td>
+<td><span class="badge badge-error" data-i18n="gecikti">Gecikti</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Appointments & Messages -->
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-5); margin-bottom:var(--space-6);">
+<!-- Appointments -->
+<div class="section-card reveal" id="randevular">
+<div class="card-header">
+<div class="card-title">
+<span>📅</span>
+<span data-i18n="yaklaşan_randevular">Yaklaşan Randevular</span>
+</div>
+</div>
+<div class="card-body">
+<div class="schedule-list">
+<div class="schedule-item" onclick="showToast('Randevu detayları: Şantiye gezisi — 20 Mayıs 14:00','info')">
+<div class="schedule-time">20 May<br/>14:00</div>
+<div class="schedule-dot pending"></div>
+<div class="schedule-info">
+<div class="schedule-customer" data-i18n="şantiye_gezisi_lemaire">Şantiye Gezisi — Lemaire</div>
+<div class="schedule-service" data-i18n="brugge_2">Brugge, Belçika</div>
+</div>
+<div class="schedule-status pending" data-i18n="onay_bekliyor_2">Onay Bekliyor</div>
+</div>
+<div class="schedule-item" onclick="showToast('Randevu detayları: Proje teslim — 30 Haziran 10:00','info')">
+<div class="schedule-time">30 Haz<br/>10:00</div>
+<div class="schedule-dot in-progress"></div>
+<div class="schedule-info">
+<div class="schedule-customer" data-i18n="proje_teslimi_rivierpark">Proje Teslimi — Rivierpark</div>
+<div class="schedule-service" data-i18n="antwerpen_2">Antwerpen, Belçika</div>
+</div>
+<div class="schedule-status in-progress" data-i18n="onaylandı">Onaylandı</div>
+</div>
+<div class="schedule-item" onclick="showToast('Randevu detayları: Malzeme seçimi — 05 Haziran 09:30','info')">
+<div class="schedule-time">05 Haz<br/>09:30</div>
+<div class="schedule-dot completed"></div>
+<div class="schedule-info">
+<div class="schedule-customer" data-i18n="malzeme_seçimi_ofis">Malzeme Seçimi — Ofis Yenileme</div>
+<div class="schedule-service" data-i18n="gent_2">Gent, Belçika</div>
+</div>
+<div class="schedule-status completed" data-i18n="tamamlandı_3">Tamamlandı</div>
+</div>
+<div class="schedule-item" onclick="showToast('Randevu detayları: Elektrik tesisat kontrolü — 12 Mayıs 11:00','info')">
+<div class="schedule-time">12 May<br/>11:00</div>
+<div class="schedule-dot completed"></div>
+<div class="schedule-info">
+<div class="schedule-customer" data-i18n="elektrik_kontrolü_lemaire">Elektrik Kontrolü — Lemaire</div>
+<div class="schedule-service" data-i18n="brugge_3">Brugge, Belçika</div>
+</div>
+<div class="schedule-status completed" data-i18n="tamamlandı_4">Tamamlandı</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Messages -->
+<div class="section-card reveal" id="mesajlar">
+<div class="card-header">
+<div class="card-title">
+<span>💬</span>
+<span data-i18n="son_mesajlar">Son Mesajlar</span>
+</div>
+<div class="card-header-actions">
+<button class="btn btn-sm btn-secondary" onclick="showToast('Tüm mesajlar sayfası yakında','info')" data-i18n="tümünü_gör">Tümünü Gör</button>
+</div>
+</div>
+<div class="card-body">
+<div class="message-list">
+<div class="message-item unread">
+<div class="message-avatar" style="background:rgba(245,158,11,0.15);color:var(--amber-500);">PV</div>
+<div class="message-content">
+<div class="message-sender">Pieter Van den Berg <span style="font-weight:400;color:var(--text-muted);">— Proje Müdürü</span></div>
+<div class="message-text" data-i18n="msg_1">Rivierpark Villa projesinde son aşamaya geçtik. Bahçe düzenlemesi ve son dokunuşlar için randevu oluşturabilir misiniz?</div>
+<div class="message-time">Bugün, 09:15</div>
+</div>
+</div>
+<div class="message-item unread">
+<div class="message-avatar" style="background:rgba(59,130,246,0.15);color:var(--info-500);">LS</div>
+<div class="message-content">
+<div class="message-sender">Lisa De Smet <span style="font-weight:400;color:var(--text-muted);">— Muhasebe</span></div>
+<div class="message-text" data-i18n="msg_2">Fatura #INV-2026-145 (Garaj &amp; Kat Eklemesi) vadesi 15 Haziran 2026 olarak kaydedilmiştir. Ödeme planını kontrol edebilir misiniz?</div>
+<div class="message-time">Dün, 16:42</div>
+</div>
+</div>
+<div class="message-item">
+<div class="message-avatar" style="background:rgba(16,185,129,0.15);color:var(--success-500);">TK</div>
+<div class="message-content">
+<div class="message-sender">Thomas Jacobs <span style="font-weight:400;color:var(--text-muted);">— Şantiye Şefi</span></div>
+<div class="message-text" data-i18n="msg_3">Lemaire Konutları'nda elektrik tesisat kontrolü başarıyla tamamlandı. Raporu ekte bulabilirsiniz.</div>
+<div class="message-time">12 May 2026, 14:30</div>
+</div>
+</div>
+<div class="message-item">
+<div class="message-avatar" style="background:rgba(139,92,246,0.15);color:#8b5cf6;">SJ</div>
+<div class="message-content">
+<div class="message-sender">Sarah Janssens <span style="font-weight:400;color:var(--text-muted);">— İç Mimar</span></div>
+<div class="message-text" data-i18n="msg_4">Merkez Ofis Yenileme projesi için seçtiğiniz zemin kaplaması sipariş edildi. Teslimat 2 hafta içinde.</div>
+<div class="message-time">10 May 2026, 11:20</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Communication History -->
+<div class="section-card reveal" id="destek">
+<div class="card-header">
+<div class="card-title">
+<span>📞</span>
+<span data-i18n="iletişim_geçmişi">İletişim Geçmişi</span>
+</div>
+<div class="card-header-actions">
+<div data-export-table="commTable" data-export-filename="marc_wouters_iletişim" data-export-title="Marc Wouters — İletişim Geçmişi" style="display:flex;align-items:center;gap:6px;"></div>
+</div>
+</div>
+<div class="card-body" style="padding:0;">
+<div class="table-wrap">
+<table class="table" id="commTable">
+<thead>
+<tr>
+<th data-i18n="tarih_2">Tarih</th>
+<th data-i18n="kişi">Kişi</th>
+<th data-i18n="konu">Konu</th>
+<th data-i18n="kanal">Kanal</th>
+<th data-i18n="notlar">Notlar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>18 May 2026</td>
+<td>Pieter Van den Berg</td>
+<td data-i18n="konu_1">Rivierpark son aşama onayı</td>
+<td><span class="badge badge-info">📧 E-posta</span></td>
+<td data-i18n="not_1">Müşteri onay verdi, teslimat 30 Haziran</td>
+</tr>
+<tr>
+<td>15 May 2026</td>
+<td>Lisa De Smet</td>
+<td data-i18n="konu_2">Fatura #INV-2026-145 hatırlatma</td>
+<td><span class="badge badge-info">📧 E-posta</span></td>
+<td data-i18n="not_2">Ödeme planı güncellenecek</td>
+</tr>
+<tr>
+<td>12 May 2026</td>
+<td>Thomas Jacobs</td>
+<td data-i18n="konu_3">Elektrik kontrolü raporu</td>
+<td><span class="badge badge-success">📱 Telefon</span></td>
+<td data-i18n="not_3">Kontrol başarılı, sertifika düzenlendi</td>
+</tr>
+<tr>
+<td>08 May 2026</td>
+<td>Sarah Janssens</td>
+<td data-i18n="konu_4">Zemin kaplaması seçimi</td>
+<td><span class="badge badge-warning">🏢 Yüz Yüze</span></td>
+<td data-i18n="not_4">Müşteri örnekleri onayladı</td>
+</tr>
+<tr>
+<td>03 May 2026</td>
+<td>Pieter Van den Berg</td>
+<td data-i18n="konu_5">Lemaire proje ilerleme raporu</td>
+<td><span class="badge badge-info">📧 E-posta</span></td>
+<td data-i18n="not_5">%78 tamamlandı, 2 hafta erken bitiş beklentisi</td>
+</tr>
+<tr>
+<td>28 Nis 2026</td>
+<td>Jan Peeters</td>
+<td data-i18n="konu_6">Garaj projesi ek bütçe onayı</td>
+<td><span class="badge badge-success">📱 Telefon</span></td>
+<td data-i18n="not_6">Ek protokol taslağı hazırlandı</td>
+</tr>
+<tr>
+<td>20 Nis 2026</td>
+<td>Lisa De Smet</td>
+<td data-i18n="konu_7">Ofis yenileme 2. taksit onayı</td>
+<td><span class="badge badge-info">📧 E-posta</span></td>
+<td data-i18n="not_7">€126.000 ödeme alındı</td>
+</tr>
+<tr>
+<td>15 Nis 2026</td>
+<td>Thomas Jacobs</td>
+<td data-i18n="konu_8">Şantiye gezisi randevusu</td>
+<td><span class="badge badge-warning">🏢 Yüz Yüze</span></td>
+<td data-i18n="not_8">20 Mayıs 14:00 onaylandı</td>
+</tr>
+<tr>
+<td>10 Nis 2026</td>
+<td>Sarah Janssens</td>
+<td data-i18n="konu_9">İç mimari revizyon talebi</td>
+<td><span class="badge badge-success">📱 Telefon</span></td>
+<td data-i18n="not_9">Revizyon reddedildi, orijinal plan devam</td>
+</tr>
+<tr>
+<td>05 Nis 2026</td>
+<td>Pieter Van den Berg</td>
+<td data-i18n="konu_10">Rivierpark villa peyzaj onayı</td>
+<td><span class="badge badge-info">📧 E-posta</span></td>
+<td data-i18n="not_10">Peyzaj planı onaylandı, uygulama başladı</td>
+</tr>
+<tr>
+<td>28 Mar 2026</td>
+<td>Jan Peeters</td>
+<td data-i18n="konu_11">Yapı ruhsatı güncelleme</td>
+<td><span class="badge badge-warning">🏢 Yüz Yüze</span></td>
+<td data-i18n="not_11">Belediye onayı alındı</td>
+</tr>
+<tr>
+<td>20 Mar 2026</td>
+<td>Lisa De Smet</td>
+<td data-i18n="konu_12">Lemaire 2. taksit hatırlatma</td>
+<td><span class="badge badge-info">📧 E-posta</span></td>
+<td data-i18n="not_12">€85.500 ödeme alındı</td>
+</tr>
+<tr>
+<td>15 Mar 2026</td>
+<td>Thomas Jacobs</td>
+<td data-i18n="konu_13">Merkez ofis şantiye başlangıç</td>
+<td><span class="badge badge-success">📱 Telefon</span></td>
+<td data-i18n="not_13">Demolition tamamlandı, yenileme başladı</td>
+</tr>
+<tr>
+<td>01 Mar 2026</td>
+<td>Pieter Van den Berg</td>
+<td data-i18n="konu_14">Garaj &amp; Kat eklemesi sözleşme</td>
+<td><span class="badge badge-warning">🏢 Yüz Yüze</span></td>
+<td data-i18n="not_14">Sözleşme imzalandı, proje başladı</td>
+</tr>
+<tr>
+<td>20 Şub 2026</td>
+<td>Sarah Janssens</td>
+<td data-i18n="konu_15">Ofis yenileme malzeme seçimi</td>
+<td><span class="badge badge-warning">🏢 Yüz Yüze</span></td>
+<td data-i18n="not_15">Müşteri tüm malzemeleri onayladı</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<!-- Page Footer -->
+<div class="page-footer reveal">
+<div class="footer-brand">
+<div class="logo-icon">BP</div>
+<div>
+<h3 data-i18n="buildpro_2">BuildPro</h3>
+<p data-i18n="profesyonel_i̇nşaat_yönetimi">Profesyonel İnşaat Yönetimi</p>
+</div>
+</div>
+<div class="footer-links">
+<a href="../cleanfix-vercel/dashboard.html">
+<span>🧹</span>
+<span data-i18n="cleanfix">CleanFix</span>
+</a>
+<a href="../barberpro-vercel/dashboard.html">
+<span>✂️</span>
+<span data-i18n="barberpro">BarberPro</span>
+</a>
+<a href="dashboard.html">
+<span>🏗️</span>
+<span data-i18n="admin_panel">Admin Panel</span>
+</a>
+</div>
+<div class="footer-copy" data-i18n="footer_copy">© 2026 BuildPro Demo BV. Tüm hakları saklıdır.</div>
+</div>
+
+</main>
+</div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- Project Detail Modal: Lemaire -->
+<div class="modal-overlay" id="projectModal1">
+<div class="modal modal-lg">
+<div class="modal-header">
+<div class="modal-title" data-i18n="lemaire_detay">Proje Detayları — Lemaire Konutları</div>
+<button class="modal-close" onclick="closeModal('projectModal1')">✕</button>
+</div>
+<div class="modal-body">
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);margin-bottom:var(--space-4);">
+<div style="background:var(--bg-secondary);padding:var(--space-4);border-radius:var(--radius-md);">
+<div style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;" data-i18n="bütçe_2">Bütçe</div>
+<div style="font-size:var(--text-lg);font-weight:700;">€285.000</div>
+</div>
+<div style="background:var(--bg-secondary);padding:var(--space-4);border-radius:var(--radius-md);">
+<div style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;" data-i18n="harcanan_2">Harcanan</div>
+<div style="font-size:var(--text-lg);font-weight:700;color:var(--amber-500);">€222.300</div>
+</div>
+<div style="background:var(--bg-secondary);padding:var(--space-4);border-radius:var(--radius-md);">
+<div style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;" data-i18n="kalan_2">Kalan</div>
+<div style="font-size:var(--text-lg);font-weight:700;color:var(--success-500);">€62.700</div>
+</div>
+</div>
+<div style="margin-bottom:var(--space-4);">
+<div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:var(--text-sm);font-weight:600;" data-i18n="ilerleme_2">İlerleme</span><span style="font-size:var(--text-sm);font-weight:700;">78%</span></div>
+<div class="progress-bar" style="height:8px;"><div class="progress-bar-fill" style="width:78%;"></div></div>
+</div>
+<h4 style="font-size:var(--text-sm);font-weight:600;margin-bottom:var(--space-3);" data-i18n="proje_zaman_çizelgesi">Proje Zaman Çizelgesi</h4>
+<div class="timeline">
+<div class="timeline-item completed"><div class="timeline-date">15 Eyl 2025</div><div class="timeline-content"><div class="timeline-title" data-i18n="tm_1">Proje Başlangıcı &amp; Yıkım</div><div class="timeline-desc" data-i18n="tm_d1">Eski yapı temizlendi, temel hazırlandı</div></div></div>
+<div class="timeline-item completed"><div class="timeline-date">30 Eki 2025</div><div class="timeline-content"><div class="timeline-title" data-i18n="tm_2">Temel &amp; Betonarme İskelet</div><div class="timeline-desc" data-i18n="tm_d2">Temel atıldı, zemin kat ve 1. kat betonarme tamamlandı</div></div></div>
+<div class="timeline-item completed"><div class="timeline-date">15 Oca 2026</div><div class="timeline-content"><div class="timeline-title" data-i18n="tm_3">Dış Cephe &amp; Çatı</div><div class="timeline-desc" data-i18n="tm_d3">Tuğla kaplama, pencere montajı ve çatı kaplama tamamlandı</div></div></div>
+<div class="timeline-item"><div class="timeline-date">15 Haz 2026</div><div class="timeline-content"><div class="timeline-title" data-i18n="tm_4">İç Mekan Elektrik &amp; Sıhhi Tesisat</div><div class="timeline-desc" data-i18n="tm_d4">Elektrik kontrolü tamamlandı, tesisat devam ediyor</div></div></div>
+<div class="timeline-item pending"><div class="timeline-date">30 Haz 2026</div><div class="timeline-content"><div class="timeline-title" data-i18n="tm_5">Son Teslimat &amp; Kalite Kontrol</div><div class="timeline-desc" data-i18n="tm_d5">Boya, zemin kaplama ve son dokunuşlar</div></div></div>
+</div>
+</div>
+<div class="modal-footer">
+<button class="btn btn-secondary" data-i18n="kapat" onclick="closeModal('projectModal1')">Kapat</button>
+<button class="btn btn-primary" data-i18n="pdf_indir" onclick="closeModal('projectModal1');showToast('PDF raporu oluşturuldu','success')">PDF İndir</button>
+</div>
+</div>
+</div>
+
+<!-- Project Detail Modal: Rivierpark -->
+<div class="modal-overlay" id="projectModal2">
+<div class="modal modal-lg">
+<div class="modal-header">
+<div class="modal-title" data-i18n="rivierpark_detay">Proje Detayları — Rivierpark Villa</div>
+<button class="modal-close" onclick="closeModal('projectModal2')">✕</button>
+</div>
+<div class="modal-body">
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);margin-bottom:var(--space-4);">
+<div style="background:var(--bg-secondary);padding:var(--space-4);border-radius:var(--radius-md);">
+<div style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;" data-i18n="bütçe_3">Bütçe</div>
+<div style="font-size:var(--text-lg);font-weight:700;">€45.000</div>
+</div>
+<div style="background:var(--bg-secondary);padding:var(--space-4);border-radius:var(--radius-md);">
+<div style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;" data-i18n="harcanan_3">Harcanan</div>
+<div style="font-size:var(--text-lg);font-weight:700;color:var(--amber-500);">€41.400</div>
+</div>
+<div style="background:var(--bg-secondary);padding:var(--space-4);border-radius:var(--radius-md);">
+<div style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;" data-i18n="kalan_3">Kalan</div>
+<div style="font-size:var(--text-lg);font-weight:700;color:var(--success-500);">€3.600</div>
+</div>
+</div>
+<div style="margin-bottom:var(--space-4);">
+<div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:var(--text-sm);font-weight:600;" data-i18n="ilerleme_3">İlerleme</span><span style="font-size:var(--text-sm);font-weight:700;">92%</span></div>
+<div class="progress-bar" style="height:8px;"><div class="progress-bar-fill" style="width:92%;"></div></div>
+</div>
+<h4 style="font-size:var(--text-sm);font-weight:600;margin-bottom:var(--space-3);" data-i18n="proje_zaman_çizelgesi_2">Proje Zaman Çizelgesi</h4>
+<div class="timeline">
+<div class="timeline-item completed"><div class="timeline-date">03 Oca 2026</div><div class="timeline-content"><div class="timeline-title" data-i18n="tm_6">Proje Başlangıcı</div><div class="timeline-desc" data-i18n="tm_d6">Bahçe düzenleme planı onaylandı</div></div></div>
+<div class="timeline-item completed"><div class="timeline-date">15 Şub 2026</div><div class="timeline-content"><div class="timeline-title" data-i18n="tm_7">Toprak İşleri &amp; Drenaj</div><div class="timeline-desc" data-i18n="tm_d7">Toprak düzenleme ve drenaj sistemleri tamamlandı</div></div></div>
+<div class="timeline-item completed"><div class="timeline-date">01 Nis 2026</div><div class="timeline-content"><div class="timeline-title" data-i18n="tm_8">Bitki &amp; Ağaç Dikimi</div><div class="timeline-desc" data-i18n="tm_d8">Dekoratif bitkiler, çim ve ağaç dikimi tamamlandı</div></div></div>
+<div class="timeline-item"><div class="timeline-date">15 May 2026</div><div class="timeline-content"><div class="timeline-title" data-i18n="tm_9">Otomatik Sulama &amp; Aydınlatma</div><div class="timeline-desc" data-i18n="tm_d9">Sulama sistemi ve bahçe aydınlatması kurulumu devam ediyor</div></div></div>
+<div class="timeline-item pending"><div class="timeline-date">30 Haz 2026</div><div class="timeline-content"><div class="timeline-title" data-i18n="tm_10">Son Teslimat</div><div class="timeline-desc" data-i18n="tm_d10">Son kontrol ve bakım talimatları</div></div></div>
+</div>
+</div>
+<div class="modal-footer">
+<button class="btn btn-secondary" data-i18n="kapat_2" onclick="closeModal('projectModal2')">Kapat</button>
+<button class="btn btn-primary" data-i18n="pdf_indir_2" onclick="closeModal('projectModal2');showToast('PDF raporu oluşturuldu','success')">PDF İndir</button>
+</div>
+</div>
+</div>
+
+<!-- Project Detail Modal: Office -->
+<div class="modal-overlay" id="projectModal3">
+<div class="modal modal-lg">
+<div class="modal-header">
+<div class="modal-title" data-i18n="ofis_detay">Proje Detayları — Merkez Ofis Yenileme</div>
+<button class="modal-close" onclick="closeModal('projectModal3')">✕</button>
+</div>
+<div class="modal-body">
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);margin-bottom:var(--space-4);">
+<div style="background:var(--bg-secondary);padding:var(--space-4);border-radius:var(--radius-md);">
+<div style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;" data-i18n="bütçe_4">Bütçe</div>
+<div style="font-size:var(--text-lg);font-weight:700;">€420.000</div>
+</div>
+<div style="background:var(--bg-secondary);padding:var(--space-4);border-radius:var(--radius-md);">
+<div style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;" data-i18n="harcanan_4">Harcanan</div>
+<div style="font-size:var(--text-lg);font-weight:700;color:var(--amber-500);">€189.000</div>
+</div>
+<div style="background:var(--bg-secondary);padding:var(--space-4);border-radius:var(--radius-md);">
+<div style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;" data-i18n="kalan_4">Kalan</div>
+<div style="font-size:var(--text-lg);font-weight:700;color:var(--success-500);">€231.000</div>
+</div>
+</div>
+<div style="margin-bottom:var(--space-4);">
+<div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:var(--text-sm);font-weight:600;" data-i18n="ilerleme_4">İlerleme</span><span style="font-size:var(--text-sm);font-weight:700;">45%</span></div>
+<div class="progress-bar" style="height:8px;"><div class="progress-bar-fill" style="width:45%;"></div></div>
+</div>
+<h4 style="font-size:var(--text-sm);font-weight:600;margin-bottom:var(--space-3);" data-i18n="proje_zaman_çizelgesi_3">Proje Zaman Çizelgesi</h4>
+<div class="timeline">
+<div class="timeline-item completed"><div class="timeline-date">10 Şub 2026</div><div class="timeline-content"><div class="timeline-title" data-i18n="tm_11">Proje Başlangıcı &amp; Demolition</div><div class="timeline-desc" data-i18n="tm_d11">Eski ofis malzemeleri söküldü, temizlik yapıldı</div></div></div>
+<div class="timeline-item completed"><div class="timeline-date">15 Mar 2026</div><div class="timeline-content"><div class="timeline-title" data-i18n="tm_12">Yapısal Revizyon</div><div class="timeline-desc" data-i18n="tm_d12">Bölme duvarlar yeniden konumlandırıldı</div></div></div>
+<div class="timeline-item"><div class="timeline-date">30 May 2026</div><div class="timeline-content"><div class="timeline-title" data-i18n="tm_13">Elektrik &amp; Sıhhi Tesisat</div><div class="timeline-desc" data-i18n="tm_d13">Veri kablolama ve HVAC sistem kurulumu</div></div></div>
+<div class="timeline-item pending"><div class="timeline-date">20 Ağu 2026</div><div class="timeline-content"><div class="timeline-title" data-i18n="tm_14">İç Mimari &amp; Mobilya</div><div class="timeline-desc" data-i18n="tm_d14">Zemin kaplama, boya ve özel mobilya montajı</div></div></div>
+<div class="timeline-item pending"><div class="timeline-date">30 Ağu 2026</div><div class="timeline-content"><div class="timeline-title" data-i18n="tm_15">Son Teslimat</div><div class="timeline-desc" data-i18n="tm_d15">Son kontrol ve temizlik</div></div></div>
+</div>
+</div>
+<div class="modal-footer">
+<button class="btn btn-secondary" data-i18n="kapat_3" onclick="closeModal('projectModal3')">Kapat</button>
+<button class="btn btn-primary" data-i18n="pdf_indir_3" onclick="closeModal('projectModal3');showToast('PDF raporu oluşturuldu','success')">PDF İndir</button>
+</div>
+</div>
+</div>
+
+<!-- Project Detail Modal: Garage -->
+<div class="modal-overlay" id="projectModal4">
+<div class="modal modal-lg">
+<div class="modal-header">
+<div class="modal-title" data-i18n="garaj_detay">Proje Detayları — Garaj &amp; Kat Eklemesi</div>
+<button class="modal-close" onclick="closeModal('projectModal4')">✕</button>
+</div>
+<div class="modal-body">
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);margin-bottom:var(--space-4);">
+<div style="background:var(--bg-secondary);padding:var(--space-4);border-radius:var(--radius-md);">
+<div style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;" data-i18n="bütçe_5">Bütçe</div>
+<div style="font-size:var(--text-lg);font-weight:700;">€97.500</div>
+</div>
+<div style="background:var(--bg-secondary);padding:var(--space-4);border-radius:var(--radius-md);">
+<div style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;" data-i18n="harcanan_5">Harcanan</div>
+<div style="font-size:var(--text-lg);font-weight:700;color:var(--amber-500);">€29.250</div>
+</div>
+<div style="background:var(--bg-secondary);padding:var(--space-4);border-radius:var(--radius-md);">
+<div style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;" data-i18n="kalan_5">Kalan</div>
+<div style="font-size:var(--text-lg);font-weight:700;color:var(--success-500);">€68.250</div>
+</div>
+</div>
+<div style="margin-bottom:var(--space-4);">
+<div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:var(--text-sm);font-weight:600;" data-i18n="ilerleme_5">İlerleme</span><span style="font-size:var(--text-sm);font-weight:700;">30%</span></div>
+<div class="progress-bar" style="height:8px;"><div class="progress-bar-fill" style="width:30%;"></div></div>
+</div>
+<h4 style="font-size:var(--text-sm);font-weight:600;margin-bottom:var(--space-3);" data-i18n="proje_zaman_çizelgesi_4">Proje Zaman Çizelgesi</h4>
+<div class="timeline">
+<div class="timeline-item completed"><div class="timeline-date">01 Mar 2026</div><div class="timeline-content"><div class="timeline-title" data-i18n="tm_16">Proje Başlangıcı</div><div class="timeline-desc" data-i18n="tm_d16">Yapı ruhsatı alındı, şantiye kuruldu</div></div></div>
+<div class="timeline-item completed"><div class="timeline-date">15 Nis 2026</div><div class="timeline-content"><div class="timeline-title" data-i18n="tm_17">Temel &amp; Kolonlar</div><div class="timeline-desc" data-i18n="tm_d17">Temel betonu atıldı, taşıyıcı kolonlar tamamlandı</div></div></div>
+<div class="timeline-item"><div class="timeline-date">30 Haz 2026</div><div class="timeline-content"><div class="timeline-title" data-i18n="tm_18">Döşeme &amp; Çatı</div><div class="timeline-desc" data-i18n="tm_d18">Kat döşemesi ve çatı konstrüksiyonu</div></div></div>
+<div class="timeline-item pending"><div class="timeline-date">15 Ağu 2026</div><div class="timeline-content"><div class="timeline-title" data-i18n="tm_19">Cephe &amp; Pencere</div><div class="timeline-desc" data-i18n="tm_d19">Dış cephe kaplama ve PVC pencere montajı</div></div></div>
+<div class="timeline-item pending"><div class="timeline-date">15 Eyl 2026</div><div class="timeline-content"><div class="timeline-title" data-i18n="tm_20">Son Teslimat</div><div class="timeline-desc" data-i18n="tm_d20">İç mekan ve garaj kapısı montajı</div></div></div>
+</div>
+</div>
+<div class="modal-footer">
+<button class="btn btn-secondary" data-i18n="kapat_4" onclick="closeModal('projectModal4')">Kapat</button>
+<button class="btn btn-primary" data-i18n="pdf_indir_4" onclick="closeModal('projectModal4');showToast('PDF raporu oluşturuldu','success')">PDF İndir</button>
+</div>
+</div>
+</div>
+
+<script>
+/* ── Sidebar Toggle ── */
+const sidebar=document.getElementById('sidebar');
+const menuBtn=document.getElementById('menuBtn');
+const overlay=document.getElementById('sidebarOverlay');
+menuBtn.addEventListener('click',()=>{sidebar.classList.toggle('mobile-open');overlay.classList.toggle('active');});
+overlay.addEventListener('click',()=>{sidebar.classList.remove('mobile-open');overlay.classList.remove('active');});
+
+/* ── Theme ── */
+const html=document.documentElement;
+let theme=localStorage.getItem('bp-theme')||'dark';
+html.setAttribute('data-theme',theme);
+document.getElementById('themeToggle').addEventListener('click',()=>{theme=theme==='dark'?'light':'dark';html.setAttribute('data-theme',theme);localStorage.setItem('bp-theme',theme);});
+
+/* ── Notification Dropdown ── */
+const notifBtn=document.getElementById('notifBtn');
+const notifDropdown=document.getElementById('notifDropdown');
+notifBtn.addEventListener('click',(e)=>{e.stopPropagation();notifDropdown.classList.toggle('open');});
+document.addEventListener('click',(e)=>{if(!notifDropdown.contains(e.target)&&e.target!==notifBtn){notifDropdown.classList.remove('open');}});
+
+function markAllRead(){
+  document.querySelectorAll('.notif-dropdown-item').forEach(item=>{item.classList.remove('unread');item.querySelector('.notif-dot').classList.remove('unread');item.querySelector('.notif-dot').classList.add('read');});
+  const badge=document.getElementById('notifBadge');
+  if(badge){badge.style.display='none';}
+  showToast('Tüm bildirimler okundu olarak işaretlendi','success');
+}
+
+/* ── Modal Helpers ── */
+function openModal(id){document.getElementById(id).classList.add('active');}
+function closeModal(id){document.getElementById(id).classList.remove('active');}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ document.querySelectorAll('.modal-overlay.active').forEach(m=>m.classList.remove('active')); } });
+
+/* ── Toast ── */
+function showToast(message,type='info'){
+  const c=document.getElementById('toastContainer');
+  const t=document.createElement('div');
+  t.className='toast toast-'+type;
+  const icons={success:'✓',error:'✕',warning:'▲',info:'ℹ'};
+  const titles={success:'Başarılı',error:'Hata',warning:'Uyarı',info:'Bilgi'};
+  t.innerHTML='<div class="toast-icon">'+icons[type]+'</div><div class="toast-content"><div class="toast-title">'+titles[type]+'</div><div class="toast-message">'+message+'</div></div><button class="toast-close" onclick="this.parentElement.remove()">✕</button><div class="toast-progress"></div>';
+  c.appendChild(t);
+  setTimeout(()=>{t.classList.add('exit');setTimeout(()=>t.remove(),300);},4000);
+}
+
+/* ── Scroll Reveal ── */
+function initReveal(){
+  const observer=new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');}});
+  },{threshold:0.05,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initReveal);}else{initReveal();}
+
+/* ── i18n ── */
+const i18n = {
+  "tr": {
+    "customer_portal_title": "BuildPro — Müşteri Portalı",
+    "buildpro": "BuildPro",
+    "müşteri_portalı": "Müşteri Portalı",
+    "ana_menü": "Ana Menü",
+    "genel_bakış": "Genel Bakış",
+    "projelerim": "Projelerim",
+    "sözleşmelerim": "Sözleşmelerim",
+    "ödemelerim": "Ödemelerim",
+    "randevularım": "Randevularım",
+    "iletişim": "İletişim",
+    "mesajlarım": "Mesajlarım",
+    "destek": "Destek",
+    "diğer_modüller": "Diğer Modüller",
+    "cleanfix": "CleanFix",
+    "barberpro": "BarberPro",
+    "marc_wouters": "Marc Wouters",
+    "müşteri": "Müşteri",
+    "çıkış_yap": "Çıkış Yap",
+    "title_menü": "Menü",
+    "müşteri_portalı": "Müşteri Portalı",
+    "title_bildirimler": "Bildirimler",
+    "tümünü_okundu_işaretle": "Tümünü Okundu İşaretle",
+    "rivierpark_villa": "Rivierpark Villa",
+    "fatura_düzenlendi": "Fatura düzenlendi:",
+    "randevu_onayı": "Randevu onayı:",
+    "sözleşme_güncellendi": "Sözleşme güncellendi:",
+    "ödeme_alındı": "Ödeme alındı:",
+    "_5_dakika_önce": "5 dakika önce",
+    "_2_saat_önce": "2 saat önce",
+    "_4_saat_önce": "4 saat önce",
+    "_1_gün_önce": "1 gün önce",
+    "_3_gün_önce": "3 gün önce",
+    "title_tema": "Tema",
+    "hoşgeldiniz_marc": "Hoşgeldiniz, Marc Wouters",
+    "portal_desc": "Tüm projelerinizi, sözleşmelerinizi, ödemelerinizi ve iletişim geçmişinizi tek bir ekrandan yönetin.",
+    "destek_talebi": "Destek Talebi",
+    "randevu_al": "Randevu Al",
+    "aktif_proje": "Aktif Proje",
+    "tamamlanan_proje": "Tamamlanan Proje",
+    "toplam_sözleşme": "Toplam Sözleşme",
+    "bekleyen_ödeme": "Bekleyen Ödeme",
+    "_4_aktif_proje": "4",
+    "_2_tamamlanan": "2",
+    "_847500": "€847.500",
+    "_12450": "€12.450",
+    "referans": "Referans",
+    "proje_adı": "Proje Adı",
+    "lokasyon": "Lokasyon",
+    "başlangıç": "Başlangıç",
+    "bitiş": "Bitiş",
+    "bütçe": "Bütçe",
+    "ilerleme": "İlerleme",
+    "durum": "Durum",
+    "lemaire_konutları": "Lemaire Konutları — Villa Renovasyonu",
+    "devam_ediyor": "Devam Ediyor",
+    "rivierpark_villa_2": "Rivierpark Villa — Bahçe Düzenlemesi",
+    "son_aşama": "Son Aşama",
+    "merkez_ofis_yenileme": "Merkez Ofis Yenileme — İç Mimari",
+    "devam_ediyor_2": "Devam Ediyor",
+    "garaj_kat_eklemesi": "Garaj &amp; Kat Eklemesi",
+    "devam_ediyor_3": "Devam Ediyor",
+    "bahçe_duvarı_çit_sistemleri": "Bahçe Duvarı &amp; Çit Sistemleri",
+    "tamamlandı": "Tamamlandı",
+    "teras_kapama_cam_sistemleri": "Teras Kapama &amp; Cam Sistemleri",
+    "tamamlandı_2": "Tamamlandı",
+    "sözleşme_no": "Sözleşme No",
+    "proje": "Proje",
+    "tarih": "Tarih",
+    "tutar": "Tutar",
+    "durum_2": "Durum",
+    "lemaire_konutları_2": "Lemaire Konutları",
+    "imzalandı": "İmzalandı",
+    "rivierpark_villa_3": "Rivierpark Villa",
+    "imzalandı_2": "İmzalandı",
+    "merkez_ofis_yenileme_2": "Merkez Ofis Yenileme",
+    "imzalandı_3": "İmzalandı",
+    "garaj_kat_eklemesi_2": "Garaj &amp; Kat Eklemesi",
+    "onay_bekliyor": "Onay Bekliyor",
+    "ek_protokol_2": "Ek Protokol #2 — Ofis",
+    "taslak": "Taslak",
+    "fatura_no": "Fatura No",
+    "proje_2": "Proje",
+    "vade": "Vade",
+    "tutar_2": "Tutar",
+    "ödeme_durumu": "Ödeme Durumu",
+    "lemaire_konutları_3": "Lemaire Konutları",
+    "ödendi": "Ödendi",
+    "lemaire_konutları_4": "Lemaire Konutları",
+    "ödendi_2": "Ödendi",
+    "rivierpark_villa_4": "Rivierpark Villa",
+    "ödendi_3": "Ödendi",
+    "merkez_ofis_yenileme_3": "Merkez Ofis Yenileme",
+    "ödendi_4": "Ödendi",
+    "merkez_ofis_yenileme_4": "Merkez Ofis Yenileme",
+    "bekliyor": "Bekliyor",
+    "garaj_kat_eklemesi_3": "Garaj &amp; Kat Eklemesi",
+    "gecikti": "Gecikti",
+    "yaklaşan_randevular": "Yaklaşan Randevular",
+    "şantiye_gezisi_lemaire": "Şantiye Gezisi — Lemaire",
+    "brugge_2": "Brugge, Belçika",
+    "onay_bekliyor_2": "Onay Bekliyor",
+    "proje_teslimi_rivierpark": "Proje Teslimi — Rivierpark",
+    "antwerpen_2": "Antwerpen, Belçika",
+    "onaylandı": "Onaylandı",
+    "malzeme_seçimi_ofis": "Malzeme Seçimi — Ofis Yenileme",
+    "gent_2": "Gent, Belçika",
+    "tamamlandı_3": "Tamamlandı",
+    "elektrik_kontrolü_lemaire": "Elektrik Kontrolü — Lemaire",
+    "brugge_3": "Brugge, Belçika",
+    "tamamlandı_4": "Tamamlandı",
+    "son_mesajlar": "Son Mesajlar",
+    "tümünü_gör": "Tümünü Gör",
+    "msg_1": "Rivierpark Villa projesinde son aşamaya geçtik. Bahçe düzenlemesi ve son dokunuşlar için randevu oluşturabilir misiniz?",
+    "msg_2": "Fatura #INV-2026-145 (Garaj &amp; Kat Eklemesi) vadesi 15 Haziran 2026 olarak kaydedilmiştir. Ödeme planını kontrol edebilir misiniz?",
+    "msg_3": "Lemaire Konutları'nda elektrik tesisat kontrolü başarıyla tamamlandı. Raporu ekte bulabilirsiniz.",
+    "msg_4": "Merkez Ofis Yenileme projesi için seçtiğiniz zemin kaplaması sipariş edildi. Teslimat 2 hafta içinde.",
+    "iletişim_geçmişi": "İletişim Geçmişi",
+    "tarih_2": "Tarih",
+    "kişi": "Kişi",
+    "konu": "Konu",
+    "kanal": "Kanal",
+    "notlar": "Notlar",
+    "konu_1": "Rivierpark son aşama onayı",
+    "not_1": "Müşteri onay verdi, teslimat 30 Haziran",
+    "konu_2": "Fatura #INV-2026-145 hatırlatma",
+    "not_2": "Ödeme planı güncellenecek",
+    "konu_3": "Elektrik kontrolü raporu",
+    "not_3": "Kontrol başarılı, sertifika düzenlendi",
+    "konu_4": "Zemin kaplaması seçimi",
+    "not_4": "Müşteri örnekleri onayladı",
+    "konu_5": "Lemaire proje ilerleme raporu",
+    "not_5": "%78 tamamlandı, 2 hafta erken bitiş beklentisi",
+    "konu_6": "Garaj projesi ek bütçe onayı",
+    "not_6": "Ek protokol taslağı hazırlandı",
+    "konu_7": "Ofis yenileme 2. taksit onayı",
+    "not_7": "€126.000 ödeme alındı",
+    "konu_8": "Şantiye gezisi randevusu",
+    "not_8": "20 Mayıs 14:00 onaylandı",
+    "konu_9": "İç mimari revizyon talebi",
+    "not_9": "Revizyon reddedildi, orijinal plan devam",
+    "konu_10": "Rivierpark villa peyzaj onayı",
+    "not_10": "Peyzaj planı onaylandı, uygulama başladı",
+    "konu_11": "Yapı ruhsatı güncelleme",
+    "not_11": "Belediye onayı alındı",
+    "konu_12": "Lemaire 2. taksit hatırlatma",
+    "not_12": "€85.500 ödeme alındı",
+    "konu_13": "Merkez ofis şantiye başlangıç",
+    "not_13": "Demolition tamamlandı, yenileme başladı",
+    "konu_14": "Garaj &amp; Kat eklemesi sözleşme",
+    "not_14": "Sözleşme imzalandı, proje başladı",
+    "konu_15": "Ofis yenileme malzeme seçimi",
+    "not_15": "Müşteri tüm malzemeleri onayladı",
+    "buildpro_2": "BuildPro",
+    "profesyonel_i̇nşaat_yönetimi": "Profesyonel İnşaat Yönetimi",
+    "admin_panel": "Admin Panel",
+    "footer_copy": "© 2026 BuildPro Demo BV. Tüm hakları saklıdır.",
+    "ph_projeler_ara": "Projeler, sözleşmeler ara...",
+    "lemaire_detay": "Proje Detayları — Lemaire Konutları",
+    "bütçe_2": "Bütçe",
+    "harcanan_2": "Harcanan",
+    "kalan_2": "Kalan",
+    "ilerleme_2": "İlerleme",
+    "proje_zaman_çizelgesi": "Proje Zaman Çizelgesi",
+    "tm_1": "Proje Başlangıcı &amp; Yıkım",
+    "tm_d1": "Eski yapı temizlendi, temel hazırlandı",
+    "tm_2": "Temel &amp; Betonarme İskelet",
+    "tm_d2": "Temel atıldı, zemin kat ve 1. kat betonarme tamamlandı",
+    "tm_3": "Dış Cephe &amp; Çatı",
+    "tm_d3": "Tuğla kaplama, pencere montajı ve çatı kaplama tamamlandı",
+    "tm_4": "İç Mekan Elektrik &amp; Sıhhi Tesisat",
+    "tm_d4": "Elektrik kontrolü tamamlandı, tesisat devam ediyor",
+    "tm_5": "Son Teslimat &amp; Kalite Kontrol",
+    "tm_d5": "Boya, zemin kaplama ve son dokunuşlar",
+    "kapat": "Kapat",
+    "pdf_indir": "PDF İndir",
+    "rivierpark_detay": "Proje Detayları — Rivierpark Villa",
+    "bütçe_3": "Bütçe",
+    "harcanan_3": "Harcanan",
+    "kalan_3": "Kalan",
+    "ilerleme_3": "İlerleme",
+    "proje_zaman_çizelgesi_2": "Proje Zaman Çizelgesi",
+    "tm_6": "Proje Başlangıcı",
+    "tm_d6": "Bahçe düzenleme planı onaylandı",
+    "tm_7": "Toprak İşleri &amp; Drenaj",
+    "tm_d7": "Toprak düzenleme ve drenaj sistemleri tamamlandı",
+    "tm_8": "Bitki &amp; Ağaç Dikimi",
+    "tm_d8": "Dekoratif bitkiler, çim ve ağaç dikimi tamamlandı",
+    "tm_9": "Otomatik Sulama &amp; Aydınlatma",
+    "tm_d9": "Sulama sistemi ve bahçe aydınlatması kurulumu devam ediyor",
+    "tm_10": "Son Teslimat",
+    "tm_d10": "Son kontrol ve bakım talimatları",
+    "kapat_2": "Kapat",
+    "pdf_indir_2": "PDF İndir",
+    "ofis_detay": "Proje Detayları — Merkez Ofis Yenileme",
+    "bütçe_4": "Bütçe",
+    "harcanan_4": "Harcanan",
+    "kalan_4": "Kalan",
+    "ilerleme_4": "İlerleme",
+    "proje_zaman_çizelgesi_3": "Proje Zaman Çizelgesi",
+    "tm_11": "Proje Başlangıcı &amp; Demolition",
+    "tm_d11": "Eski ofis malzemeleri söküldü, temizlik yapıldı",
+    "tm_12": "Yapısal Revizyon",
+    "tm_d12": "Bölme duvarlar yeniden konumlandırıldı",
+    "tm_13": "Elektrik &amp; Sıhhi Tesisat",
+    "tm_d13": "Veri kablolama ve HVAC sistem kurulumu",
+    "tm_14": "İç Mimari &amp; Mobilya",
+    "tm_d14": "Zemin kaplama, boya ve özel mobilya montajı",
+    "tm_15": "Son Teslimat",
+    "tm_d15": "Son kontrol ve temizlik",
+    "kapat_3": "Kapat",
+    "pdf_indir_3": "PDF İndir",
+    "garaj_detay": "Proje Detayları — Garaj &amp; Kat Eklemesi",
+    "bütçe_5": "Bütçe",
+    "harcanan_5": "Harcanan",
+    "kalan_5": "Kalan",
+    "ilerleme_5": "İlerleme",
+    "proje_zaman_çizelgesi_4": "Proje Zaman Çizelgesi",
+    "tm_16": "Proje Başlangıcı",
+    "tm_d16": "Yapı ruhsatı alındı, şantiye kuruldu",
+    "tm_17": "Temel &amp; Kolonlar",
+    "tm_d17": "Temel betonu atıldı, taşıyıcı kolonlar tamamlandı",
+    "tm_18": "Döşeme &amp; Çatı",
+    "tm_d18": "Kat döşemesi ve çatı konstrüksiyonu",
+    "tm_19": "Cephe &amp; Pencere",
+    "tm_d19": "Dış cephe kaplama ve PVC pencere montajı",
+    "tm_20": "Son Teslimat",
+    "tm_d20": "İç mekan ve garaj kapısı montajı",
+    "kapat_4": "Kapat",
+    "pdf_indir_4": "PDF İndir"
+  },
+  "en": {
+    "customer_portal_title": "BuildPro — Customer Portal",
+    "buildpro": "BuildPro",
+    "müşteri_portalı": "Customer Portal",
+    "ana_menü": "Main Menu",
+    "genel_bakış": "Overview",
+    "projelerim": "My Projects",
+    "sözleşmelerim": "My Contracts",
+    "ödemelerim": "My Payments",
+    "randevularım": "My Appointments",
+    "iletişim": "Communication",
+    "mesajlarım": "My Messages",
+    "destek": "Support",
+    "diğer_modüller": "Other Modules",
+    "cleanfix": "CleanFix",
+    "barberpro": "BarberPro",
+    "marc_wouters": "Marc Wouters",
+    "müşteri": "Customer",
+    "çıkış_yap": "Logout",
+    "title_menü": "Menu",
+    "müşteri_portalı": "Customer Portal",
+    "title_bildirimler": "Notifications",
+    "tümünü_okundu_işaretle": "Mark All as Read",
+    "rivierpark_villa": "Rivierpark Villa",
+    "fatura_düzenlendi": "Invoice issued:",
+    "randevu_onayı": "Appointment confirmation:",
+    "sözleşme_güncellendi": "Contract updated:",
+    "ödeme_alındı": "Payment received:",
+    "_5_dakika_önce": "5 minutes ago",
+    "_2_saat_önce": "2 hours ago",
+    "_4_saat_önce": "4 hours ago",
+    "_1_gün_önce": "1 day ago",
+    "_3_gün_önce": "3 days ago",
+    "title_tema": "Theme",
+    "hoşgeldiniz_marc": "Welcome, Marc Wouters",
+    "portal_desc": "Manage all your projects, contracts, payments and communication history from a single screen.",
+    "destek_talebi": "Support Request",
+    "randevu_al": "Book Appointment",
+    "aktif_proje": "Active Projects",
+    "tamamlanan_proje": "Completed Projects",
+    "toplam_sözleşme": "Total Contract Value",
+    "bekleyen_ödeme": "Pending Payment",
+    "_4_aktif_proje": "4",
+    "_2_tamamlanan": "2",
+    "_847500": "€847,500",
+    "_12450": "€12,450",
+    "referans": "Reference",
+    "proje_adı": "Project Name",
+    "lokasyon": "Location",
+    "başlangıç": "Start",
+    "bitiş": "End",
+    "bütçe": "Budget",
+    "ilerleme": "Progress",
+    "durum": "Status",
+    "lemaire_konutları": "Lemaire Residences — Villa Renovation",
+    "devam_ediyor": "In Progress",
+    "rivierpark_villa_2": "Rivierpark Villa — Garden Landscaping",
+    "son_aşama": "Final Phase",
+    "merkez_ofis_yenileme": "Head Office Renovation — Interior",
+    "devam_ediyor_2": "In Progress",
+    "garaj_kat_eklemesi": "Garage &amp; Floor Extension",
+    "devam_ediyor_3": "In Progress",
+    "bahçe_duvarı_çit_sistemleri": "Garden Wall &amp; Fence Systems",
+    "tamamlandı": "Completed",
+    "teras_kapama_cam_sistemleri": "Terrace Enclosure &amp; Glass Systems",
+    "tamamlandı_2": "Completed",
+    "sözleşme_no": "Contract No",
+    "proje": "Project",
+    "tarih": "Date",
+    "tutar": "Amount",
+    "durum_2": "Status",
+    "lemaire_konutları_2": "Lemaire Residences",
+    "imzalandı": "Signed",
+    "rivierpark_villa_3": "Rivierpark Villa",
+    "imzalandı_2": "Signed",
+    "merkez_ofis_yenileme_2": "Head Office Renovation",
+    "imzalandı_3": "Signed",
+    "garaj_kat_eklemesi_2": "Garage &amp; Floor Extension",
+    "onay_bekliyor": "Pending Approval",
+    "ek_protokol_2": "Addendum #2 — Office",
+    "taslak": "Draft",
+    "fatura_no": "Invoice No",
+    "proje_2": "Project",
+    "vade": "Due",
+    "tutar_2": "Amount",
+    "ödeme_durumu": "Status",
+    "lemaire_konutları_3": "Lemaire Residences",
+    "ödendi": "Paid",
+    "lemaire_konutları_4": "Lemaire Residences",
+    "ödendi_2": "Paid",
+    "rivierpark_villa_4": "Rivierpark Villa",
+    "ödendi_3": "Paid",
+    "merkez_ofis_yenileme_3": "Head Office Renovation",
+    "ödendi_4": "Paid",
+    "merkez_ofis_yenileme_4": "Head Office Renovation",
+    "bekliyor": "Pending",
+    "garaj_kat_eklemesi_3": "Garage &amp; Floor Extension",
+    "gecikti": "Overdue",
+    "yaklaşan_randevular": "Upcoming Appointments",
+    "şantiye_gezisi_lemaire": "Site Visit — Lemaire",
+    "brugge_2": "Bruges, Belgium",
+    "onay_bekliyor_2": "Pending",
+    "proje_teslimi_rivierpark": "Project Handover — Rivierpark",
+    "antwerpen_2": "Antwerp, Belgium",
+    "onaylandı": "Confirmed",
+    "malzeme_seçimi_ofis": "Material Selection — Office Renovation",
+    "gent_2": "Ghent, Belgium",
+    "tamamlandı_3": "Completed",
+    "elektrik_kontrolü_lemaire": "Electrical Inspection — Lemaire",
+    "brugge_3": "Bruges, Belgium",
+    "tamamlandı_4": "Completed",
+    "son_mesajlar": "Recent Messages",
+    "tümünü_gör": "View All",
+    "msg_1": "We have reached the final phase of the Rivierpark Villa project. Can you schedule an appointment for landscaping and final touches?",
+    "msg_2": "Invoice #INV-2026-145 (Garage &amp; Floor Extension) is due on June 15, 2026. Please review the payment schedule.",
+    "msg_3": "Electrical inspection at Lemaire Residences completed successfully. You can find the report attached.",
+    "msg_4": "The floor covering you selected for the Head Office Renovation has been ordered. Delivery within 2 weeks.",
+    "iletişim_geçmişi": "Communication History",
+    "tarih_2": "Date",
+    "kişi": "Person",
+    "konu": "Subject",
+    "kanal": "Channel",
+    "notlar": "Notes",
+    "konu_1": "Rivierpark final phase approval",
+    "not_1": "Customer approved, delivery June 30",
+    "konu_2": "Invoice #INV-2026-145 reminder",
+    "not_2": "Payment schedule to be updated",
+    "konu_3": "Electrical inspection report",
+    "not_3": "Inspection successful, certificate issued",
+    "konu_4": "Floor covering selection",
+    "not_4": "Customer approved samples",
+    "konu_5": "Lemaire project progress report",
+    "not_5": "78% complete, expected to finish 2 weeks early",
+    "konu_6": "Garage project extra budget approval",
+    "not_6": "Addendum draft prepared",
+    "konu_7": "Office renovation 2nd installment approval",
+    "not_7": "€126,000 payment received",
+    "konu_8": "Site visit appointment",
+    "not_8": "May 20, 14:00 confirmed",
+    "konu_9": "Interior revision request",
+    "not_9": "Revision declined, original plan continues",
+    "konu_10": "Rivierpark villa landscaping approval",
+    "not_10": "Landscaping plan approved, implementation started",
+    "konu_11": "Building permit update",
+    "not_11": "Municipal approval obtained",
+    "konu_12": "Lemaire 2nd installment reminder",
+    "not_12": "€85,500 payment received",
+    "konu_13": "Head office site start",
+    "not_13": "Demolition completed, renovation started",
+    "konu_14": "Garage &amp; Floor extension contract",
+    "not_14": "Contract signed, project started",
+    "konu_15": "Office renovation material selection",
+    "not_15": "Customer approved all materials",
+    "buildpro_2": "BuildPro",
+    "profesyonel_i̇nşaat_yönetimi": "Professional Construction Management",
+    "admin_panel": "Admin Panel",
+    "footer_copy": "© 2026 BuildPro Demo BV. All rights reserved.",
+    "ph_projeler_ara": "Search projects, contracts...",
+    "lemaire_detay": "Project Details — Lemaire Residences",
+    "bütçe_2": "Budget",
+    "harcanan_2": "Spent",
+    "kalan_2": "Remaining",
+    "ilerleme_2": "Progress",
+    "proje_zaman_çizelgesi": "Project Timeline",
+    "tm_1": "Project Start &amp; Demolition",
+    "tm_d1": "Old structure cleared, foundation prepared",
+    "tm_2": "Foundation &amp; Reinforced Concrete Frame",
+    "tm_d2": "Foundation poured, ground and 1st floor concrete completed",
+    "tm_3": "Facade &amp; Roof",
+    "tm_d3": "Brick cladding, window installation and roof covering completed",
+    "tm_4": "Interior Electrical &amp; Plumbing",
+    "tm_d4": "Electrical inspection completed, plumbing in progress",
+    "tm_5": "Final Delivery &amp; Quality Control",
+    "tm_d5": "Painting, flooring and final touches",
+    "kapat": "Close",
+    "pdf_indir": "Download PDF",
+    "rivierpark_detay": "Project Details — Rivierpark Villa",
+    "bütçe_3": "Budget",
+    "harcanan_3": "Spent",
+    "kalan_3": "Remaining",
+    "ilerleme_3": "Progress",
+    "proje_zaman_çizelgesi_2": "Project Timeline",
+    "tm_6": "Project Start",
+    "tm_d6": "Garden landscaping plan approved",
+    "tm_7": "Earthworks &amp; Drainage",
+    "tm_d7": "Soil grading and drainage systems completed",
+    "tm_8": "Planting &amp; Trees",
+    "tm_d8": "Decorative plants, lawn and trees planted",
+    "tm_9": "Automatic Irrigation &amp; Lighting",
+    "tm_d9": "Irrigation system and garden lighting installation in progress",
+    "tm_10": "Final Delivery",
+    "tm_d10": "Final inspection and maintenance instructions",
+    "kapat_2": "Close",
+    "pdf_indir_2": "Download PDF",
+    "ofis_detay": "Project Details — Head Office Renovation",
+    "bütçe_4": "Budget",
+    "harcanan_4": "Spent",
+    "kalan_4": "Remaining",
+    "ilerleme_4": "Progress",
+    "proje_zaman_çizelgesi_3": "Project Timeline",
+    "tm_11": "Project Start &amp; Demolition",
+    "tm_d11": "Old office materials removed, cleaned",
+    "tm_12": "Structural Revision",
+    "tm_d12": "Partition walls repositioned",
+    "tm_13": "Electrical &amp; Plumbing",
+    "tm_d13": "Data cabling and HVAC system installation",
+    "tm_14": "Interior &amp; Furniture",
+    "tm_d14": "Floor covering, painting and custom furniture assembly",
+    "tm_15": "Final Delivery",
+    "tm_d15": "Final inspection and cleaning",
+    "kapat_3": "Close",
+    "pdf_indir_3": "Download PDF",
+    "garaj_detay": "Project Details — Garage &amp; Floor Extension",
+    "bütçe_5": "Budget",
+    "harcanan_5": "Spent",
+    "kalan_5": "Remaining",
+    "ilerleme_5": "Progress",
+    "proje_zaman_çizelgesi_4": "Project Timeline",
+    "tm_16": "Project Start",
+    "tm_d16": "Building permit obtained, site established",
+    "tm_17": "Foundation &amp; Columns",
+    "tm_d17": "Foundation concrete poured, load-bearing columns completed",
+    "tm_18": "Flooring &amp; Roof",
+    "tm_d18": "Floor slab and roof construction",
+    "tm_19": "Facade &amp; Windows",
+    "tm_d19": "External cladding and PVC window installation",
+    "tm_20": "Final Delivery",
+    "tm_d20": "Interior and garage door installation",
+    "kapat_4": "Close",
+    "pdf_indir_4": "Download PDF"
+  }
+};
+
+let currentLang = localStorage.getItem('buildpro_lang') || 'tr';
+
+function applyLang() {
+  const dict = i18n[currentLang] || i18n['tr'];
+  document.documentElement.lang = currentLang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key]) el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (dict[key]) el.placeholder = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-attr]').forEach(el => {
+    const attr = el.getAttribute('data-i18n-attr');
+    const key = el.getAttribute('data-i18n');
+    if (dict[key]) el.setAttribute(attr, dict[key]);
+  });
+}
+
+function switchLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('buildpro_lang', lang);
+  document.documentElement.lang = lang;
+  applyLang();
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+}
+
+// Init language
+document.addEventListener('DOMContentLoaded', () => {
+  applyLang();
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === currentLang));
+});
+</script>
+<script src="js/pwa.js"></script>
+<script src="js/export.js"></script>
+</body>
+</html>
