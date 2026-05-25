@@ -305,8 +305,10 @@
 .sidebar-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:99; opacity:0; visibility:hidden; transition:all var(--duration-normal); }
 .sidebar-overlay.active { opacity:1; visibility:visible; }
 </style>
+  <script src="js/auth.js"></script>
 </head>
 <body>
+<script>checkAuth();</script>
 <script>
 (function(){
   var token = localStorage.getItem('kobipro_auth_token');

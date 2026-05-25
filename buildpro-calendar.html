@@ -62,8 +62,10 @@
     .event-form-grid { display:grid; grid-template-columns:1fr 1fr; gap:var(--space-4); }
     @media (max-width:640px){ .event-form-grid { grid-template-columns:1fr; } }
   </style>
+  <script src="js/auth.js"></script>
 </head>
 <body>
+<script>checkAuth();</script>
 <div class="dashboard">
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-brand">

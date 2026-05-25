@@ -95,8 +95,10 @@
 @media (max-width:1024px){.form-row{grid-template-columns:1fr 1fr;}.stats-row{grid-template-columns:repeat(2,1fr);}}
 @media (max-width:768px){.sidebar{transform:translateX(-100%);}.sidebar.mobile-open{transform:translateX(0);}.main-content{margin-left:0;}.hamburger{display:block;}.form-row,.stats-row{grid-template-columns:1fr;}.maintenance-calendar{grid-template-columns:repeat(7,1fr);}}
 </style>
+  <script src="js/auth.js"></script>
 </head>
 <body>
+<script>checkAuth();</script>
 <div class="dashboard">
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-brand">
